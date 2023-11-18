@@ -1,6 +1,7 @@
 -- {{{
 
 import XMonad
+import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Hooks.DynamicProperty
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -202,6 +203,8 @@ myKeys =
                                 (withScreen 1 myWorkspaces)
                          ++ zip mySharedWorkspaceKeys
                                 (withScreen 2 mySharedWorkspaces)
+    ("M-c", windows copyToAll),
+    ("M-S-c", killAllOtherCopies),
   ]
 
 zipKeyPrefixes :: [String] -> [String] -> [String]
