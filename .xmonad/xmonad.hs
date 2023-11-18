@@ -205,6 +205,7 @@ myKeys =
                                 (withScreen 2 mySharedWorkspaces)
     ("M-c", windows copyToAll),
     ("M-S-c", killAllOtherCopies),
+    ("M-S-<Delete>", kill)
   ]
 
 zipKeyPrefixes :: [String] -> [String] -> [String]
