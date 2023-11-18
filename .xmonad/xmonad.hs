@@ -68,7 +68,7 @@ shiftAndView id = doF (W.view id) <> doF (W.shift id)
 -- startupHook
 myStartupHook =
   do
-    spawn "albert"
+    spawn "killall polybar && polybar -r"
 
 -- manageHook
 myManageHook :: ManageHook
@@ -264,13 +264,14 @@ resetTemp = spawn "screen-temperature 3000"
 -- Main {{{
 
 main :: IO ()
-main = do xmonad
-  $ ewmh
-  $ withEasySB
-    (sb1 <> sb2)
-    defToggleStrutsKey
-    myConfig
+main =
+  do { xmonad } $
+    ewmh $
+      withEasySB
+        (sb1 <> sb2)
+        defToggleStrutsKey
+        myConfig
   where
-    [sb1, sb2] = [statusBarProp "xmobar" $ pure (pp' (S i) pp) | i <- [0..1]]
+    [sb1, sb2] = [statusBarProp "polybar" $ pure (pp' (S i) pp) | i <- [0 .. 1]]
 
 -- }}}
