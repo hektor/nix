@@ -256,8 +256,8 @@ pause = spawn "playerctl pause"
 brighten, dim, warm, cool, resetTemp :: X ()
 brighten = spawn "brightnessctl set 20+"
 dim = spawn "brightnessctl set 20-"
-warm = spawn "screen-temperature +50 && notify < /tmp/temperature -h string:x-canonical-private-synchronous:anything"
-cool = spawn "screen-temperature -50 && notify < /tmp/temperature -h string:x-canonical-private-synchronous:anything"
+warm = spawn "screen-temperature +50"
+cool = spawn "screen-temperature -50"
 resetTemp = spawn "screen-temperature 3000"
 
 -- }}}

@@ -43,6 +43,9 @@ try:
     subprocess.run(["redshift", "-O", str(new_temperature), "-P"], check=True)
     with open('/tmp/temperature', 'w') as temp_file:
         temp_file.write(str(new_temperature) + '\n')
+    # Send notification
+    subprocess.run(
+        ["notify-send", str(new_temperature) + "K"])
 except subprocess.CalledProcessError:
     print("Error: could not set screen temperature.")
     sys.exit(1)
