@@ -1,7 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 
 source /etc/os-release
 
