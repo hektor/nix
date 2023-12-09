@@ -15,8 +15,9 @@ from time import sleep
 from plyer import notification
 
 
+@atexit.register
 def clear():
-    os.system('echo -n "" > /tmp/pomo')
+    os.system('rm /tmp/pomo')
 
 
 def format_mins_secs(mins, secs):
@@ -36,8 +37,6 @@ def make_countdown():
 
 
 def main(args):
-    atexit.register(clear)
-
     prep_duration = args.prep_duration * 60
     work_duration = args.work_duration * 60
     break_duration = args.break_duration * 60
@@ -59,7 +58,15 @@ def main(args):
         repeats -= 1
 
 
+def handle_signal(signal, frame):
+    # Wait for clear to finish
+    clear()
+    print('Exiting')
+    exit(0)
+
+
 if __name__ == '__main__':
+
     parser = ArgumentParser()
 
     parser.add_argument('-p', '--prep-duration', type=int,
