@@ -49,8 +49,8 @@ export HISTIGNORE="clear:l: *"
 
 # Man pages {{{
 # See `:h :Man` in NeoVim
-export MANWIDTH=999
-# export MANPAGER='nvim +Man!'
+export MANWIDTH=80
+export PAGER=nvimpager
 # }}}
 
 # Editor {{{
