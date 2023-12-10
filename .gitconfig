@@ -70,3 +70,5 @@
   rebase = true
 [diff]
   colorMoved = zebra
+[commit]
+  gpgsign = true
