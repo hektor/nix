@@ -74,9 +74,6 @@ ino <up>    <nop>|       " "
 ino <right> <nop>|       " "
 " Search
 nn <c-_> :noh<cr>| " map 'ctrl + /'
-" Use `the_silver_searcher` to find results (for selection if selection)
-nn <leader>f :Ag <cr>
-vm <leader>f y:Ag <C-r>"<cr>
 " Toggle line numbers
 nn <leader>n :set nu! rnu!<cr>
 " Vim configuration
@@ -218,6 +215,9 @@ let g:pandoc#syntax#conceal#urls=1
 let g:pandoc#syntax#conceal#blacklist=[]
 let g:pandoc#syntax#style#emphases=0 " Bug workaround
 let g:pandoc#syntax#conceal#cchar_overrides = { "atx": " ", "li": "·" }
+" Use `the_silver_searcher` to find results (for selection if selection)
+nn <leader>f :Ag<cr>
+vm <leader>f y:Ag <C-r>"<cr>
 
 " }}}
 
