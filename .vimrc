@@ -155,14 +155,6 @@ au FileType markdown nmap <buffer><silent> <leader>v :call mdip#MarkdownClipboar
 
 " }}}
 
-" 'tpope/vim-commentary' {{{
-
-xm <leader>c <Plug>Commentary
-nm <leader>c <Plug>Commentary
-nm <leader>cc <Plug>CommentaryLine
-
-" }}}
-
 " `junegunn/fzf` {{{
 " `junegunn/fzf.vim`
 
