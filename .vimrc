@@ -376,13 +376,6 @@ highlight QuickScopeSecondary cterm=underline
 highlight QuickScopePrimary ctermbg=253 ctermfg=232 cterm=none
 highlight Pmenu ctermfg=232
 
-function! SynGroup()
-    let l:s = synID(line('.'), col('.'), 1)
-    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun
-
-com! -nargs=0 Syn :call SynGroup()
-
 " Taken from /usr/share/vim/vim90/defaults.vim
 augroup vimStartup
   au!
