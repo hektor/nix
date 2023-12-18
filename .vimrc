@@ -137,16 +137,6 @@ call plug#end()
 
 " }}}
 
-" `.../copilot` {{{
-
-let g:copilot_node_command = "/home/h/.config/nvm/versions/node/v16.18.0/bin/node"
-let g:copilot_no_tab_map = v:true
-imap <c-l> <Plug>(copilot-next)
-imap <c-h> <Plug>(copilot-prev)
-imap <silent><script><expr> <s-tab> copilot#Accept("\<CR>")
-" Show Copilot node v16 as it does not work with v18 yet
-
-" }}}
 
 " `.../vimtex` {{{
 
