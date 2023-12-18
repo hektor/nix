@@ -62,7 +62,6 @@ nn s= <c-w>=|        " Equalize splits
 nn sb :Lex<cr>|          " File tree
 nn <leader><leader> :noh<cr> |"
 nn <leader>t :term<cr>| " Open terminal
-nn <leader>o :!xdg-open http://localhost:8080/%:t:r.html & <cr>
 " Remaps
 ino <nowait> jj <esc>|   " Normal now
 nn  <left>  <nop>|       " Hard mode
@@ -222,11 +221,7 @@ let g:pandoc#syntax#conceal#cchar_overrides = { "atx": " ", "li": "·" }
 
 " }}}
 
-" `euclio/vim-markdown-composer` {{{
 
-let g:markdown_composer_custom_css = ['file:///home/h/.zk/pandoc.css']
-let g:markdown_composer_external_renderer='pandoc -f markdown+latex_macros-yaml_metadata_block -t html5 --mathjax --bibliograph /home/h/.zk/references.bib --citeproc --lua-filter=/home/h/.wiki/lua-filters/diagram-generator/diagram-generator.lua --lua-filter=/home/h/.wiki/filters/html-links.lua --lua-filter=/home/h/.zk/filters/tikz.lua'
-let g:markdown_composer_autostart = 0
 
 " }}}
 
@@ -366,11 +361,26 @@ au FileType javascript set mps+==:;
 " JSONC (see https://github.com/neoclide/jsonc.vim/pull/9")
 au BufNewFile,BufRead */.vscode/*.json setlocal filetype=jsonc
 
-" Hacky way to pass on active note to script for automated for HTML preview
-au BufEnter /home/h/.zk/*.md silent exe '!echo % > /home/h/.zk/current-zettel.txt'
-au BufEnter /home/h/.zk/*.md silent exe '!cat %:r.html > /home/h/.zk/current-zettel-content.html'
+let s:zk_preview_enabled = 0
+let s:live_server_job = -1
+au BufEnter /home/h/.zk/*.md silent exe '!echo "%" > /home/h/.zk/current-zettel.txt'
+function! ToggleZKPreview()
+    if s:zk_preview_enabled == 1
+        let s:zk_preview_enabled = 0
+        call jobstop(s:live_server_job)
+        au! ZKPreview
+    else
+        let s:zk_preview_enabled = 1
+        let s:live_server_job = jobstart('live-server --watch=/home/h/.zk/current-zettel-content.html --open=current-zettel-content.html --port=8080')
+        augroup ZKPreview
+          au BufEnter /home/h/.zk/*.md silent exe '!cat "%:r.html" > /home/h/.zk/current-zettel-content.html'
+          au BufWritePost /home/h/.zk/*.md silent exe '!make && cat "%:r.html" > /home/h/.zk/current-zettel-content.html'
+        augroup END
+    endif
+endfunction
+command! ToggleZKPreview call ToggleZKPreview()
 
-" }}}
+nn <leader>o :ToggleZKPreview<cr> :!xdg-open http://localhost:8080/%:t:r.html & <cr>
 
 highlight QuickScopeSecondary cterm=underline
 highlight QuickScopePrimary ctermbg=253 ctermfg=232 cterm=none
