@@ -3,14 +3,18 @@
    * Linting & (Auto)formatting
    */
 
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSave": true,
+  "prettier.configPath": ".prettierrc",
+  "prettier.ignorePath": ".prettierignore",
+
   "prettier.semi": false,
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "prettier.arrowParens": "avoid",
   "prettier.printWidth": 120,
   "eslint.format.enable": true,
-  "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSave": true,
+  "eslint.onIgnoredFiles": "warn",
 
   // Markdown
   "markdownlint.config": {
