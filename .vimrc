@@ -30,13 +30,6 @@ set spellsuggest+=5                    " Limit spell suggestions
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 
-" File explorer
-let g:netrw_winsize = 30
-let g:netrw_liststyle=3
-let g:netrw_banner = 0
-
-" }}}
-
 " Folds {{{
 
 " Insert date
