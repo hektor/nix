@@ -30,29 +30,6 @@ set spellsuggest+=5                    " Limit spell suggestions
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 
-" Folds {{{
-
-" Insert date
-fu! Today()
-  :put =strftime('%d %b %Y')
-endfu
-set foldmethod=marker
-
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-augroup filetype_python
-    autocmd!
-    autocmd FileType python setlocal foldmethod=indent
-augroup END
-
-augroup filetype_sh
-    autocmd!
-    autocmd FileType sh setlocal foldmethod=marker
-augroup END
-
 " }}}
 
 " Mappings {{{
