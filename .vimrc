@@ -169,21 +169,6 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit'
   \}
 
-" `vim-pandoc/vim-pandoc` {{{
-" `vim-pandoc/vim-pandoc-syntax`
-
-au FileType pandoc call pandoc#completion#Init()
-let g:pandoc#filetypes#pandoc_markdown=0
-let g:pandoc#spell#enabled=0
-let g:pandoc#spell#default_langs=['en_us', 'nl_be']
-let g:pandoc#formatting#mode='a'
-let g:pandoc#formatting#textwidth=90
-let g:pandoc#modules#disabled = ["formatting", "dashes", "yaml", "metadata"]
-
-let g:pandoc#syntax#conceal#urls=1
-let g:pandoc#syntax#conceal#blacklist=[]
-let g:pandoc#syntax#style#emphases=0 " Bug workaround
-let g:pandoc#syntax#conceal#cchar_overrides = { "atx": " ", "li": "·" }
 " Insert path completion
 " ino <expr><c-f> fzf#vim#complete#path('ag -l -g *.md')
 " ino <c-f> <plug>(fzf-complete-file-ag)
