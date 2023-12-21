@@ -158,25 +158,16 @@ au FileType markdown nmap <buffer><silent> <leader>v :call mdip#MarkdownClipboar
 " `junegunn/fzf` {{{
 " `junegunn/fzf.vim`
 
-let g:fzf_layout = {'window': { 'width': 1, 'height': 0.62}}
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Comment'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:ag_working_path_mode="r"
-
-" }}}
+" FZF
+nn <c-p> :FZF<cr>
+nn <leader>p :FZF<cr>
+nn <leader>b :Buffers<cr>
+nn <leader>h :History<cr>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
 
 " `vim-pandoc/vim-pandoc` {{{
 " `vim-pandoc/vim-pandoc-syntax`
@@ -193,9 +184,13 @@ let g:pandoc#syntax#conceal#urls=1
 let g:pandoc#syntax#conceal#blacklist=[]
 let g:pandoc#syntax#style#emphases=0 " Bug workaround
 let g:pandoc#syntax#conceal#cchar_overrides = { "atx": " ", "li": "·" }
+" Insert path completion
+" ino <expr><c-f> fzf#vim#complete#path('ag -l -g *.md')
+" ino <c-f> <plug>(fzf-complete-file-ag)
+ino <expr><c-f> fzf#vim#complete#path("ag -l -g '' \| sed -e 's/\.md$//'")
 " Use `the_silver_searcher` to find results (for selection if selection)
 nn <leader>f :Ag<cr>
-vm <leader>f y:Ag <C-r>"<cr>
+vm <leader>f :Ag <C-r>"<cr>
 
 " }}}
 
@@ -284,18 +279,6 @@ au Filetype supercollider packadd scvim
 
 " }}}
 
-" FZF
-nn <c-p> :FZF<cr>
-nn <leader>p :FZF<cr>
-nn <leader>b :Buffers<cr>
-nn <leader>h :History<cr>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
-" Insert path completion
-ino <expr><c-f> fzf#vim#complete#path('rg --files --sort path')
 
 " }}}
 
