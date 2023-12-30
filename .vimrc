@@ -147,14 +147,6 @@ let g:vimtex_quickfix_mode=0
 
 " }}}
 
-" 'ferrine/md-img-paste.vim' {{{
-
-" Paste clipboard images
-au FileType pandoc nmap <buffer><silent> <leader>v :call mdip#MarkdownClipboardImage()<CR>
-au FileType markdown nmap <buffer><silent> <leader>v :call mdip#MarkdownClipboardImage()<CR>
-
-" }}}
-
 " `junegunn/fzf` {{{
 " `junegunn/fzf.vim`
 
