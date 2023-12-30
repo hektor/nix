@@ -2,6 +2,7 @@
 
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
+import XMonad.Actions.FloatSnap
 import XMonad.Hooks.DynamicProperty
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -215,7 +216,12 @@ zipKeyPrefixes prefixes keys = [prefix ++ key | prefix <- prefixes, key <- keys]
 myRemoveKeys :: [String]
 myRemoveKeys = "M-S-q" : zipKeyPrefixes ["M-", "M-S-"] (map show [ 1..5 ])
 
-myMouseBindings = []
+myMouseBindings =
+  [
+      ((mod4Mask,               button1), (\w -> focus w >> mouseMoveWindow w >> afterDrag (snapMagicMove (Just 50) (Just 50) w)))
+    , ((mod4Mask .|. shiftMask, button1), (\w -> focus w >> mouseMoveWindow w >> afterDrag (snapMagicResize [L,R,U,D] (Just 50) (Just 50) w)))
+    , ((mod4Mask,               button3), (\w -> focus w >> mouseResizeWindow w >> afterDrag (snapMagicResize [R,D] (Just 50) (Just 50) w)))
+  ]
 
 unfloatFocusedW :: X ()
 unfloatFocusedW = withFocused $ windows . W.sink
