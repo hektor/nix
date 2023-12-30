@@ -175,42 +175,6 @@ vm <leader>f :Ag <C-r>"<cr>
 
 " }}}
 
-" `lervag/wiki.vim` {{{
-
-" Only load wiki.vim for zk directory
-let g:wiki_global_load=0
-let g:wiki_root='~/.zk'
-let g:wiki_index_name='index'
-let g:wiki_zotero_root='~/doc/Zotero'
-let g:wiki_filetypes=['md']
-let g:wiki_completion_case_sensitive=0
-
-" If we are on a wiki link 
-
-" TODO: configure the following
-" let g:wiki_file_handlenmap r
-
-" Links
-" FIXME: figure out what '' vs '.md' does
-let g:wiki_link_extension='.md'
-" Do not automatically transform to link, use `<leader>wf` for this
-let g:wiki_link_toggle_on_follow=0
-let g:wiki_link_target_type='md'
-
-let g:wiki_map_text_to_link='Slugify'
-
-" E.g. transform `My link` into `[My link](my-link.md)`
-function Slugify(text) abort
-  return [substitute(tolower(a:text), '\s\+', '-', 'g'), a:text]
-endfunction
-
-vmap <leader>wf <Plug>(wiki-link-toggle-visual)
-
-" Automatically save when navigation
-let g:wiki_write_on_nav=1
-
-" }}}
-
 " `tools-life/taskwiki` {{{
 
 let g:taskwiki_taskrc_location='/home/h/.config/task/taskrc'
