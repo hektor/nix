@@ -111,6 +111,8 @@ Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript.tsx'] }
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " JSON with comments
 Plug 'neoclide/jsonc.vim'
+" Jupyter
+Plug 'quarto-dev/quarto-vim'
 " LaTeX
 Plug 'lervag/vimtex'
 " Wiki
