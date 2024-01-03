@@ -83,6 +83,7 @@ dkms.conf
 # Dotenv
 .env
 
+.bash_history
 .bash_aliases/private
 .bashrc.d/private
 desg/
