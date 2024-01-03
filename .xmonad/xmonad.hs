@@ -3,6 +3,7 @@
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Actions.FloatSnap
+import Control.Monad (liftM2)
 import XMonad.Hooks.DynamicProperty
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -60,7 +61,7 @@ pp =
 -- Workspaces & screens {{{
 
 -- Shift to workspace and view workspace
-shiftAndView id = doF (W.view id) <> doF (W.shift id)
+shiftAndView = doF . liftM2 (.) W.greedyView W.shift
 
 -- }}}
 
