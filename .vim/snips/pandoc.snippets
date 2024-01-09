@@ -57,6 +57,9 @@ def code_inline():
 def code():
 	return code_inline() or code_block()
 
+def slugify(text):
+	return re.sub('\s+', '-', text.lower())
+
 def linkify(text, link):
 	return f"[{text}]({link})"
 
@@ -738,6 +741,12 @@ for i in range(int(match.group(1)), int(match.group(2)) + 1):
 	title = 3*"."
 	link = snip.basename + "_" + num_str
 	snip.rv += num_str + ". " + linkify(title, link) + "\n"
+`
+endsnippet
+
+snippet "sec([\sA-z]+)" "Link section titled ..." r
+`!p
+snip.rv = "* " + linkify(match.group(1), f"{snip.basename}_{slugify(match.group(1))}")
 `
 endsnippet
 
