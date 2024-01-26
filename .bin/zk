@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+if [ "$TERM_PROGRAM" = tmux ]; then
+  cd ~/.zk && $EDITOR "$(cat ~/.zk/current-zettel.txt)"
+else
+  echo 'Not in tmux'
+  echo 'Choose an option:'
+  echo '1. Open in tmux'
+  echo '2. Open in current terminal'
+  read -r -p 'Enter your choice: ' choice
+  case $choice in
+    1)
+      # Check if a tmux session is running with a window named zk
+      if tmux list-windows -F '#{window_name}' | grep -q zk; then
+        # Attach to the session containing the 'zk' window
+        session="$(tmux list-windows -F '#{window_name} #{session_name}' | grep zk | head -n 1 | awk '{ print $2 }')"
+        tmux attach -t "$session"
+      else
+        # Create session with a window named 'zk' and start nvim
+        tmux new-session -s zk -n zk -d
+        tmux send-keys -t zk:zk "cd ~/.zk && $EDITOR \"\$(cat ~/.zk/current-zettel.txt)\"" Enter
+        tmux attach -t zk
+      fi
+      ;;
+    2)
+      cd ~/.zk && $EDITOR "$(cat ~/.zk/current-zettel.txt)"
+      ;;
+    *)
+      echo 'Not opening Zettelkasten'
+      exit 1
+      ;;
+  esac
+fi
