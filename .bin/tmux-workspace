@@ -3,16 +3,11 @@
 session="main"
 
 tmux attach-session -t $session || tmux new-session -s $session \; \
-  rename-window todo \; \
-  send-keys -t 0 "task" C-m \; \
+  rename-window task \; \
+  send-keys -t 1 "task" C-m \; \
   new-window -n zk \; \
-  send-keys -t 0 "nvim $ZK_PATH/index.md" C-m \; \
-  new-window -n music \; \
-  send-keys -t 0 "ncspot" C-m \; \
+  send-keys -t 2 "nvim $ZK_PATH/index.md" C-m \; \
   new-window -n term \; \
-  new-window -n make \; \
-  split-window -h \; \
-  split-window -h \; \
-  send-keys -t 0 'cd "$ZK_PATH" && ./entr' C-m \; \
-  send-keys -t 1 'cd "$ZK_PATH" && live-server . --watch=*.html' C-m \; \
-  select-window -t 2 \;
+  new-window -n music \; \
+  send-keys -t 4 "echo 'TODO: open music player'" C-m \; \
+  select-window -t 1 \;
