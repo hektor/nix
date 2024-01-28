@@ -20,7 +20,7 @@ chmod +x <script>
 ## Notes
 
 Statusbar scripts are prefixed with `sb` under the assumption you're using
-`dwmblocks` (scripts my need changes to be used with different statusbars).
+`polybar` (scripts my need changes to be used with different statusbars).
 
 Some scripts have dependencies (e.g. `fzf`, `jq`, `xclip`, ...), make sure you
 have them installed.
