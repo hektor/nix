@@ -10,12 +10,12 @@
 
 # https://unix.stackexchange.com/questions/100871/in-a-bash-if-condition-how-to-check-whether-any-files-matching-a-simple-wildcard
 if [ 0 -lt "$(ls $HOME/doc/*.kdbx 2>/dev/null | wc -w)" ]; then
-  rclone copy "$HOME/doc" google-drive: --include "*.kdbx"
-  rclone copy "$HOME/doc" google-drive: --include "*.kdbx.key"
+  rclone copy "$HOME/doc" google-drive:doc --include "*.kdbx"
+  rclone copy "$HOME/doc" google-drive:doc --include "*.kdbx.key"
 else
   echo "No password database found, use the following commands to restore"
   echo ""
-  echo "rclone copy google-drive: \"$HOME/doc\" --include \"*.kdbx\""
-  echo "rclone copy google-drive: \"$HOME/doc\" --include \"*.kdbx.key\""
+  echo "rclone copy google-drive:doc \"$HOME/doc\" --include \"*.kdbx\""
+  echo "rclone copy google-drive:doc \"$HOME/doc\" --include \"*.kdbx.key\""
   exit 1
 fi
