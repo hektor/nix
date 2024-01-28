@@ -242,8 +242,9 @@ spawnKeepassXC = spawn "keepassxc"
 fullscreenBrowser :: X ()
 fullscreenBrowser = spawn "firefox --fullscreen"
 
-spawnLauncher :: X ()
-spawnLauncher = spawn "albert toggle"
+spawnLauncher, spawnClipManager, spawnCalculator :: X ()
+spawnLauncher = spawn "rofi -show drun -show-icons"
+spawnClipManager = spawn "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 spawnCalculator = spawn "alacritty --class 'Calculator' -e ipython -i /home/h/.bin/calc.py"
 
 printScreen :: X ()
