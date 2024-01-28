@@ -17,8 +17,8 @@ from plyer import notification
 
 @atexit.register
 def clear():
-    os.system('rm /tmp/pomo')
-
+    if os.path.exists('/home/h/.local/share/pomo'):
+        os.remove('/home/h/.local/share/pomo')
 
 def format_mins_secs(mins, secs):
     return f"{mins:02d}:{secs:02d}"
@@ -30,7 +30,7 @@ def make_countdown():
             mins = duration // 60
             secs = duration % 60
             time_str = format_mins_secs(mins, secs)
-            os.system(f'echo -n "{time_str}" > /tmp/pomo')
+            os.system(f'echo -n "{time_str}" > /home/h/.local/share/pomo')
             sleep(1)
             duration -= 1
     return countdown
