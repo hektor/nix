@@ -22,3 +22,5 @@ case "$1" in
   --help) printf "open \n" >&2 ;;
   *) open "$(select_file)" ;;
 esac
+
+[[ -n "$selected" ]] && xdg-open "$selected" &> /dev/null & disown
