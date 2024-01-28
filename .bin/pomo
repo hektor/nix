@@ -77,6 +77,8 @@ if __name__ == '__main__':
                         help='Break duration', default=5)
     parser.add_argument('-r', '--repeats', type=int,
                         help='Numer of sessions', default=1)
+    parser.add_argument('-c', '--clear', action='store_true',
+                        help='Clear timer')
 
     args = parser.parse_args()
 
