@@ -196,7 +196,10 @@ myKeys =
     ("M-S-<XF86MonBrightnessDown>", resetTemp), --
     ("M-S-b", fullscreenBrowser),
     ("<XF86Calculator>", spawnCalculator),
-    ("<XF86PowerOff>", spawn "systemctl suspend") --TODO: Only enable this on laptop
+    ("<XF86PowerOff>", spawn "systemctl suspend"), --TODO: Only enable this on laptop
+    ("M-c", windows copyToAll),
+    ("M-S-c", killAllOtherCopies),
+    ("M-S-<Delete>", kill)
   ] ++
   [ (m ++ k, windows $ f w) |
     (m, f) <- zip ["M-", "M-S-"]
@@ -205,9 +208,6 @@ myKeys =
                                 (withScreen 1 myWorkspaces)
                          ++ zip mySharedWorkspaceKeys
                                 (withScreen 2 mySharedWorkspaces)
-    ("M-c", windows copyToAll),
-    ("M-S-c", killAllOtherCopies),
-    ("M-S-<Delete>", kill)
   ]
 
 zipKeyPrefixes :: [String] -> [String] -> [String]
