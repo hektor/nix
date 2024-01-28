@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-xrandr -q --current | sed -n 's/^\([^ ]\+\) connected .*/\1/p'
