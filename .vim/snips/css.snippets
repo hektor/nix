@@ -1,6 +1,20 @@
-snippet b1r "Red border (1px)"
-border: 1px solid red;
-$0
+snippet b1(\w+) "Border (1px)" r
+`!p
+import re
+colors = {
+		'r': 'red',
+		'g': 'green',
+		'b': 'blue',
+		'y': 'yellow',
+		'o': 'orange',
+		'p': 'purple',
+		'c': 'cyan',
+		'm': 'magenta',
+		'w': 'white',
+}
+color = colors.get(match.group(1), 'black')
+snip.rv = f"border: 1px solid {color};"
+`$0
 endsnippet
 
 snippet df "Use flexbox layout"
