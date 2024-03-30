@@ -4,7 +4,7 @@ import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Actions.FloatSnap
 import Control.Monad (liftM2)
-import XMonad.Hooks.DynamicProperty
+import XMonad.Hooks.OnPropertyChange (onXPropertyChange)
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -158,7 +158,7 @@ myConfig =
       startupHook = myStartupHook,
       manageHook = myManageHook <+> manageHook def,
       layoutHook = avoidStruts myLayoutHook,
-      handleEventHook = dynamicPropertyChange "WM_NAME" myDynamicManageHook <> handleEventHook def <> Hacks.windowedFullscreenFixEventHook
+      handleEventHook = onXPropertyChange "WM_NAME" myDynamicManageHook <> handleEventHook def <> Hacks.windowedFullscreenFixEventHook
     }
     `removeKeysP` myRemoveKeys
     `additionalKeysP` myKeys
