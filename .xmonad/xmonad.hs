@@ -14,7 +14,9 @@ import XMonad.Hooks.WindowSwallowing (swallowEventHook)
 import XMonad.Layout.CenteredIfSingle
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.PerScreen
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
+import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
@@ -108,24 +110,35 @@ myDynamicManageHook =
 
 -- layoutHook {{{
 myLayoutHook =
-  ifWider smallWidth (
-    t   |||   -- Tiled layouts
-    c3  |||  -- Column layouts
-    c3m ||| --
-    f       -- Monocle layouts
-  ) (
-    t   |||   -- Tiled layouts
-    f       -- Monocle layouts
-  )
+  avoidStruts $
+    smartSpacingWithEdge 4 $
+      layoutHints $
+        onWorkspace "1_sh" (Tall nmaster delta 0.8) $
+          ifWider smallWidth (tWide ||| c3mWide ||| f) t
   where
     smallWidth = 1920
-    t   = renamed [Replace "[]+"] $ ifWider smallWidth (centeredIfSingle 0.8 0.9 $ Tall nmaster delta ratio)
-                                                 (Tall nmaster delta ratio)
-    c3  = renamed [Replace "|||"] $ ThreeCol nmaster delta ratio
-    c3m = renamed [Replace "[|]"] $ ThreeColMid nmaster delta ratio
-    f   = renamed [Replace "[+]"] Full
+
+    -- Tall layouts
+    tWide =
+      centeredIfSingle 0.62 1 t
+    t =
+      named "[]+" $
+        Tall nmaster delta ratio
+
+    -- Column layouts
+    c3mWide =
+      centeredIfSingle 0.62 1 c3m
+    c3m =
+      named "[|]" $
+        ThreeColMid nmaster delta ratio
+
+    -- Fullscreen layouts
+    f = named "[+]" Full
+
+    -- Modifiers
+    named n = renamed [Replace n]
     nmaster = 1
-    ratio = 1 / 2
+    ratio = 0.62
     delta = 4 / 100
 -- }}}
 
@@ -162,7 +175,7 @@ myConfig =
       -- Hooks
       startupHook = myStartupHook,
       manageHook = myManageHook <+> manageHook def,
-      layoutHook = avoidStruts myLayoutHook,
+      layoutHook = myLayoutHook,
       handleEventHook = myHandleEventHook
     }
     `removeKeysP` myRemoveKeys
