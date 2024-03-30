@@ -143,12 +143,13 @@ myWorkspaces = [ "sh", "www", "dev", "info", "etc" ]
 myWorkspaceKeys = [ "a", "s", "d", "f", "g" ]
 mySharedWorkspaces = [ "shared" ]
 mySharedWorkspaceKeys = [ "1" ]
+-- Use Win key instead of Alt
+myModMask = mod4Mask
 
 myConfig =
   def
     { terminal = "alacritty",
-      -- Use Win key instead of Alt
-      modMask = mod4Mask,
+      modMask = myModMask,
       workspaces = withScreen 1 myWorkspaces ++ withScreen 2 mySharedWorkspaces,
       -- Styling
       focusedBorderColor = "#000",
