@@ -10,6 +10,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.OnPropertyChange (onXPropertyChange)
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Hooks.WindowSwallowing (swallowEventHook)
 import XMonad.Layout.CenteredIfSingle
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.PerScreen
@@ -130,9 +131,12 @@ myLayoutHook =
 
 -- handleEventHook {{{
 myHandleEventHook =
-     onXPropertyChange "WM_NAME" myDynamicManageHook
-  <> handleEventHook def
-  <> Hacks.windowedFullscreenFixEventHook
+  handleEventHook def
+    -- See window swallowing (https://hackage.haskell.org/package/xmonad-contrib-0.18.0/docs/XMonad-Hooks-WindowSwallowing.html)
+    <> swallowEventHook (className =? "Alacritty") (return True)
+    <> onXPropertyChange "WM_NAME" myDynamicManageHook
+    <> Hacks.windowedFullscreenFixEventHook
+    <> hintsEventHook
 -- }}}
 
 -- }}}
