@@ -67,12 +67,13 @@ shiftAndView = doF . liftM2 (.) W.greedyView W.shift
 
 -- Hooks {{{
 
--- startupHook
+-- startupHook {{{
 myStartupHook =
   do
     spawn "killall polybar && polybar -r"
+-- }}}
 
--- manageHook
+-- manageHook {{{
 myManageHook :: ManageHook
 myManageHook =
   composeAll
@@ -94,15 +95,17 @@ myManageHook =
       className =? "KeePassXC" --> doRectFloat (W.RationalRect 0.1 0.1 0.8 0.8),
       className =? "flameshot" --> doRectFloat (W.RationalRect 0.1 0.1 0.8 0.8)
     ]
+-- }}}
 
+-- dynamicManageHook {{{
 myDynamicManageHook :: ManageHook
 myDynamicManageHook =
  composeAll
    [
      title =? "Zettelkasten — Firefox Developer Edition" --> doShift "1_sh"
    ]
+-- }}}
 
--- TODO: Replace showWName by dunst notification
 myShowWNameConfig :: SWNConfig
 myShowWNameConfig =
   def
@@ -112,7 +115,7 @@ myShowWNameConfig =
       swn_bgcolor = "#cccccc"
     }
 
--- layoutHook
+-- layoutHook {{{
 myLayoutHook =
     showWName' myShowWNameConfig $
     ifWider smallWidth (
@@ -134,11 +137,14 @@ myLayoutHook =
     nmaster = 1
     ratio = 1 / 2
     delta = 4 / 100
+-- }}}
 
+-- handleEventHook {{{
 myHandleEventHook =
      onXPropertyChange "WM_NAME" myDynamicManageHook
   <> handleEventHook def
   <> Hacks.windowedFullscreenFixEventHook
+-- }}}
 
 -- }}}
 
