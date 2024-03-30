@@ -1,13 +1,13 @@
--- {{{
+-- {{{ Imports
 
+import Control.Monad (liftM2)
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Actions.FloatSnap
-import Control.Monad (liftM2)
-import XMonad.Hooks.OnPropertyChange (onXPropertyChange)
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.OnPropertyChange (onXPropertyChange)
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.CenteredIfSingle
@@ -16,11 +16,11 @@ import XMonad.Layout.PerScreen
 import XMonad.Layout.Renamed
 import XMonad.Layout.ShowWName
 import XMonad.Layout.ThreeColumns
-import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
-import qualified XMonad.Util.Hacks as Hacks
 import XMonad.Util.Loggers
 import XMonad.Util.Paste
+import qualified XMonad.StackSet as W
+import qualified XMonad.Util.Hacks as Hacks
 
 -- }}}
 
