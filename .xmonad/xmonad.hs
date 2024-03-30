@@ -135,6 +135,11 @@ myLayoutHook =
     ratio = 1 / 2
     delta = 4 / 100
 
+myHandleEventHook =
+     onXPropertyChange "WM_NAME" myDynamicManageHook
+  <> handleEventHook def
+  <> Hacks.windowedFullscreenFixEventHook
+
 -- }}}
 
 -- Main config {{{
@@ -159,7 +164,7 @@ myConfig =
       startupHook = myStartupHook,
       manageHook = myManageHook <+> manageHook def,
       layoutHook = avoidStruts myLayoutHook,
-      handleEventHook = onXPropertyChange "WM_NAME" myDynamicManageHook <> handleEventHook def <> Hacks.windowedFullscreenFixEventHook
+      handleEventHook = myHandleEventHook
     }
     `removeKeysP` myRemoveKeys
     `additionalKeysP` myKeys
