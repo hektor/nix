@@ -14,7 +14,6 @@ import XMonad.Layout.CenteredIfSingle
 import XMonad.Layout.IndependentScreens
 import XMonad.Layout.PerScreen
 import XMonad.Layout.Renamed
-import XMonad.Layout.ShowWName
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
@@ -106,27 +105,17 @@ myDynamicManageHook =
    ]
 -- }}}
 
-myShowWNameConfig :: SWNConfig
-myShowWNameConfig =
-  def
-    { swn_font = "xft:Iosevka Term SS08:size=16",
-      swn_fade = 0.3,
-      swn_color = "#111111",
-      swn_bgcolor = "#cccccc"
-    }
-
 -- layoutHook {{{
 myLayoutHook =
-    showWName' myShowWNameConfig $
-    ifWider smallWidth (
-      t   |||   -- Tiled layouts
-      c3  |||  -- Column layouts
-      c3m ||| --
-      f       -- Monocle layouts
-    ) (
-      t   |||   -- Tiled layouts
-      f       -- Monocle layouts
-    )
+  ifWider smallWidth (
+    t   |||   -- Tiled layouts
+    c3  |||  -- Column layouts
+    c3m ||| --
+    f       -- Monocle layouts
+  ) (
+    t   |||   -- Tiled layouts
+    f       -- Monocle layouts
+  )
   where
     smallWidth = 1920
     t   = renamed [Replace "[]+"] $ ifWider smallWidth (centeredIfSingle 0.8 0.9 $ Tall nmaster delta ratio)
