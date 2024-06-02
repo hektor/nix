@@ -13,8 +13,9 @@ RCLONE_REMOTE="proton-drive"
 # Reference: <https://unix.stackexchange.com/questions/100871/in-a-bash-if-condition-how-to-check-whether-any-files-matching-a-simple-wildcard>
 if [ 0 -lt "$(ls $HOME/doc/*.kdbx 2>/dev/null | wc -w)" ]; then
   echo "Saving KeePassXC databases and database keys"
-  rclone copyto                     \
-    "$HOME/doc/" proton-drive:doc/  \
+  rclone copyto                         \
+    "$HOME/doc/" "$RCLONE_REMOTE:doc"/  \
+    --progress                          \
     --include "/*.{kdbx,kdbx.key}"
 else
   echo "No password database found, use the following commands to restore"
