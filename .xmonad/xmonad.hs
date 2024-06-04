@@ -197,6 +197,8 @@ myKeys =
     ("<F8>",  spawnKeepassXC),
     ("M-z",   spawnZettelkasten),
     ("M-p",   spawnLauncher),
+    ("M-w", spawnWindowSwitcher),
+    ("M-S-w", spawnWifiMenu),
     ("<Insert>", pasteSelection),
     ("<Print>", printScreen),
     ("<XF86AudioRaiseVolume>", raiseVol),       -- Audio volume & playback
@@ -259,6 +261,9 @@ spawnKeepassXC = spawn "keepassxc"
 
 fullscreenBrowser :: X ()
 fullscreenBrowser = spawn "firefox --fullscreen"
+
+spawnWindowSwitcher = spawn "rofi -show window -show-icons"
+spawnWifiMenu = spawn "rofi -show wifi -modi \"wifi:iwdrofimenu\""
 
 spawnLauncher, spawnClipManager, spawnCalculator :: X ()
 spawnLauncher = spawn "rofi -show drun -show-icons"
