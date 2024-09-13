@@ -1,7 +1,8 @@
 data.location=$XDG_DATA_HOME/task/
 hooks.location=$XDG_DATA_HOME/task/hooks
 
-include ./taskrc.d/server
+include ./taskrc.d/$HOSTNAME
+include ./taskrc.d/sync
 include /usr/share/doc/task/rc/light-256.theme
 
 color.active=bold white on black
