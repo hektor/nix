@@ -32,6 +32,12 @@ set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 
 " }}}
 
+" Colorscheme {{{
+set termguicolors
+set bg=light
+hi Normal ctermbg=none guibg=none
+" }}}
+
 " Mappings {{{
 "
 
@@ -225,9 +231,8 @@ au Filetype supercollider packadd scvim
 
 " }}}
 
-" Color theme & statusline {{{
-"
 
+" Statusline {{{
 se ls=2
 se stl=\ %0*%n
 se stl+=\ %m
@@ -235,9 +240,6 @@ se stl+=\ %y%0*
 se stl+=\ %<%F
 se stl+=\ %0*%=%5l%*
 se stl+=%0*/%L%*
-
-colo yang
-
 " }}}
 
 " Quick hacks {{{
