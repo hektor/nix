@@ -35,7 +35,7 @@ set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 " Colorscheme {{{
 set termguicolors
 set bg=light
-hi Normal ctermbg=none guibg=none
+hi Normal ctermbg=none guibg=NONE
 " }}}
 
 " Mappings {{{
