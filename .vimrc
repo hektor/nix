@@ -231,32 +231,8 @@ au Filetype supercollider packadd scvim
 
 " }}}
 
-
-" Statusline {{{
-se ls=2
-se stl=\ %0*%n
-se stl+=\ %m
-se stl+=\ %y%0*
-se stl+=\ %<%F
-se stl+=\ %0*%=%5l%*
-se stl+=%0*/%L%*
-" }}}
-
 " Quick hacks {{{
 "
-
-fu! Compile()
-  if expand('%:e') == "md" 
-    :silent exec "!pandoc % -s -o /tmp/op.pdf &"
-  endif
-endfu
-
-fu! Preview()
-  :call Compile()
-  :silent exec "!zathura /tmp/op.pdf &"
-endfu
-
-" VIM config hot reload
 
 " TODO: separate to filetype specific files
 
@@ -264,51 +240,6 @@ endfu
 " Jump between `=` and `;`
 au FileType javascript set mps+==:;
 
-" JSONC (see https://github.com/neoclide/jsonc.vim/pull/9")
-au BufNewFile,BufRead */.vscode/*.json setlocal filetype=jsonc
-
-let s:zk_preview_enabled = 0
-let s:live_server_job = -1
-au BufEnter /home/h/.zk/*.md silent exe '!echo "%" > /home/h/.zk/current-zettel.txt'
-function! ToggleZKPreview()
-    if s:zk_preview_enabled == 1
-        let s:zk_preview_enabled = 0
-        call jobstop(s:live_server_job)
-        au! ZKPreview
-    else
-        let s:zk_preview_enabled = 1
-        let s:live_server_job = jobstart('live-server --watch=/home/h/.zk/current-zettel-content.html --open=current-zettel-content.html --port=8080')
-        augroup ZKPreview
-          au BufEnter /home/h/.zk/*.md silent exe '!cat "%:r.html" > /home/h/.zk/current-zettel-content.html'
-          au BufWritePost /home/h/.zk/*.md silent exe '!make && cat "%:r.html" > /home/h/.zk/current-zettel-content.html'
-        augroup END
-    endif
-endfunction
-command! ToggleZKPreview call ToggleZKPreview()
-
-nn <leader>o :ToggleZKPreview<cr> :!xdg-open http://localhost:8080/%:t:r.html & <cr>
-
 highlight QuickScopeSecondary cterm=underline
 highlight QuickScopePrimary ctermbg=253 ctermfg=232 cterm=none
 highlight Pmenu ctermfg=232
-
-" Taken from /usr/share/vim/vim90/defaults.vim
-augroup vimStartup
-  au!
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid, when inside an event handler
-  " (happens when dropping a file on gvim) and for a commit message (it's
-  " likely a different one than last time).
-  autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-    \ |   exe "normal! g`\""
-    \ | endif
-
-augroup END
-
-augroup Vim
-  au!
-  " Reload vim config when ~/.vimrc is changed
-  au BufWritePost $HOME/.vimrc so $MYVIMRC | redraw | echo "Reloaded vimrc"
-augroup END
