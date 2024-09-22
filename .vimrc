@@ -33,9 +33,11 @@ set thesaurus+=~/.vim/thesaurus/mthesaur.txt
 " }}}
 
 " Colorscheme {{{
+
 set termguicolors
 set bg=light
 hi Normal ctermbg=none guibg=NONE
+
 " }}}
 
 " Mappings {{{
@@ -141,11 +143,6 @@ Plug 'sirtaj/vim-openscad'
 call plug#end()
 " }}}
 
-" Plugin config {{{
-
-" }}}
-
-
 " `.../vimtex` {{{
 
 let g:vimtex_view_method='zathura'
@@ -210,7 +207,6 @@ let g:qs_lazy_highlight = 1
 
 " }}}
 
-
 " Tidalcycles (sclang and vim-tidal)
 let g:tidal_default_config = {"socket_name": "default", "target_pane": "tidal:1.1"}
 let g:tidal_no_mappings = 1
@@ -227,19 +223,3 @@ au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd se filetype=supercollider
 au Filetype supercollider packadd scvim
 
 " }}}
-
-
-" }}}
-
-" Quick hacks {{{
-"
-
-" TODO: separate to filetype specific files
-
-" JS
-" Jump between `=` and `;`
-au FileType javascript set mps+==:;
-
-highlight QuickScopeSecondary cterm=underline
-highlight QuickScopePrimary ctermbg=253 ctermfg=232 cterm=none
-highlight Pmenu ctermfg=232
