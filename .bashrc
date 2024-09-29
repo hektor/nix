@@ -4,6 +4,10 @@
 
 source /etc/os-release
 
+# Functions {{{
+[ -f "$HOME/.bashrc.d/editor" ] && source "$HOME/.bashrc.d/editor"
+# }}}
+
 # Aliases {{{
 # Load aliases dynamically
 [ -f "$HOME/.bash_aliases/all" ] && source "$HOME/.bash_aliases/all"
@@ -51,12 +55,6 @@ export HISTIGNORE="clear:l: *"
 # See `:h :Man` in NeoVim
 export MANWIDTH=80
 export PAGER=nvimpager
-# }}}
-
-# Editor {{{
-# Set vim as default editor
-export EDITOR=nvim
-export SUDO_EDITOR=nvim
 # }}}
 
 # Nvm

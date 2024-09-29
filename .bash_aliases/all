@@ -8,7 +8,7 @@ alias al-=unalias
 # Edit configuration files
 alias eba="nvim ~/.bashrc"
 alias eal="nvim ~/.bash_aliasrc"
-alias ev="nvim ~/.vimrc"
+alias ev="edit_editor_config"
 
 # Navigation
 alias ..="cd .."
