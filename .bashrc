@@ -11,12 +11,12 @@ source /etc/os-release
 # Aliases {{{
 # Load aliases dynamically
 [ -f "$HOME/.bash_aliases/all" ] && source "$HOME/.bash_aliases/all"
-[ -f "$HOME/.bash_aliases/$HOSTNAME" ] && source "$HOME/.bash_aliases/$HOSTNAME"
+[ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && source "$HOME/.bash_aliases/hosts/$HOSTNAME"
 [ -f "$HOME/.bash_aliases/private" ] && source "$HOME/.bash_aliases/private"
 # }}}
 
 # Dynamic configuration {{{
-[ -f "$HOME/.bashrc.d/$HOSTNAME" ] && source "$HOME/.bashrc.d/$HOSTNAME"
+[ -f "$HOME/.bashrc.d/hosts/$HOSTNAME" ] && source "$HOME/.bashrc.d/hosts/$HOSTNAME"
 [ -f "$HOME/.bashrc.d/private" ] && source "$HOME/.bashrc.d/private"
 # }}}
 
