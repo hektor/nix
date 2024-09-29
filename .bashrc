@@ -4,40 +4,18 @@
 
 source /etc/os-release
 
-# Functions {{{
+# Editor & prompt configuration
 [ -f "$HOME/.bashrc.d/editor" ] && source "$HOME/.bashrc.d/editor"
-# }}}
+[ -f "$HOME/.bashrc.d/prompt" ] && source "$HOME/.bashrc.d/prompt"
 
-# Aliases {{{
 # Load aliases dynamically
 [ -f "$HOME/.bash_aliases/all" ] && source "$HOME/.bash_aliases/all"
 [ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && source "$HOME/.bash_aliases/hosts/$HOSTNAME"
 [ -f "$HOME/.bash_aliases/private" ] && source "$HOME/.bash_aliases/private"
-# }}}
 
-# Dynamic configuration {{{
+# Host-specific and private configurations
 [ -f "$HOME/.bashrc.d/hosts/$HOSTNAME" ] && source "$HOME/.bashrc.d/hosts/$HOSTNAME"
 [ -f "$HOME/.bashrc.d/private" ] && source "$HOME/.bashrc.d/private"
-# }}}
-
-# Prompt {{{
-get_branch_name() {
-  git symbolic-ref --quiet --short HEAD 2>/dev/null \
-    || git rev-parse --short HEAD 2>/dev/null \
-    || echo 'some branch'
-}
-get_git_info() {
-  git rev-parse --is-inside-work-tree &>/dev/null || return
-  echo -e " $(get_branch_name)"
-}
-
-PS1="\u \w ❭\[$(tput sgr0)\] "
-
-# Ellipsis when deep in directory
-export PROMPT_DIRTRIM=2
-
-export PS1
-# }}}
 
 # Path {{{
 # Add ~/.bin to PATH
