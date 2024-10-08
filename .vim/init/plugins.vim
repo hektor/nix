@@ -8,7 +8,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'github/copilot.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'honza/vim-snippets'
