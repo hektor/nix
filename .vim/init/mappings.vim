@@ -6,11 +6,11 @@ let maplocalleader = ";"
 nm s <c-w>           " Split horizontal
 nm ss :sp<CR><c-w>w| " Split horizontal
 nm sv :vs<CR><c-w>w| " Split vertical
-nn sw <c-w>w|        " Navigate splits
-nn sh <c-w>h|        "
-nn sj <c-w>j|        "
-nn sk <c-w>k|        "
-nn sl <c-w>l|        "
+nm sw <c-w>w|        " Navigate splits
+nm sh <c-w>h|        "
+nm sj <c-w>j|        "
+nm sk <c-w>k|        "
+nm sl <c-w>l|        "
 nn sH <c-w>8<|       " Resize splits
 nn sJ <c-w>8-|       "
 nn sK <c-w>8+|       "
