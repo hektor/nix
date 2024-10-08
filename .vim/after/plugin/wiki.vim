@@ -11,10 +11,9 @@ nm <leader>ww <plug>(wiki-index)
 " nm <leader>v <plug>(wiki-link-follow-vsplit)
 
 autocmd BufEnter *.md if expand('%:t') =~ '_' | echo 'hierarchical relation' | endif
-autocmd BufEnter *.md if expand('%:t') =~ '--' | echo 'non-hierarchical relation' | endif
+autocmd BufEnter *.md if expand('%:t') =~ '--' | echo 'relation' | endif
 autocmd BufEnter *.md if expand('%:t') =~ '<>' | echo 'dichotomy' | endif
 autocmd BufEnter *.md if expand('%:t') =~ 'my-' | echo 'personal file' | endif
-autocmd BufEnter *.md if expand('%:t') =~ 'project-' | echo 'project file' | endif
 autocmd BufEnter *.md if expand('%:t') =~ 'project_' | echo 'project file' | endif
 
 " Only load wiki.vim for zk directory
