@@ -5,6 +5,9 @@ hi! link pandocCiteKey Comment
 hi! link pandocCiteAnchor Comment
 hi! link pandocCiteLocator Comment
 
+" Don't show the CiteKey within the CiteLocator
+syn match pandocCiteKey /\v\[[^]]+\]/ contained
+
 " Match cloze delimiters e.g. `{{c1::` and `}}`
 syn match ClozeDelimiter /{{c\d\+::/ conceal containedin=pandocUListItem,pandocListItem
 syn match ClozeDelimiter /}}/ conceal containedin=pandocUListItem,pandocListItem
