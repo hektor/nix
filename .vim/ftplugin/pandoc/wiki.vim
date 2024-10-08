@@ -10,6 +10,8 @@ func! GetContext()
     echo 'math_inline'
   elseif index(matches, 'pandocLaTeXMathBlock') >= 0
     echo 'math_block'
+  elseif !empty(matches)
+    echo matches[0]
   else
     echo ''
   endif
