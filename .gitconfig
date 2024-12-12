@@ -77,3 +77,6 @@
   colorMoved = zebra
 [commit]
   gpgsign = false
+
+[interactive]
+  singleKey = true
