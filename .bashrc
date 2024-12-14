@@ -3,13 +3,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
 source /etc/os-release
 
 # Editor & prompt configuration
 [ -f "$HOME/.bashrc.d/editor" ] && source "$HOME/.bashrc.d/editor"
 [ -f "$HOME/.bashrc.d/prompt" ] && source "$HOME/.bashrc.d/prompt"
 
+# Aliases {{{
 # Load aliases dynamically
 [ -f "$HOME/.bash_aliases/all" ] && source "$HOME/.bash_aliases/all"
 [ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && source "$HOME/.bash_aliases/hosts/$HOSTNAME"
@@ -18,6 +18,7 @@ source /etc/os-release
 # Host-specific and private configurations
 [ -f "$HOME/.bashrc.d/hosts/$HOSTNAME" ] && source "$HOME/.bashrc.d/hosts/$HOSTNAME"
 [ -f "$HOME/.bashrc.d/private" ] && source "$HOME/.bashrc.d/private"
+# }}}
 
 # Path {{{
 # Add ~/.bin to PATH
