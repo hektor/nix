@@ -9,12 +9,14 @@
 
 [alias]
   d = diff
-  dc = diff --cached
+  ds = diff --staged
   a = add
   ap = add -p
+  c = commit
   cm = commit -m
   l = log --pretty=format:"(%an)\\ \\ %h\\ \\ %ad\\ \\ %s" --date=short
-  s = status -s
+  s = status --short
+  sv = status --verbose
   co = checkout
   cob = checkout -b
   # Note these follow the naming convention of my `.bash_aliases`
