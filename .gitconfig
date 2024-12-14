@@ -6,6 +6,7 @@
   email = hektor.misplon@pm.me
   name = Hektor Misplon
   username = hektor
+  signingKey = AEB98353B8D72E465C4236435151AF79E723F21C
 
 [alias]
   d = diff
