@@ -20,6 +20,10 @@ source /etc/os-release
 [ -f "$HOME/.bashrc.d/private" ] && source "$HOME/.bashrc.d/private"
 # }}}
 
+# Prompt {{{
+[ -f "$HOME/.bashrc.d/prompt" ] && source "$HOME/.bashrc.d/prompt"
+# }}}
+
 # Path {{{
 # Add ~/.bin to PATH
 export PATH=~/.bin:$PATH
