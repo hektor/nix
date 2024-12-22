@@ -53,11 +53,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 # }}}
 
-# Nix package manager {{{
-# Add ~/.nix-profile/bin to PATH
-export PATH=~/.nix-profile/bin:$PATH
-# }}}
-
 # FZF {{{
 # Check if fzf is installed
 if [ -f "/usr/bin/fzf" ]; then
