@@ -32,9 +32,6 @@ import XMonad.Util.Paste
 
 -- Statusbar {{{
 
-pp' :: ScreenId -> PP -> PP
-pp' s pp = (marshallPP s pp) { ppSort = ppSort pp }
-
 pp :: PP
 pp =
   def
@@ -46,7 +43,7 @@ pp =
       ppLayout = id,
       ppTitle = shorten 80,
       ppTitleSanitize = xmobarStrip,
-      ppOrder = \[workspaces, layout, windows, _] -> [workspaces, layout, windows],
+      ppOrder = \[workspaces, layout, windows, _] -> [layout],
       ppExtras = [logTitles formatFocused formatUnfocused]
     }
   where
@@ -76,7 +73,8 @@ shiftAndView = doF . liftM2 (.) W.greedyView W.shift
 -- startupHook {{{
 myStartupHook =
   do
-    spawn "killall polybar && polybar -r"
+    spawn "killall -q polybar; parallel ::: 'polybar -r top' 'polybar -r bottom'"
+
 -- }}}
 
 -- manageHook {{{
@@ -301,13 +299,11 @@ resetTemp = spawn "screen-temperature 3000"
 
 main :: IO ()
 main =
-  do { xmonad } $
-    ewmh $
-      withEasySB
-        (sb1 <> sb2)
-        defToggleStrutsKey
-        myConfig
-  where
-    [sb1, sb2] = [statusBarProp "polybar" $ pure (pp' (S i) pp) | i <- [0 .. 1]]
+  do xmonad
+    $ ewmh
+    $ withEasySB
+      (statusBarProp "polybar" $ pure pp)
+      defToggleStrutsKey
+      myConfig
 
 -- }}}
