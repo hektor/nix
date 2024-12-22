@@ -1,9 +1,11 @@
 -- {{{ Imports
 
 import Control.Monad (liftM2)
+import Data.Map qualified as M
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Actions.FloatSnap
+import XMonad.Actions.Submap
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -13,16 +15,18 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.WindowSwallowing (swallowEventHook)
 import XMonad.Layout.CenteredIfSingle
 import XMonad.Layout.IndependentScreens
+import XMonad.Layout.LayoutHints (hintsEventHook, layoutHints)
 import XMonad.Layout.PerScreen
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
+import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
+import XMonad.StackSet qualified as W
 import XMonad.Util.EZConfig
+import XMonad.Util.Hacks qualified as Hacks
 import XMonad.Util.Loggers
 import XMonad.Util.Paste
-import qualified XMonad.StackSet as W
-import qualified XMonad.Util.Hacks as Hacks
 
 -- }}}
 
