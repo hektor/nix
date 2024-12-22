@@ -6,7 +6,6 @@ call plug#begin()
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-sandwich'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/context_filetype.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'honza/vim-snippets'
