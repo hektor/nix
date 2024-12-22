@@ -1,0 +1,14 @@
+report.in.columns=id,description
+report.in.labels=ID,Description
+report.in.description=Inbox (tasks with no project)
+report.in.filter=status:pending and project:
+
+report.recent.columns=id,description,entry
+report.recent.labels=ID,Description,Age
+report.recent.description=Recently added
+report.recent.sort=entry+
+
+report.minimal.columns=id,description
+report.minimal.labels=,
+
+# verbose=blank,header,footnote,label,new-id,affected,edit,special,project,unwait
