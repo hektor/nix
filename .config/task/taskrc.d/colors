@@ -10,8 +10,3 @@ color.uda.priority.L=
 color.due=
 color.due.today=
 color.overdue=
-
-alias.burndown=burndown.daily
-alias.a=add
-alias.rm=delete
-alias.e=modify
