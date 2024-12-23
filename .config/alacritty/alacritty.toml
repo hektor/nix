@@ -1,0 +1,31 @@
+[colors.normal]
+black = "0x000000"
+blue = "0x3333cc"
+cyan = "0x33cccc"
+green = "0x33cc33"
+magenta = "0xcc33cc"
+red = "0xcc3333"
+white = "0xcccccc"
+yellow = "0x885800"
+
+[colors.primary]
+background = "0xcccccc"
+foreground = "0x111111"
+
+[font]
+size = 12
+
+[font.bold]
+family = "Iosevka Term SS08"
+style = "bold"
+
+[font.italic]
+family = "Iosevka Term SS08"
+style = "italic"
+
+[font.normal]
+family = "Iosevka Term SS08"
+
+[window.padding]
+x = 0
+y = 0
