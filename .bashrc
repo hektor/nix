@@ -3,25 +3,25 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source /etc/os-release
+. /etc/os-release
 
 # Editor & prompt configuration
-[ -f "$HOME/.bashrc.d/editor" ] && source "$HOME/.bashrc.d/editor"
-[ -f "$HOME/.bashrc.d/prompt" ] && source "$HOME/.bashrc.d/prompt"
+[ -f "$HOME/.bashrc.d/editor" ] && . "$HOME/.bashrc.d/editor"
+[ -f "$HOME/.bashrc.d/prompt" ] && . "$HOME/.bashrc.d/prompt"
 
 # Aliases {{{
 # Load aliases dynamically
-[ -f "$HOME/.bash_aliases/all" ] && source "$HOME/.bash_aliases/all"
-[ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && source "$HOME/.bash_aliases/hosts/$HOSTNAME"
-[ -f "$HOME/.bash_aliases/private" ] && source "$HOME/.bash_aliases/private"
+[ -f "$HOME/.bash_aliases/all" ] && . "$HOME/.bash_aliases/all"
+[ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && . "$HOME/.bash_aliases/hosts/$HOSTNAME"
+[ -f "$HOME/.bash_aliases/private" ] && . "$HOME/.bash_aliases/private"
 
 # Host-specific and private configurations
-[ -f "$HOME/.bashrc.d/hosts/$HOSTNAME" ] && source "$HOME/.bashrc.d/hosts/$HOSTNAME"
-[ -f "$HOME/.bashrc.d/private" ] && source "$HOME/.bashrc.d/private"
+[ -f "$HOME/.bashrc.d/hosts/$HOSTNAME" ] && . "$HOME/.bashrc.d/hosts/$HOSTNAME"
+[ -f "$HOME/.bashrc.d/private" ] && . "$HOME/.bashrc.d/private"
 # }}}
 
 # Prompt {{{
-[ -f "$HOME/.bashrc.d/prompt" ] && source "$HOME/.bashrc.d/prompt"
+[ -f "$HOME/.bashrc.d/prompt" ] && . "$HOME/.bashrc.d/prompt"
 # }}}
 
 # Path {{{
@@ -45,7 +45,7 @@ export PAGER=nvimpager
 # Nvm
 export PATH=~/.nvm/versions/node/v14.16.0/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
+[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh" --no-use
 
 # X11 {{{
 export XDG_SESSION_TYPE=X11
@@ -67,11 +67,11 @@ if [ -f "/usr/bin/fzf" ]; then
   export FZF_CTRL_T_OPTS="--preview='bat {} | head -500'"
 
   if [[ $ID == "raspbian" ]]; then
-    source /usr/share/doc/fzf/examples/completion.bash
-    source /usr/share/doc/fzf/examples/key-bindings.bash
+    . /usr/share/doc/fzf/examples/completion.bash
+    . /usr/share/doc/fzf/examples/key-bindings.bash
   elif [[ $ID == "arch" ]]; then
-    source /usr/share/fzf/completion.bash
-    source /usr/share/fzf/key-bindings.bash
+    . /usr/share/fzf/completion.bash
+    . /usr/share/fzf/key-bindings.bash
   fi
 
   _fzf_setup_completion path vim zathura xournalpp nvim mpv
@@ -85,9 +85,9 @@ fi
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 # Pretty much what is in `/usr/share/nvm/init-nvm.sh` but we add the `--no-use`
 # flag to `nvm.sh` to make it lazy
-source /usr/share/nvm/nvm.sh --no-use
-source /usr/share/nvm/bash_completion
-source /usr/share/nvm/install-nvm-exec
+. /usr/share/nvm/nvm.sh --no-use
+. /usr/share/nvm/bash_completion
+. /usr/share/nvm/install-nvm-exec
 # }}}
 
 # Go {{{
@@ -99,7 +99,7 @@ export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 # }}}
 
 # Conda {{{
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && . /opt/miniconda3/etc/profile.d/conda.sh
 # }}}
 
 # Zettelkasten {{{
