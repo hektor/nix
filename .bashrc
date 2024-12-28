@@ -15,6 +15,12 @@
 [ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && . "$HOME/.bash_aliases/hosts/$HOSTNAME"
 [ -f "$HOME/.bash_aliases/private" ] && . "$HOME/.bash_aliases/private"
 
+# Completions {{{
+[ -d "$HOME/.bash_completions" ] && for file in "$HOME/.bash_completions"/*; do
+  [ -f "$file" ] && . "$file"
+done
+# }}}
+
 # Host-specific and private configurations
 [ -f "$HOME/.bashrc.d/hosts/$HOSTNAME" ] && . "$HOME/.bashrc.d/hosts/$HOSTNAME"
 [ -f "$HOME/.bashrc.d/private" ] && . "$HOME/.bashrc.d/private"
