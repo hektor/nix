@@ -71,7 +71,7 @@
   helper = !/usr/bin/gh auth git-credential
 
 [merge]
-  tool = vimdiff
+  tool = nvimdiff
   conflictstyle = diff3
 [pull]
   rebase = true
