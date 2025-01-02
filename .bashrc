@@ -64,7 +64,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 if [ -f "/usr/bin/fzf" ]; then
   # Fuzzy finder setup
   export FZF_COMPLETION_TRIGGER='**'
-  export FZF_DEFAULT_COMMAND='ag --hidden --skip-vcs-ignores -t -g ""'
+  export FZF_DEFAULT_COMMAND='ag -g ""'
   export FZF_DEFAULT_OPTS="
   --pointer='❭'
   --height 10%
