@@ -3,8 +3,12 @@
 # Generate menu of book filenames and save paths
 # Preview window contains metadata
 
+function get_book_paths {
+  find /home/h/doc/books/ -regex '.*\.\(pdf\|epub\|djvu\)' -type f | sort
+}
+
 function select_file {
-  echo "$(find /home/h/doc/books/ -regex '.*\.\(pdf\|epub\|djvu\)' -type f | sort | fzf --delimiter=/ --with-nth=-1)"
+  get_book_paths | fzf --delimiter=/ --with-nth=-1
 }
 
 function open {
