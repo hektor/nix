@@ -26,6 +26,8 @@
   alf = "!git config -l | grep alias | cut -c 7- | fzf"
   al- = "!git config --local --unset $(git config -l | grep alias | cut --delimiter="=" --fields=1 | fzf)"
   rs = "restore --staged"
+  rb = "rebase"
+  rbi = "rebase -i"
   wt = "worktree"
 
 [color]
