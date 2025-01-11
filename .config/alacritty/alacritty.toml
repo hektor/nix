@@ -4,10 +4,12 @@ import = [
   "colors.toml"
 ]
 
+[scrolling]
+history = 100000
+multiplier = 8
 
-
-[window]
-decorations = "none"
+[mouse]
+hide_when_typing = true
 
 [window.padding]
 x = 0
