@@ -83,6 +83,10 @@ dkms.conf
 # Dotenv
 .env
 
+# Prevent module files from being ignored (e.g. NestJS)
+!*.module*
+
+# Private files
 .bash_history
 .bash_aliases/private
 .bashrc.d/private
