@@ -36,10 +36,10 @@ export PATH=~/.bin:$PATH
 # }}}
 
 # History {{{
+export HISTSIZE=999999
+export HISTFILESIZE= # Unlimited
 export HISTCONTROL=ignoreboth:erasedups
-export HISTSIZE=500000
-# Omit `clear, ls...`; commands prepended with space
-export HISTIGNORE="clear:l: *"
+export HISTIGNORE=" *:clear:l:ls:cd" # Omit commands from history (e.g. those prepended with space)
 # }}}
 
 # Man pages {{{
