@@ -29,6 +29,7 @@
   rb = "rebase"
   rbi = "rebase -i"
   wt = "worktree"
+  wtc = "config remote.origin.fetch \"+refs/heads/*:refs/remotes/origin/*\""
 
 [color]
   ui = auto
