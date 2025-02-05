@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+gsettings set org.gnome.desktop.background primary-color "#555555"
+
+gsettings set org.gnome.desktop.wm.preferences workspace-names "['sh', 'www', 'dev', 'info', 'etc']"
+gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>Delete']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>j']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Super>k']"
+gsettings set org.gnome.shell.keybindings toggle-application-view "['<Super>p']"
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.shell.keybindings toggle-quick-settings []
+
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>a']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>s']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>d']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>f']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>g']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 "['<Super><Shift>a']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-2 "['<Super><Shift>s']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-3 "['<Super><Shift>d']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 "['<Super><Shift>f']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Super><Shift>g']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "Alacritty"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "alacritty"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Shift><Super>Return"
+
+gsettings set org.gnome.shell.keybindings screenshot "['Print']"
+
+gsettings set org.gnome.desktop.wm.preferences num-workspaces "5"
+gsettings set org.gnome.mutter dynamic-workspaces "false"
+gsettings set org.gnome.shell.extensions.window-list display-all-workspaces "true"
+gsettings set org.gnome.shell.app-switcher current-workspace-only "true"
+
+gsettings set org.gnome.login-screen logo ''
