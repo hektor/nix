@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Packages to install from Arch repositories
 pac_list=(
 git
-vim
+neovim
+nodejs-lts-jod
 )
 
-# Packages to install from AUR
 aurpac_list=(
+nvm
 ttf-iosevka-term-ss08
 vim-plug
 xbanish
@@ -15,7 +15,7 @@ xbanish
 
 install() {
   if pacman -Qi "$1" &> /dev/null; then
-    echo ""$1" is already installed"
+    echo "$1 is already installed"
   else
     echo "Installing " "$1"
     sudo pacman -S --noconfirm --needed "$1"
@@ -26,50 +26,93 @@ aurpac() {
   git clone "https://aur.archlinux.org/$1.git" "$HOME/.build/$1"
 }
 
-count=0
+install_packages() {
+  announce "Installing packages"
+  local count
+  for pac in "${pac_list[@]}" ; do
+    count=$((count+1))
+    install "$pac";
+  done
+  echo "$count packages installed"
+}
 
-echo " "
-echo "Installing required packages"
-echo " "
+install_dotfiles() {
+  announce "Installing dotfiles"
+  origin="https://git.hektormisplon.xyz/hektor/dots"
+  git clone "$origin" "$HOME/dots"
+  cp -r "$HOME/dots/.git" "$HOME/.git"
+  git --git-dir="$HOME/.git" config --local status.showUntrackedFiles no
+  git --git-dir="$HOME/.git" stash -m "[dots]"
+  git --git-dir="$HOME/.git" stash apply
+  git --git-dir="$HOME/.git" restore "$HOME"
+}
+
+install_aur_packages() {
+  announce "Installing AUR packages"
+  local count
+  for package in "${aurpac_list[@]}" ; do
+    if pacman -Qi "$1" &> /dev/null; then
+      echo "$1 is already installed"
+    else
+      count=$((count+1))
+      aurpac "$package" && makepkg -si -D "$HOME/.build/$package"
+    fi
+  done
+  echo "$count AUR packages installed"
+}
+
+setup_neovim() {
+  announce "Setting up NeoVim"
+  git clone --depth=1 https://github.com/savq/paq-nvim.git \
+      "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+}
+
+setup_keyboard() {
+  announce "Setting up keyboard"
+  install "interception-tools"
+  install "interception-caps2esc"
+  udevmon_config_contents="\
+- JOB: intercept -g \$DEVNODE | caps2esc -m 1 | uinput -d \$DEVNODE
+  DEVICE:
+    EVENTS:
+      EV_KEY: [KEY_CAPSLOCK]"
+  if [ -f /etc/interception/udevmon.yaml ] && diff -q <(echo "$udevmon_config_contents") /etc/interception/udevmon.yaml; then
+    echo "udevmon config already exists"
+    echo "$udevmon_config_contents"
+  elif [ -f /etc/interception/udevmon.yaml ]; then
+    echo "interception udevmon.yaml already exists"
+    cat /etc/interception/udevmon.yaml
+    echo "verify if this config matches the one below"
+    echo "$udevmon_config_contents"
+  else
+    echo "interception udevmon.yaml does not exist, creating one"
+    sudo bash -c "echo '$udevmon_config_contents' > /etc/interception/udevmon.yaml"
+  fi
+
+  sudo systemctl enable --now udevmon.service
+
+  if pgrep -x caps2esc > /dev/null; then
+    echo "caps2esc is already running"
+  else
+    caps2esc -m 1
+  fi
+}
+
+announce() {
+  echo " "
+  echo "$1"
+  echo " "
+}
+
+confirm() {
+  read -r -p "$1? [y/N]" -n 1
+  case "$REPLY" in y|Y ) "$2";; * ) echo "Skipping"; esac
+}
 
 printf '%s\n' "${pac_list[@]}"
-
-for pac in "${pac_list[@]}" ; do
-  count=$[count+1]
-  install "$pac";
-done
-
-origin="https://git.hektormisplon.xyz/hektor/dots"
-git clone "$origin" "$HOME/dots"
-cp -r "$HOME/dots/.git" "$HOME/.git"
-git --git-dir="$HOME/.git" config --local status.showUntrackedFiles no
-git --git-dir="$HOME/.git" stash -m "[dots]"
-git --git-dir="$HOME/.git" stash apply
-git --git-dir="$HOME/.git" restore "$HOME"
-
-echo " "
-echo "Installing aur packages"
-echo " "
-
-# [ ] Create aurpac installer function
-for package in "${aurpac_list[@]}" ; do
-  if pacman -Qi "$1" &> /dev/null; then
-    echo "$1 is already installed"
-  else
-    count=$[count+1]
-    aurpac "$package" && makepkg -si -D "$HOME/.build/$package"
-  fi
-done
-
-echo " "
-echo "Setting up NeoVim"
-echo " "
-
-git clone --depth=1 https://github.com/savq/paq-nvim.git \
-    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
-
-## Bluetooth setup
-# ___
-
-# - [ ] Check if /etc/pulse/default.pa contains following line
-# load-module module-switch-on-connect
+confirm "Install these packages? " install_packages
+printf '%s\n' "${aurpac_list[@]}"
+confirm "Install these AUR packages? " install_aur_packages
+confirm "Setup NeoVim? " setup_neovim
+confirm "Install dotfiles? " install_dotfiles
+confirm "Setup keyboard? " setup_keyboard
