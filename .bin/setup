@@ -98,14 +98,18 @@ setup_keyboard() {
   fi
 }
 
+configure_gnome() {
+  announce "Configuring Gnome"; setup-gnome
+}
+
 announce() {
   echo " "
-  echo "$1"
+  echo "[dots] $1"
   echo " "
 }
 
 confirm() {
-  read -r -p "$1? [y/N]" -n 1
+  read -r -p "[dots] $1? [y/N]" -n 1
   case "$REPLY" in y|Y ) "$2";; * ) echo "Skipping"; esac
 }
 
@@ -116,3 +120,6 @@ confirm "Install these AUR packages? " install_aur_packages
 confirm "Setup NeoVim? " setup_neovim
 confirm "Install dotfiles? " install_dotfiles
 confirm "Setup keyboard? " setup_keyboard
+if pacman -Qi "gdm" &> /dev/null; then
+  confirm "Configure Gnome? " configure_gnome
+fi
