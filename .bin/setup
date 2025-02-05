@@ -163,6 +163,21 @@ configure_gnome() {
   announce "Configuring Gnome"; setup-gnome
 }
 
+setup_firewall() {
+  announce "Configuring firewalld"
+  install firewalld
+  sudo systemctl enable --now firewalld
+}
+
+setup_docker() {
+  announce "Setting up Docker"
+  install docker
+  install docker-compose
+  sudo systemctl enable --now docker.socket
+  sudo usermod -aG docker "$USER"
+  echo "User added to docker group, please restart your session"
+}
+
 announce() {
   echo " "
   echo "[dots] $1"
@@ -184,3 +199,5 @@ confirm "Setup keyboard? " setup_keyboard
 if pacman -Qi "gdm" &> /dev/null; then
   confirm "Configure Gnome? " configure_gnome
 fi
+confirm "Setup firewall? " setup_firewall
+confirm "Setup Docker? " setup_docker
