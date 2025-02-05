@@ -4,6 +4,10 @@ import = [
   "colors.toml"
 ]
 
+[window]
+decorations = "None"
+startup_mode = "Maximized"
+
 [scrolling]
 history = 100000
 multiplier = 8
