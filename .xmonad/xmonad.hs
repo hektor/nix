@@ -216,7 +216,6 @@ myKeys =
     ("M-S-<XF86MonBrightnessUp>", resetTemp),   --
     ("M-S-<XF86MonBrightnessDown>", resetTemp), --
     ("M-S-b", fullscreenBrowser),
-    ("<XF86Calculator>", spawnCalculator),
     ("<XF86PowerOff>", spawn "systemctl suspend"), --TODO: Only enable this on laptop
     ("M-c", windows copyToAll),
     ("M-S-c", killAllOtherCopies),
@@ -261,12 +260,12 @@ fullscreenBrowser :: X ()
 fullscreenBrowser = spawn "firefox --fullscreen"
 
 spawnWindowSwitcher = spawn "rofi -show window -show-icons"
+
 spawnWifiMenu = spawn "rofi -show wifi -modi \"wifi:iwdrofimenu\""
 
-spawnLauncher, spawnClipManager, spawnCalculator :: X ()
+spawnLauncher, spawnClipManager :: X ()
 spawnLauncher = spawn "rofi -show drun -show-icons"
 spawnClipManager = spawn "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
-spawnCalculator = spawn "alacritty --class 'Calculator' -e ipython -i /home/h/.bin/calc.py"
 
 printScreen :: X ()
 printScreen = spawn "flameshot gui"
