@@ -197,7 +197,6 @@ myKeys =
     ("M-<Space> M-<Space>", nextLayout),        -- ..fat finger
     ("M-<Space> M-S-<Space>", defaultLayout),   --
     ("<F8>",  spawnKeepassXC),
-    ("M-z",   spawnZettelkasten),
     ("M-p",   spawnLauncher),
     ("M-w", spawnWindowSwitcher),
     ("M-S-w", spawnWifiMenu),
@@ -254,9 +253,6 @@ nextLayout = sendMessage NextLayout
 
 defaultLayout :: X ()
 defaultLayout = setLayout $ Layout myLayoutHook
-
-spawnZettelkasten :: X ()
-spawnZettelkasten = spawn "alacritty --class Zettelkasten,Zettelkasten -e nvim $(cat ~/.zk/current-zettel.txt)"
 
 spawnKeepassXC :: X ()
 spawnKeepassXC = spawn "keepassxc"
