@@ -167,7 +167,7 @@ myModMask = mod4Mask
 
 myConfig =
   def
-    { terminal = "alacritty",
+    { terminal = "kitty",
       modMask = myModMask,
       workspaces = withScreen 1 myWorkspaces ++ withScreen 2 mySharedWorkspaces,
       -- Styling
