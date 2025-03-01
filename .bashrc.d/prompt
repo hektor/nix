@@ -1,4 +1,6 @@
+# shellcheck shell=bash
 # vim: set ft=bash :
+
 get_branch_name() {
   git symbolic-ref --quiet --short HEAD 2>/dev/null \
     || git rev-parse --short HEAD 2>/dev/null \
