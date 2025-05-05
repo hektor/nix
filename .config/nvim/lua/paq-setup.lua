@@ -35,5 +35,42 @@ vim.api.nvim_create_autocmd("VimEnter", {
 bootstrap_paq({
   { "savq/paq-nvim" },
   { "ibhagwan/fzf-lua" },
+  { "barreiroleo/ltex_extra.nvim" },
+  { "neovim/nvim-lspconfig" },
+  { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+  { "linrongbin16/lsp-progress.nvim" },
+  { "folke/neodev.nvim" }, -- Nvim
+  { "b0o/schemastore.nvim" }, -- JSON Schemas
+  { "mfussenegger/nvim-lint" },
+  { "stevearc/conform.nvim" },
+  { "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip" },
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "stevearc/dressing.nvim" },
+  { "nvim-lua/plenary.nvim" },
+  { "MunifTanjim/nui.nvim" },
+  { "nvim-telescope/telescope.nvim" },
+  { "folke/trouble.nvim" },
+  { "rktjmp/shipwright.nvim" }, -- For building themes based on lush (e.g. terminal)
+  { "rktjmp/lush.nvim" },
+  { "mcchrish/zenbones.nvim" }, -- Zenbones themes (contains zenwritten)
+  { "theHamsta/crazy-node-movement" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
+  -- { "nvim-treesitter/nvim-treesitter-context" },
+  { "JoosepAlviste/nvim-ts-context-commentstring" }, -- commentstring based on cursor position (e.g. for Svelte)
+  { "Wansmer/treesj" },
+  { "michaelb/sniprun", build = "sh install.sh" },
+  { "f-person/git-blame.nvim" },
+  { "brenoprata10/nvim-highlight-colors" },
+  { "razak17/tailwind-fold.nvim" },
+  { "rmagatti/auto-session" },
+  { "kndndrj/nvim-dbee" },
+  { "3rd/image.nvim", build = false },
+  { "polarmutex/beancount.nvim" },
+  { "jamesblckwell/nvimkit.nvim" },
 })
 -- }}}
