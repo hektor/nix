@@ -11,10 +11,10 @@ read -p "Would you like open your zettelkasten? [y/N] " -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  if command -v zk &>/dev/null; then
+  if [ -x "$(command -v zk)" ]; then
     zk
   else
-    echo "Error: 'zk' command not found"
+    echo "Error: 'zk' command not found or not executable"
     exit 1
   fi
 fi
