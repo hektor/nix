@@ -7,8 +7,9 @@ else
     echo "[zk] Zettelkasten already set up."
 fi
 
-read -p "Would you like to run 'zk' now? [y/N] " -n 1 -r
+read -p "Would you like open your zettelkasten? [y/N] " -n 1 -r
 echo
+
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    command -v zk >/dev/null 2>&1 && zk || echo "Error: 'zk' command not found in PATH"
+  [ -x "$(command -v zk)" ] zk || zk
 fi
