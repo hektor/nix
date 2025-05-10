@@ -62,10 +62,11 @@ cmp.setup({
     ["<CR>"] = c_l,
   }),
   sources = {
-    { name = "nvim_lsp", keyword_length = 1 },
-    { name = "luasnip", max_item_count = 16 },
+    { name = "copilot",  group_index = 2 },
+    { name = "nvim_lsp", keyword_length = 8 },
+    { name = "luasnip",  max_item_count = 16 },
     { name = "path" },
-    { name = "buffer", max_item_count = 8 },
+    { name = "buffer",   max_item_count = 8 },
   },
   window = {
     completion = cmp.config.window.bordered({ border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" } }),

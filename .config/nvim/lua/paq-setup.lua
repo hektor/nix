@@ -72,5 +72,9 @@ bootstrap_paq({
   { "3rd/image.nvim", build = false },
   { "polarmutex/beancount.nvim" },
   { "jamesblckwell/nvimkit.nvim" },
+  { 'olimorris/codecompanion.nvim' },
+  { "ravitemer/mcphub.nvim",                       build = "pnpm install -g mcp-hub@latest" },
+  { "zbirenbaum/copilot.lua" },
+  { "zbirenbaum/copilot-cmp" }
 })
 -- }}}
