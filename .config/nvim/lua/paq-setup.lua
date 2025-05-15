@@ -49,10 +49,8 @@ bootstrap_paq({
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
-  { "stevearc/dressing.nvim" },
   { "nvim-lua/plenary.nvim" },
   { "MunifTanjim/nui.nvim" },
-  { "nvim-telescope/telescope.nvim" },
   { "folke/trouble.nvim" },
   { "rktjmp/shipwright.nvim" }, -- For building themes based on lush (e.g. terminal)
   { "rktjmp/lush.nvim" },
