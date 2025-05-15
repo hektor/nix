@@ -3,7 +3,6 @@
 " Plug setup {{{
 
 call plug#begin()
-Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-sandwich'
 Plug 'Shougo/context_filetype.vim'

@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -- Set up paq plugins {{{
 bootstrap_paq({
   { "savq/paq-nvim" },
+  { "jinh0/eyeliner.nvim" },
   { "ibhagwan/fzf-lua" },
   { "barreiroleo/ltex_extra.nvim" },
   { "neovim/nvim-lspconfig" },
