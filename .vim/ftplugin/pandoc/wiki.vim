@@ -17,9 +17,3 @@ func! GetContext()
   endif
 endfunc
 com! -nargs=0 GetContext :call GetContext()
-
-function! Put(str)
-    put = a:str
-endfunction
-
-com! -nargs=0 AnkiDeck call fzf#run(fzf#wrap({'source': 'get-anki-decks', 'sink': function('Put')}))
