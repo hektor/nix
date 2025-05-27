@@ -59,6 +59,7 @@ typescript-language-server
 unzip
 vim-language-server
 wget
+xclip
 yaml-language-server
 )
 
