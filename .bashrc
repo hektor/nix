@@ -87,13 +87,7 @@ fi
 # }}}
 
 # Node {{{
-# Move nvm folder away from home directory
-export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-# Pretty much what is in `/usr/share/nvm/init-nvm.sh` but we add the `--no-use`
-# flag to `nvm.sh` to make it lazy
-. /usr/share/nvm/nvm.sh --no-use
-. /usr/share/nvm/bash_completion
-. /usr/share/nvm/install-nvm-exec
+. /usr/share/nvm/init-nvm.sh
 # }}}
 
 # Go {{{
