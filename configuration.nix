@@ -15,6 +15,7 @@
       ./modules/x.nix
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.git.enable = true;
   programs.firefox.enable = true;
