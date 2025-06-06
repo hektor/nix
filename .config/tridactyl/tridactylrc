@@ -1,0 +1,17 @@
+set searchengine d
+
+set newtab about:blank
+set smoothscroll true
+
+# Yank bindings
+bind ym clipboard yankmd
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+
+unbind <C-f>
+
+bind j scrollline 4
+bind k scrollline -4
+
+# Containerize facebook (source: https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc)
+set auconcreatecontainer true
+autocontain facebook\.com facebook
