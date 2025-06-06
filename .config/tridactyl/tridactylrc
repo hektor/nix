@@ -7,7 +7,12 @@ set smoothscroll true
 bind ym clipboard yankmd
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
+# Search bindings
 unbind <C-f>
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
 
 bind j scrollline 4
 bind k scrollline -4
