@@ -48,11 +48,6 @@ export MANWIDTH=80
 export PAGER=nvimpager
 # }}}
 
-# Nvm
-export PATH=~/.nvm/versions/node/v14.16.0/bin:$PATH
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh" --no-use
-
 # X11 {{{
 export XDG_SESSION_TYPE=X11
 export XDG_CONFIG_HOME=$HOME/.config
@@ -84,10 +79,6 @@ if [ -f "/usr/bin/fzf" ]; then
 else
   echo "fzf not installed"
 fi
-# }}}
-
-# Node {{{
-. /usr/share/nvm/init-nvm.sh
 # }}}
 
 # Go {{{
