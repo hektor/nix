@@ -11,13 +11,57 @@ types=(
 selected=$(printf '%s\n' "${types[@]}" | fzf --prompt="Select branch type: ") || exit 1
 type=${selected%% *}
 
+echo "Fetching Jira tickets..."
+jira_data=$(jira issue list --assignee=hektor.misplon@rightcrowd.com --order-by=priority --plain --no-headers 2>/dev/null)
+
+if [[ $? -ne 0 || -z "$jira_data" ]]; then
+  echo "Warning: Could not fetch Jira tickets or no tickets found."
+  echo "Proceeding without ticket ID..."
+  ticket_id=""
+else
+  # Create formatted list for fzf: "TICKET-123 - Issue description"
+  formatted_tickets=$(echo "$jira_data" | awk '{
+    ticket_id = $2
+    $1 = $2 = ""
+    description = $0
+    gsub(/^[ \t]+/, "", description)
+    if (length(description) > 60) {
+      description = substr(description, 1, 57) "..."
+    }
+    print ticket_id " - " description
+  }')
+
+  if [[ -z "$formatted_tickets" ]]; then
+    echo "No tickets found. Proceeding without ticket ID..."
+    ticket_id=""
+  else
+    # Let user select a ticket or skip
+    echo ""
+    selected_ticket=$(echo -e "SKIP - Create branch without ticket ID\n$formatted_tickets" | \
+      fzf --prompt="Select Jira ticket (or skip): " --height=40%) || exit 1
+
+    if [[ "$selected_ticket" == "SKIP"* ]]; then
+      ticket_id=""
+    else
+      ticket_id=${selected_ticket%% -*}
+    fi
+  fi
+fi
+
 editor="${EDITOR:-vi}"
 tmpfile=$(mktemp)
 
-cat > "$tmpfile" << 'EOF'
-# Enter your branch description below in kebab case (e.g. `my-description`):
-
+if [[ -n "$ticket_id" ]]; then
+  cat > "$tmpfile" << EOF
+# Selected ticket: $ticket_id
+# Enter your branch description below in kebab case (e.g. \`my-description\`):
+# The ticket ID will be automatically included in the branch name.
 EOF
+else
+  cat > "$tmpfile" << 'EOF'
+# Enter your branch description below in kebab case (e.g. `my-description`):
+EOF
+fi
 
 "$editor" "$tmpfile"
 
@@ -36,6 +80,11 @@ if [[ ! "$desc" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
   exit 1
 fi
 
-branch="$type/$desc"
+if [[ -n "$ticket_id" ]]; then
+  branch="$type/$ticket_id-$desc"
+else
+  branch="$type/$desc"
+fi
 
+echo "Creating branch: $branch"
 git checkout -b "$branch"
