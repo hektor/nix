@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+types=(
+  "feature   For new features"
+  "bugfix    For bug fixes"
+  "hotfix    For urgent fixes"
+  "release   For preparing releases"
+  "chore     For non-code tasks"
+)
+
+selected=$(printf '%s\n' "${types[@]}" | fzf --prompt="Select branch type: ") || exit 1
+type=${selected%% *}
+
+editor="${EDITOR:-vi}"
+tmpfile=$(mktemp)
+
+cat > "$tmpfile" << 'EOF'
+# Enter your branch description below in kebab case (e.g. `my-description`):
+
+EOF
+
+"$editor" "$tmpfile"
+
+desc=$(grep -v '^#' "$tmpfile" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+rm "$tmpfile"
+
+if [[ -z "$desc" ]]; then
+  echo "No description provided."
+  exit 1
+fi
+
+if [[ ! "$desc" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+  echo "Invalid branch description format."
+  echo "Use lowercase letters, numbers, and hyphens only."
+  echo "No trailing or consecutive hyphens allowed."
+  exit 1
+fi
+
+branch="$type/$desc"
+
+git checkout -b "$branch"
