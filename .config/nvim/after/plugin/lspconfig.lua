@@ -10,7 +10,15 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 local servers = {
   bashls = {},
-  eslint = {},
+  eslint = {
+    settings = {
+      --Assuming prettier/prettierd will handle formatting, we don't need to see these errors
+      rulesCustomizations = {
+        { rule = "prettier/prettier", severity = "off" },
+      },
+      format = false,
+    },
+  },
   emmet_language_server = {},
   gdscript = {},
   helm_ls = {
