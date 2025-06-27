@@ -13,6 +13,9 @@ local servers = {
   eslint = {},
   emmet_language_server = {},
   gdscript = {},
+  helm_ls = {
+    filetypes = { "yaml", "helm", "yaml.helm-values" },
+  },
   hls = { filetypes = { "haskell", "lhaskell", "cabal" } },
   html = {},
   jsonls = {

@@ -74,6 +74,7 @@ bootstrap_paq({
   { 'olimorris/codecompanion.nvim' },
   { "ravitemer/mcphub.nvim",                       build = "pnpm install -g mcp-hub@latest" },
   { "zbirenbaum/copilot.lua" },
-  { "zbirenbaum/copilot-cmp" }
+  { "zbirenbaum/copilot-cmp" },
+  { "qvalentin/helm-ls.nvim", ft = "helm" },
 })
 -- }}}
