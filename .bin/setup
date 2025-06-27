@@ -44,6 +44,7 @@ parallel
 pass
 pkgbuild-language-server
 pnpm
+ripgrep
 sshfs
 stylelint
 svelte-language-server
