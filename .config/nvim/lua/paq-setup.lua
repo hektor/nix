@@ -63,7 +63,7 @@ bootstrap_paq({
   { "JoosepAlviste/nvim-ts-context-commentstring" }, -- commentstring based on cursor position (e.g. for Svelte)
   { "Wansmer/treesj" },
   { "michaelb/sniprun", build = "sh install.sh" },
-  { "f-person/git-blame.nvim" },
+  { "lewis6991/gitsigns.nvim" },
   { "brenoprata10/nvim-highlight-colors" },
   { "razak17/tailwind-fold.nvim" },
   { "rmagatti/auto-session" },
