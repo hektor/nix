@@ -22,6 +22,11 @@ alias chown="chown --preserve-root"
 alias chmod="chmod --preserve-root"
 alias chgrp="chgrp --preserve-root"
 
+alias ip="ip --color"
+alias ipa="ip -brief address"
+alias ipl="ip -brief link"
+alias ipr="ip route"
+
 alias clip="xclip -sel clip"
 
 alias df="df -kTh"
