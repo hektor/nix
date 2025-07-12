@@ -1,28 +1,9 @@
 # shellcheck shell=bash
 # vim: set ft=bash :
 
-# Alias aliases
-alias al=alias
-alias alf="alias | fzf"
-alias al-=unalias
-
-# Edit configuration files
-alias eba="nvim ~/.bashrc"
-alias eal="nvim ~/.bash_aliasrc"
-alias ev="edit_editor_config"
-
-# Navigation
-
 alias ..="cd .."
-alias .2="cd ../.."
-alias .3="cd ../../.."
 
-# Colorize output
 alias ls="ls --color=auto"
-alias grep="grep --color=auto"
-alias ip="ip --color"
-
-# Listing
 alias l="ls -1p"
 alias ll="ls -lhp"
 alias lt="ls -lhtp"
@@ -30,7 +11,8 @@ alias la="ls -lhap"
 alias lta="ls -lhatp"
 alias ldir="ls -dp" # list directories
 
-# Safety
+alias grep="grep --color=auto"
+
 alias rm="rm -I --preserve-root"
 alias mv="mv -iv"
 alias cp="cp -iv"
@@ -40,12 +22,8 @@ alias chown="chown --preserve-root"
 alias chmod="chmod --preserve-root"
 alias chgrp="chgrp --preserve-root"
 
-# Clipboard
 alias clip="xclip -sel clip"
-alias srclip="clip -o | speedread -w 500"
 
-# Other
-alias cfg="/usr/bin/git --git-dir=/home/h/.git/ --work-tree=/home/h"
 alias df="df -kTh"
 alias fzfpac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 alias path='echo -e ${PATH//:/\\n}' # Pretty print path variables
@@ -59,7 +37,6 @@ alias tsh='tasksh'
 alias z='zathura --fork'
 alias f='fzf'
 alias fm='pcmanfm &>/dev/null &'
-alias xev='xev | grep -A2 ButtonPress' # Ignore mouse movements
 alias mm='micromamba'
 
 # Languages
