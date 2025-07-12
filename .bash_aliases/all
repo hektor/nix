@@ -63,8 +63,6 @@ alias xev='xev | grep -A2 ButtonPress' # Ignore mouse movements
 alias mm='micromamba'
 
 # Languages
-alias js="node"
-alias ts="ts-node"
 alias r5="plt-r5rs --no-prim"
 alias hs="ghci"
 alias pl="swipl"
@@ -74,33 +72,3 @@ alias r="R"
 alias azerty="setxkbmap be"
 alias qwerty="setxkbmap us"
 alias cole="setxkbmap us -variant colemak"
-
-yarn() {
-  if [[ -f "package-lock.json" ]]; then
-    echo "WARNING: package-lock.json exists"
-    read -p "Are you sure you want to run yarn? [y/N] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      command yarn "$@"
-    else
-      echo "Aborted"
-    fi
-  else
-    command yarn "$@"
-  fi
-}
-
-npm() {
-  if [[ -f "yarn.lock" ]]; then
-    echo "WARNING: yarn.lock exists"
-    read -p "Are you sure you want to run npm? [y/N] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      command npm "$@"
-    else
-      echo "Aborted"
-    fi
-  else
-    command npm "$@"
-  fi
-}
