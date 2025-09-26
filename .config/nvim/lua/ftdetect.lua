@@ -3,6 +3,7 @@ vim.filetype.add({
     [".lintstagedrc"] = "json",
   },
   pattern = {
+    [".*/%.vscode/.*%.json"] = "jsonc",
     [".*/%.ssh/config%.d/.*"] = "sshconfig",
   },
 })
