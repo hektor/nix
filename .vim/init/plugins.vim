@@ -9,11 +9,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'honza/vim-snippets'
 Plug 'chrisbra/unicode.vim'
 Plug 'ap/vim-css-color'
-" JS and TypeScript
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
-Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript.tsx'] }
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
 " Jupyter
 Plug 'quarto-dev/quarto-vim'
 " LaTeX
