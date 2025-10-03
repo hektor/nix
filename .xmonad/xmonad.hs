@@ -148,7 +148,6 @@ myLayoutHook =
 myHandleEventHook =
   handleEventHook def
     -- See window swallowing (https://hackage.haskell.org/package/xmonad-contrib-0.18.0/docs/XMonad-Hooks-WindowSwallowing.html)
-    <> swallowEventHook (className =? "Alacritty") (return True)
     <> onXPropertyChange "WM_NAME" myDynamicManageHook
     <> Hacks.windowedFullscreenFixEventHook
     <> hintsEventHook

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 pac_list=(
-alacritty
 at
 automake
 autopep8
@@ -30,6 +29,7 @@ htop
 httpie
 jq
 keepassxc
+kitty
 lua-language-server
 make
 man-db
