@@ -1,3 +1,3 @@
-{ pkgs }:
+{ pkgs, config, ... }:
 
 with pkgs; [ ]
