@@ -18,6 +18,10 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # These are needed for ZFS
+
+  networking.hostId = "25698a58";
+  # https://discourse.nixos.org/t/zfs-with-disko-faluire-to-import-zfs-pool/61988/3
   boot = {
     zfs = {
         devNodes = "/dev/disk/by-uuid";
