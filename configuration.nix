@@ -26,7 +26,7 @@
 
   services.spice-vdagentd.enable = true;
   services.openssh = {
-    enable = false;
+    enable = true;
     startWhenNeeded = true;
     settings = {
       ## hardening
