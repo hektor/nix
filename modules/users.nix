@@ -5,5 +5,6 @@
     isNormalUser = true;
     description = "h";
     extraGroups = [ "wheel" ];
+    initialPassword = "h";
   };
 }
