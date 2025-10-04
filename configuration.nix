@@ -23,4 +23,30 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [ neovim ];
+
+  services.spice-vdagentd.enable = true;
+  services.openssh = {
+    enable = false;
+    startWhenNeeded = true;
+    settings = {
+      ## hardening
+      PermitRootLogin = "no";
+      MaxAuthTries = 3;
+      LoginGraceTime = "1m";
+      PasswordAuthentication = false;
+      PermitEmptyPasswords = false;
+      ChallengeResponseAuthentication = false;
+      KerberosAuthentication = false;
+      GSSAPIAuthentication = false;
+      X11Forwarding = false;
+      PermitUserEnvironment = false;
+      AllowAgentForwarding = false;
+      AllowTcpForwarding = false;
+      PermitTunnel = false;
+      ## sshd_config defaults on Arch Linux
+      KbdInteractiveAuthentication = false;
+      UsePAM = true;
+      PrintMotd = false;
+    };
+  };
 }
