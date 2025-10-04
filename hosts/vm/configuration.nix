@@ -1,18 +1,18 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "25.05";
 
   imports =
     [
-      ./modules/hardware-configuration.nix # Include the results of the hardware scan.
-      ./modules/bootloader.nix
-      ./modules/networking.nix
-      ./modules/users.nix
-      ./modules/audio.nix
-      ./modules/printing.nix
-      ./modules/localization.nix
-      ./modules/x.nix
+      ./hard.nix
+      ../../modules/bootloader.nix
+      ../../modules/networking.nix
+      ../../modules/users.nix
+      ../../modules/audio.nix
+      ../../modules/printing.nix
+      ../../modules/localization.nix
+      ../../modules/x.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
