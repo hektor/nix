@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Back up my $HOME folder to OneDrive using `restic`.
+#
+# Adds extra flags needed for using `rclone` with sharepoint WebDav I.e. add
+# `--ignore-size --ignore-checksum --update` to the default `rclone.args`.
+#
+# Select directory in repo using -r rclone:<repo>:<directory>
+#
+# Runs `backup` command on $HOME and ignore what is listed in `.resticexclude`
+#
+# ```/etc/restic-env
+# export B2_ACCOUNT_ID=
+# export B2_ACCOUNT_KEY=
+# ```
+#
+# `restic -r b2:desktop-arch init`
+
+source /etc/restic-env
+restic -r "$RESTIC_REPOSITORY:$HOSTNAME" backup \
+  --tag "hektor" \
+  --one-file-system \
+  --files-from="$HOME/.resticinclude" \
+  --exclude-file="$HOME/.resticexclude" \
+  --verbose=3

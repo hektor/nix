@@ -1,0 +1,19 @@
+# shellcheck shell=bash
+# vim: set ft=bash :
+
+# Set NeoVim as default editor
+export EDITOR=nvim
+export SUDO_EDITOR="$EDITOR"
+
+declare -A -r EDITOR_CONFIGS=(
+  ["nvim"]="$HOME/.config/nvim/init.lua"
+  ["vim"]="$HOME/.vimrc"
+)
+
+edit_editor_config() {
+  for editor in "${!EDITOR_CONFIGS[@]}"; do
+    if [ "$EDITOR" = "$editor" ]; then
+      $EDITOR "${EDITOR_CONFIGS[$editor]}"
+    fi
+  done
+}

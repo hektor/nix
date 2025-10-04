@@ -1,0 +1,4 @@
+alias.burndown=burndown.daily
+alias.a=add
+alias.rm=delete
+alias.e=modify

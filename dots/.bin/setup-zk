@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ ! -d ~/.zk ]; then
+    echo "[zk] Setting up zettelkasten"
+    gh repo clone zk ~/.zk
+else
+    echo "[zk] Zettelkasten already set up."
+fi
+
+read -p "Would you like open your zettelkasten? [y/N] " -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [ -x "$(command -v zk)" ]; then
+    zk
+  else
+    echo "Error: 'zk' command not found or not executable"
+    exit 1
+  fi
+fi
