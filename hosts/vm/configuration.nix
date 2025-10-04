@@ -6,6 +6,7 @@
   imports =
     [
       ./hard.nix
+      ./disk.nix
       ../../modules/bootloader.nix
       ../../modules/networking.nix
       ../../modules/users.nix
