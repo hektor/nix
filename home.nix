@@ -6,5 +6,7 @@
   home.username = "h";
   home.homeDirectory = "/home/h";
 
+  home.file.".inputrc".source = ./dots/.inputrc;
+
   programs.home-manager.enable = true;
 }
