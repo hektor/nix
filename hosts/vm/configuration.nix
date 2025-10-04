@@ -18,6 +18,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot = {
+    zfs = {
+        devNodes = "/dev/disk/by-uuid";
+      };
+  };
+
   programs.git.enable = true;
   programs.firefox.enable = true;
 
