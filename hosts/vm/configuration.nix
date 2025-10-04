@@ -33,7 +33,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ neovim ];
+  environment.systemPackages = with pkgs; [
+    neovim
+    kitty
+  ];
 
   services.spice-vdagentd.enable = true;
   services.openssh = {
