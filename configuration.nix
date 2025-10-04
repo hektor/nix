@@ -5,8 +5,8 @@
 
   imports =
     [
-      ./modules/bootloader.nix
       ./modules/hardware-configuration.nix # Include the results of the hardware scan.
+      ./modules/bootloader.nix
       ./modules/networking.nix
       ./modules/users.nix
       ./modules/audio.nix
