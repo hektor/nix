@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.stateVersion = "25.05";
@@ -6,7 +6,16 @@
   home.username = "h";
   home.homeDirectory = "/home/h";
 
-  home.file.".inputrc".source = ../../dots/.inputrc;
+  programs = {
+    home-manager.enable = true;
+    git.enable = true;
+    firefox.enable = true;
+  };
 
-  programs.home-manager.enable = true;
+  home.packages = with pkgs; [
+    kitty
+    neovim
+  ];
+
+  home.file.".inputrc".source = ../../dots/.inputrc;
 }

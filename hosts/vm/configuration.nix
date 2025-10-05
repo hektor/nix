@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   system.stateVersion = "25.05";
@@ -26,19 +26,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.git.enable = true;
-  programs.firefox.enable = true;
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     users.h = ./home.nix;
   };
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    kitty
-  ];
 
   services.spice-vdagentd.enable = true;
   services.openssh = {
