@@ -15,14 +15,6 @@
     fzf = {
       enable = true;
       enableBashIntegration = true;
-      defaultCommand = "ag -g '' --hidden ";
-      defaultOptions = [
-        "--pointer=❭"
-        "--height=10%"
-        "--color=fg:-1,bg:-1"
-      ];
-      fileWidgetCommand = "ag -g '' --hidden ";
-      fileWidgetOptions = [ "--preview='bat {} | head -500'" ];
     };
     git.enable = true;
     home-manager.enable = true;
