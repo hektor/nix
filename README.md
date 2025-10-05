@@ -1,9 +1,15 @@
 # nixos
 
-My NixOS config
+## Set up virtual machine ([`disko`](https://github.com/nix-community/disko/blob/master/docs/interactive-vm.md))
+
+1. Build the virtual machine
 
 ```
-git clone https://git.hektormisplon.xyz/hektor/nix.git
-cd nix
-sudo nix --experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --flake .#vm --disk root /dev/vda
+nix run -L '.#nixosConfigurations.vm.config.system.build.vmWithDisko'
+```
+
+2. Run the virtual machine
+
+```
+QEMU_KERNEL_PARAMS=console=ttyS0 ./result/bin/run-nixos-vm -nographic; reset
 ```
