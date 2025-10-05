@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.stateVersion = "25.05";
@@ -9,7 +9,12 @@
   programs = {
     bash = {
       enable = true;
-      # TODO
+      enableCompletion = true;
+      initExtra = ''
+        for f in ${config.home.homeDirectory}/.bashrc.d/*; do
+          [ -f "$f" ] && source "$f"
+        done
+      '';
     };
     firefox.enable = true;
     fzf = {
@@ -73,5 +78,9 @@
     yaml-language-server
   ];
 
-  home.file.".inputrc".source = ../../dots/.inputrc;
+  home.file = {
+    ".inputrc".source = ../../dots/.inputrc;
+    ".bashrc.d/prompt".source = ../../dots/.bashrc.d/prompt;
+    ".bashrc.d/editor".source = ../../dots/.bashrc.d/editor;
+  };
 }
