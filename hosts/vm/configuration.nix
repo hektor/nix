@@ -22,6 +22,11 @@
 
 
   disko.devices.disk.main.device = "/dev/vda";
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.h = ./home.nix;
+  };
 
   programs.git.enable = true;
   programs.firefox.enable = true;

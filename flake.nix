@@ -26,13 +26,8 @@
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko
-            ./hosts/vm/configuration.nix
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.h = ./hosts/vm/home.nix;
-            }
+            ./hosts/vm/configuration.nix
           ];
         };
       };
