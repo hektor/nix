@@ -3,20 +3,22 @@
 {
   system.stateVersion = "25.05";
 
-  imports =
-    [
-      ./hard.nix
-      ./disk.nix
-      ../../modules/bootloader.nix
-      ../../modules/networking.nix
-      ../../modules/users.nix
-      ../../modules/audio.nix
-      ../../modules/printing.nix
-      ../../modules/localization.nix
-      ../../modules/x.nix
-    ];
+  imports = [
+    ./hard.nix
+    ./disk.nix
+    ../../modules/bootloader.nix
+    ../../modules/networking.nix
+    ../../modules/users.nix
+    ../../modules/audio.nix
+    ../../modules/printing.nix
+    ../../modules/localization.nix
+    ../../modules/x.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
 
   disko.devices.disk.main.device = "/dev/vda";
