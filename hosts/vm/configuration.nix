@@ -20,18 +20,20 @@
     "flakes"
   ];
 
+  disko = {
+    devices.disk.main.device = "/dev/vda";
+  };
 
-  disko.devices.disk.main.device = "/dev/vda";
+  nixpkgs.config.allowUnfree = true;
+
+  programs.git.enable = true;
+  programs.firefox.enable = true;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     users.h = ./home.nix;
   };
-
-  programs.git.enable = true;
-  programs.firefox.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     neovim
