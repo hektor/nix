@@ -22,6 +22,20 @@
 
   disko = {
     devices.disk.main.device = "/dev/vda";
+    devices.disk.main.imageName = "nixos-vm";
+    devices.disk.main.imageSize = "32G";
+  };
+
+  virtualisation.vmVariantWithDisko = {
+    virtualisation = {
+      cores = 8;
+      memorySize = 16384;
+      qemu.options = [
+        "-enable-kvm"
+        "-cpu host"
+        "-nographic"
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -32,7 +46,9 @@
     users.h = ./home.nix;
   };
 
+  services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+
   services.openssh = {
     enable = true;
     startWhenNeeded = true;
