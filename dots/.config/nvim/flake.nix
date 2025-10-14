@@ -2,6 +2,36 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+
+    plugins-shipwright-nvim = {
+      url = "github:rktjmp/shipwright.nvim";
+      flake = false;
+    };
+    plugins-crazy-node-movement = {
+      url = "github:theHamsta/crazy-node-movement";
+      flake = false;
+    };
+    plugins-beancount-nvim = {
+      url = "github:polarmutex/beancount.nvim";
+      flake = false;
+    };
+    plugins-tailwind-fold-nvim = {
+      url = "github:razak17/tailwind-fold.nvim";
+      flake = false;
+    };
+    plugins-nvimkit-nvim = {
+      url = "github:jamesblckwell/nvimkit.nvim";
+      flake = false;
+    };
+    plugins-mcphub-nvim = {
+      url = "github:ravitemer/mcphub.nvim";
+      flake = false;
+    };
+    plugins-helm-ls-nvim = {
+      url = "github:qvalentin/helm-ls.nvim";
+      flake = false;
+    };
+
   };
 
   outputs =
@@ -27,17 +57,64 @@
           ...
         }:
         {
-          lspsAndRuntimeDeps = {
-            general = [ ];
+          lspsAndRuntimeDeps = with pkgs; {
+            general = [
+              tree-sitter
+            ];
           };
 
           startupPlugins = {
-            general = [ ];
+            general = with pkgs.vimPlugins; [
+              lze
+              lzextras
+
+              eyeliner-nvim
+              fzf-lua
+              ltex_extra-nvim
+              nvim-lspconfig
+              lsp_lines-nvim
+              lsp-progress-nvim
+              neodev-nvim
+              SchemaStore-nvim
+              nvim-lint
+              conform-nvim
+              luasnip
+              cmp_luasnip
+              nvim-cmp
+              cmp-nvim-lsp
+              cmp-buffer
+              cmp-path
+              plenary-nvim
+              nui-nvim
+              trouble-nvim
+              pkgs.neovimPlugins.shipwright-nvim
+              lush-nvim
+              zenbones-nvim
+              pkgs.neovimPlugins.crazy-node-movement
+              nvim-treesitter.withAllGrammars
+              nvim-treesitter-textobjects
+              # nvim-treesitter-context
+              nvim-ts-context-commentstring
+              treesj
+              sniprun
+              gitsigns-nvim
+              nvim-highlight-colors
+              pkgs.neovimPlugins.tailwind-fold-nvim
+              auto-session
+              nvim-dbee
+              image-nvim
+              pkgs.neovimPlugins.beancount-nvim
+              pkgs.neovimPlugins.nvimkit-nvim
+              codecompanion-nvim
+              pkgs.neovimPlugins.mcphub-nvim
+              copilot-lua
+              copilot-cmp
+              pkgs.neovimPlugins.helm-ls-nvim
+            ];
           };
 
           optionalPlugins = {
             general = with pkgs.vimPlugins; [
-              nvim-lspconfig
             ];
           };
 
