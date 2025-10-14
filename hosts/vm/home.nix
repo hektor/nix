@@ -45,7 +45,7 @@
     keepassxc
     kitty
     lua-language-server
-    neovim
+    # neovim
     nmap
     nodejs_24
     nodePackages.ts-node

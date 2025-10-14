@@ -11,6 +11,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvim = {
+      url = "path:./dots/.config/nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,6 +23,7 @@
       nixpkgs,
       disko,
       home-manager,
+      nvim,
     }:
     {
       nixosConfigurations = {
@@ -28,6 +33,7 @@
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager
             ./hosts/vm/configuration.nix
+            { environment.systemPackages = [ nvim.packages.x86_64-linux.nvim ]; }
           ];
         };
       };
