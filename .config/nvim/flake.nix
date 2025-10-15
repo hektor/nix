@@ -59,7 +59,18 @@
         {
           lspsAndRuntimeDeps = with pkgs; {
             general = [
+              black
+              clang
+              clang-tools
+              gawk
+              gdtoolkit_4
+              isort
               tree-sitter
+              ormolu
+              nodePackages.prettier
+              prettierd
+              shellcheck-minimal
+              stylua
             ];
           };
 
