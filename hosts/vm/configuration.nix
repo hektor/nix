@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "25.05";
@@ -73,4 +73,8 @@
       PrintMotd = false;
     };
   };
+
+  fonts.packages = with pkgs; [
+    (iosevka-bin.override { variant = "SGr-IosevkaTermSS08"; })
+  ];
 }

@@ -40,7 +40,6 @@
     haskellPackages.pandoc-crossref
     haskellPackages.hadolint
     htop
-    iosevka
     jq
     keepassxc
     kitty
