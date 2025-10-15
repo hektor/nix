@@ -35,6 +35,18 @@ function M.setup(v)
       paq(packages)
       paq.install()
     end
+
+    vim.api.nvim_create_autocmd("VimEnter", {
+      once = true,
+      callback = function()
+        local pkgs_count = #require("paq").query("to_install")
+        if pkgs_count < 1 then
+          return
+        end
+        vim.notify(string.format("There are %d to install", pkgs_count))
+      end,
+    })
+
     bootstrap_paq(vim.list_extend({ "savq/paq-nvim" }, v))
   end
 end
