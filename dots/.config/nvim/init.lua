@@ -4,8 +4,9 @@ require("vim")
 require("ftdetect")
 require("keymaps")
 require("highlight")
-require("paq-setup") -- when not on nixCats
 require("diagnostic")
+
+require("paq-setup") -- when not on nixCats
 
 -- vim.opt.background = "dark"
 -- vim.opt.laststatus = 3

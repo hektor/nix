@@ -65,9 +65,6 @@
 
           startupPlugins = {
             general = with pkgs.vimPlugins; [
-              lze
-              lzextras
-
               eyeliner-nvim
               fzf-lua
               ltex_extra-nvim
