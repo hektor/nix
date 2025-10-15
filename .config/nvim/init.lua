@@ -1,8 +1,10 @@
+require("nixCatsUtils").setup({ non_nix_value = true }) -- https://github.com/BirdeeHub/nixCats-nvim/blob/77dffad8235eb77684fcb7599487c8e9f23d5b8f/templates/example/init.lua
+
 require("vim")
 require("ftdetect")
 require("keymaps")
 require("highlight")
-require("paq-setup")
+require("paq-setup") -- when not on nixCats
 require("diagnostic")
 
 -- vim.opt.background = "dark"
