@@ -1,5 +1,7 @@
+vim.cmd([[
 syn keyword Operator \+ conceal cchar=¬
 syn keyword Operator ,  conceal cchar=∧
 syn keyword Operator ;  conceal cchar=∨
+]])
 
-:runtime! syntax/_comment_keywords.vim
+vim.cmd.runtime("syntax/_comment_keywords.lua")

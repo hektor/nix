@@ -1,12 +1,10 @@
+vim.cmd([[
 " Override the pandoc-syntax highlighting colors for more subtle citations
 hi! link pandocPCite Comment
 hi! link pandocICite Comment
 hi! link pandocCiteKey Comment
 hi! link pandocCiteAnchor Comment
 hi! link pandocCiteLocator Comment
-
-" Don't show the CiteKey within the CiteLocator
-syn match pandocCiteKey /\v\[[^]]+\]/ contained
 
 " Match cloze delimiters e.g. `{{c1::` and `}}`
 syn match ClozeDelimiter /{{c\d\+::/ conceal containedin=pandocUListItem,pandocListItem
@@ -23,4 +21,6 @@ syn match TaskWikiTaskUuid containedin=TaskWikiTask /\v#([A-Z]:)?[0-9a-fA-F]{8}-
 syn match TaskWikiTaskUuid containedin=TaskWikiTask /\v#([A-Z]:)?[0-9a-fA-F]{8}$/
 highlight link TaskWikiTaskUuid Comment
 
-:runtime! syntax/_comment_keywords.vim
+]])
+
+vim.cmd.runtime("syntax/_comment_keywords.lua")
