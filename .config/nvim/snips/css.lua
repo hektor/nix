@@ -27,7 +27,7 @@ return {
     t("flex-wrap: wrap;"),
     i(0),
   }),
-  s({ trig = "dfc", dscr = "Display flex column" }, {
+  s({ trig = "dfc", dscr = "Add 'flex-direction: column;'" }, {
     t("display: flex;"),
     t("flex-direction: column;"),
     i(0),
