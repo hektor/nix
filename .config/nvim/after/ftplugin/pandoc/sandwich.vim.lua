@@ -1,3 +1,4 @@
+vim.cmd([[
 function GetClozeNumber()
   let REGEX_CLOZE_START = '{{c\d\+::'
 
@@ -33,3 +34,4 @@ let g:sandwich#recipes += [
       \     'nesting':  1
       \   }
       \ ]
+]])

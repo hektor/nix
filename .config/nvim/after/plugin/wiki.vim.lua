@@ -1,3 +1,4 @@
+vim.cmd([[
 " Change local buffer to directory of current file after the plugin has loaded
 autocmd VimEnter * lcd %:p:h
 
@@ -106,3 +107,4 @@ let g:wiki_write_on_nav=1
 let g:wiki_zotero_root='~/.local/share/zotero'
 " ... mappings and commands
 " ...
+]])

@@ -1,3 +1,4 @@
+vim.cmd([[
 " Tidalcycles (sclang and vim-tidal)
 let g:tidal_default_config = {"socket_name": "default", "target_pane": "tidal:1.1"}
 let g:tidal_no_mappings = 1
@@ -12,3 +13,4 @@ au FileType tidal com! -nargs=0 H :TidalHush
 " SuperCollider
 au BufEnter,BufWinEnter,BufNewFile,BufRead *.sc,*.scd se filetype=supercollider
 au Filetype supercollider packadd scvim
+]])
