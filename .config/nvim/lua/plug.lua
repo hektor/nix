@@ -1,7 +1,4 @@
-" Plugins {{{
-
-" Plug setup {{{
-
+vim.cmd([[
 call plug#begin()
 Plug 'machakann/vim-sandwich'
 Plug 'Shougo/context_filetype.vim'
@@ -31,4 +28,4 @@ Plug 'goerz/jupytext.vim'
 " OpenSCAD
 Plug 'sirtaj/vim-openscad'
 call plug#end()
-" }}}
+]])

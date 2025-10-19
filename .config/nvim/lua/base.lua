@@ -1,7 +1,5 @@
-" General config {{{
-"
+vim.cmd([[
 " Tip: acronyms for overview, use `:h` for a quick lookup.
-
 set nocp                               " Disable vi incompatibility
 filetype plugin indent on              " Filetype recognition
 set enc=utf8                           " Default to UTF-8 encoding
@@ -28,6 +26,5 @@ set lcs=trail:·,tab:→\ ,nbsp:␣         " Whitespace rendering
 set ar                                 " Autoread
 set spellsuggest+=5                    " Limit spell suggestions
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
-set thesaurus+=~/.vim/thesaurus/mthesaur.txt
-
-" }}}
+" set thesaurus+=./thesaurus/mthesaur.txt " FIXME
+]])
