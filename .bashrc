@@ -15,7 +15,6 @@
 [ -f "$HOME/.bash_aliases/hosts/$HOSTNAME" ] && . "$HOME/.bash_aliases/hosts/$HOSTNAME"
 [ -f "$HOME/.bash_aliases/private" ] && . "$HOME/.bash_aliases/private"
 [ -f "$HOME/.bash_aliases/lang-js" ] && . "$HOME/.bash_aliases/lang-js"
-command -v jira >/dev/null && [ -f "$HOME/.bash_aliases/jira" ] && . "$HOME/.bash_aliases/jira"
 
 # Completions {{{
 [ -d "$HOME/.bash_completions" ] && for file in "$HOME/.bash_completions"/*; do
