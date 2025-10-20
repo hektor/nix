@@ -34,6 +34,7 @@ alias fzfpac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo p
 alias path='echo -e ${PATH//:/\\n}' # Pretty print path variables
 
 # Programs
+alias h="history"
 alias o="xdg-open"
 alias v="nvim"
 alias g='git'

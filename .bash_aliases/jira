@@ -1,4 +1,0 @@
-# shellcheck shell=bash
-# vim: set ft=bash :
-
-alias jira-me='jira issue list -a$(jira me)'
