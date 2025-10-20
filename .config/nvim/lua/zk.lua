@@ -1,3 +1,4 @@
+vim.cmd([[
 let s:zk_preview_enabled = 0
 let s:live_server_job = -1
 au BufEnter /home/h/.zk/*.md silent exe '!echo "%" > /home/h/.zk/current-zettel.txt'
@@ -18,3 +19,4 @@ endfunction
 command! ToggleZKPreview call ToggleZKPreview()
 
 nn <leader>o :ToggleZKPreview<cr> :!xdg-open http://localhost:8080/%:t:r.html & <cr>
+]])

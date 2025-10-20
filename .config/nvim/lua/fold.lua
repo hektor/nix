@@ -1,3 +1,4 @@
+vim.cmd([[
 " Folds {{{
 set foldmethod=marker
 
@@ -22,3 +23,4 @@ augroup filetype_snippets
 augroup END
 
 " }}}
+]])

@@ -1,3 +1,4 @@
+vim.cmd([[
 " Taken from /usr/share/vim/vim90/defaults.vim
 augroup vimStartup
   au!
@@ -12,3 +13,4 @@ augroup vimStartup
     \ | endif
 
 augroup END
+]])
