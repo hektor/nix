@@ -1,3 +1,4 @@
+vim.cmd([[
 "
 " Source: https://wiki.call-cc.org/vim / Jonathan Palardy
 "
@@ -23,3 +24,4 @@ fun! Scheme_eval_defun()
     call Scheme_send_sexp(@")
     call setpos('.', pos)
 endfun
+]])

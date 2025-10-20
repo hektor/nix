@@ -1,3 +1,4 @@
+vim.cmd([[
 " Anki helper functions
 
 " Convert cloze note to regular text
@@ -20,3 +21,4 @@
 
 au FileType pandoc com! -range AnkiRemoveAllClozes :%s/\%V{{c\d\+:://ge | :%s/\%V}}//ge | :%s/\%VSTART\nCloze\n//ge | :%s/\%VEND\n//ge
 au FileType pandoc com! -range AnkiRemoveSelectedClozes :%s/\%V{{c\d\+:://ge | :%s/\%V}}//ge | :%s/\%VSTART\nCloze\n//ge | :%s/\%VEND\n//ge
+]])
