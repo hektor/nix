@@ -7,5 +7,6 @@ vim.filetype.add({
     [".*/%.vscode/.*%.json"] = "jsonc",
     [".*/%.ssh/config%.d/.*"] = "sshconfig",
     ["%.env.*"] = "dotenv",
+    ["%.pl$"] = "prolog",
   },
 })
