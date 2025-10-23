@@ -14,13 +14,6 @@ syn match Cloze /\({{c\d\+::\)\@<=\(\_[A-Za-z0-9$\ \\\-\*,_`()]*\)\(}}\)\@=/ con
 
 hi! link ClozeDelimiter Special
 hi! link Cloze Special
-
-" Fix task UUIDs not being highlighted correctly in pandoc lists
-syn match pandocUListItem /^>\=\s*[*+-]\s\+-\@!.*$/ nextgroup=pandocUListItem,pandocLaTeXMathBlock,pandocLaTeXInlineMath,pandocEscapedDollar,pandocDelimitedCodeBlock,pandocListItemContinuation contains=@Spell,pandocEmphasis,pandocStrong,pandocNoFormatted,pandocStrikeout,pandocSubscript,pandocSuperscript,pandocStrongEmphasis,pandocStrongEmphasis,pandocPCite,pandocICite,pandocCiteKey,pandocReferenceLabel,pandocLaTeXCommand,pandocLaTeXMathBlock,pandocLaTeXInlineMath,pandocEscapedDollar,pandocReferenceURL,pandocAutomaticLink,pandocFootnoteDef,pandocFootnoteBlock,pandocFootnoteID,pandocAmpersandEscape,TaskWikiTaskUuid skipempty display
-syn match TaskWikiTaskUuid containedin=TaskWikiTask /\v#([A-Z]:)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
-syn match TaskWikiTaskUuid containedin=TaskWikiTask /\v#([A-Z]:)?[0-9a-fA-F]{8}$/
-highlight link TaskWikiTaskUuid Comment
-
 ]])
 
 vim.cmd.runtime("syntax/_comment_keywords.lua")
