@@ -36,6 +36,7 @@ local servers = {
   },
   lua_ls = {},
   -- marksman = {},
+  nixd = {},
   pyright = {},
   -- tsserver = {},
   svelte = {

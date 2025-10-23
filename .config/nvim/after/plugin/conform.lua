@@ -15,6 +15,7 @@ require("conform").setup({
     html = { "prettierd", "prettier", stop_after_first = true },
     lua = { "stylua" }, -- configured in stylua.toml
     markdown = { "prettierd", "prettier", stop_after_first = true },
+    nix = { "nixfmt" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     javascriptreact = { "prettierd", "prettier", stop_after_first = true },
     json = { "prettierd", "prettier", stop_after_first = true },

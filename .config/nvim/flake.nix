@@ -68,6 +68,8 @@
               tree-sitter
               ormolu
               nodePackages.prettier
+              nixd
+              nixfmt
               prettierd
               shellcheck-minimal
               stylua
