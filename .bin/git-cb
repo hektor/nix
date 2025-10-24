@@ -1,25 +1,110 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-types=(
-  "feature   For new features"
-  "bugfix    For bug fixes"
+readonly ALLOWED_MAIN_BRANCHES=("main" "master" "develop")
+readonly BRANCH_TYPES=(
+  "feat      For new features"
   "hotfix    For urgent fixes"
+  "fix       For fixes"
   "release   For preparing releases"
   "chore     For non-code tasks"
 )
 
-selected=$(printf '%s\n' "${types[@]}" | fzf --prompt="Select branch type: ") || exit 1
-type=${selected%% *}
+error() {
+  echo "Error: $1" >&2
+  exit 1
+}
 
-echo "Fetching Jira tickets..."
-jira_data=$(jira issue list --assignee=hektor.misplon@rightcrowd.com --order-by=priority --plain --no-headers 2>/dev/null)
+warn() {
+  echo "Warning: $1" >&2
+}
 
-if [[ $? -ne 0 || -z "$jira_data" ]]; then
-  echo "Warning: Could not fetch Jira tickets or no tickets found."
-  echo "Proceeding without ticket ID..."
-  ticket_id=""
-else
-  # Create formatted list for fzf: "TICKET-123 - Issue description"
+check_dependencies() {
+  local missing=()
+  for cmd in git fzf; do
+    if ! command -v "$cmd" &> /dev/null; then
+      missing+=("$cmd")
+    fi
+  done
+
+  if [[ ${#missing[@]} -gt 0 ]]; then
+    error "Missing required commands: ${missing[*]}"
+  fi
+}
+
+check_git_repo() {
+  if ! git rev-parse --git-dir &> /dev/null; then
+    error "Not in a git repository"
+  fi
+}
+
+check_current_branch() {
+  local current_branch
+  current_branch=$(git branch --show-current)
+
+  local is_main_branch=false
+  for branch in "${ALLOWED_MAIN_BRANCHES[@]}"; do
+    if [[ "$current_branch" == "$branch" ]]; then
+      is_main_branch=true
+      break
+    fi
+  done
+
+  if [[ "$is_main_branch" == false ]]; then
+    warn "Not branching from a main branch (current: $current_branch)"
+    read -rp "Continue anyway? [y/N] " response
+    if [[ ! "$response" =~ ^[Yy]$ ]]; then
+      exit 0
+    fi
+  fi
+}
+
+get_user_email() {
+  local email
+  email=$(git config --get user.email 2>/dev/null)
+
+  if [[ -z "$email" ]]; then
+    error "Git user email not configured. Run: git config user.email 'your@email.com'"
+  fi
+
+  echo "$email"
+}
+
+select_branch_type() {
+  local selected
+  selected=$(printf '%s\n' "${BRANCH_TYPES[@]}" | \
+    fzf --prompt="Select branch type: " \
+        --height=40% \
+        --border \
+        --info=inline) || error "Branch type selection cancelled"
+
+  echo "${selected%% *}"
+}
+
+select_jira_ticket() {
+  local email=$1
+
+  if ! command -v jira &> /dev/null; then
+    warn "Jira CLI not found. Proceeding without ticket ID."
+    return 0
+  fi
+
+  echo "Fetching Jira tickets for $email..." >&2
+  local jira_data
+  jira_data=$(jira issue list --assignee="$email" --order-by=priority --plain --no-headers 2>/dev/null) || {
+    warn "Could not fetch Jira tickets. Proceeding without ticket ID."
+    return 0
+  }
+
+  if [[ -z "$jira_data" ]]; then
+    warn "No Jira tickets found. Proceeding without ticket ID."
+    return 0
+  fi
+
+  echo "$jira_data" >&2
+  echo "" >&2
+
+  local formatted_tickets
   formatted_tickets=$(echo "$jira_data" | awk '{
     ticket_id = $2
     $1 = $2 = ""
@@ -32,59 +117,105 @@ else
   }')
 
   if [[ -z "$formatted_tickets" ]]; then
-    echo "No tickets found. Proceeding without ticket ID..."
-    ticket_id=""
-  else
-    # Let user select a ticket or skip
-    echo ""
-    selected_ticket=$(echo -e "SKIP - Create branch without ticket ID\n$formatted_tickets" | \
-      fzf --prompt="Select Jira ticket (or skip): " --height=40%) || exit 1
-
-    if [[ "$selected_ticket" == "SKIP"* ]]; then
-      ticket_id=""
-    else
-      ticket_id=${selected_ticket%% -*}
-    fi
+    warn "No tickets to display. Proceeding without ticket ID."
+    return 0
   fi
-fi
 
-editor="${EDITOR:-vi}"
-tmpfile=$(mktemp)
+  local selected_ticket
+  selected_ticket=$(echo -e "SKIP - Create branch without ticket ID\n$formatted_tickets" | \
+    fzf --prompt="Select Jira ticket (or skip): " \
+        --height=40% \
+        --border \
+        --info=inline) || error "Ticket selection cancelled"
 
-if [[ -n "$ticket_id" ]]; then
-  cat > "$tmpfile" << EOF
+  if [[ "$selected_ticket" != "SKIP"* ]]; then
+    echo "${selected_ticket%% -*}"
+  fi
+}
+
+get_branch_description() {
+  local ticket_id=$1
+  local editor="${EDITOR:-vi}"
+  local tmpfile
+  tmpfile=$(mktemp)
+
+  trap "rm -f '$tmpfile'" EXIT
+
+  if [[ -n "$ticket_id" ]]; then
+    cat > "$tmpfile" << EOF
 # Selected ticket: $ticket_id
-# Enter your branch description below in kebab case (e.g. \`my-description\`):
+# Enter your branch description below in kebab-case (e.g., my-description):
 # The ticket ID will be automatically included in the branch name.
+# Lines starting with # will be ignored.
+
 EOF
-else
-  cat > "$tmpfile" << 'EOF'
-# Enter your branch description below in kebab case (e.g. `my-description`):
+  else
+    cat > "$tmpfile" << 'EOF'
+# Enter your branch description below in kebab-case (e.g., my-description):
+# Lines starting with # will be ignored.
+
 EOF
-fi
+  fi
+  
+  "$editor" "$tmpfile" < /dev/tty > /dev/tty
 
-"$editor" "$tmpfile"
+  local desc
+  desc=$(grep -v '^#' "$tmpfile" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
-desc=$(grep -v '^#' "$tmpfile" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-rm "$tmpfile"
+  echo "$desc"
+}
 
-if [[ -z "$desc" ]]; then
-  echo "No description provided."
-  exit 1
-fi
+validate_description() {
+  local desc=$1
 
-if [[ ! "$desc" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
-  echo "Invalid branch description format."
-  echo "Use lowercase letters, numbers, and hyphens only."
-  echo "No trailing or consecutive hyphens allowed."
-  exit 1
-fi
+  if [[ -z "$desc" ]]; then
+    error "No description provided"
+  fi
 
-if [[ -n "$ticket_id" ]]; then
-  branch="$type/$ticket_id-$desc"
-else
-  branch="$type/$desc"
-fi
+  if [[ ! "$desc" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+    error "Invalid branch description format.\nUse lowercase letters, numbers, and hyphens only.\nNo trailing or consecutive hyphens allowed.\nExample: my-feature-description"
+  fi
+}
 
-echo "Creating branch: $branch"
-git checkout -b "$branch"
+create_branch() {
+  local type=$1
+  local ticket_id=$2
+  local desc=$3
+
+  local branch
+  if [[ -n "$ticket_id" ]]; then
+    branch="$type/$ticket_id-$desc"
+  else
+    branch="$type/$desc"
+  fi
+
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    error "Branch '$branch' already exists"
+  fi
+
+  echo ""
+  echo "Creating branch: $branch"
+  git checkout -b "$branch"
+}
+
+main() {
+  check_dependencies
+  check_git_repo
+  check_current_branch
+
+  local email
+  email=$(get_user_email)
+
+  local type
+  type=$(select_branch_type)
+
+  echo "About to call select_jira_ticket" >&2
+  local ticket_id=""
+  ticket_id=$(select_jira_ticket "$email")
+  local desc
+  desc=$(get_branch_description "$ticket_id")
+  validate_description "$desc"
+  create_branch "$type" "$ticket_id" "$desc"
+}
+
+main "$@"
