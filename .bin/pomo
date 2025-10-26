@@ -14,11 +14,12 @@ from argparse import ArgumentParser
 from time import sleep
 from plyer import notification
 
+POMO_PATH = os.path.join(os.getenv("XDG_DATA_HOME", os.path.expanduser("~/.local/share")), "pomo")
 
 @atexit.register
 def clear():
-    if os.path.exists('/home/h/.local/share/pomo'):
-        os.remove('/home/h/.local/share/pomo')
+    if os.path.exists(POMO_PATH):
+        os.remove(POMO_PATH)
 
 def format_mins_secs(mins, secs):
     return f"{mins:02d}:{secs:02d}"
@@ -30,23 +31,19 @@ def make_countdown():
             mins = duration // 60
             secs = duration % 60
             time_str = format_mins_secs(mins, secs)
-            os.system(f'echo -n "{time_str}" > /home/h/.local/share/pomo')
+            os.system(f'echo -n "{time_str}" > {POMO_PATH}')
             sleep(1)
             duration -= 1
     return countdown
 
 
 def main(args):
-    prep_duration = args.prep_duration * 60
     work_duration = args.work_duration * 60
     break_duration = args.break_duration * 60
     repeats = args.repeats
 
-    prep_countdown = make_countdown()
     work_countdown = make_countdown()
     break_countdown = make_countdown()
-
-    prep_countdown(prep_duration)
 
     while repeats != 0:
         notification.notify(title="Get started")
