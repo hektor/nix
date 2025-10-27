@@ -42,6 +42,33 @@
             ublock-origin
           ];
         };
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "NixOS";
+                  bookmarks = [
+                    {
+                      name = "wiki";
+                      url = "https://wiki.nixos.org/wiki/NixOS_Wiki";
+                    }
+                    {
+                      name = "packages";
+                      url = "https://search.nixos.org/packages";
+                    }
+                    {
+                      name = "options";
+                      url = "https://search.nixos.org/options";
+                    }
+                  ];
+                }
+              ];
+            }
+          ];
+        };
       };
     };
     policies = {
