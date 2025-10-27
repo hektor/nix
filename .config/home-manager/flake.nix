@@ -11,7 +11,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      nixgl,
+      ...
+    }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -20,7 +26,8 @@
         overlays = [ nixgl.overlay ];
         config.allowUnfree = true;
       };
-    in {
+    in
+    {
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
