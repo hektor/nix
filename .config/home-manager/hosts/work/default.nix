@@ -20,15 +20,8 @@
     inherit inputs;
     inherit pkgs;
   };
-
-  programs.git.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
+  programs.git = import ../../modules/git.nix;
+  programs.neovim = import ../../modules/neovim.nix;
   home.packages = import ./packages.nix {
     inherit pkgs;
     inherit config;
