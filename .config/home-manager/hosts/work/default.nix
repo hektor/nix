@@ -15,6 +15,8 @@
   home.homeDirectory = "/home/hektor";
   home.stateVersion = "25.05";
 
+  programs.anki = import ../../modules/anki.nix;
+
   programs.firefox = {
     enable = true;
     nativeMessagingHosts = with pkgs; [
