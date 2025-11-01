@@ -1,7 +1,5 @@
 require("neodev").setup() -- should setup before lspconfig
 
-local lspconfig = require("lspconfig")
-
 -- vim.g.coq_settings = { auto_start = 'shut-up' }
 -- local capabilities = coq.lsp_ensure_capabilities()
 
@@ -104,8 +102,10 @@ local servers = {
 
 for server, config in pairs(servers) do
   config.capabilities = capabilities
-  lspconfig[server].setup(config)
+  vim.lsp.config(server, config)
 end
+
+vim.lsp.enable(vim.tbl_keys(servers))
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(e)
