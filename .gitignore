@@ -9,6 +9,7 @@ log/
 # Node
 npm-debug.log
 node_modules
+.npm-cache
 
 # Python
 *.pyc
@@ -68,6 +69,7 @@ Thumbs.db
 
 # Kernel Module Compile Results
 *.mod*
+!*.mod*.*
 *.cmd
 .tmp_versions/
 modules.order
