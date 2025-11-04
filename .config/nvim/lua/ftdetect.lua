@@ -8,5 +8,6 @@ vim.filetype.add({
     [".*/%.ssh/config%.d/.*"] = "sshconfig",
     ["%.env.*"] = "dotenv",
     ["%.pl$"] = "prolog",
+    [".*.containerfile.*"] = "dockerfile",
   },
 })
