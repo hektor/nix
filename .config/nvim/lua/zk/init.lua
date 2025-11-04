@@ -1,3 +1,5 @@
+require("zk.cmp")
+
 vim.cmd([[
 let s:zk_preview_enabled = 0
 let s:live_server_job = -1
