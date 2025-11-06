@@ -7,6 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-secrets = {
+      url = "git+ssh://git@github.com/hektor/nix-secrets?shallow=1&ref=main";
+      flake = false;
+    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +48,9 @@
           extraSpecialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/work ];
+          modules = [
+            ./hosts/work
+          ];
         };
       };
     };
