@@ -14,6 +14,11 @@
         for f in ${config.home.homeDirectory}/.bashrc.d/*; do
           [ -f "$f" ] && source "$f"
         done
+
+        source ${config.home.homeDirectory}/.bash_aliases/all
+        source ${config.home.homeDirectory}/.bash_aliases/lang-js
+
+        # host-specific config goes here
       '';
     };
     firefox.enable = true;
@@ -81,6 +86,8 @@
     ".inputrc".source = ../../../dots/.inputrc;
     ".bashrc.d/prompt".source = ../../../dots/.bashrc.d/prompt;
     ".bashrc.d/editor".source = ../../../dots/.bashrc.d/editor;
+    ".bash_aliases/all".source = ../../../dots/.bash_aliases/all;
+    ".bash_aliases/lang-js".source = ../../../dots/.bash_aliases/lang-js;
     ".config/kitty/kitty.conf".source = ../../../dots/.config/kitty/kitty.conf;
     ".config/kitty/themes/zenwritten_light.conf".source =
       ../../../dots/.config/kitty/themes/zenwritten_light.conf;
