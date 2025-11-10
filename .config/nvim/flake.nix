@@ -73,6 +73,7 @@
               prettierd
               shellcheck-minimal
               stylua
+              vscode-langservers-extracted
             ];
           };
 
