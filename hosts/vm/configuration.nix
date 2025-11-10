@@ -45,7 +45,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = ./home.nix;
+    users.h = ../../home/hosts/vm;
   };
 
   services.qemuGuest.enable = true;

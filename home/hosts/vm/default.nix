@@ -78,13 +78,13 @@
   ];
 
   home.file = {
-    ".inputrc".source = ../../dots/.inputrc;
-    ".bashrc.d/prompt".source = ../../dots/.bashrc.d/prompt;
-    ".bashrc.d/editor".source = ../../dots/.bashrc.d/editor;
-    ".config/kitty/kitty.conf".source = ../../dots/.config/kitty/kitty.conf;
+    ".inputrc".source = ../../../dots/.inputrc;
+    ".bashrc.d/prompt".source = ../../../dots/.bashrc.d/prompt;
+    ".bashrc.d/editor".source = ../../../dots/.bashrc.d/editor;
+    ".config/kitty/kitty.conf".source = ../../../dots/.config/kitty/kitty.conf;
     ".config/kitty/themes/zenwritten_light.conf".source =
-      ../../dots/.config/kitty/themes/zenwritten_light.conf;
+      ../../../dots/.config/kitty/themes/zenwritten_light.conf;
     ".config/kitty/themes/zenwritten_dark.conf".source =
-      ../../dots/.config/kitty/themes/zenwritten_dark.conf;
+      ../../../dots/.config/kitty/themes/zenwritten_dark.conf;
   };
 }
