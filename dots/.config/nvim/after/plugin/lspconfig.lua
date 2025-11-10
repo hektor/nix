@@ -1,7 +1,5 @@
 require("neodev").setup() -- should setup before lspconfig
 
-local lspconfig = require("lspconfig")
-
 -- vim.g.coq_settings = { auto_start = 'shut-up' }
 -- local capabilities = coq.lsp_ensure_capabilities()
 
@@ -34,7 +32,38 @@ local servers = {
       },
     },
   },
-  lua_ls = {},
+  lua_ls = {
+    on_init = function(client)
+      if client.workspace_folders then
+        local path = client.workspace_folders[1].name
+        if
+          path ~= vim.fn.stdpath("config")
+          and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+        then
+          return
+        end
+      end
+
+      client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+        runtime = {
+          version = "LuaJIT",
+          path = {
+            "lua/?.lua",
+            "lua/?/init.lua",
+          },
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+          },
+        },
+      })
+    end,
+    settings = {
+      Lua = {},
+    },
+  },
   -- marksman = {},
   nixd = {},
   pyright = {},
@@ -104,8 +133,10 @@ local servers = {
 
 for server, config in pairs(servers) do
   config.capabilities = capabilities
-  lspconfig[server].setup(config)
+  vim.lsp.config(server, config)
 end
+
+vim.lsp.enable(vim.tbl_keys(servers))
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(e)

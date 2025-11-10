@@ -12,7 +12,6 @@ Plug 'quarto-dev/quarto-vim'
 Plug 'lervag/vimtex'
 " Wiki
 Plug 'lervag/wiki.vim'
-Plug 'hektor/taskwiki'
 " Markdown
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'

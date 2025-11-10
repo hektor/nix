@@ -42,4 +42,5 @@ require("nixCatsUtils.catPacker").setup({
   { "zbirenbaum/copilot.lua" },
   { "zbirenbaum/copilot-cmp" },
   { "qvalentin/helm-ls.nvim", ft = "helm" },
+  { "mikesmithgh/kitty-scrollback.nvim" },
 })
