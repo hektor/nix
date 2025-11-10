@@ -13,6 +13,7 @@
     ../../modules/printing.nix
     ../../modules/localization.nix
     ../../modules/x.nix
+    ../../modules/fonts
   ];
 
   nix.settings.experimental-features = [
@@ -73,8 +74,4 @@
       PrintMotd = false;
     };
   };
-
-  fonts.packages = with pkgs; [
-    (iosevka-bin.override { variant = "SGr-IosevkaTermSS08"; })
-  ];
 }
