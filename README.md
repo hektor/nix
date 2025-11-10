@@ -1,4 +1,4 @@
-# nixos
+# NixOS flake
 
 ## Set up virtual machine ([`disko`](https://github.com/nix-community/disko/blob/master/docs/interactive-vm.md))
 
