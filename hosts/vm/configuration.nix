@@ -14,6 +14,7 @@
     ../../modules/localization.nix
     ../../modules/x.nix
     ../../modules/fonts
+    ../../modules/ssh/hardened-openssh.nix
   ];
 
   nix.settings.experimental-features = [
@@ -52,26 +53,6 @@
 
   services.openssh = {
     enable = true;
-    startWhenNeeded = true;
-    settings = {
-      ## hardening
-      PermitRootLogin = "no";
-      MaxAuthTries = 3;
-      LoginGraceTime = "1m";
-      PasswordAuthentication = false;
-      PermitEmptyPasswords = false;
-      ChallengeResponseAuthentication = false;
-      KerberosAuthentication = false;
-      GSSAPIAuthentication = false;
-      X11Forwarding = false;
-      PermitUserEnvironment = false;
-      AllowAgentForwarding = false;
-      AllowTcpForwarding = false;
-      PermitTunnel = false;
-      ## sshd_config defaults on Arch Linux
-      KbdInteractiveAuthentication = false;
-      UsePAM = true;
-      PrintMotd = false;
-    };
+    harden = true;
   };
 }
