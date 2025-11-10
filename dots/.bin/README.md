@@ -1,6 +1,6 @@
 # Scripts
 
-Mostly tiny helper scripts & experiments, some more useful than others.
+Mostly tiny helper scripts \& experiments, some more useful than others.
 
 ## Setup
 

@@ -19,6 +19,9 @@
         source ${config.home.homeDirectory}/.bash_aliases/lang-js
 
         # host-specific config goes here
+        # ...
+
+        export PATH=${../../../dots/.bin}:$PATH
       '';
     };
     firefox.enable = true;
