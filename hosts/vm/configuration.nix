@@ -7,6 +7,7 @@
     ./hard.nix
     ./disk.nix
     ../../modules/bootloader.nix
+    ../../modules/keyboard
     ../../modules/networking.nix
     ../../modules/users.nix
     ../../modules/audio.nix
