@@ -44,7 +44,21 @@
             home-manager.nixosModules.home-manager
             ./hosts/vm/configuration.nix
             nix-topology.nixosModules.default
-            { environment.systemPackages = [ nvim.packages.x86_64-linux.nvim ]; }
+            {
+              environment.systemPackages = [ nvim.packages.x86_64-linux.nvim ];
+            }
+          ];
+        };
+        astyanax = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
+            ./hosts/astyanax/configuration.nix
+            nix-topology.nixosModules.default
+            {
+              environment.systemPackages = [ nvim.packages.x86_64-linux.nvim ];
+            }
           ];
         };
       };

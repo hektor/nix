@@ -5,15 +5,14 @@
 
   imports = [
     ./hard.nix
-    ./disk.nix
     ../../modules/bootloader.nix
+    ../../modules/disko.zfs-encrypted-root.nix
     ../../modules/keyboard
     ../../modules/networking.nix
     ../../modules/users.nix
     ../../modules/audio.nix
     ../../modules/printing.nix
     ../../modules/localization.nix
-    ../../modules/x.nix
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
   ];
@@ -25,33 +24,20 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  disko = {
-    devices.disk.main.device = "/dev/vda";
-    devices.disk.main.imageName = "nixos-vm";
-    devices.disk.main.imageSize = "32G";
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    desktopManager.gnome.enable = true;
   };
 
-  virtualisation.vmVariantWithDisko = {
-    virtualisation = {
-      cores = 8;
-      memorySize = 16384;
-      qemu.options = [
-        "-enable-kvm"
-        "-cpu host"
-        "-nographic"
-      ];
-    };
-  };
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = ../../home/hosts/vm;
+    users.h = ../../home/hosts/astyanax;
   };
 
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
-
+  networking.hostId = "80eef97e";
   networking.firewall.allowedTCPPorts = [ 22 ];
   services.openssh = {
     enable = true;
