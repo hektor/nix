@@ -41,7 +41,6 @@
     entr
     eslint_d
     feh
-    firefox-devedition
     fzf
     git
     haskell-language-server
