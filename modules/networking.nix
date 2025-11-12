@@ -1,13 +1,19 @@
 { ... }:
 
 {
-  networking.hostName = "nixos";
-  networking.wireless = {
-    iwd = {
-      enable = true;
-    };
-  };
   networking = {
+    hostName = "nixos";
+    wireless = {
+      iwd = {
+        enable = true;
+      };
+
+    };
+
+    networkmanager = {
+      wifi.backend = "iwd";
+    };
+
     nftables.enable = true;
     firewall.enable = true;
   };
