@@ -7,6 +7,10 @@
       url = "github:numtide/flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +34,7 @@
       self,
       nixpkgs,
       flake-utils,
+      nixos-hardware,
       disko,
       home-manager,
       nix-topology,
@@ -40,6 +45,7 @@
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager
             ./hosts/vm/configuration.nix
