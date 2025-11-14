@@ -7,6 +7,7 @@
     ./hard.nix
     ../../modules/bootloader.nix
     ../../modules/disko.zfs-encrypted-root.nix
+    ../../modules/bluetooth.nix
     ../../modules/keyboard
     ../../modules/networking.nix
     ../../modules/users.nix
