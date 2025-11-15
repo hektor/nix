@@ -10,6 +10,7 @@ with pkgs;
   eslint_d
   feh
   fzf
+  gh
   git
   haskell-language-server
   haskellPackages.pandoc-crossref
