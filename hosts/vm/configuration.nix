@@ -1,9 +1,10 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   system.stateVersion = "25.05";
 
   imports = [
+    inputs.home-manager.nixosModules.default
     ./hard.nix
     ./disk.nix
     ../../modules/bootloader.nix

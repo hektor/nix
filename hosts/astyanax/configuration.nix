@@ -1,9 +1,15 @@
-{ pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   system.stateVersion = "25.05";
 
   imports = [
+    inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
     ../../modules/disko.zfs-encrypted-root.nix
@@ -34,7 +40,11 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = ../../home/hosts/astyanax;
+    users.h = import ../../home/hosts/astyanax {
+      inherit inputs;
+      inherit config;
+      inherit pkgs;
+    };
   };
 
   networking.hostId = "80eef97e";

@@ -11,12 +11,12 @@
       enable = true;
       enableCompletion = true;
       initExtra = ''
-        for f in ${config.home.homeDirectory}/.bashrc.d/*; do
+        for f in /home/h/.bashrc.d/*; do
           [ -f "$f" ] && source "$f"
         done
 
-        source ${config.home.homeDirectory}/.bash_aliases/all
-        source ${config.home.homeDirectory}/.bash_aliases/lang-js
+        source /home/h/.bash_aliases/all
+        source /home/h/.bash_aliases/lang-js
 
         # host-specific config goes here
         # ...
