@@ -31,7 +31,6 @@
     desktopManager.gnome.enable = true;
   };
 
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -43,5 +42,10 @@
   services.openssh = {
     enable = true;
     harden = true;
+  };
+
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
   };
 }
