@@ -47,6 +47,17 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+    folders = {
+      "/home/h/sync" = {
+        id = "sync";
+        devices = [ ];
+      };
+    };
+    devices = {
+      # "device1" = {
+      #   id = "DEVICE-ID-GOES-HERE";
+      # };
+    };
   };
 
   services.locate = {
