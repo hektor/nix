@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "25.05";
@@ -47,5 +47,10 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+  };
+
+  services.locate = {
+    enable = true;
+    package = pkgs.plocate;
   };
 }
