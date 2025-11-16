@@ -1,9 +1,16 @@
-{ inputs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   system.stateVersion = "25.05";
 
   imports = [
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
+    inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ./disk.nix
@@ -18,6 +25,8 @@
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
   ];
+
+  environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 
   nix.settings.experimental-features = [
     "nix-command"

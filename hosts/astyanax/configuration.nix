@@ -9,6 +9,7 @@
   system.stateVersion = "25.05";
 
   imports = [
+    inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
@@ -24,6 +25,8 @@
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
   ];
+
+  environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 
   nix.settings.experimental-features = [
     "nix-command"

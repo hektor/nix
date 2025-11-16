@@ -58,44 +58,24 @@
       };
     in
     {
+      nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
-            disko.nixosModules.disko
-            ./hosts/vm/configuration.nix
-            {
-              environment.systemPackages = [ nvim.packages.x86_64-linux.nvim ];
-            }
-          ];
+          modules = [ ./hosts/vm/configuration.nix ];
+          specialArgs = { inherit inputs; };
         };
         astyanax = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/astyanax/configuration.nix
-            {
-              environment.systemPackages = [ nvim.packages.x86_64-linux.nvim ];
-            }
-          ];
+          modules = [ ./hosts/astyanax/configuration.nix ];
+          specialArgs = { inherit inputs; };
         };
       };
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          modules = [ ./home/hosts/work ];
           extraSpecialArgs = {
             inherit inputs;
           };
-          modules = [
-            ./home/hosts/work
-          ];
         };
       };
     };
