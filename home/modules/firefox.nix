@@ -9,7 +9,7 @@
     DefaultDownloadDirectory = "\${home}/dl";
   };
   profiles = {
-    work = {
+    default = {
       settings = {
         "signon.rememberSignons" = false;
         "findbar.highlightAll" = true;
