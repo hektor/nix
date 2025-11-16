@@ -17,7 +17,7 @@
     ../../modules/gnome.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
-    ../../modules/networking.nix
+    (import ../../modules/networking.nix { hostName = "astyanax"; })
     ../../modules/users.nix
     ../../modules/audio.nix
     ../../modules/printing.nix
@@ -45,7 +45,10 @@
     };
   };
 
-  networking.hostId = "80eef97e";
+  networking = {
+    hostId = "80eef97e";
+  };
+
   services.openssh = {
     enable = true;
     harden = true;

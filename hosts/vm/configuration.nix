@@ -16,7 +16,7 @@
     ./disk.nix
     ../../modules/bootloader.nix
     ../../modules/keyboard
-    ../../modules/networking.nix
+    (import ../../modules/networking.nix { hostName = "vm"; })
     ../../modules/users.nix
     ../../modules/audio.nix
     ../../modules/printing.nix
