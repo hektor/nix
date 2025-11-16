@@ -47,7 +47,11 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = ../../home/hosts/vm;
+    users.h = import ../../home/hosts/vm {
+      inherit inputs;
+      inherit config;
+      inherit pkgs;
+    };
   };
 
   services.qemuGuest.enable = true;
