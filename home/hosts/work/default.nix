@@ -1,13 +1,19 @@
 {
-  pkgs,
-  config,
   inputs,
+  config,
+  pkgs,
   ...
 }:
 
 {
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+    ../../modules/dconf.nix # TODO: Only enable when on Gnome?
+  ];
 
-  imports = [ inputs.sops-nix.homeManagerModules.sops ];
+  home.stateVersion = "25.05";
+  home.username = "hektor";
+  home.homeDirectory = "/home/hektor";
 
   sops = {
     defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
@@ -21,10 +27,6 @@
     packages = inputs.nixgl.packages;
     defaultWrapper = "mesa";
   };
-
-  home.username = "hektor";
-  home.homeDirectory = "/home/hektor";
-  home.stateVersion = "25.05";
 
   programs.anki = import ../../modules/anki.nix;
   programs.firefox = import ../../modules/firefox.nix {

@@ -6,8 +6,11 @@
 }:
 
 {
-  home.stateVersion = "25.05";
+  imports = [
+    ../../modules/dconf.nix # TODO: Only enable when on Gnome?
+  ];
 
+  home.stateVersion = "25.05";
   home.username = "h";
   home.homeDirectory = "/home/h";
 
