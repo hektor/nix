@@ -46,7 +46,6 @@
   };
 
   networking.hostId = "80eef97e";
-  networking.firewall.allowedTCPPorts = [ 22 ];
   services.openssh = {
     enable = true;
     harden = true;
