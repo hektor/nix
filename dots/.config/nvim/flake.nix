@@ -121,6 +121,7 @@
               copilot-lua
               copilot-cmp
               pkgs.neovimPlugins.helm-ls-nvim
+              pkgs.vimPlugins.kitty-scrollback-nvim
             ];
           };
 
