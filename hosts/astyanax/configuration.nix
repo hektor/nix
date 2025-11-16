@@ -13,6 +13,7 @@
     ./hard.nix
     ../../modules/bootloader.nix
     ../../modules/disko.zfs-encrypted-root.nix
+    ../../modules/gnome.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
     ../../modules/networking.nix
@@ -30,12 +31,6 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-
-  services.xserver = {
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
-    desktopManager.gnome.enable = true;
-  };
 
   home-manager = {
     useGlobalPkgs = true;
