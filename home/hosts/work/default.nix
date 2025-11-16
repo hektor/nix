@@ -34,7 +34,6 @@
   };
   programs.git = import ../../modules/git.nix;
   programs.keepassxc = import ../../modules/keepassxc.nix;
-  programs.neovim = import ../../modules/neovim.nix;
   home.packages = import ./packages.nix {
     inherit pkgs;
     inherit config;

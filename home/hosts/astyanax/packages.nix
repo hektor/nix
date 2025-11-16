@@ -19,7 +19,6 @@ with pkgs;
   jq
   kitty
   lua-language-server
-  # neovim
   nixfmt-rfc-style
   nmap
   nodejs_24

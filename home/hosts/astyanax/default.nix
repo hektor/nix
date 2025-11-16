@@ -41,7 +41,6 @@
     git = import ../../modules/git.nix;
     home-manager.enable = true;
     keepassxc = import ../../modules/keepassxc.nix;
-    neovim = import ../../modules/neovim.nix;
   };
 
   home.packages = import ./packages.nix {
