@@ -61,15 +61,15 @@
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/vm/configuration.nix ];
+          modules = [ ./hosts/vm ];
           specialArgs = { inherit inputs; };
         };
         andromache = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/andromache/configuration.nix ];
+          modules = [ ./hosts/andromache ];
           specialArgs = { inherit inputs; };
         };
         astyanax = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/astyanax/configuration.nix ];
+          modules = [ ./hosts/astyanax ];
           specialArgs = { inherit inputs; };
         };
       };
