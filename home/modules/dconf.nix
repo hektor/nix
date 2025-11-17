@@ -4,5 +4,8 @@
       night-light-enabled = true;
       night-light-schedule-automatic = true;
     };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
   };
 }
