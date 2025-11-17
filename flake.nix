@@ -64,6 +64,10 @@
           modules = [ ./hosts/vm/configuration.nix ];
           specialArgs = { inherit inputs; };
         };
+        andromache = nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/andromache/configuration.nix ];
+          specialArgs = { inherit inputs; };
+        };
         astyanax = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/astyanax/configuration.nix ];
           specialArgs = { inherit inputs; };
