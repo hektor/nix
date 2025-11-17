@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   pkgs,
@@ -13,7 +14,11 @@
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
-    ../../modules/disko.zfs-encrypted-root.nix
+    (import ../../modules/disko.zfs-encrypted-root.nix {
+      device = "/dev/nvme1n1";
+      inherit lib;
+      inherit config;
+    })
     ../../modules/gnome.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
@@ -25,6 +30,26 @@
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
   ];
+
+  disko.devices = {
+    disk.data = {
+      type = "disk";
+      device = "/dev/nvme0n1";
+      content = {
+        type = "gpt";
+        partitions = {
+          data = {
+            size = "100%";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/data";
+            };
+          };
+        };
+      };
+    };
+  };
 
   hardware = {
     graphics.enable = true;

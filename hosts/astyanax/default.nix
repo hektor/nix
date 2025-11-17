@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   pkgs,
@@ -13,7 +14,11 @@
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
-    ../../modules/disko.zfs-encrypted-root.nix
+    (import ../../modules/disko.zfs-encrypted-root.nix {
+      inherit lib;
+      inherit config;
+      device = "/dev/nvme0n1";
+    })
     ../../modules/gnome.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
