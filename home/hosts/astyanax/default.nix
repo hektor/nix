@@ -8,6 +8,7 @@
 {
   imports = [
     ../../modules/dconf.nix # TODO: Only enable when on Gnome?
+    ../../modules/git.nix
   ];
 
   home.stateVersion = "25.05";
@@ -41,7 +42,6 @@
       enable = true;
       enableBashIntegration = true;
     };
-    git = import ../../modules/git.nix;
     home-manager.enable = true;
     keepassxc = import ../../modules/keepassxc.nix;
   };
