@@ -79,6 +79,28 @@
 
           startupPlugins = {
             general = with pkgs.vimPlugins; [
+              ## plug
+              vim-plug
+              vim-sandwich
+              context_filetype-vim
+              editorconfig-vim
+              vim-snippets
+              unicode-vim
+              vim-css-color
+              quarto-nvim
+              vimtex
+              wiki-vim
+              vim-pandoc
+              vim-pandoc-syntax
+              # TODO: ferrine/md-img-paste.vim
+              # TODO: supercollider/scvim
+              # TODO: tidalcycles/vim-tidal
+              vim-glsl
+              # TODO: timtro/glslView-nvim
+              # TODO: sirtaj/vim-openscad
+              jupytext-nvim
+              vim-openscad
+              ## paq
               eyeliner-nvim
               fzf-lua
               ltex_extra-nvim

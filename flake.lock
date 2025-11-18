@@ -82,6 +82,24 @@
         "type": "github"
       }
     },
+    "nix-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762546290,
+        "narHash": "sha256-a0mXF68to0eJQiIq1vCBMcGCX1UA1lBpwHgCinKfORA=",
+        "ref": "main",
+        "rev": "b0473511f3718fb95f01e6c8bad6da3eb582974c",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/hektor/nix-secrets"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/hektor/nix-secrets"
+      }
+    },
     "nixCats": {
       "locked": {
         "lastModified": 1763330129,
@@ -291,6 +309,7 @@
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
+        "nix-secrets": "nix-secrets",
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
