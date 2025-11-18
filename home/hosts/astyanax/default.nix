@@ -15,6 +15,9 @@
   home.username = "h";
   home.homeDirectory = "/home/h";
 
+  xdg.userDirs.createDirectories = false;
+  xdg.userDirs.download = "${config.home.homeDirectory}/dl";
+
   programs = {
     bash = {
       enable = true;
