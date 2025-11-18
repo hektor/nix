@@ -52,6 +52,7 @@
   };
 
   hardware = {
+    cpu.intel.updateMicrocode = true;
     graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
