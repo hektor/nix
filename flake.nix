@@ -51,6 +51,9 @@
       nvim,
     }@inputs:
     let
+      lib = inputs.nixpkgs.lib;
+      utils = import ./utils { inherit lib; };
+      hostDirNames = utils.dirNames ./hosts;
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -59,20 +62,13 @@
     in
     {
       nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
-      nixosConfigurations = {
-        vm = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/vm ];
+      nixosConfigurations = lib.genAttrs hostDirNames (
+        host:
+        nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/${host} ];
           specialArgs = { inherit inputs; };
-        };
-        andromache = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/andromache ];
-          specialArgs = { inherit inputs; };
-        };
-        astyanax = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/astyanax ];
-          specialArgs = { inherit inputs; };
-        };
-      };
+        }
+      );
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
