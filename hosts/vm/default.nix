@@ -13,7 +13,6 @@ in
   system.stateVersion = "25.05";
 
   imports = [
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
