@@ -11,6 +11,7 @@
 
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
@@ -29,6 +30,30 @@
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
   ];
+
+  sops = {
+    validateSopsFiles = false;
+    defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/h/.config/sops/age/keys.txt";
+
+    secrets = {
+      "test" = { };
+
+      "taskwarrior_sync_server_url".owner = config.users.users.h.name;
+      "taskwarrior_sync_server_client_id".owner = config.users.users.h.name;
+      "taskwarrior_sync_encryption_secret".owner = config.users.users.h.name;
+    };
+
+    templates."taskrc.d/sync" = {
+      owner = config.users.users.h.name;
+      content = ''
+        sync.server.url=${config.sops.placeholder."taskwarrior_sync_server_url"}
+        sync.server.client_id=${config.sops.placeholder."taskwarrior_sync_server_client_id"}
+        sync.encryption_secret=${config.sops.placeholder."taskwarrior_sync_encryption_secret"}
+      '';
+    };
+  };
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 

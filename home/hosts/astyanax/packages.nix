@@ -31,11 +31,11 @@ with pkgs;
   pnpm
   ripgrep
   silver-searcher
+  sops
   sshfs
   stylelint
   svelte-language-server
   tailwindcss-language-server
-  taskwarrior3
   tldr
   tmux
   tmuxp
