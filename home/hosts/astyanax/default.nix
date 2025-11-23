@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  username = "h";
+in
 {
   imports = [
     ../../modules/dconf.nix # TODO: Only enable when on Gnome?
@@ -16,8 +19,8 @@
   ];
 
   home.stateVersion = "25.05";
-  home.username = "h";
-  home.homeDirectory = "/home/h";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   xdg.userDirs.createDirectories = false;
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";

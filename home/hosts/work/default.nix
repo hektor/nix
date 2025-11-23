@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  username = "hektor";
+in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
@@ -12,13 +15,13 @@
   ];
 
   home.stateVersion = "25.05";
-  home.username = "hektor";
-  home.homeDirectory = "/home/hektor";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   sops = {
     defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/${config.home.username}/.config/sops/age/keys.txt";
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 
     secrets."test" = { };
   };
