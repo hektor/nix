@@ -25,7 +25,6 @@
     (import ../../modules/networking.nix { hostName = "astyanax"; })
     ../../modules/users.nix
     ../../modules/audio.nix
-    ../../modules/printing.nix
     ../../modules/localization.nix
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix

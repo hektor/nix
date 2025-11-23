@@ -19,7 +19,6 @@
     (import ../../modules/networking.nix { hostName = "vm"; })
     ../../modules/users.nix
     ../../modules/audio.nix
-    ../../modules/printing.nix
     ../../modules/localization.nix
     ../../modules/x.nix
     ../../modules/fonts
