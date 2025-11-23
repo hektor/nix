@@ -6,11 +6,15 @@
   ...
 }:
 
+let
+  username = "h";
+in
 {
   system.stateVersion = "25.05";
 
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
@@ -28,7 +32,14 @@
     ../../modules/localization.nix
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
+    (import ../../modules/secrets {
+      inherit lib;
+      inherit inputs;
+      inherit config;
+    })
   ];
+
+  secrets.username = username;
 
   disko.devices = {
     disk.data = {
@@ -75,7 +86,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = import ../../home/hosts/andromache {
+    users.${username} = import ../../home/hosts/andromache {
       inherit inputs;
       inherit config;
       inherit pkgs;
@@ -99,7 +110,7 @@
     enable = true;
     openDefaultPorts = true;
     folders = {
-      "/home/h/sync" = {
+      "/home/${username}/sync" = {
         id = "sync";
         devices = [ ];
       };

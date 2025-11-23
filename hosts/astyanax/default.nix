@@ -6,6 +6,10 @@
   ...
 }:
 
+let
+  username = "h";
+  hostName = "astynanax";
+in
 {
   system.stateVersion = "25.05";
 
@@ -23,37 +27,21 @@
     ../../modules/gnome.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
-    (import ../../modules/networking.nix { hostName = "astyanax"; })
+    (import ../../modules/networking.nix { hostName = hostName; })
     ../../modules/users.nix
     ../../modules/audio.nix
     ../../modules/localization.nix
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
+    (import ../../modules/secrets {
+      inherit lib;
+      inherit inputs;
+      inherit config;
+      inherit username;
+    })
   ];
 
-  sops = {
-    validateSopsFiles = false;
-    defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/h/.config/sops/age/keys.txt";
-
-    secrets = {
-      "test" = { };
-
-      "taskwarrior_sync_server_url".owner = config.users.users.h.name;
-      "taskwarrior_sync_server_client_id".owner = config.users.users.h.name;
-      "taskwarrior_sync_encryption_secret".owner = config.users.users.h.name;
-    };
-
-    templates."taskrc.d/sync" = {
-      owner = config.users.users.h.name;
-      content = ''
-        sync.server.url=${config.sops.placeholder."taskwarrior_sync_server_url"}
-        sync.server.client_id=${config.sops.placeholder."taskwarrior_sync_server_client_id"}
-        sync.encryption_secret=${config.sops.placeholder."taskwarrior_sync_encryption_secret"}
-      '';
-    };
-  };
+  secrets.username = username;
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 
@@ -67,7 +55,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = import ../../home/hosts/astyanax {
+    users.${username} = import ../../home/hosts/astyanax {
       inherit inputs;
       inherit config;
       inherit pkgs;

@@ -10,7 +10,6 @@ let
 in
 {
   imports = [
-    inputs.sops-nix.homeManagerModules.sops
     ../../modules/dconf.nix # TODO: Only enable when on Gnome?
   ];
 

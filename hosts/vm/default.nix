@@ -1,16 +1,21 @@
 {
+  lib,
   inputs,
   config,
   pkgs,
   ...
 }:
 
+let
+  username = "h";
+in
 {
   system.stateVersion = "25.05";
 
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
     inputs.disko.nixosModules.disko
+    inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ./disk.nix
@@ -23,7 +28,14 @@
     ../../modules/x.nix
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
+    (import ../../modules/secrets {
+      inherit lib;
+      inherit inputs;
+      inherit config;
+    })
   ];
+
+  secrets.username = "h";
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 
@@ -55,7 +67,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.h = import ../../home/hosts/vm {
+    users.${username} = import ../../home/hosts/vm {
       inherit inputs;
       inherit config;
       inherit pkgs;
