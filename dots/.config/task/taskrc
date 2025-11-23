@@ -1,10 +1,5 @@
-data.location=$XDG_DATA_HOME/task/
-hooks.location=$XDG_DATA_HOME/task/hooks
-
-include /usr/share/doc/task/rc/light-256.theme
 include ./taskrc.d/$HOSTNAME
 include ./taskrc.d/aliases
-include ./taskrc.d/sync
 include ./taskrc.d/urgency
 include ./taskrc.d/reports
 include ./taskrc.d/contexts
@@ -16,3 +11,5 @@ search.case.sensitive=no
 rc.json.array=on
 rc.verbose=nothing
 news.version=3.1.0
+
+recurrence=off

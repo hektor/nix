@@ -1,1 +1,4 @@
-recurrence=off
+include /usr/share/doc/task/rc/light-256.theme
+
+include ./locations
+include ./sync
