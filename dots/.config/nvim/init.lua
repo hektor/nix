@@ -24,6 +24,5 @@ require("reload")
 
 require("paq-setup") -- when not on nixCats
 
--- vim.opt.background = "dark"
--- vim.opt.laststatus = 3
+vim.opt.background = "dark"
 vim.opt.laststatus = 3
