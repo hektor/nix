@@ -87,6 +87,7 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     users.${username} = import ../../home/hosts/andromache {
+      inherit lib;
       inherit inputs;
       inherit config;
       inherit pkgs;

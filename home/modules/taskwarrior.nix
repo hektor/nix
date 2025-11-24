@@ -44,7 +44,7 @@
       #     config.sops.secrets."taskwarrior_sync_encryption_secret".path
       #   }";
       # };
-      recurrence = "off"; # TODO: enable only on andromache
+      recurrence = "off";
     };
     extraConfig = "include ${config.sops.templates."taskrc.d/sync".path}";
   };
