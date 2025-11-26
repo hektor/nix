@@ -37,6 +37,7 @@ in
       inherit inputs;
       inherit config;
     })
+    ../../modules/docker.nix
   ];
 
   secrets.username = username;
