@@ -104,16 +104,18 @@ in
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    folders = {
-      "/home/${username}/sync" = {
-        id = "sync";
-        devices = [ ];
+    settings = {
+      devices = {
+        # "device1" = {
+        #   id = "DEVICE-ID-GOES-HERE";
+        # };
       };
-    };
-    devices = {
-      # "device1" = {
-      #   id = "DEVICE-ID-GOES-HERE";
-      # };
+      folders = {
+        "/home/${username}/sync" = {
+          id = "sync";
+          devices = [ ];
+        };
+      };
     };
   };
 
