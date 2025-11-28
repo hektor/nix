@@ -19,7 +19,7 @@ in
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ../../modules/bootloader.nix
-    (import ../../modules/disko.zfs-encrypted-root.nix {
+    (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib;
       inherit config;
       device = "/dev/nvme0n1";
