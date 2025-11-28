@@ -41,6 +41,7 @@ in
   ];
 
   secrets.username = username;
+  docker.user = username;
 
   disko.devices = {
     disk.data = {
