@@ -24,7 +24,7 @@ in
       inherit config;
       device = "/dev/nvme0n1";
     })
-    ../../modules/gnome.nix
+    ../../modules/desktops/niri.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
     (import ../../modules/networking.nix { hostName = hostName; })
