@@ -22,7 +22,7 @@ in
       inherit lib;
       inherit config;
     })
-    ../../modules/gnome.nix
+    ../../modules/desktops/niri.nix
     ../../modules/bluetooth.nix
     ../../modules/keyboard
     (import ../../modules/networking.nix { hostName = "andromache"; })
