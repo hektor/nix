@@ -1,4 +1,11 @@
+{ pkgs, ... }:
+
 {
-  enable = true;
-  # TODO: https://mynixos.com/home-manager/option/programs.keepassxc.settings
+  programs.keepassxc = {
+    enable = true;
+    settings = {
+      Browser.Enabled = true;
+    };
+  };
+  # programs.firefox.nativeMessagingHosts = [ pkgs.keepassxc ]; # FIXME: Resolve 'Access error for config file /home/h/.config/keepassxc/keepassxc.ini' error
 }

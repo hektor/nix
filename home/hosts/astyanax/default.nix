@@ -17,6 +17,7 @@ in
       inherit config;
       inherit pkgs;
     })
+    (import ../../modules/keepassxc.nix { inherit pkgs; })
   ];
 
   home.stateVersion = "25.05";
@@ -54,7 +55,6 @@ in
       enableBashIntegration = true;
     };
     home-manager.enable = true;
-    keepassxc = import ../../modules/keepassxc.nix;
   };
 
   home.packages = import ./packages.nix {
