@@ -29,6 +29,7 @@ with pkgs;
   pass
   pnpm
   ripgrep
+  signal-desktop
   silver-searcher
   sops
   sshfs
