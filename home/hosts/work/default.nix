@@ -13,6 +13,7 @@ in
     ../../modules/dconf.nix
     ../../modules/git.nix
     ../../modules/k9s.nix
+    (import ../../modules/keepassxc.nix { inherit pkgs; })
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -34,7 +35,6 @@ in
       inherit config;
     };
     gh.enable = true;
-    keepassxc = import ../../modules/keepassxc.nix;
     kubecolor.enable = true;
   };
 
