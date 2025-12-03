@@ -15,26 +15,32 @@ in
     ../../modules/k9s.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   home.stateVersion = "25.05";
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
-  nixGL = {
+  targets.genericLinux.nixGL = {
     packages = inputs.nixgl.packages;
     defaultWrapper = "mesa";
   };
 
   programs = {
-    anki = import ../../modules/anki.nix;
+    # editorconfig.enable = true;
     firefox = import ../../modules/firefox.nix {
       inherit inputs;
       inherit pkgs;
       inherit config;
     };
+    gh.enable = true;
     keepassxc = import ../../modules/keepassxc.nix;
+    kubecolor.enable = true;
   };
+
   home.packages = import ./packages.nix {
-    inherit pkgs;
+    inherit inputs;
     inherit config;
+    inherit pkgs;
   };
 }
