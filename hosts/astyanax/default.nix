@@ -8,7 +8,7 @@
 
 let
   username = "h";
-  hostName = "astynanax";
+  hostName = "astyanax";
 in
 {
   system.stateVersion = "25.05";
