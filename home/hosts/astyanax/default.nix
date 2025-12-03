@@ -12,6 +12,7 @@ in
   imports = [
     ../../modules/dconf.nix # TODO: Only enable when on Gnome?
     ../../modules/git.nix
+    ../../modules/k9s.nix
     (import ../../modules/taskwarrior.nix {
       inherit config;
       inherit pkgs;

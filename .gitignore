@@ -4,3 +4,5 @@ result
 result-*
 
 nixos-efi-vars.fd
+
+home/hosts/work/packages.local.nix

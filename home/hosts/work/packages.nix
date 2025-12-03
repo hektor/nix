@@ -1,4 +1,19 @@
-{ pkgs, config, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
-with pkgs;
-[ ]
+let
+  localPackages =
+    if builtins.pathExists ./packages.local.nix then
+      import ./packages.local.nix { inherit inputs config pkgs; }
+    else
+      [ ];
+in
+
+(with pkgs; [
+  inputs.nvim.packages.x86_64-linux.nvim
+])
+++ localPackages

@@ -8,12 +8,11 @@
 
 let
   username = "h";
-  hostName = "astynanax";
+  hostName = "astyanax";
 in
 {
-  system.stateVersion = "25.05";
-
   imports = [
+    ../../modules/common.nix
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
@@ -45,13 +44,6 @@ in
   secrets.username = username;
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nixpkgs.config.allowUnfree = true;
 
   home-manager = {
     useGlobalPkgs = true;
