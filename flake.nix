@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs?ref=nixos-25.05";
+      url = "github:nixos/nixpkgs/nixos-unstable";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
@@ -20,7 +20,7 @@
       flake = false;
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl = {
@@ -61,7 +61,9 @@
       };
     in
     {
-      nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
+      nix.nixPath = [
+        "nixpkgs=${inputs.nixpkgs}"
+      ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
       nixosConfigurations = lib.genAttrs hostDirNames (
         host:
         nixpkgs.lib.nixosSystem {
@@ -73,9 +75,7 @@
         work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home/hosts/work ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
+          extraSpecialArgs = { inherit inputs; };
         };
       };
     };
