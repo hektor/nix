@@ -1,8 +1,13 @@
+{ pkgs, ... }:
+
 {
   imports = [
     ../../fuzzel
     ../../waybar
   ];
 
-  home.file.".config/niri/config.kdl".source = ./config.kdl;
+  home = {
+    file.".config/niri/config.kdl".source = ./config.kdl;
+    packages = with pkgs; [ wlsunset ];
+  };
 }
