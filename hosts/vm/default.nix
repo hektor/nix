@@ -10,9 +10,8 @@ let
   username = "h";
 in
 {
-  system.stateVersion = "25.05";
-
   imports = [
+    ../../modules/common.nix
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
@@ -37,13 +36,6 @@ in
   secrets.username = "h";
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nixpkgs.config.allowUnfree = true;
 
   disko = {
     devices.disk.main.device = "/dev/vda";
