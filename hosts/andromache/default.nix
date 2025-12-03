@@ -12,24 +12,24 @@ let
 in
 {
   imports = [
-    ../../modules/common.nix
+    ../../modules/common
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
     ./hard.nix
-    ../../modules/bootloader.nix
+    ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
       device = "/dev/nvme1n1";
       inherit lib;
       inherit config;
     })
     ../../modules/desktops/niri
-    ../../modules/bluetooth.nix
+    ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking.nix { hostName = "andromache"; })
-    ../../modules/users.nix
-    ../../modules/audio.nix
-    ../../modules/localization.nix
+    (import ../../modules/networking { hostName = "andromache"; })
+    ../../modules/users
+    ../../modules/audio
+    ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets {
@@ -37,7 +37,7 @@ in
       inherit inputs;
       inherit config;
     })
-    ../../modules/docker.nix
+    ../../modules/docker
   ];
 
   secrets.username = username;

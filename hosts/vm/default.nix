@@ -17,13 +17,13 @@ in
     inputs.home-manager.nixosModules.default
     ./hard.nix
     ./disk.nix
-    ../../modules/bootloader.nix
+    ../../modules/boot/bootloader.nix
     ../../modules/keyboard
     (import ../../modules/networking.nix { hostName = "vm"; })
-    ../../modules/users.nix
-    ../../modules/audio.nix
-    ../../modules/localization.nix
-    ../../modules/x.nix
+    ../../modules/users
+    ../../modules/audio
+    ../../modules/localization
+    ../../modules/x
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets {

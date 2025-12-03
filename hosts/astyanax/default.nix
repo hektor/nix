@@ -19,19 +19,19 @@ in
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.default
     ./hard.nix
-    ../../modules/bootloader.nix
+    ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib;
       inherit config;
       device = "/dev/nvme0n1";
     })
     ../../modules/desktops/niri
-    ../../modules/bluetooth.nix
+    ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking.nix { hostName = hostName; })
-    ../../modules/users.nix
-    ../../modules/audio.nix
-    ../../modules/localization.nix
+    (import ../../modules/networking { hostName = hostName; })
+    ../../modules/users
+    ../../modules/audio
+    ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets {
