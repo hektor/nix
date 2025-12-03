@@ -88,10 +88,6 @@ in
     };
   };
 
-  networking = {
-    hostId = "80eef97e";
-  };
-
   services.xserver = {
     videoDrivers = [ "nvidia" ];
   };
@@ -125,9 +121,11 @@ in
   };
 
   networking = {
+    hostId = "80eef97e";
     interfaces = {
       eno1 = {
         wakeOnLan.enable = true;
+        macAddress = "02:68:b3:29:da:98";
       };
     };
     firewall = {
