@@ -10,6 +10,7 @@ in
     services.openssh.settings = optionalAttrs cfg.harden {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
       ChallengeResponseAuthentication = false;
       X11Forwarding = false;
       AllowAgentForwarding = false;
