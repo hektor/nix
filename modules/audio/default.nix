@@ -9,4 +9,5 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  services.pulseaudio.extraConfig = "load-module module-switch-on-connect";
 }
