@@ -1,9 +1,11 @@
+[include]
+  path = ~/.gitconfig.email
+
 [core]
   editor = nvim
   excludesfile = ~/.gitignore
 
 [user]
-  email = hektor.misplon@pm.me
   name = Hektor Misplon
   username = hektor
   signingKey = AEB98353B8D72E465C4236435151AF79E723F21C
@@ -76,8 +78,6 @@
 [merge]
   tool = nvimdiff
   conflictstyle = diff3
-[pull]
-  rebase = true
 [diff]
   colorMoved = zebra
 [commit]
@@ -85,3 +85,11 @@
 
 [interactive]
   singleKey = true
+
+[pull]
+  rebase = true
+[rerere]
+  enabled = true
+
+[includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig.work
