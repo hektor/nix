@@ -22,7 +22,6 @@ with pkgs;
   nixfmt-rfc-style
   nmap
   nodejs_24
-  nodePackages.ts-node
   nvimpager
   ormolu
   pandoc
