@@ -8,6 +8,7 @@
 
 let
   username = "h";
+  wolInterfaces = import ./wol-interfaces.nix;
 in
 {
   imports = [
@@ -125,7 +126,7 @@ in
     interfaces = {
       eno1 = {
         wakeOnLan.enable = true;
-        macAddress = "02:68:b3:29:da:98";
+        macAddress = wolInterfaces.eno1.macAddress;
       };
     };
     firewall = {

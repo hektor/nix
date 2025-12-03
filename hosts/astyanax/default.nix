@@ -9,6 +9,7 @@
 let
   username = "h";
   hostName = "astyanax";
+  wolInterfaces = import ../andromache/wol-interfaces.nix;
 in
 {
   imports = [
@@ -43,7 +44,16 @@ in
 
   secrets.username = username;
 
-  environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
+  environment.systemPackages = [
+    inputs.nvim.packages.x86_64-linux.nvim
+    (pkgs.writeShellApplication {
+      name = "wol-andromache";
+      runtimeInputs = [ pkgs.wakeonlan ];
+      text = ''
+        wakeonlan ${wolInterfaces.eno1.macAddress}
+      '';
+    })
+  ];
 
   home-manager = {
     useGlobalPkgs = true;
