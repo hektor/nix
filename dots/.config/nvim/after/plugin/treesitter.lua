@@ -4,6 +4,9 @@ local keymap = vim.keymap
 local opt = vim.opt
 local treesitter_configs = require("nvim-treesitter.configs")
 
+local nixCatsUtils = require("nixCatsUtils")
+local is_nix = nixCatsUtils.isNixCats
+
 treesitter_configs.setup({
   -- Basically added what I might need from the docs
   -- <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>
@@ -86,7 +89,7 @@ treesitter_configs.setup({
     enable = true,
   },
   sync_install = false,
-  auto_install = true,
+  auto_install = not is_nix,
   ignore_install = {},
   modules = {},
   textobjects = {
