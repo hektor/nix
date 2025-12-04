@@ -40,7 +40,11 @@ window#waybar.hidden {
 }
 
 #clock,
-#battery {
+#battery,
+#pulseaudio,
+#memory,
+#cpu,
+#network {
   padding: 0 4px;
   color: #ffffff;
   background-color: #111111;
