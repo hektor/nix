@@ -5,7 +5,7 @@
 {
   imports = [
     ./hard.nix
-    ../../modules/common.nix
+    ../../modules/common
     ../../modules/ssh/hardened-openssh.nix
   ];
 

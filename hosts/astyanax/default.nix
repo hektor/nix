@@ -13,7 +13,7 @@ let
 in
 {
   imports = [
-    ../../modules/common.nix
+    ../../modules/common
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
     inputs.disko.nixosModules.disko
     inputs.sops-nix.nixosModules.sops
