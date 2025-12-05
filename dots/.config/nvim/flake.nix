@@ -147,7 +147,8 @@
               copilot-lua
               copilot-cmp
               pkgs.neovimPlugins.helm-ls-nvim
-              pkgs.vimPlugins.kitty-scrollback-nvim
+              kitty-scrollback-nvim
+              fidget-nvim
               rustaceanvim
               pkgs.neovimPlugins.m-taskwarrior-d-nvim
             ];
