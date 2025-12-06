@@ -42,6 +42,23 @@ in
     })
   ];
 
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    # https://wiki.nixos.org/wiki/Intel_Graphics
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vpl-gpu-rt
+      ];
+    };
+  };
+
+  # https://wiki.nixos.org/wiki/Intel_Graphics
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
+
   secrets.username = username;
 
   environment.systemPackages = [
