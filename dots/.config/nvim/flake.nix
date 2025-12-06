@@ -71,6 +71,7 @@
               nixd
               nixfmt
               prettierd
+              rust-analyzer-unwrapped
               shellcheck-minimal
               stylua
               vscode-langservers-extracted

@@ -67,6 +67,7 @@ local servers = {
   -- marksman = {},
   nixd = {},
   pyright = {},
+  rust_analyzer = {},
   -- tsserver = {},
   svelte = {
     plugin = {
