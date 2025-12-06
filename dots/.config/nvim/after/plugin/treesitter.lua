@@ -10,7 +10,7 @@ local is_nix = nixCatsUtils.isNixCats
 treesitter_configs.setup({
   -- Basically added what I might need from the docs
   -- <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>
-  ensure_installed = {
+  ensure_installed = is_nix and {} or {
     "awk",
     "bash",
     "bibtex",
