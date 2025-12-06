@@ -13,6 +13,7 @@ in
     ../../modules/desktop/niri
     ../../modules/git.nix
     ../../modules/k9s.nix
+    (import ../../modules/shikane.nix { inherit pkgs; })
     (import ../../modules/taskwarrior.nix {
       inherit config;
       inherit pkgs;
