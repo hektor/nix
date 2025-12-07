@@ -19,7 +19,7 @@ in
     ./disk.nix
     ../../modules/boot/bootloader.nix
     ../../modules/keyboard
-    (import ../../modules/networking.nix { hostName = "vm"; })
+    (import ../../modules/networking { hostName = "vm"; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
