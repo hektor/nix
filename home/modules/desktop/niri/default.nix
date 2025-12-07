@@ -8,6 +8,9 @@
 
   home = {
     file.".config/niri/config.kdl".source = ./config.kdl;
-    packages = with pkgs; [ wlsunset ];
+    packages = with pkgs; [
+      wl-clipboard
+      wlsunset
+    ];
   };
 }
