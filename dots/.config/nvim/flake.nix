@@ -71,7 +71,6 @@
               nixd
               nixfmt
               prettierd
-              rust-analyzer-unwrapped
               shellcheck-minimal
               stylua
               vscode-langservers-extracted
@@ -145,6 +144,7 @@
               copilot-cmp
               pkgs.neovimPlugins.helm-ls-nvim
               pkgs.vimPlugins.kitty-scrollback-nvim
+              rustaceanvim
             ];
           };
 
