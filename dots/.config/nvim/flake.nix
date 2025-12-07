@@ -7,6 +7,10 @@
       url = "github:rktjmp/shipwright.nvim";
       flake = false;
     };
+    plugins-m-taskwarrior-d-nvim = {
+      url = "github:huantrinh1802/m_taskwarrior_d.nvim";
+      flake = false;
+    };
     plugins-crazy-node-movement = {
       url = "github:theHamsta/crazy-node-movement";
       flake = false;
@@ -145,6 +149,7 @@
               pkgs.neovimPlugins.helm-ls-nvim
               pkgs.vimPlugins.kitty-scrollback-nvim
               rustaceanvim
+              pkgs.neovimPlugins.m-taskwarrior-d-nvim
             ];
           };
 
