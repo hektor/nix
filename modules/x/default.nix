@@ -4,7 +4,7 @@
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    config = builtins.readFile ../dots/.xmonad/xmonad.hs;
+    config = builtins.readFile ../../dots/.xmonad/xmonad.hs;
   };
 
   services.xserver = {
