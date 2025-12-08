@@ -69,14 +69,15 @@
               gawk
               gdtoolkit_4
               isort
-              tree-sitter
-              ormolu
-              nodePackages.prettier
               nixd
               nixfmt
+              nodePackages.prettier
+              ormolu
               prettierd
+              rustfmt
               shellcheck-minimal
               stylua
+              tree-sitter
               vscode-langservers-extracted
             ];
           };

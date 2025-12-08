@@ -13,14 +13,15 @@ require("conform").setup({
     gdscript = { "gdformat" },
     haskell = { "ormolu" },
     html = { "prettierd", "prettier", stop_after_first = true },
-    lua = { "stylua" }, -- configured in stylua.toml
-    markdown = { "prettierd", "prettier", stop_after_first = true },
-    nix = { "nixfmt" },
     javascript = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
     javascriptreact = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
     json = { "prettierd", "prettier", stop_after_first = true },
     jsonc = { "prettierd", "prettier", stop_after_first = true },
+    lua = { "stylua" }, -- configured in stylua.toml
+    markdown = { "prettierd", "prettier", stop_after_first = true },
+    nix = { "nixfmt" },
     python = { "isort", "black" },
+    rustfmt = { "rustfmt" },
     svelte = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
     typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
     typescriptreact = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
