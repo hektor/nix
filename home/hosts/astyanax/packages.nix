@@ -3,27 +3,20 @@
 with pkgs;
 [
   bash-completion
-  bash-language-server
   bat
-  brightnessctl
   entr
-  eslint_d
   feh
   fzf
   gh
   git
-  haskell-language-server
   haskellPackages.pandoc-crossref
-  haskellPackages.hadolint
   htop
   jq
   kitty
-  lua-language-server
   nixfmt-rfc-style
   nmap
   nodejs_24
   nvimpager
-  ormolu
   pandoc
   parallel
   pass
@@ -33,21 +26,11 @@ with pkgs;
   silver-searcher
   sops
   sshfs
-  stylelint
-  svelte-language-server
-  tailwindcss-language-server
   tldr
   tmux
   tmuxp
   tree
-  tree-sitter
-  typescript-language-server
   unzip
-  vim-language-server
   vimPlugins.vim-plug
-  vtsls
   wget
-  xbanish
-  xclip
-  yaml-language-server
 ]
