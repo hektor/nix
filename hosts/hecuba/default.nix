@@ -9,11 +9,6 @@
     ../../modules/ssh/hardened-openssh.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-  ];
-
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
@@ -46,6 +41,16 @@
 
   networking = {
     firewall.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+  ];
+
+  services.fail2ban = {
+    enable = true;
+    maxretry = 5;
   };
 
   services.openssh = {
