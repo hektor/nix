@@ -22,4 +22,5 @@ restic -r "$RESTIC_REPOSITORY:$HOSTNAME" backup \
   --one-file-system \
   --files-from="$HOME/.resticinclude" \
   --exclude-file="$HOME/.resticexclude" \
+  --exclude-if-present=".nobackup" \
   --verbose=3
