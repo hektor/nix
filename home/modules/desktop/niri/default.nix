@@ -3,6 +3,7 @@
 {
   imports = [
     ../../fuzzel
+    ../../mako
     ../../waybar
   ];
 
