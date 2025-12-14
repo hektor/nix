@@ -2,8 +2,8 @@
 
 session="r5rs"
 
-tmux attach-session -t $session || tmux new-session -s $session \; \
+tmux attach-session -t "$session" || tmux new-session -s "$session" \; \
   split-window -h -t $session \; \
-  send-keys -t 0 "vim" C-m \; \
-  send-keys -t 1 "plt-r5rs --no-prim" C-m \; \
-  select-pane -t 0
+  send-keys -t 1 "nvim -c \"set ft=scheme\"" C-m \; \
+  send-keys -t 2 "plt-r5rs --no-prim" C-m \; \
+  select-pane -t 1
