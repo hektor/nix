@@ -27,6 +27,8 @@ in
         "taskwarrior_sync_encryption_secret".owner = config.users.users.${cfg.username}.name;
         "email_personal".owner = config.users.users.${cfg.username}.name;
         "email_work".owner = config.users.users.${cfg.username}.name;
+        "anki_sync_user".owner = config.users.users.${cfg.username}.name;
+        "anki_sync_key".owner = config.users.users.${cfg.username}.name;
       };
 
       templates."taskrc.d/sync" = {
