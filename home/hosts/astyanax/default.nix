@@ -57,7 +57,7 @@ in
     home-manager.enable = true;
   };
 
-  home.packages = import ./packages.nix {
+  home.packages = import ../packages.nix {
     inherit pkgs;
     inherit config;
   };
