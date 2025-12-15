@@ -21,7 +21,7 @@ require("conform").setup({
     markdown = { "prettierd", "prettier", stop_after_first = true },
     nix = { "nixfmt" },
     python = { "isort", "black" },
-    rustfmt = { "rustfmt" },
+    rust = { "rustfmt", lsp_fallback = "fallback" },
     svelte = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
     typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
     typescriptreact = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
