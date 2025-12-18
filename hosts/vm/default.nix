@@ -33,7 +33,7 @@ in
     })
   ];
 
-  secrets.username = "h";
+  secrets.username = username;
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 

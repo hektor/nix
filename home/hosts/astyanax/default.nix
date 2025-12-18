@@ -32,12 +32,12 @@ in
       enable = true;
       enableCompletion = true;
       initExtra = ''
-        for f in /home/h/.bashrc.d/*; do
+        for f in /home/${username}/.bashrc.d/*; do
           [ -f "$f" ] && source "$f"
         done
 
-        source /home/h/.bash_aliases/all
-        source /home/h/.bash_aliases/lang-js
+        source /home/${username}/.bash_aliases/all
+        source /home/${username}/.bash_aliases/lang-js
 
         # host-specific config goes here
         # ...
