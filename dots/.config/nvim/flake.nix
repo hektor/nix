@@ -152,6 +152,7 @@
               fidget-nvim
               rustaceanvim
               pkgs.neovimPlugins.m-taskwarrior-d-nvim
+              claude-code-nvim
             ];
           };
 
