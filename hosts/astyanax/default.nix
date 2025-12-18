@@ -83,6 +83,7 @@ in
   };
 
   networking = {
+    # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
     hostId = "80eef97e";
   };
 
