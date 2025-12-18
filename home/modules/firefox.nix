@@ -5,9 +5,6 @@
   nativeMessagingHosts = with pkgs; [
     tridactyl-native
   ];
-  policies = {
-    DefaultDownloadDirectory = "\${home}/dl";
-  };
   profiles = {
     default = {
       settings = {
@@ -57,6 +54,7 @@
     };
   };
   policies = {
+    DefaultDownloadDirectory = "\${home}/dl";
     ExtensionSettings = {
       "jid1-ZAdIEUB7XOzOJw@jetpack" = {
         default_area = "navbar";
