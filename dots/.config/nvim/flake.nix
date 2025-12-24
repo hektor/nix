@@ -79,6 +79,7 @@
               nixd
               nixfmt
               nodePackages.prettier
+              nodePackages.typescript-language-server
               ormolu
               prettierd
               rustfmt
