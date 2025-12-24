@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    mcp-hub.url = "github:ravitemer/mcp-hub";
 
     plugins-shipwright-nvim = {
       url = "github:rktjmp/shipwright.nvim";
@@ -51,8 +52,11 @@
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
       extra_pkg_config = { };
 
-      dependencyOverlays = [
+      mkDependencyOverlays = system: [
         (utils.standardPluginOverlay inputs)
+        (final: prev: {
+          mcp-hub = inputs.mcp-hub.packages.${system}.default;
+        })
       ];
 
       categoryDefinitions =
@@ -66,9 +70,12 @@
               black
               clang
               clang-tools
+              delta
+              fd
               gawk
               gdtoolkit_4
               isort
+              mcp-hub
               nixd
               nixfmt
               nodePackages.prettier
@@ -189,6 +196,7 @@
     forEachSystem (
       system:
       let
+        dependencyOverlays = mkDependencyOverlays system;
         nixCatsBuilder = utils.baseBuilder luaPath {
           inherit
             nixpkgs
@@ -220,31 +228,32 @@
           moduleNamespace = [ defaultPackageName ];
           inherit
             defaultPackageName
-            dependencyOverlays
             luaPath
             categoryDefinitions
             packageDefinitions
             extra_pkg_config
             nixpkgs
             ;
+          dependencyOverlays = mkDependencyOverlays;
         };
         homeModule = utils.mkHomeModules {
           moduleNamespace = [ defaultPackageName ];
           inherit
             defaultPackageName
-            dependencyOverlays
             luaPath
             categoryDefinitions
             packageDefinitions
             extra_pkg_config
             nixpkgs
             ;
+          dependencyOverlays = mkDependencyOverlays;
         };
       in
       {
 
         overlays = utils.makeOverlays luaPath {
-          inherit nixpkgs dependencyOverlays extra_pkg_config;
+          inherit nixpkgs extra_pkg_config;
+          dependencyOverlays = mkDependencyOverlays;
         } categoryDefinitions packageDefinitions defaultPackageName;
 
         nixosModules.default = nixosModule;
