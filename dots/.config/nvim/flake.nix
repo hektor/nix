@@ -138,7 +138,7 @@
               zenbones-nvim
               pkgs.neovimPlugins.crazy-node-movement
               nvim-treesitter.withAllGrammars
-              nvim-treesitter-textobjects
+              # nvim-treesitter-textobjects
               # nvim-treesitter-context
               nvim-ts-context-commentstring
               treesj
