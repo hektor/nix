@@ -135,7 +135,7 @@
               zenbones-nvim
               nvim-treesitter.withAllGrammars
               nvim-treesitter-textobjects
-              nvim-treesitter-context
+              # nvim-treesitter-context
               nvim-ts-context-commentstring
               treesj
               sniprun
