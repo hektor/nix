@@ -14,15 +14,10 @@ in
     ../../modules/desktop/niri
     ../../modules/git.nix
     ../../modules/k9s.nix
-    (import ../../modules/taskwarrior.nix {
-      inherit config;
-      inherit pkgs;
-    })
-    (import ../../modules/keepassxc.nix { inherit pkgs; })
-    (import ../../modules/anki.nix {
-      inherit config;
-      inherit pkgs;
-    })
+    ../../modules/taskwarrior.nix
+    ../../modules/keepassxc.nix
+    ../../modules/anki.nix
+    ../../modules/browser
   ];
 
   home.stateVersion = "25.05";
@@ -31,6 +26,8 @@ in
 
   xdg.userDirs.createDirectories = false;
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
+
+  browser.primary = "librewolf";
 
   programs = {
     bash = {
@@ -49,11 +46,6 @@ in
 
         export PATH=${../../../dots/.bin}:$PATH
       '';
-    };
-    firefox = import ../../modules/firefox.nix {
-      inherit inputs;
-      inherit pkgs;
-      inherit config;
     };
     fzf = {
       enable = true;
