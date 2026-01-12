@@ -13,7 +13,8 @@ in
     ../../modules/dconf.nix
     ../../modules/git.nix
     ../../modules/k9s.nix
-    (import ../../modules/keepassxc.nix { inherit pkgs; })
+    ../../modules/keepassxc.nix
+    ../../modules/browser
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -27,13 +28,10 @@ in
     defaultWrapper = "mesa";
   };
 
+  browser.primary = "firefox";
+  browser.secondary = "chromium";
+
   programs = {
-    # editorconfig.enable = true;
-    firefox = import ../../modules/firefox.nix {
-      inherit inputs;
-      inherit pkgs;
-      inherit config;
-    };
     gh.enable = true;
     kubecolor.enable = true;
   };
