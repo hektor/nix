@@ -12,10 +12,6 @@
       url = "github:huantrinh1802/m_taskwarrior_d.nvim";
       flake = false;
     };
-    plugins-crazy-node-movement = {
-      url = "github:theHamsta/crazy-node-movement";
-      flake = false;
-    };
     plugins-beancount-nvim = {
       url = "github:polarmutex/beancount.nvim";
       flake = false;
@@ -137,10 +133,9 @@
               pkgs.neovimPlugins.shipwright-nvim
               lush-nvim
               zenbones-nvim
-              pkgs.neovimPlugins.crazy-node-movement
               nvim-treesitter.withAllGrammars
-              # nvim-treesitter-textobjects
-              # nvim-treesitter-context
+              nvim-treesitter-textobjects
+              nvim-treesitter-context
               nvim-ts-context-commentstring
               treesj
               sniprun

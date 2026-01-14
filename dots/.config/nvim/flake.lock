@@ -103,22 +103,6 @@
         "type": "github"
       }
     },
-    "plugins-crazy-node-movement": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1693654676,
-        "narHash": "sha256-hQcQEp39zFN2zphMfcr97yRVcuHhBsSkzKO7XNloDpQ=",
-        "owner": "theHamsta",
-        "repo": "crazy-node-movement",
-        "rev": "d5cf01cc44c5715501d3d6fe439af7c8b7fa5df2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "theHamsta",
-        "repo": "crazy-node-movement",
-        "type": "github"
-      }
-    },
     "plugins-helm-ls-nvim": {
       "flake": false,
       "locked": {
@@ -221,7 +205,6 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
         "plugins-beancount-nvim": "plugins-beancount-nvim",
-        "plugins-crazy-node-movement": "plugins-crazy-node-movement",
         "plugins-helm-ls-nvim": "plugins-helm-ls-nvim",
         "plugins-m-taskwarrior-d-nvim": "plugins-m-taskwarrior-d-nvim",
         "plugins-mcphub-nvim": "plugins-mcphub-nvim",
