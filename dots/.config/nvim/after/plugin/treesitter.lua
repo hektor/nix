@@ -2,12 +2,12 @@ local ts = require("treesj")
 local vim = vim
 local keymap = vim.keymap
 local opt = vim.opt
-local treesitter_configs = require("nvim-treesitter.configs")
+local treesitter = require("nvim-treesitter")
 
 local nixCatsUtils = require("nixCatsUtils")
 local is_nix = nixCatsUtils.isNixCats
 
-treesitter_configs.setup({
+treesitter.setup({
   -- Basically added what I might need from the docs
   -- <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>
   ensure_installed = is_nix and {} or {
