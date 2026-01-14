@@ -1,12 +1,24 @@
 {
   config,
+  lib,
   pkgs,
+  osConfig ? null,
   ...
 }:
 
+let
+  hmSopsAvailable = config ? sops && config.sops ? templates;
+  osSopsAvailable = osConfig != null && osConfig ? sops && osConfig.sops ? templates;
+  sopsAvailable = hmSopsAvailable || osSopsAvailable;
+
+  sopsTemplates = if hmSopsAvailable then config.sops.templates else osConfig.sops.templates;
+in
 {
+  warnings =
+    lib.optional (!sopsAvailable && config.programs.taskwarrior.enable)
+      "taskwarrior is enabled, but sops templates are not available. taskwarrior sync will not be configured.";
+
   home.packages = with pkgs; [
-    python314
     libnotify
   ];
 
@@ -35,17 +47,10 @@
     package = taskwarrior3;
     colorTheme = "dark-256";
     config = {
-      # sync = {
-      #   server.url = "${builtins.readFile config.sops.secrets."taskwarrior_sync_server_url".path}";
-      #   server.client_id = "${builtins.readFile
-      #     config.sops.secrets."taskwarrior_sync_server_client_id".path
-      #   }";
-      #   encryption_secret = "${builtins.readFile
-      #     config.sops.secrets."taskwarrior_sync_encryption_secret".path
-      #   }";
-      # };
       recurrence = "off";
     };
-    extraConfig = "include ${config.sops.templates."taskrc.d/sync".path}";
+    extraConfig = lib.optionalString sopsAvailable ''
+      include ${sopsTemplates."taskrc.d/sync".path}
+    '';
   };
 }

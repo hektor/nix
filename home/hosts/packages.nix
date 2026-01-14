@@ -21,6 +21,7 @@ with pkgs;
   parallel
   pass
   pnpm
+  python3
   ripgrep
   signal-desktop
   silver-searcher
