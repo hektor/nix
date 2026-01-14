@@ -84,6 +84,7 @@
               prettierd
               rustfmt
               shellcheck-minimal
+              stylelint
               stylua
               tree-sitter
               vscode-langservers-extracted
@@ -217,7 +218,7 @@
             name = defaultPackageName;
             packages = [ defaultPackage ];
             inputsFrom = [ ];
-            shellHook = '''';
+            shellHook = "";
           };
         };
 
