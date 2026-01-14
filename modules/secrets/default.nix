@@ -16,7 +16,6 @@ in
   };
   config = {
     sops = {
-      validateSopsFiles = false;
       defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
       defaultSopsFormat = "yaml";
       age.keyFile = "/home/${cfg.username}/.config/sops/age/keys.txt";
