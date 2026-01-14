@@ -9,7 +9,6 @@
         "librewolf"
       ];
       default = "firefox";
-      description = "Primary web browser";
     };
 
     secondary = lib.mkOption {
@@ -21,7 +20,6 @@
         ]
       );
       default = null;
-      description = "Optional secondary web browser";
     };
   };
 
