@@ -58,6 +58,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
     users.${username} = import ../../home/hosts/vm {
       inherit inputs;
       inherit config;
