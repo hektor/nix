@@ -18,6 +18,7 @@ in
     ../../modules/keepassxc.nix
     ../../modules/anki.nix
     ../../modules/browser
+    ../../modules/shell
   ];
 
   home.stateVersion = "25.05";
@@ -29,28 +30,12 @@ in
 
   browser.primary = "librewolf";
 
+  shell.bash = {
+    enable = true;
+    aliases.lang-js = true;
+  };
+
   programs = {
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      initExtra = ''
-        for f in /home/${username}/.bashrc.d/*; do
-          [ -f "$f" ] && source "$f"
-        done
-
-        source /home/${username}/.bash_aliases/all
-        source /home/${username}/.bash_aliases/lang-js
-
-        # host-specific config goes here
-        # ...
-
-        export PATH=${../../../dots/.bin}:$PATH
-      '';
-    };
-    fzf = {
-      enable = true;
-      enableBashIntegration = true;
-    };
     home-manager.enable = true;
     taskwarrior.config.recurrence = lib.mkForce "on";
   };
@@ -61,11 +46,6 @@ in
   };
 
   home.file = {
-    ".inputrc".source = ../../../dots/.inputrc;
-    ".bashrc.d/prompt".source = ../../../dots/.bashrc.d/prompt;
-    ".bashrc.d/editor".source = ../../../dots/.bashrc.d/editor;
-    ".bash_aliases/all".source = ../../../dots/.bash_aliases/all;
-    ".bash_aliases/lang-js".source = ../../../dots/.bash_aliases/lang-js;
     ".config/kitty/kitty.conf".source = ../../../dots/.config/kitty/kitty.conf;
     ".config/kitty/themes/zenwritten_light.conf".source =
       ../../../dots/.config/kitty/themes/zenwritten_light.conf;
