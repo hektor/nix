@@ -75,6 +75,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
     users.${username} = import ../../home/hosts/astyanax {
       inherit inputs;
       inherit config;
