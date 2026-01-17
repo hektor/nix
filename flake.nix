@@ -50,6 +50,7 @@
       nvim,
     }@inputs:
     let
+      inherit (self) outputs;
       lib = inputs.nixpkgs.lib;
       utils = import ./utils { inherit lib; };
       hostDirNames = utils.dirNames ./hosts;
@@ -67,14 +68,18 @@
         host:
         nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/${host} ];
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs outputs;
+          };
         }
       );
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home/hosts/work ];
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
         };
       };
     };

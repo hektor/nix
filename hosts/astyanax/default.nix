@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  outputs,
   config,
   pkgs,
   ...
@@ -75,7 +76,9 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
     users.${username} = import ../../home/hosts/astyanax {
       inherit inputs;
       inherit config;
@@ -87,6 +90,8 @@ in
     # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
     hostId = "80eef97e";
   };
+
+  ssh.authorizedHosts = [ "andromache" ];
 
   services = {
     fwupd.enable = true;
