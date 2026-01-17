@@ -24,11 +24,11 @@ in
     defaultSopsFile = "${inputs.nix-secrets}/secrets.yaml";
 
     secrets = {
-      taskwarrior_sync_server_url = {};
-      taskwarrior_sync_server_client_id = {};
-      taskwarrior_sync_encryption_secret = {};
-      anki_sync_user = {};
-      anki_sync_key = {};
+      taskwarrior_sync_server_url = { };
+      taskwarrior_sync_server_client_id = { };
+      taskwarrior_sync_encryption_secret = { };
+      anki_sync_user = { };
+      anki_sync_key = { };
     };
 
     templates."taskrc.d/sync" = {
