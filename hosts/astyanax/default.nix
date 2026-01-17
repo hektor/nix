@@ -6,7 +6,6 @@
   pkgs,
   ...
 }:
-
 let
   username = "h";
   hostName = "astyanax";
@@ -15,15 +14,12 @@ in
 {
   imports = [
     ../../modules/common
-    # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
-    inputs.disko.nixosModules.disko
-    inputs.sops-nix.nixosModules.sops
-    inputs.home-manager.nixosModules.default
     ./hard.nix
+    # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
+    inputs.sops-nix.nixosModules.sops
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
-      inherit lib;
-      inherit config;
+      inherit lib config;
       device = "/dev/nvme0n1";
     })
     ../../modules/desktops/niri
@@ -36,12 +32,17 @@ in
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets {
-      inherit lib;
-      inherit inputs;
-      inherit config;
-      inherit username;
+      inherit lib inputs config username;
     })
   ];
+
+  home-manager.users.${username} = import ../../home/hosts/astyanax {
+    inherit inputs config pkgs lib;
+  };
+
+  networking.hostName = hostName;
+  ssh.username = username;
+  ssh.authorizedHosts = [ "andromache" ];
 
   hardware = {
     cpu.intel.updateMicrocode = true;
@@ -73,25 +74,10 @@ in
     })
   ];
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs outputs;
-    };
-    users.${username} = import ../../home/hosts/astyanax {
-      inherit inputs;
-      inherit config;
-      inherit pkgs;
-    };
-  };
-
   networking = {
     # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
     hostId = "80eef97e";
   };
-
-  ssh.authorizedHosts = [ "andromache" ];
 
   services = {
     fwupd.enable = true;

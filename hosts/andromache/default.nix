@@ -6,40 +6,43 @@
   pkgs,
   ...
 }:
-
 let
   username = "h";
+  hostName = "andromache";
   wolInterfaces = import ./wol-interfaces.nix;
 in
 {
   imports = [
     ../../modules/common
-    inputs.disko.nixosModules.disko
-    inputs.sops-nix.nixosModules.sops
-    inputs.home-manager.nixosModules.default
     ./hard.nix
+    inputs.sops-nix.nixosModules.sops
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
+      inherit lib config;
       device = "/dev/nvme1n1";
-      inherit lib;
-      inherit config;
     })
     ../../modules/desktops/niri
     ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = "andromache"; })
+    (import ../../modules/networking { hostName = hostName; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets {
-      inherit lib;
-      inherit inputs;
-      inherit config;
+      inherit lib inputs config;
     })
     ../../modules/docker
   ];
+
+  home-manager.users.${username} = import ../../home/hosts/andromache {
+    inherit inputs config pkgs lib;
+  };
+
+  networking.hostName = hostName;
+  ssh.username = username;
+  ssh.authorizedHosts = [ "astyanax" ];
 
   secrets.username = username;
   docker.user = username;
@@ -78,22 +81,6 @@ in
   };
 
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs outputs;
-    };
-    users.${username} = import ../../home/hosts/andromache {
-      inherit lib;
-      inherit inputs;
-      inherit config;
-      inherit pkgs;
-    };
-  };
-
-  ssh.authorizedHosts = [ "astyanax" ];
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];
