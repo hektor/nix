@@ -59,17 +59,16 @@ in
       '';
     };
 
-    home.file =
-      {
-        ".inputrc".source = dotsPath + "/.inputrc";
-        ".bashrc.d/prompt".source = dotsPath + "/.bashrc.d/prompt";
-        ".bashrc.d/editor".source = dotsPath + "/.bashrc.d/editor";
-      }
-      // lib.optionalAttrs cfg.aliases.all {
-        ".bash_aliases/all".source = dotsPath + "/.bash_aliases/all";
-      }
-      // lib.optionalAttrs cfg.aliases.lang-js {
-        ".bash_aliases/lang-js".source = dotsPath + "/.bash_aliases/lang-js";
-      };
+    home.file = {
+      ".inputrc".source = dotsPath + "/.inputrc";
+      ".bashrc.d/prompt".source = dotsPath + "/.bashrc.d/prompt";
+      ".bashrc.d/editor".source = dotsPath + "/.bashrc.d/editor";
+    }
+    // lib.optionalAttrs cfg.aliases.all {
+      ".bash_aliases/all".source = dotsPath + "/.bash_aliases/all";
+    }
+    // lib.optionalAttrs cfg.aliases.lang-js {
+      ".bash_aliases/lang-js".source = dotsPath + "/.bash_aliases/lang-js";
+    };
   };
 }
