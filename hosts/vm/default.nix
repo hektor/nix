@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  outputs,
   config,
   pkgs,
   ...
@@ -58,7 +59,9 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
     users.${username} = import ../../home/hosts/vm {
       inherit inputs;
       inherit config;

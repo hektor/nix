@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{
+  lib,
+  inputs,
+  outputs,
+  config,
+  pkgs,
+  ...
+}:
 
 # Also see <https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud>
 
@@ -31,10 +38,12 @@
     username = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOOXPEhdKOVnb6mkeLLUcFGt+mnUR5pMie17JtjrxwgO h@andromache"
-      ];
     };
+  };
+
+  ssh = {
+    username = "username";
+    authorizedHosts = [ "andromache" ];
   };
 
   security.sudo.wheelNeedsPassword = false;
@@ -57,4 +66,6 @@
     enable = true;
     harden = true;
   };
+
+  networking.hostName = "hecuba";
 }

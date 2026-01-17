@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  outputs,
   config,
   pkgs,
   ...
@@ -81,7 +82,9 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
     users.${username} = import ../../home/hosts/andromache {
       inherit lib;
       inherit inputs;
@@ -89,6 +92,8 @@ in
       inherit pkgs;
     };
   };
+
+  ssh.authorizedHosts = [ "astyanax" ];
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];

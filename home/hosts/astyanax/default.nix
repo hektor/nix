@@ -14,6 +14,7 @@ in
     ../../modules/desktop/niri
     ../../modules/git.nix
     ../../modules/k9s.nix
+    ../../modules/ssh.nix
     ../../modules/taskwarrior.nix
     ../../modules/keepassxc.nix
     ../../modules/browser
