@@ -88,30 +88,30 @@ in
     hostId = "80eef97e";
   };
 
-
-  services.openssh = {
-    enable = true;
-    harden = true;
-  };
-
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    folders = {
-      "/home/h/sync" = {
-        id = "sync";
-        devices = [ ];
+  services = {
+    fwupd.enable = true;
+    openssh = {
+      enable = true;
+      harden = true;
+    };
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      folders = {
+        "/home/h/sync" = {
+          id = "sync";
+          devices = [ ];
+        };
+      };
+      devices = {
+        # "device1" = {
+        #   id = "DEVICE-ID-GOES-HERE";
+        # };
       };
     };
-    devices = {
-      # "device1" = {
-      #   id = "DEVICE-ID-GOES-HERE";
-      # };
+    locate = {
+      enable = true;
+      package = pkgs.plocate;
     };
-  };
-
-  services.locate = {
-    enable = true;
-    package = pkgs.plocate;
   };
 }
