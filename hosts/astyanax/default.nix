@@ -88,7 +88,6 @@ in
     hostId = "80eef97e";
   };
 
-  services.throttled.enable = false;
 
   services.openssh = {
     enable = true;
