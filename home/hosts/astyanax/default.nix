@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ../../modules/anki.nix
     ../../modules/desktop/niri
     ../../modules/git.nix
     ../../modules/k9s.nix
