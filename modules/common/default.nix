@@ -22,4 +22,29 @@
       inherit inputs outputs;
     };
   };
+
+  nix.optimise = {
+    automatic = true;
+    dates = [ "05:00" ];
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    operation = "switch";
+    flags = [
+      "--recreate-lock-file"
+      "--commit-lock-file"
+      "--print-build-logs"
+    ];
+    dates = "05:00";
+    randomizedDelaySec = "45min";
+    allowReboot = false;
+  };
 }
