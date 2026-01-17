@@ -31,18 +31,27 @@ in
     ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
-    (import ../../modules/secrets {
-      inherit lib inputs config username;
-    })
+    ../../modules/vpn/wireguard.nix
+    (import ../../modules/secrets { inherit lib inputs config; })
+    ../../modules/docker
   ];
 
   home-manager.users.${username} = import ../../home/hosts/astyanax {
-    inherit inputs config pkgs lib;
+    inherit
+      inputs
+      config
+      pkgs
+      lib
+      ;
   };
 
   networking.hostName = hostName;
+
   ssh.username = username;
   ssh.authorizedHosts = [ "andromache" ];
+
+  secrets.username = username;
+  docker.user = username;
 
   hardware = {
     cpu.intel.updateMicrocode = true;
@@ -60,8 +69,6 @@ in
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
-
-  secrets.username = username;
 
   environment.systemPackages = [
     inputs.nvim.packages.x86_64-linux.nvim
