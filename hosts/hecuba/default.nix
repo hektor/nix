@@ -9,12 +9,20 @@
 
 # Also see <https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud>
 
+let
+  username = "username";
+  hostName = "hecuba";
+in
 {
   imports = [
-    ./hard.nix
     ../../modules/common
+    ./hard.nix
     ../../modules/ssh/hardened-openssh.nix
   ];
+
+  networking.hostName = hostName;
+  ssh.username = username;
+  ssh.authorizedHosts = [ "andromache" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -41,16 +49,9 @@
     };
   };
 
-  ssh = {
-    username = "username";
-    authorizedHosts = [ "andromache" ];
-  };
-
   security.sudo.wheelNeedsPassword = false;
 
-  networking = {
-    firewall.enable = true;
-  };
+  networking.firewall.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -66,6 +67,4 @@
     enable = true;
     harden = true;
   };
-
-  networking.hostName = "hecuba";
 }

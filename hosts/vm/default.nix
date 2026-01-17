@@ -6,21 +6,19 @@
   pkgs,
   ...
 }:
-
 let
   username = "h";
+  hostName = "vm";
 in
 {
   imports = [
     ../../modules/common
-    inputs.disko.nixosModules.disko
-    inputs.sops-nix.nixosModules.sops
-    inputs.home-manager.nixosModules.default
     ./hard.nix
+    inputs.sops-nix.nixosModules.sops
     ./disk.nix
     ../../modules/boot/bootloader.nix
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = "vm"; })
+    (import ../../modules/networking { hostName = hostName; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
@@ -28,11 +26,16 @@ in
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets {
-      inherit lib;
-      inherit inputs;
-      inherit config;
+      inherit lib inputs config;
     })
   ];
+
+  home-manager.users.${username} = import ../../home/hosts/vm {
+    inherit inputs config pkgs;
+  };
+
+  networking.hostName = hostName;
+  ssh.username = username;
 
   secrets.username = username;
 
@@ -53,19 +56,6 @@ in
         "-cpu host"
         "-nographic"
       ];
-    };
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs outputs;
-    };
-    users.${username} = import ../../home/hosts/vm {
-      inherit inputs;
-      inherit config;
-      inherit pkgs;
     };
   };
 
