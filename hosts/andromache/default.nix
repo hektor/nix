@@ -30,17 +30,21 @@ in
     ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
-    (import ../../modules/secrets {
-      inherit lib inputs config;
-    })
+    (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
   ];
 
   home-manager.users.${username} = import ../../home/hosts/andromache {
-    inherit inputs config pkgs lib;
+    inherit
+      inputs
+      config
+      pkgs
+      lib
+      ;
   };
 
   networking.hostName = hostName;
+
   ssh.username = username;
   ssh.authorizedHosts = [ "astyanax" ];
 
@@ -80,7 +84,9 @@ in
     };
   };
 
-  environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
+  environment.systemPackages = [
+    inputs.nvim.packages.x86_64-linux.nvim
+  ];
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];
