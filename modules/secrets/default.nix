@@ -28,6 +28,7 @@ in
         "email_work".owner = config.users.users.${cfg.username}.name;
         "anki_sync_user".owner = config.users.users.${cfg.username}.name;
         "anki_sync_key".owner = config.users.users.${cfg.username}.name;
+        "hcloud".owner = config.users.users.${cfg.username}.name;
       };
 
       templates."taskrc.d/sync" = {
@@ -54,6 +55,18 @@ in
         content = ''
           [user]
             email = ${config.sops.placeholder."email_work"}
+        '';
+      };
+
+      templates."hcloud/cli.toml" = {
+        owner = config.users.users.${cfg.username}.name;
+        path = "/home/${cfg.username}/.config/hcloud/cli.toml";
+        content = ''
+          active_context = "server"
+
+          [[contexts]]
+            name = "server"
+            token = "${config.sops.placeholder."hcloud"}"
         '';
       };
     };
