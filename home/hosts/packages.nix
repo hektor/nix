@@ -15,6 +15,7 @@ with pkgs;
   nixfmt-rfc-style
   nmap
   nodejs_24
+  opencode
   nvimpager
   pandoc
   parallel

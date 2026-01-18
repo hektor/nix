@@ -29,6 +29,9 @@ in
         "anki_sync_user".owner = config.users.users.${cfg.username}.name;
         "anki_sync_key".owner = config.users.users.${cfg.username}.name;
         "hcloud".owner = config.users.users.${cfg.username}.name;
+        "nix_signing_key_astyanax" = { };
+        "nix_signing_key_andromache" = { };
+        "opencode_api_key".owner = config.users.users.${cfg.username}.name;
       };
 
       templates."taskrc.d/sync" = {
@@ -67,6 +70,19 @@ in
           [[contexts]]
             name = "server"
             token = "${config.sops.placeholder."hcloud"}"
+        '';
+      };
+
+      templates."opencode/auth.json" = {
+        owner = config.users.users.${cfg.username}.name;
+        path = "/home/${cfg.username}/.local/share/opencode/auth.json";
+        content = ''
+          {
+            "zai-coding-plan": {
+              "type": "api",
+              "key": "${config.sops.placeholder."opencode_api_key"}"
+            }
+          }
         '';
       };
     };
