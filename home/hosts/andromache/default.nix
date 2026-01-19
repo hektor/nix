@@ -15,6 +15,7 @@ in
     ../../modules/git.nix
     ../../modules/hetzner
     ../../modules/k9s.nix
+    ../../modules/kitty.nix
     ../../modules/ssh.nix
     ../../modules/taskwarrior.nix
     ../../modules/keepassxc.nix
