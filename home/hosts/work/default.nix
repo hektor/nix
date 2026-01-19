@@ -15,6 +15,7 @@ in
     ../../modules/git.nix
     ../../modules/k9s.nix
     ../../modules/keepassxc.nix
+    ../../modules/kitty.nix
     ../../modules/browser
     ../../modules/taskwarrior.nix
   ];

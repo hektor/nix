@@ -12,7 +12,6 @@ with pkgs;
   haskellPackages.pandoc-crossref
   htop
   jq
-  kitty
   nixfmt-rfc-style
   nmap
   nodejs_24
