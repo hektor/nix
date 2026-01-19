@@ -17,6 +17,7 @@ in
     ../../modules/keepassxc.nix
     ../../modules/kitty.nix
     ../../modules/browser
+    ../../modules/shell
     ../../modules/taskwarrior.nix
   ];
 
@@ -54,6 +55,9 @@ in
 
   browser.primary = "firefox";
   browser.secondary = "chromium";
+
+  shell.bash.enable = true;
+  starship.enable = true;
 
   programs = {
     gh.enable = true;
