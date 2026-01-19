@@ -16,6 +16,7 @@ in
     ../../modules/k9s.nix
     ../../modules/keepassxc.nix
     ../../modules/kitty.nix
+    ../../modules/nvim.nix
     ../../modules/browser
     ../../modules/shell
     ../../modules/taskwarrior.nix

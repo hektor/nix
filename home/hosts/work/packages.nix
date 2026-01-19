@@ -13,7 +13,4 @@ let
       [ ];
 in
 
-(with pkgs; [
-  inputs.nvim.packages.x86_64-linux.nvim
-])
-++ localPackages
+[ ] ++ localPackages
