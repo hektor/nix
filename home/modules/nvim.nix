@@ -1,9 +1,9 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   config = {
     home.packages = [
-      inputs.nvim.packages.${builtins.currentSystem}.nvim
+      inputs.nvim.packages.${pkgs.system}.nvim
     ];
   };
 }
