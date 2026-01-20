@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
+  dotsPath,
   ...
 }:
 let
   cfg = config.shell.bash;
   username = config.home.username;
-  dotsPath = ../../../dots;
 in
 {
   options.shell.bash = {

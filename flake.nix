@@ -64,6 +64,7 @@
         inherit system;
         overlays = [ nixgl.overlay ];
       };
+      dotsPath = ./dots;
     in
     {
       nix.nixPath = [
@@ -74,7 +75,7 @@
         nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/${host} ];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs dotsPath;
           };
         }
       );
@@ -83,7 +84,7 @@
           inherit pkgs;
           modules = [ ./home/hosts/work ];
           extraSpecialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs dotsPath;
           };
         };
       };

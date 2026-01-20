@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, dotsPath, ... }:
 
 {
   imports = [
@@ -19,7 +19,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs outputs;
+      inherit inputs outputs dotsPath;
     };
   };
 
