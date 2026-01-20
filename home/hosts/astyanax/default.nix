@@ -45,12 +45,4 @@ in
     inherit pkgs;
     inherit config;
   };
-
-  home.file = {
-    ".config/kitty/kitty.conf".source = ../../../dots/.config/kitty/kitty.conf;
-    ".config/kitty/themes/zenwritten_light.conf".source =
-      ../../../dots/.config/kitty/themes/zenwritten_light.conf;
-    ".config/kitty/themes/zenwritten_dark.conf".source =
-      ../../../dots/.config/kitty/themes/zenwritten_dark.conf;
-  };
 }
