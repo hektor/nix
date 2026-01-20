@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  dotsPath,
   osConfig ? null,
   ...
 }:
@@ -25,19 +26,19 @@ in
   home.file = {
     ".config/task/taskrc" = {
       force = true; # overwrite when present
-      source = ../../dots/.config/task/taskrc;
+      source = dotsPath + "/.config/task/taskrc";
     };
-    ".config/task/taskrc.d/aliases".source = ../../dots/.config/task/taskrc.d/aliases;
-    ".config/task/taskrc.d/colors".source = ../../dots/.config/task/taskrc.d/colors;
-    ".config/task/taskrc.d/contexts".source = ../../dots/.config/task/taskrc.d/contexts;
-    ".config/task/taskrc.d/reports".source = ../../dots/.config/task/taskrc.d/reports;
-    ".config/task/taskrc.d/udas".source = ../../dots/.config/task/taskrc.d/udas;
-    ".config/task/taskrc.d/urgency".source = ../../dots/.config/task/taskrc.d/urgency;
+    ".config/task/taskrc.d/aliases".source = dotsPath + "/.config/task/taskrc.d/aliases";
+    ".config/task/taskrc.d/colors".source = dotsPath + "/.config/task/taskrc.d/colors";
+    ".config/task/taskrc.d/contexts".source = dotsPath + "/.config/task/taskrc.d/contexts";
+    ".config/task/taskrc.d/reports".source = dotsPath + "/.config/task/taskrc.d/reports";
+    ".config/task/taskrc.d/udas".source = dotsPath + "/.config/task/taskrc.d/udas";
+    ".config/task/taskrc.d/urgency".source = dotsPath + "/.config/task/taskrc.d/urgency";
     ".local/share/task/hooks/on-exit.sync.py" = {
-      source = ../../dots/.local/share/task/hooks/on-exit.sync.py;
+      source = dotsPath + "/.local/share/task/hooks/on-exit.sync.py";
     };
     ".local/share/task/scripts/sync-and-notify.sh" = {
-      source = ../../dots/.local/share/task/scripts/sync-and-notify.sh;
+      source = dotsPath + "/.local/share/task/scripts/sync-and-notify.sh";
       executable = true;
     };
   };

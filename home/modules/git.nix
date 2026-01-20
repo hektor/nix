@@ -1,8 +1,10 @@
+{ dotsPath, ... }:
+
 {
   programs.git.enable = true;
   home.file = {
-    ".gitconfig".source = ../../dots/.gitconfig;
-    ".gitconfig.work".source = ../../dots/.gitconfig.work;
-    ".gitignore".source = ../../dots/.gitignore;
+    ".gitconfig".source = dotsPath + "/.gitconfig";
+    ".gitconfig.work".source = dotsPath + "/.gitconfig.work";
+    ".gitignore".source = dotsPath + "/.gitignore";
   };
 }
