@@ -53,6 +53,8 @@ in
   secrets.username = username;
   docker.user = username;
 
+  nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_astyanax.path ];
+
   hardware = {
     cpu.intel.updateMicrocode = true;
     # https://wiki.nixos.org/wiki/Intel_Graphics

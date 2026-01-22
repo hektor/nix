@@ -34,6 +34,10 @@
       url = "path:./dots/.config/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -48,6 +52,7 @@
       nixgl,
       firefox-addons,
       nvim,
+      colmena,
     }@inputs:
     let
       inherit (self) outputs;
@@ -81,6 +86,13 @@
             inherit inputs outputs;
           };
         };
+      };
+
+      colmenaHive = import ./deploy/colmena.nix {
+        inherit
+          self
+          inputs
+          ;
       };
     };
 }

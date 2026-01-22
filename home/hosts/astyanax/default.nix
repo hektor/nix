@@ -13,7 +13,7 @@ in
     ../../modules/anki.nix
     ../../modules/desktop/niri
     ../../modules/git.nix
-    ../../modules/hetzner
+    # ../../modules/hetzner.nix
     ../../modules/k9s.nix
     ../../modules/kitty.nix
     ../../modules/ssh.nix
