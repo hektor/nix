@@ -51,6 +51,8 @@ in
   secrets.username = username;
   docker.user = username;
 
+  nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_andromache.path ];
+
   disko.devices = {
     disk.data = {
       type = "disk";
