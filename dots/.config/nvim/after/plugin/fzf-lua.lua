@@ -11,6 +11,6 @@ vim.keymap.set("n", "<leader>fd", fzf.diagnostics_workspace)
 vim.keymap.set("n", "<leader>fhe", fzf.help_tags)
 vim.keymap.set("n", "<leader>fhi", fzf.search_history)
 vim.keymap.set("n", "<leader>fma", fzf.marks)
-vim.keymap.set("n", "<leader>fma", fzf.man_pages)
+vim.keymap.set("n", "<leader>fmp", fzf.man_pages)
 
 vim.keymap.set("i", "<c-f>", fzf.complete_path)
