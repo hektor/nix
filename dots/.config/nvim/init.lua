@@ -1,9 +1,7 @@
 require("nixCatsUtils").setup({ non_nix_value = true }) -- https://github.com/BirdeeHub/nixCats-nvim/blob/77dffad8235eb77684fcb7599487c8e9f23d5b8f/templates/example/init.lua
 
-vim.cmd([[
-set termguicolors
-hi Normal ctermbg=none guibg=NONE
-]])
+vim.opt.termguicolors = true
+vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
 
 require("base")
 require("cursor")
