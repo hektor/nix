@@ -1,8 +1,5 @@
 require("neodev").setup() -- should setup before lspconfig
 
--- vim.g.coq_settings = { auto_start = 'shut-up' }
--- local capabilities = coq.lsp_ensure_capabilities()
-
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -64,7 +61,6 @@ local servers = {
       Lua = {},
     },
   },
-  -- marksman = {},
   nixd = {},
   pyright = {},
   -- tsserver = {},
