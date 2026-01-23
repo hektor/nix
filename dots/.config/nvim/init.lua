@@ -2,7 +2,6 @@ require("nixCatsUtils").setup({ non_nix_value = true }) -- https://github.com/Bi
 
 vim.cmd([[
 set termguicolors
-set bg=light
 hi Normal ctermbg=none guibg=NONE
 ]])
 
