@@ -28,8 +28,6 @@ with pkgs;
   sops
   sshfs
   tldr
-  tmux
-  tmuxp
   tree
   unzip
   vimPlugins.vim-plug
