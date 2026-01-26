@@ -61,7 +61,30 @@ local servers = {
       Lua = {},
     },
   },
-  nixd = {},
+  nixd = {
+    settings = {
+      nixd = {
+        nixpkgs = {
+          expr = "import <nixpkgs> { }",
+          expr = 'import (builtins.getFlake ("git+file://" + toString ../../../../../.)).inputs.nixpkgs { }',
+        },
+      },
+      options = {
+        nixos = {
+          expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).nixosConfigurations."'
+            .. vim.fn.hostname()
+            .. '".options',
+        },
+        home_manager = {
+          expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).homeConfigurations."'
+            .. vim.fn.expand("$USER")
+            .. "@"
+            .. vim.fn.hostname()
+            .. '".options',
+        },
+      },
+    },
+  },
   pyright = {},
   -- tsserver = {},
   svelte = {
