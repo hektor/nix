@@ -12,6 +12,8 @@ in
 {
   imports = [
     ../../modules/desktop/niri
+
+    ../../modules/3d
     ../../modules/git.nix
     # ../../modules/hetzner.nix
     ../../modules/k9s.nix
@@ -20,6 +22,7 @@ in
     ../../modules/taskwarrior.nix
     ../../modules/keepassxc.nix
     ../../modules/anki.nix
+    ../../modules/photography
     ../../modules/browser
     ../../modules/shell
   ];
@@ -43,8 +46,5 @@ in
     taskwarrior.config.recurrence = lib.mkForce "on";
   };
 
-  home.packages = import ../packages.nix {
-    inherit pkgs;
-    inherit config;
-  };
+  home.packages = import ../packages.nix { inherit pkgs; };
 }
