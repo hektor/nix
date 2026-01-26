@@ -15,4 +15,11 @@
       wlsunset
     ];
   };
+
+  services.gammastep = {
+    enable = true;
+    provider = "manual";
+    latitude = 51.05;
+    longitude = 3.71667;
+  };
 }
