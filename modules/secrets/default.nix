@@ -34,56 +34,58 @@ in
         "opencode_api_key".owner = config.users.users.${cfg.username}.name;
       };
 
-      templates."taskrc.d/sync" = {
-        owner = config.users.users.${cfg.username}.name;
-        content = ''
-          sync.server.url=${config.sops.placeholder."taskwarrior_sync_server_url"}
-          sync.server.client_id=${config.sops.placeholder."taskwarrior_sync_server_client_id"}
-          sync.encryption_secret=${config.sops.placeholder."taskwarrior_sync_encryption_secret"}
-        '';
-      };
+      templates = {
+        "taskrc.d/sync" = {
+          owner = config.users.users.${cfg.username}.name;
+          content = ''
+            sync.server.url=${config.sops.placeholder."taskwarrior_sync_server_url"}
+            sync.server.client_id=${config.sops.placeholder."taskwarrior_sync_server_client_id"}
+            sync.encryption_secret=${config.sops.placeholder."taskwarrior_sync_encryption_secret"}
+          '';
+        };
 
-      templates.".gitconfig.email" = {
-        owner = config.users.users.${cfg.username}.name;
-        path = "/home/${cfg.username}/.gitconfig.email";
-        content = ''
-          [user]
-            email = ${config.sops.placeholder."email_personal"}
-        '';
-      };
+        ".gitconfig.email" = {
+          owner = config.users.users.${cfg.username}.name;
+          path = "/home/${cfg.username}/.gitconfig.email";
+          content = ''
+            [user]
+              email = ${config.sops.placeholder."email_personal"}
+          '';
+        };
 
-      templates.".gitconfig.work.email" = {
-        owner = config.users.users.${cfg.username}.name;
-        path = "/home/${cfg.username}/.gitconfig.work.email";
-        content = ''
-          [user]
-            email = ${config.sops.placeholder."email_work"}
-        '';
-      };
+        ".gitconfig.work.email" = {
+          owner = config.users.users.${cfg.username}.name;
+          path = "/home/${cfg.username}/.gitconfig.work.email";
+          content = ''
+            [user]
+              email = ${config.sops.placeholder."email_work"}
+          '';
+        };
 
-      templates."hcloud/cli.toml" = {
-        owner = config.users.users.${cfg.username}.name;
-        path = "/home/${cfg.username}/.config/hcloud/cli.toml";
-        content = ''
-          active_context = "server"
+        "hcloud/cli.toml" = {
+          owner = config.users.users.${cfg.username}.name;
+          path = "/home/${cfg.username}/.config/hcloud/cli.toml";
+          content = ''
+            active_context = "server"
 
-          [[contexts]]
-            name = "server"
-            token = "${config.sops.placeholder."hcloud"}"
-        '';
-      };
+            [[contexts]]
+              name = "server"
+              token = "${config.sops.placeholder."hcloud"}"
+          '';
+        };
 
-      templates."opencode/auth.json" = {
-        owner = config.users.users.${cfg.username}.name;
-        path = "/home/${cfg.username}/.local/share/opencode/auth.json";
-        content = ''
-          {
-            "zai-coding-plan": {
-              "type": "api",
-              "key": "${config.sops.placeholder."opencode_api_key"}"
+        "opencode/auth.json" = {
+          owner = config.users.users.${cfg.username}.name;
+          path = "/home/${cfg.username}/.local/share/opencode/auth.json";
+          content = ''
+            {
+              "zai-coding-plan": {
+                "type": "api",
+                "key": "${config.sops.placeholder."opencode_api_key"}"
+              }
             }
-          }
-        '';
+          '';
+        };
       };
     };
   };

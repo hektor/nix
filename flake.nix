@@ -56,7 +56,7 @@
     }@inputs:
     let
       inherit (self) outputs;
-      lib = inputs.nixpkgs.lib;
+      inherit (inputs.nixpkgs) lib;
       utils = import ./utils { inherit lib; };
       hostDirNames = utils.dirNames ./hosts;
       system = "x86_64-linux";

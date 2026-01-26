@@ -11,7 +11,7 @@
       disk = {
         root = {
           type = "disk";
-          device = config.device;
+          inherit (config) device;
           content = {
             type = "gpt";
             partitions = {

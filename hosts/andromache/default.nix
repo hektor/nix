@@ -27,7 +27,7 @@ in
     ../../modules/desktops/niri
     ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = hostName; })
+    (import ../../modules/networking { inherit hostName; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
@@ -93,36 +93,37 @@ in
     inputs.nvim.packages.x86_64-linux.nvim
   ];
 
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-  };
+  services = {
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+    };
 
-  services.openssh = {
-    enable = true;
-    harden = true;
-  };
+    openssh = {
+      enable = true;
+      harden = true;
+    };
 
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    settings = {
-      devices = {
-        # "device1" = {
-        #   id = "DEVICE-ID-GOES-HERE";
-        # };
-      };
-      folders = {
-        "/home/${username}/sync" = {
-          id = "sync";
-          devices = [ ];
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      settings = {
+        devices = {
+          # "device1" = {
+          #   id = "DEVICE-ID-GOES-HERE";
+          # };
+        };
+        folders = {
+          "/home/${username}/sync" = {
+            id = "sync";
+            devices = [ ];
+          };
         };
       };
     };
-  };
-
-  services.locate = {
-    enable = true;
-    package = pkgs.plocate;
+    locate = {
+      enable = true;
+      package = pkgs.plocate;
+    };
   };
 
   networking = {
@@ -131,7 +132,7 @@ in
     interfaces = {
       eno1 = {
         wakeOnLan.enable = true;
-        macAddress = wolInterfaces.eno1.macAddress;
+        inherit (wolInterfaces.eno1) macAddress;
       };
     };
     firewall = {

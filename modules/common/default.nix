@@ -1,4 +1,9 @@
-{ inputs, outputs, dotsPath, ... }:
+{
+  inputs,
+  outputs,
+  dotsPath,
+  ...
+}:
 
 {
   imports = [
@@ -23,15 +28,16 @@
     };
   };
 
-  nix.optimise = {
-    automatic = true;
-    dates = [ "05:00" ];
-  };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+  nix = {
+    optimise = {
+      automatic = true;
+      dates = [ "05:00" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
 
   system.autoUpgrade = {

@@ -45,12 +45,14 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  home.stateVersion = "25.05";
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home = {
+    stateVersion = "25.05";
+    inherit username;
+    homeDirectory = "/home/${username}";
+  };
 
   targets.genericLinux.nixGL = {
-    packages = inputs.nixgl.packages;
+    inherit (inputs.nixgl) packages;
     defaultWrapper = "mesa";
   };
 

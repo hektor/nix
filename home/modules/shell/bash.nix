@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.shell.bash;
-  username = config.home.username;
+  inherit (config.home) username;
 in
 {
   options.shell.bash = {
