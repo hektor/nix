@@ -174,7 +174,7 @@
 
       packageDefinitions = {
         nvim =
-          { ... }:
+          _:
           {
             settings = {
               suffix-path = true;

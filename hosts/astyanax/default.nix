@@ -27,7 +27,7 @@ in
     ../../modules/desktops/niri
     ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = hostName; })
+    (import ../../modules/networking { inherit hostName; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization

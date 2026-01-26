@@ -5,7 +5,7 @@
 
 {
   networking = {
-    hostName = hostName;
+    inherit hostName;
     wireless.iwd.enable = true;
     networkmanager.wifi.backend = "iwd";
     nftables.enable = true;

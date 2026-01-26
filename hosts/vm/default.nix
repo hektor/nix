@@ -18,7 +18,7 @@ in
     ./disk.nix
     ../../modules/boot/bootloader.nix
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = hostName; })
+    (import ../../modules/networking { inherit hostName; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
@@ -42,9 +42,11 @@ in
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
 
   disko = {
-    devices.disk.main.device = "/dev/vda";
-    devices.disk.main.imageName = "nixos-vm";
-    devices.disk.main.imageSize = "32G";
+    devices.disk.main = {
+      device = "/dev/vda";
+      imageName = "nixos-vm";
+      imageSize = "32G";
+    };
   };
 
   virtualisation.vmVariantWithDisko = {
@@ -59,11 +61,12 @@ in
     };
   };
 
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
-
-  services.openssh = {
-    enable = true;
-    harden = true;
+  services = {
+    qemuGuest.enable = true;
+    spice-vdagentd.enable = true;
+    openssh = {
+      enable = true;
+      harden = true;
+    };
   };
 }

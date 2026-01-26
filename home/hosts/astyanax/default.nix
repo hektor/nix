@@ -23,9 +23,11 @@ in
     ../../modules/shell
   ];
 
-  home.stateVersion = "25.05";
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home = {
+    stateVersion = "25.05";
+    inherit username;
+    homeDirectory = "/home/${username}";
+  };
 
   xdg.userDirs.createDirectories = false;
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
