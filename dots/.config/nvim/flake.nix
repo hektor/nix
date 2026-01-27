@@ -67,10 +67,15 @@
               clang
               clang-tools
               delta
+              emmet-language-server
+              eslint_d
               fd
               gawk
               gdtoolkit_4
+              hadolint
+              helm-ls
               isort
+              lua-language-server
               mcp-hub
               nixd
               nixfmt
@@ -78,12 +83,16 @@
               nodePackages.typescript-language-server
               ormolu
               prettierd
+              rust-analyzer
               rustfmt
               shellcheck-minimal
               stylelint
               stylua
               tree-sitter
               vscode-langservers-extracted
+              vtsls
+              yaml-language-server
+              yamllint
             ];
           };
 
@@ -173,19 +182,17 @@
         };
 
       packageDefinitions = {
-        nvim =
-          _:
-          {
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              aliases = [ "vim" ];
-            };
-            categories = {
-              general = true;
-            };
+        nvim = _: {
+          settings = {
+            suffix-path = true;
+            suffix-LD = true;
+            wrapRc = true;
+            aliases = [ "vim" ];
           };
+          categories = {
+            general = true;
+          };
+        };
       };
       defaultPackageName = "nvim";
     in
