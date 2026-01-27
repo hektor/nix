@@ -11,6 +11,7 @@ in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
+    ../../modules/ai-tools.nix
     ../../modules/dconf.nix
     ../../modules/git.nix
     ../../modules/k9s.nix
