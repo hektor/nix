@@ -30,9 +30,9 @@
           platforms = [ "x86_64-linux" ];
         };
       })
-      claude-code
+      # claude-code
       # (config.lib.nixGL.wrap code-cursor)
-      github-copilot-cli
+      # github-copilot-cli
       mcp-nixos
       opencode
     ];
