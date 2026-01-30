@@ -14,7 +14,7 @@ in
     ../../modules/cloud
     ../../modules/desktop/niri
     ../../modules/3d
-    ../../modules/git.nix
+    ../../modules/git
     ../../modules/k9s.nix
     ../../modules/kitty.nix
     ../../modules/ssh.nix
@@ -37,6 +37,7 @@ in
 
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
+  github.enable = true;
 
   shell.bash = {
     enable = true;
