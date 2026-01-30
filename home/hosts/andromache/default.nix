@@ -11,11 +11,10 @@ let
 in
 {
   imports = [
+    ../../modules/cloud
     ../../modules/desktop/niri
-
     ../../modules/3d
     ../../modules/git.nix
-    # ../../modules/hetzner.nix
     ../../modules/k9s.nix
     ../../modules/kitty.nix
     ../../modules/ssh.nix
@@ -37,6 +36,7 @@ in
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
 
   browser.primary = "librewolf";
+  cloud.hetzner.enable = true;
 
   shell.bash = {
     enable = true;
