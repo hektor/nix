@@ -12,6 +12,7 @@ in
 {
   imports = [
     ../../modules/cloud
+    ../../modules/comms
     ../../modules/desktop/niri
     ../../modules/3d
     ../../modules/git
@@ -37,6 +38,7 @@ in
 
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
+  comms.signal.enable = true;
   github.enable = true;
 
   shell.bash = {

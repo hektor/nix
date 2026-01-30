@@ -22,7 +22,6 @@ with pkgs;
   pnpm
   python3
   ripgrep
-  signal-desktop
   silver-searcher
   sops
   sshfs
