@@ -13,6 +13,7 @@ in
     inputs.sops-nix.homeManagerModules.sops
     ../../modules/ai-tools.nix
     ../../modules/cloud
+    ../../modules/comms
     ../../modules/dconf.nix
     ../../modules/git
     ../../modules/k9s.nix
@@ -61,6 +62,8 @@ in
   browser.primary = "firefox";
   browser.secondary = "chromium";
   cloud.azure.enable = true;
+  comms.signal.enable = true;
+  comms.teams.enable = true;
   github.enable = true;
   gitlab.enable = true;
 

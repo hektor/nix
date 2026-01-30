@@ -12,6 +12,7 @@ in
     ../../modules/ai-tools.nix
     ../../modules/anki.nix
     ../../modules/cloud
+    ../../modules/comms
     ../../modules/desktop/niri
     ../../modules/git
     ../../modules/k9s.nix
@@ -34,6 +35,7 @@ in
 
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
+  comms.signal.enable = true;
   github.enable = true;
 
   shell.bash = {
