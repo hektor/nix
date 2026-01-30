@@ -12,6 +12,7 @@ in
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     ../../modules/ai-tools.nix
+    ../../modules/cloud
     ../../modules/dconf.nix
     ../../modules/git.nix
     ../../modules/k9s.nix
@@ -59,6 +60,7 @@ in
 
   browser.primary = "firefox";
   browser.secondary = "chromium";
+  cloud.azure.enable = true;
 
   shell.bash.enable = true;
   starship.enable = true;

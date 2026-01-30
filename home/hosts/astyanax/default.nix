@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   ...
@@ -12,9 +11,9 @@ in
   imports = [
     ../../modules/ai-tools.nix
     ../../modules/anki.nix
+    ../../modules/cloud
     ../../modules/desktop/niri
     ../../modules/git.nix
-    # ../../modules/hetzner.nix
     ../../modules/k9s.nix
     ../../modules/kitty.nix
     ../../modules/ssh.nix
@@ -34,6 +33,7 @@ in
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
 
   browser.primary = "librewolf";
+  cloud.hetzner.enable = true;
 
   shell.bash = {
     enable = true;
