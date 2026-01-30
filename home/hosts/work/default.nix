@@ -14,7 +14,7 @@ in
     ../../modules/ai-tools.nix
     ../../modules/cloud
     ../../modules/dconf.nix
-    ../../modules/git.nix
+    ../../modules/git
     ../../modules/k9s.nix
     ../../modules/keepassxc.nix
     ../../modules/kitty.nix
@@ -61,6 +61,8 @@ in
   browser.primary = "firefox";
   browser.secondary = "chromium";
   cloud.azure.enable = true;
+  github.enable = true;
+  gitlab.enable = true;
 
   shell.bash.enable = true;
   starship.enable = true;

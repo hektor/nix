@@ -13,7 +13,7 @@ in
     ../../modules/anki.nix
     ../../modules/cloud
     ../../modules/desktop/niri
-    ../../modules/git.nix
+    ../../modules/git
     ../../modules/k9s.nix
     ../../modules/kitty.nix
     ../../modules/ssh.nix
@@ -34,6 +34,7 @@ in
 
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
+  github.enable = true;
 
   shell.bash = {
     enable = true;
