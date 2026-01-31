@@ -76,6 +76,8 @@ in
     };
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   hardware = {
     cpu.intel.updateMicrocode = true;
     graphics.enable = true;
