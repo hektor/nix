@@ -76,15 +76,28 @@
       nix.nixPath = [
         "nixpkgs=${inputs.nixpkgs}"
       ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
-      nixosConfigurations = lib.genAttrs hostDirNames (
-        host:
-        nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/${host} ];
-          specialArgs = {
-            inherit inputs outputs dotsPath;
+      nixosConfigurations =
+        (lib.genAttrs hostDirNames (
+          host:
+          nixpkgs.lib.nixosSystem {
+            modules = [ ./hosts/${host} ];
+            specialArgs = {
+              inherit inputs outputs dotsPath;
+            };
+          }
+        ))
+        // {
+          sd-image-aarch64 = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            modules = [
+              "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+              ./images/sd-image-aarch64.nix
+            ];
+            specialArgs = {
+              inherit inputs outputs dotsPath;
+            };
           };
-        }
-      );
+        };
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -115,5 +128,7 @@
           inputs
           ;
       };
+
+      images.sd-image-aarch64 = self.nixosConfigurations.sd-image-aarch64.config.system.build.sdImage;
     };
 }
