@@ -39,8 +39,6 @@ in
 
   secrets.username = username;
 
-  environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nvim ];
-
   disko = {
     devices.disk.main = {
       device = "/dev/vda";

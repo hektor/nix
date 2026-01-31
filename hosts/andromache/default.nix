@@ -89,9 +89,6 @@ in
     };
   };
 
-  environment.systemPackages = [
-    inputs.nvim.packages.x86_64-linux.nvim
-  ];
 
   services = {
     xserver = {

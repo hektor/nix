@@ -75,7 +75,6 @@ in
   };
 
   environment.systemPackages = [
-    inputs.nvim.packages.x86_64-linux.nvim
     (pkgs.writeShellApplication {
       name = "wol-andromache";
       runtimeInputs = [ pkgs.wakeonlan ];
