@@ -88,10 +88,15 @@
         ))
         // {
           sd-image-aarch64 = nixpkgs.lib.nixosSystem {
-            system = "aarch64-linux";
+            system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
               ./images/sd-image-aarch64.nix
+              {
+                nixpkgs.crossSystem = {
+                  system = "aarch64-linux";
+                };
+              }
             ];
             specialArgs = {
               inherit inputs outputs dotsPath;
