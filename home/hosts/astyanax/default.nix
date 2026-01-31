@@ -17,6 +17,7 @@ in
     ../../modules/git
     ../../modules/k9s.nix
     ../../modules/kitty.nix
+    ../../modules/nvim.nix
     ../../modules/ssh.nix
     ../../modules/taskwarrior.nix
     ../../modules/keepassxc.nix
