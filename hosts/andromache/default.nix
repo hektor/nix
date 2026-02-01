@@ -90,6 +90,10 @@ in
     };
   };
 
+  environment.systemPackages = [
+    inputs.colmena.packages.${pkgs.system}.colmena
+  ];
+
 
   services = {
     xserver = {
