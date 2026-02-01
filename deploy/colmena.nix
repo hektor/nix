@@ -13,33 +13,34 @@ inputs.colmena.lib.makeHive {
     nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs or { }) self.nixosConfigurations;
   };
 
-  astyanax.deployment.tags = [ "local" ];
+  astyanax = {
+    imports = [ ../hosts/astyanax ];
+    deployment.tags = [ "local" ];
+  };
 
-  andromache.deployment.tags = [ "local" ];
+  andromache = {
+    imports = [ ../hosts/andromache ];
+    deployment.tags = [ "local" ];
+  };
 
-  vm.deployment.tags = [ "local" ];
+  vm = {
+    imports = [ ../hosts/vm ];
+    deployment.tags = [ "local" ];
+  };
 
-  hecuba =
-    { ... }:
-    {
-      imports = [ ../hosts/hecuba ];
-      deployment = {
-        targetHost = "hecuba";
-        targetUser = "username";
-        targetPort = 22;
-        tags = [ "cloud" ];
-      };
+  hecuba = {
+    imports = [ ../hosts/hecuba ];
+    deployment = {
+      targetUser = "username";
+      tags = [ "cloud" ];
     };
+  };
 
-  eetion =
-    { ... }:
-    {
-      imports = [ ../hosts/eetion ];
-      deployment = {
-        targetHost = "eetion";
-        targetUser = "h";
-        targetPort = 22;
-        tags = [ "arm" ];
-      };
+  eetion = {
+    imports = [ ../hosts/eetion ];
+    deployment = {
+      targetUser = "h";
+      tags = [ "arm" ];
     };
+  };
 }

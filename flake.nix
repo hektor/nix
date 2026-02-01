@@ -49,16 +49,10 @@
     {
       self,
       nixpkgs,
-      nixos-hardware,
-      disko,
-      sops-nix,
-      nix-secrets,
       home-manager,
       nix-on-droid,
       nixgl,
-      firefox-addons,
-      nvim,
-      colmena,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -66,10 +60,6 @@
       utils = import ./utils { inherit lib; };
       hostDirNames = utils.dirNames ./hosts;
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ nixgl.overlay ];
-      };
       dotsPath = ./dots;
     in
     {
@@ -77,9 +67,10 @@
         "nixpkgs=${inputs.nixpkgs}"
       ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
       nixosConfigurations =
-        (lib.genAttrs (lib.filter (h: h != "eetion") hostDirNames) (
+        (lib.genAttrs hostDirNames (
           host:
           nixpkgs.lib.nixosSystem {
+            system = import ./hosts/${host}/system.nix;
             modules = [ ./hosts/${host} ];
             specialArgs = {
               inherit inputs outputs dotsPath;
@@ -87,13 +78,6 @@
           }
         ))
         // {
-          eetion = nixpkgs.lib.nixosSystem {
-            system = "aarch64-linux";
-            modules = [ ./hosts/eetion ];
-            specialArgs = {
-              inherit inputs outputs dotsPath;
-            };
-          };
           sd-image-aarch64 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -112,7 +96,10 @@
         };
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ nixgl.overlay ];
+          };
           modules = [ ./home/hosts/work ];
           extraSpecialArgs = {
             inherit inputs outputs dotsPath;
