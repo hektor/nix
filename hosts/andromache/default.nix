@@ -90,6 +90,8 @@ in
     };
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   environment.systemPackages = [
     inputs.colmena.packages.${pkgs.system}.colmena
   ];
