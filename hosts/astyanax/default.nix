@@ -13,6 +13,7 @@ let
 in
 {
   imports = [
+    inputs.disko.nixosModules.disko
     ../../modules/common
     ./hard.nix
     inputs.nixos-hardware.nixosModules.common-pc

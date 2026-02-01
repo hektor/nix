@@ -12,6 +12,7 @@ let
 in
 {
   imports = [
+    inputs.disko.nixosModules.disko
     ../../modules/common
     ./hard.nix
     inputs.sops-nix.nixosModules.sops
