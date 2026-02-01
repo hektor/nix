@@ -37,7 +37,10 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    harden = true;
+  };
 
   # sdImage.postBuildCommands =
   #   let
