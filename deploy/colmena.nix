@@ -19,10 +19,27 @@ inputs.colmena.lib.makeHive {
 
   vm.deployment.tags = [ "local" ];
 
-  hecuba.deployment = {
-    targetHost = "hecuba";
-    targetUser = "username";
-    targetPort = 22;
-    tags = [ "cloud" ];
-  };
+  hecuba =
+    { ... }:
+    {
+      imports = [ ../hosts/hecuba ];
+      deployment = {
+        targetHost = "hecuba";
+        targetUser = "username";
+        targetPort = 22;
+        tags = [ "cloud" ];
+      };
+    };
+
+  eetion =
+    { ... }:
+    {
+      imports = [ ../hosts/eetion ];
+      deployment = {
+        targetHost = "eetion";
+        targetUser = "h";
+        targetPort = 22;
+        tags = [ "arm" ];
+      };
+    };
 }

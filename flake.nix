@@ -77,7 +77,7 @@
         "nixpkgs=${inputs.nixpkgs}"
       ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
       nixosConfigurations =
-        (lib.genAttrs hostDirNames (
+        (lib.genAttrs (lib.filter (h: h != "eetion") hostDirNames) (
           host:
           nixpkgs.lib.nixosSystem {
             modules = [ ./hosts/${host} ];
@@ -87,6 +87,13 @@
           }
         ))
         // {
+          eetion = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            modules = [ ./hosts/eetion ];
+            specialArgs = {
+              inherit inputs outputs dotsPath;
+            };
+          };
           sd-image-aarch64 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [

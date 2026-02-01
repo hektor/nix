@@ -1,0 +1,62 @@
+{ pkgs, ... }:
+
+# Orange Pi Zero2 H616
+# See <https://nixos.wiki/wiki/NixOS_on_ARM/Orange_Pi_Zero2_H616>
+
+let
+  username = "h";
+  hostName = "eetion";
+in
+{
+  imports = [
+    ./hard.nix
+    ../../modules/ssh/hardened-openssh.nix
+  ];
+
+  ssh.username = username;
+  ssh.authorizedHosts = [
+    "andromache"
+    "astyanax"
+  ];
+
+  boot.loader = {
+    grub.enable = false;
+    generic-extlinux-compatible.enable = true;
+  };
+
+  networking.hostName = hostName;
+  networking.networkmanager.enable = true;
+
+  users.users = {
+    root.hashedPassword = "!";
+    ${username} = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
+  };
+
+  security.sudo.wheelNeedsPassword = false;
+
+  services.openssh = {
+    enable = true;
+    harden = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+  ];
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
+  };
+
+  system.stateVersion = "26.05";
+}
