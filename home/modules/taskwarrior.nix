@@ -22,6 +22,7 @@ in
   home.packages = with pkgs; [
     libnotify
     taskopen
+    python3
   ];
 
   home.file = {
