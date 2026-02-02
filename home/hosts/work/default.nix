@@ -15,6 +15,7 @@ in
     ../../modules/cloud
     ../../modules/comms
     ../../modules/dconf.nix
+    ../../modules/docker
     ../../modules/git
     ../../modules/k9s.nix
     ../../modules/keepassxc.nix
