@@ -26,6 +26,13 @@ in
 
   networking.hostName = hostName;
   networking.networkmanager.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      80
+      443
+    ];
+  };
 
   users.users = {
     root.hashedPassword = "!";
@@ -48,7 +55,7 @@ in
       backend = "podman";
       containers.actualbudget = {
         image = "docker.io/actualbudget/actual-server:latest-alpine";
-        ports = [ "5006:5006" ];
+        ports = [ "80:5006" ];
         volumes = [ "/var/lib/actualbudget:/data" ];
       };
     };
