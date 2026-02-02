@@ -31,6 +31,7 @@ inputs.colmena.lib.makeHive {
   hecuba = {
     imports = [ ../hosts/hecuba ];
     deployment = {
+      targetHost = "server.hektormisplon.xyz";
       targetUser = "username";
       tags = [ "cloud" ];
     };
