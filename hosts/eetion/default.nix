@@ -42,6 +42,18 @@ in
     harden = true;
   };
 
+  virtualisation = {
+    podman.enable = true;
+    oci-containers = {
+      backend = "podman";
+      containers.actualbudget = {
+        image = "docker.io/actualbudget/actual-server:latest-alpine";
+        ports = [ "5006:5006" ];
+        volumes = [ "/var/lib/actualbudget:/data" ];
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     git
