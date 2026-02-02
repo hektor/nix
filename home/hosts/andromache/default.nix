@@ -16,7 +16,7 @@ in
     ../../modules/desktop/niri
     ../../modules/3d
     ../../modules/git
-    ../../modules/k9s.nix
+    ../../modules/k8s/k9s.nix
     ../../modules/kitty.nix
     ../../modules/nvim.nix
     ../../modules/ssh.nix

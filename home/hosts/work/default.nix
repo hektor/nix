@@ -17,6 +17,7 @@ in
     ../../modules/dconf.nix
     ../../modules/docker
     ../../modules/git
+    ../../modules/k8s
     ../../modules/k9s.nix
     ../../modules/keepassxc.nix
     ../../modules/kitty.nix
