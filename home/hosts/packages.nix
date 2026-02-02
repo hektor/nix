@@ -2,13 +2,10 @@
 
 with pkgs;
 [
-  bash-completion
   bat
   entr
   feh
   fzf
-  gh
-  git
   haskellPackages.pandoc-crossref
   htop
   jq
@@ -20,7 +17,6 @@ with pkgs;
   parallel
   pass
   pnpm
-  python3
   ripgrep
   silver-searcher
   sops

@@ -75,9 +75,15 @@ in
     kubecolor.enable = true;
   };
 
-  home.packages = import ./packages.nix {
-    inherit inputs;
-    inherit config;
-    inherit pkgs;
-  };
+  home.packages =
+    import ./packages.nix {
+      inherit inputs;
+      inherit config;
+      inherit pkgs;
+    }
+    ++ import ../packages.nix {
+      inherit inputs;
+      inherit config;
+      inherit pkgs;
+    };
 }
