@@ -3,6 +3,16 @@
   inputs,
 }:
 
+let
+  mkNode = hostname: tags: {
+    imports = [ ../hosts/${hostname} ];
+    deployment = {
+      targetHost = self.nixosConfigurations.${hostname}.config.ssh.publicHostname;
+      targetUser = self.nixosConfigurations.${hostname}.config.ssh.username;
+      inherit tags;
+    };
+  };
+in
 inputs.colmena.lib.makeHive {
   meta = {
     nixpkgs = import inputs.nixpkgs {
@@ -13,35 +23,9 @@ inputs.colmena.lib.makeHive {
     nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs or { }) self.nixosConfigurations;
   };
 
-  astyanax = {
-    imports = [ ../hosts/astyanax ];
-    deployment.tags = [ "local" ];
-  };
-
-  andromache = {
-    imports = [ ../hosts/andromache ];
-    deployment.tags = [ "local" ];
-  };
-
-  vm = {
-    imports = [ ../hosts/vm ];
-    deployment.tags = [ "local" ];
-  };
-
-  hecuba = {
-    imports = [ ../hosts/hecuba ];
-    deployment = {
-      targetHost = "server.hektormisplon.xyz";
-      targetUser = "username";
-      tags = [ "cloud" ];
-    };
-  };
-
-  eetion = {
-    imports = [ ../hosts/eetion ];
-    deployment = {
-      targetUser = "h";
-      tags = [ "arm" ];
-    };
-  };
+  astyanax = mkNode "astyanax" [ "local" ];
+  andromache = mkNode "andromache" [ "local" ];
+  vm = mkNode "vm" [ "local" ];
+  hecuba = mkNode "hecuba" [ "cloud" ];
+  eetion = mkNode "eetion" [ "arm" ];
 }

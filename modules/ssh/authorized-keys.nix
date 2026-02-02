@@ -9,6 +9,10 @@
       type = lib.types.str;
       default = "h";
     };
+    publicHostname = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+    };
   };
 
   # auto generate authorized_keys from `authorizedHosts`

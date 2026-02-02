@@ -24,6 +24,7 @@ in
 
   networking.hostName = hostName;
   ssh.username = username;
+  ssh.publicHostname = "server.hektormisplon.xyz";
   ssh.authorizedHosts = [
     "andromache"
     "astyanax"
