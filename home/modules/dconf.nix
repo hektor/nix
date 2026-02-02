@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   terminal = "kitty";
@@ -119,4 +119,6 @@ in
       toggle-quick-settings = [ ];
     };
   };
+
+  home.packages = with pkgs; [ dconf2nix ];
 }
