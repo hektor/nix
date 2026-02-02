@@ -14,6 +14,7 @@ in
   ];
 
   ssh.username = username;
+  ssh.publicHostname = "eetion";
   ssh.authorizedHosts = [
     "andromache"
     "astyanax"
@@ -49,13 +50,54 @@ in
     harden = true;
   };
 
+  environment.etc."paperless-admin-pass".text = "admin";
+
+  services.paperless = {
+    enable = true;
+    passwordFile = "/etc/paperless-admin-pass";
+    settings = {
+      PAPERLESS_URL = "http://paperless.eetion";
+    };
+  };
+
+  # added (OPNSense) domain override to make this work on LAN
+  #
+  # host: eetion
+  # domain: <domain (e.g. lan)>
+  # ip address: <eetion-ip>
+  #
+  # host: paperless
+  # domain: eetion
+  # ip address: <eetion-ip>
+  services.nginx = {
+    enable = true;
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
+    virtualHosts = {
+      "eetion" = {
+        default = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:5006";
+        };
+      };
+      "paperless.eetion" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:28981";
+        };
+      };
+    };
+  };
+
   virtualisation = {
     podman.enable = true;
     oci-containers = {
       backend = "podman";
       containers.actualbudget = {
         image = "docker.io/actualbudget/actual-server:latest-alpine";
-        ports = [ "80:5006" ];
+        ports = [ "5006:5006" ];
         volumes = [ "/var/lib/actualbudget:/data" ];
       };
     };
