@@ -1,13 +1,20 @@
-{ inputs, pkgs }:
+{
+  config,
+  inputs,
+  pkgs,
+}:
 
 let
   bookmarks = import ./bookmarks.nix;
 in
 
 {
-  nativeMessagingHosts = with pkgs; [
-    tridactyl-native
-  ];
+  nativeMessagingHosts =
+    with pkgs;
+    [
+      tridactyl-native
+    ]
+    ++ lib.optionals config.programs.keepassxc.enable [ keepassxc ];
   profiles = {
     default = {
       settings = {
