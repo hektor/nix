@@ -37,6 +37,7 @@ in
     # ../../modules/vpn/wireguard.nix
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
+    ../../modules/syncthing
   ];
 
   home-manager.users.${username} = import ../../home/hosts/astyanax {
@@ -99,21 +100,30 @@ in
       enable = true;
       harden = true;
     };
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      folders = {
-        "/home/h/sync" = {
-          id = "sync";
-          devices = [ ];
-        };
-      };
-      devices = {
-        # "device1" = {
-        #   id = "DEVICE-ID-GOES-HERE";
-        # };
+  };
+
+  my.syncthing = {
+    enable = true;
+    deviceNames = [
+      "boox"
+      "andromache"
+    ];
+    folders = {
+      readings = {
+        path = "/home/h/doc/readings";
+        id = "readings";
+        devices = [
+          {
+            device = "boox";
+            type = "receiveonly";
+          }
+          "andromache"
+        ];
       };
     };
+  };
+
+  services = {
     locate = {
       enable = true;
       package = pkgs.plocate;
