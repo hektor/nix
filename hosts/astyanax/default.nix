@@ -26,12 +26,13 @@ in
       device = "/dev/nvme0n1";
     })
     ../../modules/desktops/niri
+    ../../modules/audio
+    ../../modules/audio-automation
     ../../modules/backups
     ../../modules/bluetooth
     ../../modules/keyboard
     (import ../../modules/networking { inherit hostName; })
     ../../modules/users
-    ../../modules/audio
     ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
