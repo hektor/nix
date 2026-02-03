@@ -36,6 +36,7 @@ in
     ../../modules/ssh/hardened-openssh.nix
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
+    ../../modules/syncthing
   ];
 
   home-manager.users.${username} = import ../../home/hosts/andromache {
@@ -96,7 +97,6 @@ in
     inputs.colmena.packages.${pkgs.system}.colmena
   ];
 
-
   services = {
     xserver = {
       videoDrivers = [ "nvidia" ];
@@ -106,27 +106,30 @@ in
       enable = true;
       harden = true;
     };
-
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      settings = {
-        devices = {
-          # "device1" = {
-          #   id = "DEVICE-ID-GOES-HERE";
-          # };
-        };
-        folders = {
-          "/home/${username}/sync" = {
-            id = "sync";
-            devices = [ ];
-          };
-        };
-      };
-    };
     locate = {
       enable = true;
       package = pkgs.plocate;
+    };
+  };
+
+  my.syncthing = {
+    enable = true;
+    deviceNames = [
+      "boox"
+      "astyanax"
+    ];
+    folders = {
+      readings = {
+        path = "/home/h/doc/readings";
+        id = "readings";
+        devices = [
+          {
+            device = "boox";
+            type = "receiveonly";
+          }
+          "astyanax"
+        ];
+      };
     };
   };
 
