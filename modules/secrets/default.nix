@@ -32,6 +32,15 @@ in
         "nix_signing_key_astyanax" = { };
         "nix_signing_key_andromache" = { };
         "opencode_api_key".owner = config.users.users.${cfg.username}.name;
+        # TODO: using shared secrets for now, but would be better to to per-host secrets
+        # To add per-host secrets:
+        # "restic_password_${config.networking.hostName}" = { };
+        # "restic_b2_account_id_${config.networking.hostName}" = { };
+        # "restic_b2_account_key_${config.networking.hostName}" = { };
+        "restic_password" = { };
+        "b2_bucket_name" = { };
+        "b2_account_id" = { };
+        "b2_account_key" = { };
       };
 
       templates = {
@@ -84,6 +93,13 @@ in
                 "key": "${config.sops.placeholder."opencode_api_key"}"
               }
             }
+          '';
+        };
+
+        "restic/b2-env" = {
+          content = ''
+            B2_ACCOUNT_ID=${config.sops.placeholder."b2_account_id"}
+            B2_ACCOUNT_KEY=${config.sops.placeholder."b2_account_key"}
           '';
         };
       };
