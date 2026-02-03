@@ -252,10 +252,10 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1769114809,
-        "narHash": "sha256-xRZeYJAq/AcEZqsevIn1POBswP4rFYhOsQxaJP6xxpM=",
+        "lastModified": 1770135527,
+        "narHash": "sha256-Fup9LiyL6bDID3x+rAB2nP99Xv2o9Is5NkTDbmIy6o0=",
         "ref": "main",
-        "rev": "b14f3b416336bf44343941322745d6144582560e",
+        "rev": "521d144f8a8ff9fca8ccf492d7fbdd05d9a5fe37",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/nix-secrets"
@@ -612,11 +612,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769921679,
-        "narHash": "sha256-twBMKGQvaztZQxFxbZnkg7y/50BW9yjtCBWwdjtOZew=",
+        "lastModified": 1770110318,
+        "narHash": "sha256-NUVGVtYBTC96WhPh4Y3SVM7vf0o1z5W4uqRBn9v1pfo=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "1e89149dcfc229e7e2ae24a8030f124a31e4f24f",
+        "rev": "f990b0a334e96d3ef9ca09d4bd92778b42fd84f9",
         "type": "github"
       },
       "original": {
