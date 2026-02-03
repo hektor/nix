@@ -11,6 +11,7 @@ let
 in
 {
   imports = [
+    ../../modules/ai-tools.nix
     ../../modules/cloud
     ../../modules/comms
     ../../modules/desktop/niri
