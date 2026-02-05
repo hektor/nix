@@ -49,7 +49,6 @@ layout {
 }
 
 spawn-at-startup "wlsunset -l 51.05 -L 3.72"
-spawn-at-startup "waybar"
 
 hotkey-overlay {
     skip-at-startup
