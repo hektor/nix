@@ -17,6 +17,7 @@ in
     ../../modules/git
     ../../modules/k8s/k9s.nix
     ../../modules/kitty.nix
+    ../../modules/nfc
     ../../modules/nvim.nix
     ../../modules/ssh.nix
     ../../modules/taskwarrior.nix
@@ -38,6 +39,7 @@ in
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
   github.enable = true;
+  nfc.proxmark3.enable = true;
 
   shell.bash = {
     enable = true;
