@@ -11,6 +11,7 @@
   home = {
     file.".config/niri/config.kdl".source = ./config.kdl;
     packages = with pkgs; [
+      brightnessctl
       wl-clipboard
       wlsunset
     ];
