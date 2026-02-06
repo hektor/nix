@@ -25,6 +25,7 @@ in
     ../../modules/nvim.nix
     ../../modules/browser
     ../../modules/shell
+    ../../modules/music
     ../../modules/taskwarrior.nix
   ];
 

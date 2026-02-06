@@ -18,6 +18,7 @@ in
     ../../modules/git
     ../../modules/k8s/k9s.nix
     ../../modules/kitty.nix
+    ../../modules/music
     ../../modules/nfc
     ../../modules/nvim.nix
     ../../modules/ssh.nix
