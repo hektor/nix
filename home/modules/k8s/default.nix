@@ -7,12 +7,14 @@
     k3d
     kubectl
     kubernetes
-    kubernetes-helm
     kustomize
     minikube
     opentofu
     upbound
   ];
 
-  imports = [ ./k9s.nix ];
+  imports = [
+    ./helm.nix
+    ./k9s.nix
+  ];
 }
