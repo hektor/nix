@@ -15,6 +15,7 @@ in
     ../../modules/cloud
     ../../modules/comms
     ../../modules/dconf.nix
+    ../../modules/direnv
     ../../modules/docker
     ../../modules/git
     ../../modules/k8s

@@ -14,6 +14,7 @@ in
     ../../modules/cloud
     ../../modules/comms
     ../../modules/desktop/niri
+    ../../modules/direnv
     ../../modules/3d
     ../../modules/git
     ../../modules/k8s/k9s.nix
