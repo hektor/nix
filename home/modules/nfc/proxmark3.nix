@@ -15,7 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.proxmark3
+      (pkgs.proxmark3.override { withGeneric = true; })
     ];
   };
 }

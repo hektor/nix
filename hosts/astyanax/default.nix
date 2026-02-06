@@ -40,6 +40,7 @@ in
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
     ../../modules/syncthing
+    ../../modules/nfc
   ];
 
   home-manager.users.${username} = import ../../home/hosts/astyanax {
@@ -58,6 +59,7 @@ in
 
   secrets.username = username;
   docker.user = username;
+  nfc.user = username;
 
   nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_astyanax.path ];
 
