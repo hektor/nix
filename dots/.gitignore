@@ -84,6 +84,8 @@ dkms.conf
 
 # Dotenv
 .env
+.envrc
+.direnv/
 
 # Prevent module files from being ignored (e.g. NestJS)
 !*.module*

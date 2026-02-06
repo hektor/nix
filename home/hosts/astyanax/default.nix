@@ -13,6 +13,7 @@ in
     ../../modules/anki.nix
     ../../modules/cloud
     ../../modules/comms
+    ../../modules/direnv
     ../../modules/desktop/niri
     ../../modules/git
     ../../modules/k8s/k9s.nix
