@@ -17,6 +17,7 @@ in
     ./hard.nix
     ../../modules/ssh/hardened-openssh.nix
     ../../modules/docker
+    ../../modules/uptime-kuma
   ];
 
   networking.hostName = hostName;
@@ -30,6 +31,8 @@ in
   };
 
   docker.user = username;
+
+  my.uptime-kuma.enable = false;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
