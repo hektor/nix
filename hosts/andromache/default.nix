@@ -114,26 +114,7 @@ in
     };
   };
 
-  my.syncthing = {
-    enable = true;
-    deviceNames = [
-      "boox"
-      "astyanax"
-    ];
-    folders = {
-      readings = {
-        path = "/home/h/doc/readings";
-        id = "readings";
-        devices = [
-          {
-            device = "boox";
-            type = "receiveonly";
-          }
-          "astyanax"
-        ];
-      };
-    };
-  };
+  my.syncthing.enable = true;
 
   networking = {
     # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
