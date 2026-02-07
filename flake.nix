@@ -92,11 +92,26 @@
           }
         ))
         // {
-          sd-image-aarch64 = nixpkgs.lib.nixosSystem {
+          sd-image-orange-pi-aarch64 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-              ./images/sd-image-aarch64.nix
+              ./images/sd-image-orange-pi-aarch64.nix
+              {
+                nixpkgs.crossSystem = {
+                  system = "aarch64-linux";
+                };
+              }
+            ];
+            specialArgs = {
+              inherit inputs outputs dotsPath;
+            };
+          };
+          sd-image-raspberry-pi-aarch64 = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+              ./images/sd-image-raspberry-pi-aarch64.nix
               {
                 nixpkgs.crossSystem = {
                   system = "aarch64-linux";
@@ -147,6 +162,9 @@
       formatter.${system} = gitHooks.formatter;
       devShells.${system} = gitHooks.devShells;
 
-      images.sd-image-aarch64 = self.nixosConfigurations.sd-image-aarch64.config.system.build.sdImage;
+      images.sd-image-orange-pi-aarch64 =
+        self.nixosConfigurations.sd-image-orange-pi-aarch64.config.system.build.sdImage;
+      images.sd-image-raspberry-pi-aarch64 =
+        self.nixosConfigurations.sd-image-raspberry-pi-aarch64.config.system.build.sdImage;
     };
 }
