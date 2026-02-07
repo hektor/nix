@@ -105,33 +105,11 @@ in
       enable = true;
       harden = true;
     };
-  };
-
-  my.syncthing = {
-    enable = true;
-    deviceNames = [
-      "boox"
-      "andromache"
-    ];
-    folders = {
-      readings = {
-        path = "/home/h/doc/readings";
-        id = "readings";
-        devices = [
-          {
-            device = "boox";
-            type = "receiveonly";
-          }
-          "andromache"
-        ];
-      };
-    };
-  };
-
-  services = {
     locate = {
       enable = true;
       package = pkgs.plocate;
     };
   };
+
+  my.syncthing.enable = true;
 }
