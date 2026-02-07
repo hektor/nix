@@ -3,7 +3,7 @@
 with pkgs;
 let
   tools = interception-tools;
-  caps2esc = interception-tools-plugins.caps2esc;
+  inherit (interception-tools-plugins) caps2esc;
 in
 {
   services.interception-tools = {
