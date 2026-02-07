@@ -1,8 +1,5 @@
 {
-  lib,
   inputs,
-  outputs,
-  config,
   pkgs,
   ...
 }:
@@ -23,12 +20,14 @@ in
   ];
 
   networking.hostName = hostName;
-  ssh.username = username;
-  ssh.publicHostname = "server.hektormisplon.xyz";
-  ssh.authorizedHosts = [
-    "andromache"
-    "astyanax"
-  ];
+  ssh = {
+    inherit username;
+    publicHostname = "server.hektormisplon.xyz";
+    authorizedHosts = [
+      "andromache"
+      "astyanax"
+    ];
+  };
 
   docker.user = username;
 

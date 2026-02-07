@@ -8,3 +8,5 @@ result
 result-*
 
 nixos-efi-vars.fd
+
+/.pre-commit-config.yaml

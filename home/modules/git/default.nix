@@ -21,6 +21,6 @@
     };
 
     programs.gh.enable = config.github.enable;
-    home.packages = with pkgs; lib.optionals (config.gitlab.enable) [ glab ];
+    home.packages = lib.optionals config.gitlab.enable [ pkgs.glab ];
   };
 }

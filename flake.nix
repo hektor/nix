@@ -43,6 +43,10 @@
       url = "github:zhaofengli/colmena";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -52,6 +56,7 @@
       home-manager,
       nix-on-droid,
       nixgl,
+      git-hooks,
       ...
     }@inputs:
     let
@@ -61,6 +66,10 @@
       hostDirNames = utils.dirNames ./hosts;
       system = "x86_64-linux";
       dotsPath = ./dots;
+      gitHooks = import ./git-hooks.nix {
+        inherit nixpkgs git-hooks system;
+        src = ./.;
+      };
     in
     {
       nix.nixPath = [
@@ -127,6 +136,10 @@
           inputs
           ;
       };
+
+      checks.${system} = gitHooks.checks;
+      formatter.${system} = gitHooks.formatter;
+      devShells.${system} = gitHooks.devShells;
 
       images.sd-image-aarch64 = self.nixosConfigurations.sd-image-aarch64.config.system.build.sdImage;
     };
