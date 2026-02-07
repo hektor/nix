@@ -37,7 +37,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nixCats,
       ...
@@ -50,7 +49,7 @@
 
       mkDependencyOverlays = system: [
         (utils.standardPluginOverlay inputs)
-        (final: prev: {
+        (_final: _prev: {
           mcp-hub = inputs.mcp-hub.packages.${system}.default;
         })
       ];

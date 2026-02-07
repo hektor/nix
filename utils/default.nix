@@ -2,6 +2,5 @@
 
 {
   dirNames =
-    path:
-    builtins.attrNames (lib.filterAttrs (name: type: type == "directory") (builtins.readDir path));
+    path: builtins.attrNames (lib.filterAttrs (_: type: type == "directory") (builtins.readDir path));
 }
