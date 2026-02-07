@@ -18,20 +18,25 @@ in
     enable = true;
     enableDefaultConfig = false;
 
-    matchBlocks = lib.genAttrs hostsWithKeys (
-      hostname:
-      let
-        hostConfig = outputs.nixosConfigurations.${hostname}.config;
-        publicHostname = hostConfig.ssh.publicHostname;
-        targetUser = hostConfig.ssh.username;
-      in
-      {
-        host = hostname;
-        user = targetUser;
-      }
-      // lib.optionalAttrs (publicHostname != "") {
-        hostname = publicHostname;
-      }
-    );
+    matchBlocks =
+      lib.genAttrs hostsWithKeys (
+        hostname:
+        let
+          hostConfig = outputs.nixosConfigurations.${hostname}.config;
+          inherit (hostConfig.ssh) publicHostname username;
+        in
+        {
+          host = hostname;
+          user = username;
+        }
+        // lib.optionalAttrs (publicHostname != "") {
+          hostname = publicHostname;
+        }
+      )
+      // {
+        "*" = {
+          addKeysToAgent = "yes";
+        };
+      };
   };
 }
