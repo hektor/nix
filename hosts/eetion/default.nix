@@ -13,26 +13,30 @@ in
     ../../modules/ssh/hardened-openssh.nix
   ];
 
-  ssh.username = username;
-  ssh.publicHostname = "eetion";
-  ssh.authorizedHosts = [
-    "andromache"
-    "astyanax"
-  ];
+  ssh = {
+    inherit username;
+    publicHostname = "eetion";
+    authorizedHosts = [
+      "andromache"
+      "astyanax"
+    ];
+  };
 
   boot.loader = {
     grub.enable = false;
     generic-extlinux-compatible.enable = true;
   };
 
-  networking.hostName = hostName;
-  networking.networkmanager.enable = true;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      80
-      443
-    ];
+  networking = {
+    inherit hostName;
+    networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        80
+        443
+      ];
+    };
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -47,51 +51,53 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
-  services.openssh = {
-    enable = true;
-    harden = true;
+  services = {
+    openssh = {
+      enable = true;
+      harden = true;
+    };
+
+    paperless = {
+      enable = true;
+      passwordFile = "/etc/paperless-admin-pass";
+      settings = {
+        PAPERLESS_URL = "http://paperless.eetion";
+      };
+    };
+
+    # added (OPNSense) domain override to make this work on LAN
+    #
+    # host: eetion
+    # domain: <domain (e.g. lan)>
+    # ip address: <eetion-ip>
+    #
+    # host: paperless
+    # domain: eetion
+    # ip address: <eetion-ip>
+    nginx = {
+      enable = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      virtualHosts = {
+        "eetion" = {
+          default = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:5006";
+          };
+        };
+        "paperless.eetion" = {
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:28981";
+          };
+        };
+      };
+    };
   };
 
   environment.etc."paperless-admin-pass".text = "admin";
-
-  services.paperless = {
-    enable = true;
-    passwordFile = "/etc/paperless-admin-pass";
-    settings = {
-      PAPERLESS_URL = "http://paperless.eetion";
-    };
-  };
-
-  # added (OPNSense) domain override to make this work on LAN
-  #
-  # host: eetion
-  # domain: <domain (e.g. lan)>
-  # ip address: <eetion-ip>
-  #
-  # host: paperless
-  # domain: eetion
-  # ip address: <eetion-ip>
-  services.nginx = {
-    enable = true;
-    recommendedGzipSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-
-    virtualHosts = {
-      "eetion" = {
-        default = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:5006";
-        };
-      };
-      "paperless.eetion" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:28981";
-        };
-      };
-    };
-  };
 
   virtualisation = {
     podman.enable = true;
