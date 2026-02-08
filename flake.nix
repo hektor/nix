@@ -22,11 +22,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +49,6 @@
       self,
       nixpkgs,
       home-manager,
-      nix-on-droid,
       nixgl,
       git-hooks,
       ...
@@ -118,6 +112,7 @@
             };
           };
         };
+
       homeConfigurations = {
         work = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
@@ -128,20 +123,6 @@
           extraSpecialArgs = {
             inherit inputs outputs dotsPath;
           };
-        };
-      };
-      # https://github.com/nix-community/nix-on-droid/blob/master/templates/advanced/flake.nix
-      nixOnDroidConfigurations = {
-        pixel = nix-on-droid.lib.nixOnDroidConfiguration {
-          modules = [ ./phone ];
-          extraSpecialArgs = {
-            inherit inputs outputs dotsPath;
-          };
-          pkgs = import nixpkgs {
-            system = "aarch64-linux";
-            overlays = [ nix-on-droid.overlays.default ];
-          };
-          home-manager-path = home-manager.outPath;
         };
       };
 
