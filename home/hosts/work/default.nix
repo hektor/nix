@@ -27,6 +27,7 @@ in
     ../../modules/shell
     ../../modules/music
     ../../modules/taskwarrior.nix
+    ../../modules/bruno.nix
   ];
 
   sops = {
