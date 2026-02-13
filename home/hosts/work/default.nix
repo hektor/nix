@@ -11,6 +11,7 @@ in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
+    ../../modules/lib.nix
     ../../modules/ai-tools.nix
     ../../modules/cloud
     ../../modules/comms

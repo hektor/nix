@@ -1,12 +1,13 @@
-{ pkgs, config, lib, dotsPath, ... }:
+{
+  pkgs,
+  config,
+  dotsPath,
+  ...
+}:
 
 {
   config = {
-    home.packages = [
-      (if config.lib ? nixGL
-        then config.lib.nixGL.wrap pkgs.kitty
-        else pkgs.kitty)
-    ];
+    home.packages = [ (config.nixgl.wrap pkgs.kitty) ];
     programs.bash.shellAliases = {
       icat = "kitty +kitten icat";
     };
