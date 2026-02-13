@@ -4,10 +4,21 @@
   ...
 }:
 
+let
+  spotifyWithWayland = pkgs.symlinkJoin {
+    name = "spotify";
+    paths = [ pkgs.spotify ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/spotify \
+        --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland"
+    '';
+  };
+in
 {
   home.packages = with pkgs; [
     ncspot
-    # (if config.lib ? nixGL then config.lib.nixGL.wrap spotify else spotify)
+    spotifyWithWayland
   ];
 
   home.file = {
