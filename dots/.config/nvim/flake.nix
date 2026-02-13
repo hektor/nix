@@ -8,10 +8,10 @@
       url = "github:rktjmp/shipwright.nvim";
       flake = false;
     };
-    plugins-m-taskwarrior-d-nvim = {
-      url = "github:huantrinh1802/m_taskwarrior_d.nvim";
-      flake = false;
-    };
+    # plugins-m-taskwarrior-d-nvim = {
+    #   url = "github:huantrinh1802/m_taskwarrior_d.nvim";
+    #   flake = false;
+    # };
     plugins-beancount-nvim = {
       url = "github:polarmutex/beancount.nvim";
       flake = false;
@@ -164,7 +164,7 @@
               kitty-scrollback-nvim
               fidget-nvim
               rustaceanvim
-              pkgs.neovimPlugins.m-taskwarrior-d-nvim
+              # pkgs.neovimPlugins.m-taskwarrior-d-nvim
               claude-code-nvim
             ];
           };

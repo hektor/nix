@@ -42,11 +42,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1769578476,
-        "narHash": "sha256-4+KbiBcC6hQ3sh0UbPXjy6TOfLh9yhskRlfPzyZ2FH4=",
+        "lastModified": 1770584904,
+        "narHash": "sha256-9Zaz8lbKF2W9pwXZEnbiGsicHdBoU+dHt3Wv3mCJoZ8=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "48f8be4bdafccfa19ceaaf08071a15eca36fdb1d",
+        "rev": "538fdde784d2909700d97a8ef307783b33a86fb1",
         "type": "github"
       },
       "original": {
@@ -73,11 +73,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1769740369,
-        "narHash": "sha256-xKPyJoMoXfXpDM5DFDZDsi9PHArf2k5BJjvReYXoFpM=",
+        "lastModified": 1770843696,
+        "narHash": "sha256-LovWTGDwXhkfCOmbgLVA10bvsi/P8eDDpRudgk68HA8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6308c3b21396534d8aaeac46179c14c439a89b8a",
+        "rev": "2343bbb58f99267223bc2aac4fc9ea301a155a16",
         "type": "github"
       },
       "original": {
@@ -116,22 +116,6 @@
       "original": {
         "owner": "qvalentin",
         "repo": "helm-ls.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-m-taskwarrior-d-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767960157,
-        "narHash": "sha256-ov0qi4LhIlwqrBzSbTJ6APC5qjl2d/vlKWJfW5ZiDrg=",
-        "owner": "huantrinh1802",
-        "repo": "m_taskwarrior_d.nvim",
-        "rev": "107247387cd81823046bc2b8e71150c8edf041d3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "huantrinh1802",
-        "repo": "m_taskwarrior_d.nvim",
         "type": "github"
       }
     },
@@ -206,7 +190,6 @@
         "nixpkgs": "nixpkgs_2",
         "plugins-beancount-nvim": "plugins-beancount-nvim",
         "plugins-helm-ls-nvim": "plugins-helm-ls-nvim",
-        "plugins-m-taskwarrior-d-nvim": "plugins-m-taskwarrior-d-nvim",
         "plugins-mcphub-nvim": "plugins-mcphub-nvim",
         "plugins-nvimkit-nvim": "plugins-nvimkit-nvim",
         "plugins-shipwright-nvim": "plugins-shipwright-nvim",
