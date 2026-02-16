@@ -1,3 +1,6 @@
+let
+  flakePath = "/home/h/nix";
+in
 {
   inputs,
   outputs,
@@ -41,12 +44,12 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
-    operation = "switch";
+    flake = flakePath;
     flags = [
       "--recreate-lock-file"
       "--commit-lock-file"
       "--print-build-logs"
+      "--refresh"
     ];
     dates = "05:00";
     randomizedDelaySec = "45min";
