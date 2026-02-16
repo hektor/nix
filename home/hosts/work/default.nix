@@ -70,6 +70,7 @@ in
   cloud.azure.enable = true;
   comms.signal.enable = true;
   comms.teams.enable = true;
+  ai-tools.claude-code.enable = true;
   github.enable = true;
   gitlab.enable = true;
 
