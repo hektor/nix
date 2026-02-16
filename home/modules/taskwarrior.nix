@@ -39,6 +39,14 @@ in
     ".local/share/task/hooks/on-exit.sync.py" = {
       source = dotsPath + "/.local/share/task/hooks/on-exit.sync.py";
     };
+    ".local/share/task/hooks/on-add.limit.py" = {
+      source = dotsPath + "/.local/share/task/hooks/on-add.limit.py";
+      executable = true;
+    };
+    ".local/share/task/hooks/on-modify.limit.py" = {
+      source = dotsPath + "/.local/share/task/hooks/on-modify.limit.py";
+      executable = true;
+    };
     ".local/share/task/scripts/sync-and-notify.sh" = {
       source = dotsPath + "/.local/share/task/scripts/sync-and-notify.sh";
       executable = true;
