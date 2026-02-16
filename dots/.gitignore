@@ -86,6 +86,7 @@ dkms.conf
 .env
 .envrc
 .direnv/
+.pre-commit-config.yaml
 
 # Prevent module files from being ignored (e.g. NestJS)
 !*.module*
