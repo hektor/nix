@@ -17,11 +17,11 @@ let
 in
 {
   home.packages = with pkgs; [
-    ncspot
     spotifyWithWayland
   ];
 
-  home.file = {
-    ".config/ncspot/config.toml".source = dotsPath + "/.config/ncspot/config.toml";
+  programs.ncspot = {
+    enable = true;
+    settings = builtins.fromTOML (builtins.readFile (dotsPath + "/.config/ncspot/config.toml"));
   };
 }

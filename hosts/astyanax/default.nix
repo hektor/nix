@@ -36,6 +36,7 @@ in
     ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
+    ../../modules/stylix
     # ../../modules/vpn/wireguard.nix
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
