@@ -1,8 +1,4 @@
 * {
-  font-family:
-    Iosevka Term SS08,
-    monospace;
-  font-size: 12px;
   border-radius: 0px;
 }
 
@@ -27,16 +23,16 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-  background: #000000;
+  background: @base00;
 }
 
 #workspaces button.focused,
 #workspaces button.active {
-  background-color: #111111;
+  background-color: @base01;
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  background-color: @base08;
 }
 
 #clock,
@@ -46,8 +42,8 @@ window#waybar.hidden {
 #cpu,
 #network {
   padding: 0 4px;
-  color: #ffffff;
-  background-color: #111111;
+  color: @base07;
+  background-color: @base01;
 }
 
 #window,

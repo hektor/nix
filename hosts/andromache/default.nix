@@ -35,6 +35,7 @@ in
     ../../modules/localization
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
+    ../../modules/stylix
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
     ../../modules/syncthing

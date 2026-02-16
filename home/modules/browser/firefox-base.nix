@@ -23,8 +23,10 @@ in
         "extensions.autoDisableScopes" = 0;
       };
       extensions = {
+        force = true;
         packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           duckduckgo-privacy-essentials
+          firefox-color
           istilldontcareaboutcookies
           libredirect
           keepassxc-browser

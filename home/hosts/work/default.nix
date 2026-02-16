@@ -11,6 +11,7 @@ in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
+    ../../modules/stylix.nix
     ../../modules/lib.nix
     ../../modules/ai-tools.nix
     ../../modules/cloud
@@ -20,7 +21,7 @@ in
     ../../modules/docker
     ../../modules/git
     ../../modules/k8s
-    ../../modules/k9s.nix
+    ../../modules/k8s/k9s.nix
     ../../modules/keepassxc.nix
     ../../modules/kitty.nix
     ../../modules/nvim.nix
