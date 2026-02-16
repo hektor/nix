@@ -61,6 +61,7 @@
       nix-on-droid,
       nixgl,
       git-hooks,
+      colmena,
       ...
     }@inputs:
     let
@@ -134,6 +135,7 @@
         };
       };
 
+      apps.${system}.colmena = inputs.colmena.apps.${system}.default;
       colmenaHive = import ./deploy/colmena.nix {
         inherit
           self
