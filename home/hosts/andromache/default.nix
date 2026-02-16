@@ -40,6 +40,7 @@ in
   xdg.userDirs.createDirectories = false;
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
 
+  ai-tools.opencode.enable = true;
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
