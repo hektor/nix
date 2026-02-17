@@ -5,21 +5,22 @@
   ...
 }:
 
+let
+  theme = import ./theme.nix { inherit pkgs; };
+in
 {
   imports = [ inputs.stylix.nixosModules.stylix ];
 
   stylix = {
     enable = true;
-    polarity = "dark";
-    base16Scheme = ../stylix/zenwritten-dark.yaml;
-    image = pkgs.runCommand "solid-bg.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
-      magick -size 1x1 xc:#191919 $out
-    '';
+    inherit (theme)
+      polarity
+      base16Scheme
+      override
+      image
+      ;
     fonts = {
-      monospace = {
-        package = pkgs.iosevka-bin.override { variant = "SS08"; };
-        name = "Iosevka Term SS08";
-      };
+      monospace = theme.monospaceFont;
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
       emoji = config.stylix.fonts.monospace;
@@ -31,6 +32,11 @@
     {
       stylix.targets = {
         firefox.profileNames = [ "default" ];
+        librewolf.profileNames = [ "default" ];
+        kitty.variant256Colors = true;
+        gnome.enable = false;
+        gtk.enable = false;
+        nixvim.enable = false;
       };
     }
   ];
