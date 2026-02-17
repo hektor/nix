@@ -1,8 +1,5 @@
-{
-  pkgs,
-  dotsPath,
-  ...
-}:
+{ pkgs, dotsPath, ... }:
+
 {
   config = {
     home.packages = with pkgs; [
@@ -16,9 +13,7 @@
     };
 
     home.file = {
-      ".config/tmux/tmux.regular.conf".source = dotsPath + "/.config/tmux/tmux.regular.conf";
       ".config/tmux/hooks/tmux.ssh.conf".source = dotsPath + "/.config/tmux/hooks/tmux.ssh.conf";
-      ".config/tmux/hooks/tmux.regular.conf".source = dotsPath + "/.config/tmux/hooks/tmux.regular.conf";
     };
   };
 }

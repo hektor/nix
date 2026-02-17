@@ -5,30 +5,32 @@
   ...
 }:
 
+let
+  theme = import ../../modules/stylix/theme.nix { inherit pkgs; };
+in
 {
   imports = [ inputs.stylix.homeModules.stylix ];
 
   stylix = {
     enable = true;
-    polarity = "dark";
-    base16Scheme = ../../modules/stylix/zenwritten-dark.yaml;
-    override = {
-      base04 = "8E8E8E"; # improved contrast
-    };
-    image = pkgs.runCommand "solid-bg.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
-      magick -size 1x1 xc:#191919 $out
-    '';
+    inherit (theme)
+      polarity
+      base16Scheme
+      override
+      image
+      ;
     fonts = {
-      monospace = {
-        package = pkgs.iosevka-bin.override { variant = "SS08"; };
-        name = "Iosevka Term SS08";
-      };
+      monospace = theme.monospaceFont;
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
       emoji = config.stylix.fonts.monospace;
     };
     targets = {
       firefox = {
+        profileNames = [ "default" ];
+        colorTheme.enable = true;
+      };
+      librewolf = {
         profileNames = [ "default" ];
         colorTheme.enable = true;
       };
