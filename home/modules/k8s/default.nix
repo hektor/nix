@@ -13,6 +13,11 @@
     upbound
   ];
 
+  programs.kubecolor = {
+    enable = true;
+    enableAlias = true;
+  };
+
   imports = [
     ./helm.nix
     ./k9s.nix
