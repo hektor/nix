@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ../../modules
     ../../modules/ai-tools.nix
     ../../modules/audio
     ../../modules/cloud
