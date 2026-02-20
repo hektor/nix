@@ -11,6 +11,7 @@ in
 {
   imports = [
     ../../modules/ai-tools.nix
+    ../../modules/audio
     ../../modules/cloud
     ../../modules/comms
     ../../modules/desktop/niri
