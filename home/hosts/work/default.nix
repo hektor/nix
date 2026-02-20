@@ -11,6 +11,7 @@ in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
+    ../../modules
     ../../modules/stylix.nix
     ../../modules/lib.nix
     ../../modules/ai-tools.nix
