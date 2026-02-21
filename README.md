@@ -1,15 +1,36 @@
 # NixOS flake
 
-## Set up virtual machine ([`disko`](https://github.com/nix-community/disko/blob/master/docs/interactive-vm.md))
+## hosts
 
-1. Build the virtual machine
+### NixOS
+
+```
+nixos-rebuild switch --flake .#<hostname>
+```
+
+### home manager
+
+```
+home-manager switch --flake .#work
+```
+
+### virtual machines
 
 ```
 nix build -L '.#nixosConfigurations.vm.config.system.build.vmWithDisko'
-```
-
-2. Run the virtual machine
-
-```
 ./result/bin/disko-vm
+```
+
+## deploy using colmena
+
+```
+colmena apply
+```
+
+
+## SD installer images
+
+```
+nix build .#images.sd-image-orange-pi-aarch64
+nix build .#images.sd-image-raspberry-pi-aarch64
 ```
