@@ -9,6 +9,7 @@ let
 in
 {
   imports = [
+    ../../modules/lib.nix
     ../../modules/ai-tools.nix
     ../../modules/anki.nix
     ../../modules/cloud
