@@ -6,14 +6,12 @@ with pkgs;
   entr
   feh
   fzf
-  haskellPackages.pandoc-crossref
   htop
   jq
   nixfmt-rfc-style
   nmap
   nodejs_24
   nvimpager
-  pandoc
   parallel
   pass
   pnpm

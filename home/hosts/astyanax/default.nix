@@ -23,6 +23,7 @@ in
     ../../modules/music
     ../../modules/nfc
     ../../modules/nvim.nix
+    ../../modules/pandoc.nix
     ../../modules/ssh.nix
     ../../modules/taskwarrior.nix
     ../../modules/keepassxc.nix
@@ -45,6 +46,7 @@ in
   comms.signal.enable = true;
   github.enable = true;
   nfc.proxmark3.enable = true;
+  pandoc.enable = true;
 
   shell.bash = {
     enable = true;
