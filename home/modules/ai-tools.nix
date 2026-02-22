@@ -74,6 +74,15 @@ in
       home.packages = with pkgs; [
         opencode
       ];
+      home.file.".config/opencode/opencode.json".text = builtins.toJSON {
+        "$schema" = "https://opencode.ai/config.json";
+        permission = {
+          external_directory = {
+            "/run/secrets/" = "deny";
+            "~/.config/sops/age/keys.txt" = "deny";
+          };
+        };
+      };
     })
   ];
 }
