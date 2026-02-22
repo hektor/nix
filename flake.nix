@@ -55,7 +55,6 @@
       home-manager,
       nixgl,
       git-hooks,
-      colmena,
       ...
     }@inputs:
     let
