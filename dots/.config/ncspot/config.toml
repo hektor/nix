@@ -1,5 +1,6 @@
 default_keybindings = false
 flip_status_indicators = true
+library_tabs = ["tracks", "albums", "artists", "playlists", "browse"] # remove podcasts tab
 
 [keybindings]
 "Enter" = "play"
@@ -24,11 +25,10 @@ flip_status_indicators = true
 "c" = "clear"
 "=" = "volup 1"
 "-" = "voldown 1"
-"/" = "focus search"
-"Q" = "focus queue"
-# "L" = "focus library"
 "1" = "focus queue"
-"2" = "focus library"
+"2" = "focus search"
+"3" = "focus library"
+"4" = "focus cover"
 "h" = "move left 1"
 "j" = "move down 1"
 "k" = "move up 1"
