@@ -25,6 +25,7 @@ in
     ../../modules/x
     ../../modules/fonts
     ../../modules/ssh/hardened-openssh.nix
+    ../../modules/storage
     (import ../../modules/secrets {
       inherit lib inputs config;
     })
