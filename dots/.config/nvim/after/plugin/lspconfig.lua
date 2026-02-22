@@ -85,6 +85,7 @@ local servers = {
       },
     },
   },
+  openscad_ls = {},
   pyright = {},
   -- tsserver = {},
   svelte = {
