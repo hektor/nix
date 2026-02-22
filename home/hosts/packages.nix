@@ -15,7 +15,6 @@ with pkgs;
   ripgrep
   silver-searcher
   sops
-  sshfs
   tldr
   tree
   unzip

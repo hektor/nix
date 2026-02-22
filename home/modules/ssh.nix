@@ -1,6 +1,7 @@
 {
   outputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -14,6 +15,8 @@ let
   ) allHosts;
 in
 {
+  home.packages = with pkgs; [ sshfs ];
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
