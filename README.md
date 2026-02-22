@@ -21,16 +21,7 @@ nix build -L '.#nixosConfigurations.vm.config.system.build.vmWithDisko'
 ./result/bin/disko-vm
 ```
 
-## deploy using colmena
+## docs
 
-```
-colmena apply
-```
-
-
-## SD installer images
-
-```
-nix build .#images.sd-image-orange-pi-aarch64
-nix build .#images.sd-image-raspberry-pi-aarch64
-```
+* [deploy using colmena](./deploy/README.md)
+* [SD installer images](./images/README.md)
