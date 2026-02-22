@@ -1,0 +1,75 @@
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+
+with lib;
+
+let
+  cfg = config.my.yubikey;
+  formatKey = key: ":${key.handle},${key.userKey},${key.coseType},${key.options}";
+  authfileContent = username: keys: username + lib.concatMapStrings formatKey keys;
+in
+{
+  options.my.yubikey = {
+    enable = mkEnableOption "yubiKey U2F authentication";
+
+    username = mkOption {
+      type = types.str;
+      default = "h";
+    };
+
+    origin = mkOption {
+      type = types.str;
+      default = "pam://yubi";
+    };
+
+    keys = mkOption {
+      type = types.listOf (
+        types.submodule {
+          options = {
+            handle = mkOption {
+              type = types.str;
+              example = "<KeyHandle1>";
+            };
+            userKey = mkOption {
+              type = types.str;
+              example = "<UserKey1>";
+            };
+            coseType = mkOption {
+              type = types.str;
+              default = "es256";
+            };
+            options = mkOption {
+              type = types.str;
+              default = "";
+            };
+          };
+        }
+      );
+      default = [ ];
+    };
+  };
+
+  config = mkIf cfg.enable {
+    security.pam = {
+      u2f = {
+        enable = true;
+        settings = {
+          interactive = true;
+          cue = true;
+          inherit (cfg) origin;
+          authfile = pkgs.writeText "u2f-mappings" (authfileContent cfg.username cfg.keys);
+        };
+      };
+      services = {
+        login.u2fAuth = true;
+        sudo.u2fAuth = true;
+      };
+    };
+
+    services.udev.packages = [ pkgs.yubikey-personalization ];
+  };
+}

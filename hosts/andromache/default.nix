@@ -42,6 +42,7 @@ in
     ../../modules/docker
     ../../modules/syncthing
     ../../modules/nvidia
+    ../../modules/yubikey
   ];
 
   home-manager.users.${username} = import ../../home/hosts/andromache {
@@ -90,6 +91,25 @@ in
   environment.systemPackages = [
     inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
   ];
+
+  my.yubikey = {
+    enable = false;
+    inherit username;
+    keys = [
+      {
+        handle = "<KeyHandle1>";
+        userKey = "<UserKey1>";
+        coseType = "<CoseType1>";
+        options = "<Options1>";
+      }
+      {
+        handle = "<KeyHandle2>";
+        userKey = "<UserKey2>";
+        coseType = "<CoseType2>";
+        options = "<Options2>";
+      }
+    ];
+  };
 
   services = {
     locate = {
