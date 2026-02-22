@@ -59,6 +59,7 @@ in
   secrets.username = username;
   docker.user = username;
   nfc.user = username;
+  desktop.ly.enable = true;
 
   nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_astyanax.path ];
 
