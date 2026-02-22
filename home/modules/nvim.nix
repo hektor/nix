@@ -3,7 +3,7 @@
 {
   config = {
     home.packages = [
-      inputs.nvim.packages.${pkgs.system}.nvim
+      inputs.nvim.packages.${pkgs.stdenv.hostPlatform.system}.nvim
     ];
   };
 }

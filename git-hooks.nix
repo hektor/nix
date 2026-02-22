@@ -10,7 +10,10 @@ let
   pre-commit-check = git-hooks.lib.${system}.run {
     inherit src;
     hooks = {
-      nixfmt.enable = true;
+      nixfmt = {
+        enable = true;
+        package = pkgs.nixfmt;
+      };
       statix.enable = true;
       deadnix.enable = true;
     };

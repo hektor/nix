@@ -86,7 +86,7 @@ in
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   environment.systemPackages = [
-    inputs.colmena.packages.${pkgs.system}.colmena
+    inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
   ];
 
   services = {

@@ -8,7 +8,6 @@ with pkgs;
   fzf
   htop
   jq
-  nixfmt-rfc-style
   nmap
   nodejs_24
   nvimpager
