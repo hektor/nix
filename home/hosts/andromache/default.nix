@@ -23,6 +23,7 @@ in
     ../../modules/kitty.nix
     ../../modules/music
     ../../modules/nvim.nix
+    ../../modules/pandoc.nix
     ../../modules/ssh.nix
     ../../modules/taskwarrior.nix
     ../../modules/keepassxc.nix
@@ -46,6 +47,7 @@ in
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
   github.enable = true;
+  pandoc.enable = true;
 
   shell.bash = {
     enable = true;

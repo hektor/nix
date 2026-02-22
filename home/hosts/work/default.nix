@@ -26,6 +26,7 @@ in
     ../../modules/keepassxc.nix
     ../../modules/kitty.nix
     ../../modules/nvim.nix
+    ../../modules/pandoc.nix
     ../../modules/browser
     ../../modules/shell
     ../../modules/music
@@ -75,6 +76,7 @@ in
   ai-tools.claude-code.enable = true;
   github.enable = true;
   gitlab.enable = true;
+  pandoc.enable = true;
 
   shell.bash.enable = true;
   starship.enable = true;
