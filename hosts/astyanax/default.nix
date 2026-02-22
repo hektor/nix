@@ -38,7 +38,6 @@ in
     ../../modules/stylix
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
-    ../../modules/syncthing
     ../../modules/nfc
   ];
 
@@ -109,6 +108,4 @@ in
       package = pkgs.plocate;
     };
   };
-
-  my.syncthing.enable = true;
 }

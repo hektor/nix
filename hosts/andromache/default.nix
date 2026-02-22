@@ -100,7 +100,6 @@ in
       harden = true;
     };
 
-  my.syncthing.enable = true;
 
   networking = {
     # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
