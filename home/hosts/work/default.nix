@@ -12,31 +12,31 @@ in
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     ../../modules
-    ../../modules/stylix.nix
-    ../../modules/ai-tools.nix
+    ../../modules/ai-tools
     ../../modules/anki.nix
+    ../../modules/browser
+    ../../modules/bruno
     ../../modules/cloud
     ../../modules/comms
+    ../../modules/dconf
     ../../modules/desktop/niri
-    ../../modules/dconf.nix
     ../../modules/direnv
     ../../modules/docker
     ../../modules/git
     ../../modules/go
     ../../modules/k8s
     ../../modules/k8s/k9s.nix
-    ../../modules/keepassxc.nix
+    ../../modules/keepassxc
     ../../modules/kitty.nix
-    ../../modules/nvim.nix
-    ../../modules/pandoc.nix
-    ../../modules/secrets
-    ../../modules/browser
-    ../../modules/shell
     ../../modules/music
     ../../modules/nodejs.nix
-    ../../modules/taskwarrior.nix
-    ../../modules/bruno.nix
-    ../../modules/pandoc.nix
+    ../../modules/nvim
+    ../../modules/pandoc
+    ../../modules/secrets
+    ../../modules/shell
+    ../../modules/stylix
+    ../../modules/taskwarrior
+    ../../modules/terminal
     ../../modules/vscode.nix
   ];
 

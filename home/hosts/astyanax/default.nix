@@ -10,25 +10,25 @@ in
 {
   imports = [
     ../../modules
-    ../../modules/ai-tools.nix
+    ../../modules/ai-tools
+    ../../modules/anki
     ../../modules/audio
-    ../../modules/anki.nix
+    ../../modules/browser
     ../../modules/cloud
     ../../modules/comms
-    ../../modules/direnv
     ../../modules/desktop/niri
+    ../../modules/direnv
     ../../modules/git
     ../../modules/k8s/k9s.nix
-    ../../modules/kitty.nix
+    ../../modules/keepassxc
     ../../modules/music
     ../../modules/nfc
-    ../../modules/nvim.nix
-    ../../modules/pandoc.nix
-    ../../modules/ssh.nix
-    ../../modules/taskwarrior.nix
-    ../../modules/keepassxc.nix
-    ../../modules/browser
+    ../../modules/nvim
+    ../../modules/pandoc
     ../../modules/shell
+    ../../modules/ssh
+    ../../modules/taskwarrior
+    ../../modules/terminal
   ];
 
   home = {

@@ -11,26 +11,26 @@ in
 {
   imports = [
     ../../modules
-    ../../modules/ai-tools.nix
+    ../../modules/3d
+    ../../modules/ai-tools
+    ../../modules/anki
     ../../modules/audio
+    ../../modules/browser
     ../../modules/cloud
     ../../modules/comms
     ../../modules/desktop/niri
     ../../modules/direnv
-    ../../modules/3d
     ../../modules/git
     ../../modules/k8s/k9s.nix
-    ../../modules/kitty.nix
+    ../../modules/keepassxc
     ../../modules/music
-    ../../modules/nvim.nix
-    ../../modules/pandoc.nix
-    ../../modules/ssh.nix
-    ../../modules/taskwarrior.nix
-    ../../modules/keepassxc.nix
-    ../../modules/anki.nix
+    ../../modules/nvim
+    ../../modules/pandoc
     ../../modules/photography
-    ../../modules/browser
     ../../modules/shell
+    ../../modules/ssh
+    ../../modules/taskwarrior
+    ../../modules/terminal
   ];
 
   home = {
