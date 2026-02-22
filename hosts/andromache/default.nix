@@ -38,6 +38,7 @@ in
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
     ../../modules/syncthing
+    ../../modules/nvidia
   ];
 
   home-manager.users.${username} = import ../../home/hosts/andromache {
@@ -79,18 +80,7 @@ in
     };
   };
 
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    graphics.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = false;
-      open = true;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  };
+  hardware.cpu.intel.updateMicrocode = true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -99,19 +89,15 @@ in
   ];
 
   services = {
-    xserver = {
-      videoDrivers = [ "nvidia" ];
+    locate = {
+      enable = true;
+      package = pkgs.plocate;
     };
 
     openssh = {
       enable = true;
       harden = true;
     };
-    locate = {
-      enable = true;
-      package = pkgs.plocate;
-    };
-  };
 
   my.syncthing.enable = true;
 
