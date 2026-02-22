@@ -83,15 +83,4 @@ in
     enable = true;
     harden = true;
   };
-
-  nix.settings = {
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "astyanax:JY2qJkZUFSax47R3c1nq53AZ8GnLfNqz6mSnJ60cLZ4="
-      "andromache:XM4VLrEw63RB/3v/56OxzH/Yw+kKXKMBLKCb7UGAXzo="
-    ];
-    auto-optimise-store = true;
-    keep-derivations = false;
-    keep-outputs = false;
-  };
 }
