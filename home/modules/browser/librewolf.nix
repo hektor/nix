@@ -13,6 +13,13 @@
         programs.librewolf = {
           enable = true;
         }
-        // (import ./firefox-base.nix { inherit config inputs pkgs; });
+        // (import ./firefox-base.nix {
+          inherit
+            config
+            inputs
+            lib
+            pkgs
+            ;
+        });
       };
 }
