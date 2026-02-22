@@ -1,6 +1,9 @@
-_:
-
 {
+  nixpkgs.allowedUnfree = [
+    "spotify"
+    "spotify-unwrapped"
+  ];
+
   security.rtkit.enable = true;
   services = {
     pulseaudio.enable = false;
