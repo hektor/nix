@@ -19,6 +19,5 @@ with pkgs;
   tldr
   tree
   unzip
-  vimPlugins.vim-plug
   wget
 ]
