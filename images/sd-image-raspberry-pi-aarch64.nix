@@ -31,7 +31,7 @@ in
 
   hardware.enableRedistributableFirmware = true;
 
-  hardware.pulseaudio.enable = true;
+  services.pulseaudio.enable = true;
 
   networking.wireless.enable = true;
 

@@ -77,8 +77,10 @@
         (lib.genAttrs hostDirNames (
           host:
           nixpkgs.lib.nixosSystem {
-            system = import ./hosts/${host}/system.nix;
-            modules = [ ./hosts/${host} ];
+            modules = [
+              ./hosts/${host}
+              { nixpkgs.hostPlatform = import ./hosts/${host}/system.nix; }
+            ];
             specialArgs = {
               inherit inputs outputs dotsPath;
             };
@@ -86,14 +88,12 @@
         ))
         // {
           sd-image-orange-pi-aarch64 = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
               ./images/sd-image-orange-pi-aarch64.nix
               {
-                nixpkgs.crossSystem = {
-                  system = "aarch64-linux";
-                };
+                nixpkgs.buildPlatform = "x86_64-linux";
+                nixpkgs.hostPlatform = "aarch64-linux";
               }
             ];
             specialArgs = {
@@ -101,14 +101,12 @@
             };
           };
           sd-image-raspberry-pi-aarch64 = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
               ./images/sd-image-raspberry-pi-aarch64.nix
               {
-                nixpkgs.crossSystem = {
-                  system = "aarch64-linux";
-                };
+                nixpkgs.buildPlatform = "x86_64-linux";
+                nixpkgs.hostPlatform = "aarch64-linux";
               }
             ];
             specialArgs = {
@@ -130,8 +128,10 @@
         };
       };
 
-      apps.${system}.colmena = inputs.colmena.apps.${system}.default;
-      colmenaHive = import ./deploy/colmena.nix {
+      apps.${system}.colmena = inputs.colmena.apps.${system}.default // {
+        meta.description = "Colmena deployment tool";
+      };
+      colmena = import ./deploy/colmena.nix {
         inherit
           self
           inputs
@@ -142,9 +142,11 @@
       formatter.${system} = gitHooks.formatter;
       devShells.${system} = gitHooks.devShells;
 
-      images.sd-image-orange-pi-aarch64 =
-        self.nixosConfigurations.sd-image-orange-pi-aarch64.config.system.build.sdImage;
-      images.sd-image-raspberry-pi-aarch64 =
-        self.nixosConfigurations.sd-image-raspberry-pi-aarch64.config.system.build.sdImage;
+      legacyPackages.${system} = {
+        sd-image-orange-pi-aarch64 =
+          self.nixosConfigurations.sd-image-orange-pi-aarch64.config.system.build.sdImage;
+        sd-image-raspberry-pi-aarch64 =
+          self.nixosConfigurations.sd-image-raspberry-pi-aarch64.config.system.build.sdImage;
+      };
     };
 }

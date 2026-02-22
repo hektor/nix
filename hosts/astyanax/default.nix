@@ -80,7 +80,7 @@ in
   };
 
   environment.systemPackages = [
-    inputs.colmena.packages.${pkgs.system}.colmena
+    inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
     (pkgs.writeShellApplication {
       name = "wol-andromache";
       runtimeInputs = [ pkgs.wakeonlan ];
