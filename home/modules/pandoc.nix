@@ -1,20 +1,19 @@
 {
-  lib,
   config,
+  lib,
   pkgs,
   ...
 }:
-
-let
-  cfg = config.pandoc;
-in
 {
-  options.pandoc.enable = lib.mkEnableOption "pandoc with crossref";
+  options.pandoc = {
+    enable = lib.mkEnableOption "pandoc";
+  };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.pandoc.enable {
     home.packages = with pkgs; [
-      pandoc
       haskellPackages.pandoc-crossref
+      pandoc
+      texliveSmall
     ];
   };
 }
