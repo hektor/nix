@@ -5,6 +5,7 @@
   pkgs,
   ...
 }:
+
 let
   username = "h";
   hostName = "andromache";
@@ -100,7 +101,7 @@ in
       enable = true;
       harden = true;
     };
-
+  };
 
   networking = {
     # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
