@@ -24,23 +24,25 @@ in
       inherit lib config;
       device = "/dev/nvme1n1";
     })
-    ../../modules/desktops/niri
+    ../../modules/audio
     ../../modules/backups
     ../../modules/bluetooth
-    ../../modules/gaming
-    ../../modules/keyboard
-    (import ../../modules/networking { hostName = config.host.name; })
-    ../../modules/users
-    ../../modules/audio
-    ../../modules/localization
+    ../../modules/desktops/niri
+    ../../modules/docker
+    ../../modules/firewall
     ../../modules/fonts
+    ../../modules/gaming
+    (import ../../modules/networking { hostName = config.host.name; })
+    ../../modules/keyboard
+    ../../modules/localization
+    ../../modules/nvidia
+    (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
-    (import ../../modules/secrets { inherit lib inputs config; })
-    ../../modules/docker
     ../../modules/syncthing
-    ../../modules/nvidia
+    ../../modules/users
+    ../../modules/wol
     ../../modules/yubikey
   ];
 
@@ -113,17 +115,15 @@ in
     package = pkgs.plocate;
   };
 
-  networking = {
-    # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
-    hostId = "80eef97e";
-    interfaces = {
-      eno1 = {
-        wakeOnLan.enable = true;
-        inherit (wolInterfaces.eno1) macAddress;
-      };
-    };
-    firewall = {
-      allowedUDPPorts = [ 9 ];
-    };
+  networking.hostId = "80eef97e";
+
+  wol = {
+    enable = true;
+    interfaces.eno1 = { inherit (wolInterfaces.eno1) macAddress; };
+  };
+
+  firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
   };
 }

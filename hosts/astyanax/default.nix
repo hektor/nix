@@ -38,6 +38,7 @@ in
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/docker
     ../../modules/nfc
+    ../../modules/firewall
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/astyanax {
@@ -89,8 +90,12 @@ in
   ];
 
   networking = {
-    # TODO: generate unique hostId on actual host with: head -c 8 /etc/machine-id
     hostId = "80eef97e";
+  };
+
+  firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
