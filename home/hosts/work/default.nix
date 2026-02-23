@@ -32,6 +32,7 @@ in
     ../../modules/music
     ../../modules/taskwarrior.nix
     ../../modules/bruno.nix
+    ../../modules/vscode.nix
   ];
 
   sops = {
