@@ -103,13 +103,6 @@ if [[ -z "${SSH_CONNECTION}" ]]; then
 fi
 # }}}
 
-# pnpm
-export PNPM_HOME="/home/h/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 
 # Codi
 # Usage: codi [filetype] [filename]
