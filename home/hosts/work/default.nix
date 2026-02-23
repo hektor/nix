@@ -30,6 +30,7 @@ in
     ../../modules/browser
     ../../modules/shell
     ../../modules/music
+    ../../modules/nodejs.nix
     ../../modules/taskwarrior.nix
     ../../modules/bruno.nix
     ../../modules/vscode.nix
