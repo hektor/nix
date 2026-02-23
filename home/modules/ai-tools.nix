@@ -82,6 +82,7 @@ in
             "~/.config/sops/age/keys.txt" = "deny";
           };
         };
+        plugin = [ "@mohak34/opencode-notifier@latest" ];
       };
     })
   ];
