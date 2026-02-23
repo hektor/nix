@@ -9,11 +9,9 @@ with pkgs;
   htop
   jq
   nmap
-  nodejs_24
   nvimpager
   parallel
   pass
-  pnpm
   ripgrep
   silver-searcher
   sops
