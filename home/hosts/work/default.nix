@@ -13,10 +13,10 @@ in
     inputs.sops-nix.homeManagerModules.sops
     ../../modules
     ../../modules/stylix.nix
-    ../../modules/lib.nix
     ../../modules/ai-tools.nix
     ../../modules/cloud
     ../../modules/comms
+    ../../modules/desktop/niri
     ../../modules/dconf.nix
     ../../modules/direnv
     ../../modules/docker
@@ -33,6 +33,7 @@ in
     ../../modules/nodejs.nix
     ../../modules/taskwarrior.nix
     ../../modules/bruno.nix
+    ../../modules/pandoc.nix
     ../../modules/vscode.nix
   ];
 
