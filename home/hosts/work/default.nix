@@ -45,14 +45,29 @@ in
       taskwarrior_sync_encryption_secret = { };
       anki_sync_user = { };
       anki_sync_key = { };
+      opencode_api_key = { };
     };
 
-    templates."taskrc.d/sync" = {
-      content = ''
-        sync.server.url=${config.sops.placeholder.taskwarrior_sync_server_url}
-        sync.server.client_id=${config.sops.placeholder.taskwarrior_sync_server_client_id}
-        sync.encryption_secret=${config.sops.placeholder.taskwarrior_sync_encryption_secret}
-      '';
+    templates = {
+      "taskrc.d/sync" = {
+        content = ''
+          sync.server.url=${config.sops.placeholder.taskwarrior_sync_server_url}
+          sync.server.client_id=${config.sops.placeholder.taskwarrior_sync_server_client_id}
+          sync.encryption_secret=${config.sops.placeholder.taskwarrior_sync_encryption_secret}
+        '';
+      };
+
+      "opencode/auth.json" = {
+        path = "${config.home.homeDirectory}/.local/share/opencode/auth.json";
+        content = ''
+          {
+            "zai-coding-plan": {
+              "type": "api",
+              "key": "${config.sops.placeholder.opencode_api_key}"
+            }
+          }
+        '';
+      };
     };
   };
 
@@ -74,7 +89,10 @@ in
   cloud.azure.enable = true;
   comms.signal.enable = true;
   comms.teams.enable = true;
-  ai-tools.claude-code.enable = true;
+  ai-tools = {
+    claude-code.enable = true;
+    opencode.enable = true;
+  };
   github.enable = true;
   gitlab.enable = true;
   pandoc.enable = true;
