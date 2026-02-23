@@ -22,22 +22,6 @@ in
   config = {
     system.stateVersion = "25.05";
 
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-
-    nixpkgs.config.allowUnfreePredicate =
-      pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfree;
-
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      extraSpecialArgs = {
-        inherit inputs outputs dotsPath;
-      };
-    };
-
     nix = {
       optimise = {
         automatic = true;
@@ -48,6 +32,10 @@ in
         dates = "weekly";
         options = "--delete-older-than 30d";
       };
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
 
     system.autoUpgrade = {
@@ -61,6 +49,19 @@ in
       dates = "05:00";
       randomizedDelaySec = "45min";
       allowReboot = false;
+    };
+
+    nixpkgs.config.allowUnfreePredicate =
+      pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfree;
+
+    environment.defaultPackages = lib.mkForce [ ];
+
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit inputs outputs dotsPath;
+      };
     };
   };
 }
