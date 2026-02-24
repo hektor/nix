@@ -128,9 +128,8 @@
         };
       };
 
-      apps.${system}.colmena = inputs.colmena.apps.${system}.default // {
-        meta.description = "Colmena deployment tool";
-      };
+      apps.${system}.colmena = inputs.colmena.apps.${system}.default;
+
       colmena = import ./deploy/colmena.nix {
         inherit
           self
