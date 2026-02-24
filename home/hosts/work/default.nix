@@ -28,6 +28,7 @@ in
     ../../modules/kitty.nix
     ../../modules/nvim.nix
     ../../modules/pandoc.nix
+    ../../modules/secrets
     ../../modules/browser
     ../../modules/shell
     ../../modules/music
@@ -99,6 +100,10 @@ in
   github.enable = true;
   gitlab.enable = true;
   pandoc.enable = true;
+  secrets = {
+    enable = true;
+    vault.enable = true;
+  };
 
   shell.bash.enable = true;
   starship.enable = true;
