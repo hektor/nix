@@ -21,6 +21,7 @@ in
     ../../modules/direnv
     ../../modules/docker
     ../../modules/git
+    ../../modules/go
     ../../modules/k8s
     ../../modules/k8s/k9s.nix
     ../../modules/keepassxc.nix
