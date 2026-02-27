@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   options.nixgl.wrap = lib.mkOption {
@@ -13,6 +13,7 @@
       pkg: flags:
       if config.lib ? nixGL then
         pkg.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
           postInstall = (old.postInstall or "") + ''
             wrapProgram $out/bin/${pkg.meta.mainProgram} --add-flags "${flags}"
           '';

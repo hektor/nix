@@ -93,3 +93,6 @@
 
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfig.work
+
+[includeIf "gitdir:~/nix-dev-shells/"]
+  path = ~/.gitconfig.work
