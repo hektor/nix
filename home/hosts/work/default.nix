@@ -14,6 +14,7 @@ in
     ../../modules
     ../../modules/stylix.nix
     ../../modules/ai-tools.nix
+    ../../modules/anki.nix
     ../../modules/cloud
     ../../modules/comms
     ../../modules/desktop/niri

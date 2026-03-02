@@ -20,6 +20,7 @@ in
 
   programs.anki = {
     enable = true;
+    package = config.nixgl.wrap pkgs.anki;
     addons = with pkgs.ankiAddons; [
       anki-connect
       puppy-reinforcement
