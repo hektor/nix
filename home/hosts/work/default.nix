@@ -77,6 +77,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  xdg.systemDirs.config = [ "/etc/xdg" ];
+
   home = {
     stateVersion = "25.05";
     inherit username;
