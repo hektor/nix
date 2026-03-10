@@ -25,6 +25,7 @@ in
     ../../modules/docker
     ../../modules/git
     ../../modules/go
+    ../../modules/infra
     ../../modules/k8s
     ../../modules/k8s/k9s.nix
     ../../modules/keepassxc
