@@ -18,6 +18,7 @@ in
     ../../modules/bruno
     ../../modules/cloud
     ../../modules/comms
+    ../../modules/database
     ../../modules/dconf
     ../../modules/desktop/niri
     ../../modules/direnv
@@ -100,6 +101,8 @@ in
     claude-code.enable = true;
     opencode.enable = true;
   };
+  database.mssql.enable = true;
+  database.postgresql.enable = true;
   github.enable = true;
   gitlab.enable = true;
   pandoc.enable = true;
