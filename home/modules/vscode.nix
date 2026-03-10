@@ -2,6 +2,6 @@
 
 {
   config = {
-    home.packages = [ (config.nixgl.wrap (config.wrapApp pkgs.vscode "--disable-gpu-sandbox")) ];
+    home.packages = [ (config.nixgl.wrap (config.wrapApp pkgs.vscode "--no-sandbox")) ];
   };
 }
