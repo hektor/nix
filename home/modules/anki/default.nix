@@ -26,7 +26,7 @@ in
       puppy-reinforcement
       review-heatmap
     ];
-    sync = lib.mkIf sopsAvailable {
+    profiles."User 1".sync = lib.mkIf sopsAvailable {
       usernameFile = "${sopsSecrets."anki_sync_user".path}";
       keyFile = "${sopsSecrets."anki_sync_key".path}";
     };
