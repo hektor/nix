@@ -31,7 +31,7 @@ in
     ../../modules/keepassxc
     ../../modules/kitty.nix
     ../../modules/music
-    ../../modules/nodejs.nix
+    ../../modules/nodejs
     ../../modules/nvim
     ../../modules/pandoc
     ../../modules/secrets
