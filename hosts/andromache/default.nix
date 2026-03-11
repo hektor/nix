@@ -12,12 +12,13 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ../../modules/common
     ./hard.nix
+    ./host.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.sops-nix.nixosModules.sops
+    ../../modules/common
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib config;
@@ -42,11 +43,6 @@ in
     ../../modules/nvidia
     ../../modules/yubikey
   ];
-
-  host = {
-    username = "h";
-    name = "andromache";
-  };
 
   home-manager.users.${config.host.username} = import ../../home/hosts/andromache {
     inherit

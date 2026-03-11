@@ -10,16 +10,12 @@
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ../../modules/common
     ./hard.nix
+    ./host.nix
+    ../../modules/common
     ../../modules/ssh
     ../../modules/docker
   ];
-
-  host = {
-    username = "username";
-    name = "hecuba";
-  };
 
   networking.hostName = config.host.name;
   ssh = {

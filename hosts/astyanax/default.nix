@@ -11,12 +11,13 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ../../modules/common
     ./hard.nix
+    ./host.nix
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen7 (not available yet?)
     inputs.sops-nix.nixosModules.sops
+    ../../modules/common
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib config;
@@ -39,11 +40,6 @@ in
     ../../modules/docker
     ../../modules/nfc
   ];
-
-  host = {
-    username = "h";
-    name = "astyanax";
-  };
 
   home-manager.users.${config.host.username} = import ../../home/hosts/astyanax {
     inherit

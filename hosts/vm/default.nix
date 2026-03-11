@@ -8,10 +8,11 @@
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ../../modules/common
     ./hard.nix
+    ./host.nix
     inputs.sops-nix.nixosModules.sops
     ./disk.nix
+    ../../modules/common
     ../../modules/boot/bootloader.nix
     ../../modules/keyboard
     (import ../../modules/networking { hostName = config.host.name; })
@@ -22,15 +23,11 @@
     ../../modules/fonts
     ../../modules/ssh
     ../../modules/storage
+    ../../modules/stylix
     (import ../../modules/secrets {
       inherit lib inputs config;
     })
   ];
-
-  host = {
-    username = "h";
-    name = "vm";
-  };
 
   home-manager.users.${config.host.username} = import ../../home/hosts/vm {
     inherit inputs config pkgs;

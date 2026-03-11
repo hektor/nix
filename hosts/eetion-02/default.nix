@@ -6,14 +6,10 @@
 {
   imports = [
     ./hard.nix
-    ../../modules/ssh
+    ./host.nix
     ../../modules/common
+    ../../modules/ssh
   ];
-
-  host = {
-    username = "h";
-    name = "eetion-02";
-  };
 
   ssh = {
     inherit (config.host) username;

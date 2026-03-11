@@ -6,15 +6,11 @@
 {
   imports = [
     ./hard.nix
-    ../../modules/ssh
+    ./host.nix
     ../../modules/common
+    ../../modules/ssh
     # ../../modules/uptime-kuma
   ];
-
-  host = {
-    username = "h";
-    name = "eetion";
-  };
 
   ssh = {
     inherit (config.host) username;
