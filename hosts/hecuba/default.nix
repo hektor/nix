@@ -1,15 +1,12 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }:
 
 # Also see <https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud>
 
-let
-  username = "username";
-  hostName = "hecuba";
-in
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -19,9 +16,14 @@ in
     ../../modules/docker
   ];
 
-  networking.hostName = hostName;
+  host = {
+    username = "username";
+    name = "hecuba";
+  };
+
+  networking.hostName = config.host.name;
   ssh = {
-    inherit username;
+    username = config.host.username;
     publicHostname = "server.hektormisplon.xyz";
     authorizedHosts = [
       "andromache"
@@ -29,7 +31,7 @@ in
     ];
   };
 
-  docker.user = username;
+  docker.user = config.host.username;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -50,7 +52,7 @@ in
 
   users.users = {
     root.hashedPassword = "!";
-    username = {
+    ${config.host.username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };

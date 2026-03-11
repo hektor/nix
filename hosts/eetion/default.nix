@@ -1,22 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 # Orange Pi Zero2 H616
 # See <https://nixos.wiki/wiki/NixOS_on_ARM/Orange_Pi_Zero2_H616>
 
-let
-  username = "h";
-  hostName = "eetion";
-in
 {
   imports = [
     ./hard.nix
     ../../modules/ssh
+    ../../modules/common
     # ../../modules/uptime-kuma
   ];
 
+  host = {
+    username = "h";
+    name = "eetion";
+  };
+
   ssh = {
-    inherit username;
-    publicHostname = "eetion";
+    username = config.host.username;
+    publicHostname = config.host.name;
     authorizedHosts = [
       "andromache"
       "astyanax"
@@ -29,7 +31,7 @@ in
   };
 
   networking = {
-    inherit hostName;
+    hostName = config.host.name;
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -44,7 +46,7 @@ in
 
   users.users = {
     root.hashedPassword = "!";
-    ${username} = {
+    ${config.host.username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };
@@ -57,19 +59,19 @@ in
       enable = true;
       passwordFile = "/etc/paperless-admin-pass";
       settings = {
-        PAPERLESS_URL = "http://paperless.eetion";
+        PAPERLESS_URL = "http://paperless.${config.host.name}";
       };
     };
 
     # added (OPNSense) domain override to make this work on LAN
     #
-    # host: eetion
+    # host: <host-name>
     # domain: <domain (e.g. lan)>
-    # ip address: <eetion-ip>
+    # ip address: <host-ip>
     #
     # host: paperless
-    # domain: eetion
-    # ip address: <eetion-ip>
+    # domain: <host-name>
+    # ip address: <host-ip>
     nginx = {
       enable = true;
       recommendedGzipSettings = true;
@@ -78,13 +80,13 @@ in
       recommendedTlsSettings = true;
 
       virtualHosts = {
-        "eetion" = {
+        "${config.host.name}" = {
           default = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:5006";
           };
         };
-        "paperless.eetion" = {
+        "paperless.${config.host.name}" = {
           locations."/" = {
             proxyPass = "http://127.0.0.1:28981";
           };

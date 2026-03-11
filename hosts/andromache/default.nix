@@ -7,8 +7,6 @@
 }:
 
 let
-  username = "h";
-  hostName = "andromache";
   wolInterfaces = import ./wol-interfaces.nix;
 in
 {
@@ -30,7 +28,7 @@ in
     ../../modules/bluetooth
     ../../modules/gaming
     ../../modules/keyboard
-    (import ../../modules/networking { inherit hostName; })
+    (import ../../modules/networking { hostName = config.host.name; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
@@ -45,7 +43,12 @@ in
     ../../modules/yubikey
   ];
 
-  home-manager.users.${username} = import ../../home/hosts/andromache {
+  host = {
+    username = "h";
+    name = "andromache";
+  };
+
+  home-manager.users.${config.host.username} = import ../../home/hosts/andromache {
     inherit
       inputs
       config
@@ -54,13 +57,11 @@ in
       ;
   };
 
-  networking.hostName = hostName;
-
-  ssh.username = username;
+  ssh.username = config.host.username;
   ssh.authorizedHosts = [ "astyanax" ];
 
-  secrets.username = username;
-  docker.user = username;
+  secrets.username = config.host.username;
+  docker.user = config.host.username;
 
   nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_andromache.path ];
 
@@ -94,7 +95,7 @@ in
 
   my.yubikey = {
     enable = false;
-    inherit username;
+    username = config.host.username;
     keys = [
       {
         handle = "<KeyHandle1>";

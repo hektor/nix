@@ -1,21 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 # Raspberry Pi 3
 # See <https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi_3>
 
-let
-  username = "h";
-  hostName = "eetion-02";
-in
 {
   imports = [
     ./hard.nix
     ../../modules/ssh
+    ../../modules/common
   ];
 
+  host = {
+    username = "h";
+    name = "eetion-02";
+  };
+
   ssh = {
-    inherit username;
-    publicHostname = "eetion-02";
+    username = config.host.username;
+    publicHostname = config.host.name;
     authorizedHosts = [
       "andromache"
       "astyanax"
@@ -38,7 +40,7 @@ in
   hardware.enableRedistributableFirmware = true;
 
   networking = {
-    inherit hostName;
+    hostName = config.host.name;
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -51,7 +53,7 @@ in
 
   users.users = {
     root.hashedPassword = "!";
-    ${username} = {
+    ${config.host.username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };

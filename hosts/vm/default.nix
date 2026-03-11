@@ -5,10 +5,6 @@
   pkgs,
   ...
 }:
-let
-  username = "h";
-  hostName = "vm";
-in
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -18,7 +14,7 @@ in
     ./disk.nix
     ../../modules/boot/bootloader.nix
     ../../modules/keyboard
-    (import ../../modules/networking { inherit hostName; })
+    (import ../../modules/networking { hostName = config.host.name; })
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
@@ -31,14 +27,19 @@ in
     })
   ];
 
-  home-manager.users.${username} = import ../../home/hosts/vm {
+  host = {
+    username = "h";
+    name = "vm";
+  };
+
+  home-manager.users.${config.host.username} = import ../../home/hosts/vm {
     inherit inputs config pkgs;
   };
 
-  networking.hostName = hostName;
-  ssh.username = username;
+  networking.hostName = config.host.name;
+  ssh.username = config.host.username;
 
-  secrets.username = username;
+  secrets.username = config.host.username;
 
   disko = {
     devices.disk.main = {

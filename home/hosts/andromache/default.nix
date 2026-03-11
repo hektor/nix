@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  username = "h";
-in
 {
   imports = [
     ../../modules
@@ -35,8 +32,8 @@ in
 
   home = {
     stateVersion = "25.05";
-    inherit username;
-    homeDirectory = "/home/${username}";
+    username = config.host.username;
+    homeDirectory = "/home/${config.host.username}";
   };
 
   xdg.userDirs.createDirectories = false;

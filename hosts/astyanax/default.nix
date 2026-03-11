@@ -6,8 +6,6 @@
   ...
 }:
 let
-  username = "h";
-  hostName = "astyanax";
   wolInterfaces = import ../andromache/wol-interfaces.nix;
 in
 {
@@ -30,7 +28,7 @@ in
     ../../modules/backups
     ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking { inherit hostName; })
+    (import ../../modules/networking { hostName = config.host.name; })
     ../../modules/users
     ../../modules/localization
     ../../modules/fonts
@@ -42,7 +40,12 @@ in
     ../../modules/nfc
   ];
 
-  home-manager.users.${username} = import ../../home/hosts/astyanax {
+  host = {
+    username = "h";
+    name = "astyanax";
+  };
+
+  home-manager.users.${config.host.username} = import ../../home/hosts/astyanax {
     inherit
       inputs
       config
@@ -51,14 +54,12 @@ in
       ;
   };
 
-  networking.hostName = hostName;
-
-  ssh.username = username;
+  ssh.username = config.host.username;
   ssh.authorizedHosts = [ "andromache" ];
 
-  secrets.username = username;
-  docker.user = username;
-  nfc.user = username;
+  secrets.username = config.host.username;
+  docker.user = config.host.username;
+  nfc.user = config.host.username;
   desktop.ly.enable = true;
 
   nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_astyanax.path ];

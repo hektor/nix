@@ -12,6 +12,7 @@ in
 {
   imports = [
     inputs.home-manager.nixosModules.default
+    ./host.nix
   ];
 
   options.nixpkgs.allowedUnfree = lib.mkOption {
