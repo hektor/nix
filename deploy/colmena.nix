@@ -4,6 +4,10 @@
 }:
 
 let
+  inherit (inputs.nixpkgs) lib;
+  utils = import ../utils { inherit lib; };
+  hostDirNames = utils.dirNames ../hosts;
+
   mkNode = hostname: tags: {
     imports = [ ../hosts/${hostname} ];
     deployment = {
@@ -13,6 +17,10 @@ let
       inherit tags;
     };
   };
+
+  nodes = lib.genAttrs hostDirNames (hostname:
+    mkNode hostname (utils.hostMeta ../hosts/${hostname}).deployment.tags
+  );
 in
 inputs.colmena.lib.makeHive {
   meta = {
@@ -24,9 +32,5 @@ inputs.colmena.lib.makeHive {
     nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs or { }) self.nixosConfigurations;
   };
 
-  astyanax = mkNode "astyanax" [ "local" ];
-  andromache = mkNode "andromache" [ "local" ];
-  vm = mkNode "vm" [ "local" ];
-  hecuba = mkNode "hecuba" [ "cloud" ];
-  eetion = mkNode "eetion" [ "arm" ];
+  inherit nodes;
 }
