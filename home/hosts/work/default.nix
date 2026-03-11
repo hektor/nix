@@ -39,7 +39,7 @@ in
     ../../modules/stylix
     ../../modules/taskwarrior
     ../../modules/terminal
-    ../../modules/vscode.nix
+    ../../modules/vscode
   ];
 
   sops = {
