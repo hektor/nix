@@ -130,7 +130,7 @@
 
       apps.${system}.colmena = inputs.colmena.apps.${system}.default;
 
-      colmena = import ./deploy/colmena.nix {
+      colmenaHive = import ./deploy/colmena.nix {
         inherit
           self
           inputs
