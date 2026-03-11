@@ -25,7 +25,6 @@ in
     })
     ../../modules/desktops/niri
     ../../modules/audio
-    ../../modules/audio-automation
     ../../modules/backups
     ../../modules/bluetooth
     ../../modules/keyboard
@@ -57,6 +56,7 @@ in
   docker.user = config.host.username;
   nfc.user = config.host.username;
   desktop.ly.enable = true;
+  audio.automation.enable = true;
 
   nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_astyanax.path ];
 
