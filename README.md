@@ -1,4 +1,4 @@
-# NixOS flake
+# ❄️ NixOS flake
 
 ## hosts
 
