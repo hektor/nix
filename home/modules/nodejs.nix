@@ -6,15 +6,12 @@
 }:
 
 {
-  options.nodejs = {
-    enable = lib.mkEnableOption "nodejs (and related packages)";
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.nodejs_24;
-    };
+  options.nodejs.package = lib.mkOption {
+    type = lib.types.package;
+    default = pkgs.nodejs_24;
   };
 
-  config = lib.mkIf config.nodejs.enable {
+  config = {
     home.packages = with pkgs; [
       config.nodejs.package
       pnpm

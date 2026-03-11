@@ -106,14 +106,7 @@ in
   database.postgresql.enable = true;
   github.enable = true;
   gitlab.enable = true;
-  pandoc.enable = true;
-  secrets = {
-    enable = true;
-    vault.enable = true;
-  };
-
-  shell.bash.enable = true;
-  starship.enable = true;
+  secrets.vault.enable = true;
 
   programs = {
     gh.enable = true;

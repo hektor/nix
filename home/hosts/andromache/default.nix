@@ -47,12 +47,7 @@ in
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
   github.enable = true;
-  pandoc.enable = true;
-
-  shell.bash = {
-    enable = true;
-    aliases.lang-js = true;
-  };
+  shell.bash.aliases.lang-js = true;
 
   programs = {
     home-manager.enable = true;

@@ -9,38 +9,32 @@ let
   inherit (config.home) username;
 in
 {
-  options.shell.bash = {
-    enable = lib.mkEnableOption "bash configuration";
+  imports = [ ./utils.nix ];
 
+  options.shell.bash = {
     aliases = {
       all = lib.mkOption {
         type = lib.types.bool;
         default = true;
-        description = "Enable common aliases";
       };
       lang-js = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Enable JavaScript/Node.js aliases";
       };
     };
 
     addBinToPath = lib.mkOption {
       type = lib.types.bool;
       default = true;
-      description = "Add dots .bin directory to PATH";
     };
 
     extraInit = lib.mkOption {
       type = lib.types.lines;
       default = "";
-      description = "Additional bash initialization";
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    shell-utils.enable = lib.mkDefault true;
-
+  config = {
     programs.bash = {
       enable = true;
       enableCompletion = true;

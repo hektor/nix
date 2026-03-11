@@ -10,15 +10,12 @@ let
   cfg = config.my.syncthing;
 in
 {
-  options.my.syncthing = {
-    enable = mkEnableOption "Syncthing file synchronization";
-    username = mkOption {
-      type = types.str;
-      default = "h";
-    };
+  options.my.syncthing.username = mkOption {
+    type = types.str;
+    default = "h";
   };
 
-  config = mkIf cfg.enable {
+  config = {
     users.groups.${cfg.username} = { };
     users.users.${cfg.username}.extraGroups = [ cfg.username ];
 

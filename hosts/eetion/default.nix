@@ -11,6 +11,7 @@ in
   imports = [
     ./hard.nix
     ../../modules/ssh
+    # ../../modules/uptime-kuma
   ];
 
   ssh = {
