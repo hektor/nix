@@ -44,7 +44,7 @@ in
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
-  github.enable = true;
+  git.github.enable = true;
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
 

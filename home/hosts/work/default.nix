@@ -104,8 +104,8 @@ in
   };
   database.mssql.enable = true;
   database.postgresql.enable = true;
-  github.enable = true;
-  gitlab.enable = true;
+  git.github.enable = true;
+  git.gitlab.enable = true;
   secrets.vault.enable = true;
 
   programs = {

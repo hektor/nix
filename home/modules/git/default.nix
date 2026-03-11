@@ -7,7 +7,7 @@
 }:
 
 {
-  options = {
+  options.git = {
     github.enable = lib.mkEnableOption "Github CLI";
     gitlab.enable = lib.mkEnableOption "Gitlab CLI";
   };
@@ -20,7 +20,7 @@
       ".gitignore".source = dotsPath + "/.gitignore";
     };
 
-    programs.gh.enable = config.github.enable;
-    home.packages = lib.optionals config.gitlab.enable [ pkgs.glab ];
+    programs.gh.enable = config.git.github.enable;
+    home.packages = lib.optionals config.git.gitlab.enable [ pkgs.glab ];
   };
 }
