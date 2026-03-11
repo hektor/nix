@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./hard.nix
-    ../../modules/ssh/hardened-openssh.nix
+    ../../modules/ssh
   ];
 
   ssh = {
@@ -52,11 +52,6 @@ in
   security.sudo.wheelNeedsPassword = false;
 
   services = {
-    openssh = {
-      enable = true;
-      harden = true;
-    };
-
     paperless = {
       enable = true;
       passwordFile = "/etc/paperless-admin-pass";

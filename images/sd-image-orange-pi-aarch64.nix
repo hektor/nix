@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    ../modules/ssh/hardened-openssh.nix
+    ../modules/ssh
   ];
 
   ssh.username = username;
@@ -36,22 +36,6 @@ in
   };
 
   security.sudo.wheelNeedsPassword = false;
-
-  services.openssh = {
-    enable = true;
-    harden = true;
-  };
-
-  # sdImage.postBuildCommands =
-  #   let
-  #     bootloaderPackage = pkgs.ubootOrangePiZero2;
-  #     bootloaderSubpath = "/u-boot-sunxi-with-spl.bin";
-  #   in
-  #   ''
-  #     dd if=${bootloaderPackage}${bootloaderSubpath} of=$img \
-  #       bs=8 seek=1024 \
-  #       conv=notrunc
-  #   '';
 
   system.stateVersion = "26.05";
 }

@@ -35,7 +35,7 @@ in
     ../../modules/audio
     ../../modules/localization
     ../../modules/fonts
-    ../../modules/ssh/hardened-openssh.nix
+    ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
     (import ../../modules/secrets { inherit lib inputs config; })
@@ -111,16 +111,9 @@ in
     ];
   };
 
-  services = {
-    locate = {
-      enable = true;
-      package = pkgs.plocate;
-    };
-
-    openssh = {
-      enable = true;
-      harden = true;
-    };
+  services.locate = {
+    enable = true;
+    package = pkgs.plocate;
   };
 
   networking = {

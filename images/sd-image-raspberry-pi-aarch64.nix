@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    ../modules/ssh/hardened-openssh.nix
+    ../modules/ssh
   ];
 
   ssh.username = username;
@@ -59,11 +59,6 @@ in
   };
 
   security.sudo.wheelNeedsPassword = false;
-
-  services.openssh = {
-    enable = true;
-    harden = true;
-  };
 
   environment.systemPackages = with pkgs; [
     libraspberrypi

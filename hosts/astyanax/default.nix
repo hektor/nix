@@ -34,7 +34,7 @@ in
     ../../modules/users
     ../../modules/localization
     ../../modules/fonts
-    ../../modules/ssh/hardened-openssh.nix
+    ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
     (import ../../modules/secrets { inherit lib inputs config; })
@@ -100,10 +100,6 @@ in
 
   services = {
     fwupd.enable = true;
-    openssh = {
-      enable = true;
-      harden = true;
-    };
     locate = {
       enable = true;
       package = pkgs.plocate;

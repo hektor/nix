@@ -15,7 +15,7 @@ in
     inputs.disko.nixosModules.disko
     ../../modules/common
     ./hard.nix
-    ../../modules/ssh/hardened-openssh.nix
+    ../../modules/ssh
     ../../modules/docker
     ../../modules/uptime-kuma
   ];
@@ -77,10 +77,5 @@ in
   services.fail2ban = {
     enable = true;
     maxretry = 5;
-  };
-
-  services.openssh = {
-    enable = true;
-    harden = true;
   };
 }

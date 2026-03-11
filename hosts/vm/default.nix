@@ -24,7 +24,7 @@ in
     ../../modules/localization
     ../../modules/x
     ../../modules/fonts
-    ../../modules/ssh/hardened-openssh.nix
+    ../../modules/ssh
     ../../modules/storage
     (import ../../modules/secrets {
       inherit lib inputs config;
@@ -63,9 +63,5 @@ in
   services = {
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
-    openssh = {
-      enable = true;
-      harden = true;
-    };
   };
 }
