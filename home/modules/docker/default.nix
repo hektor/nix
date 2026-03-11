@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  config = {
-    home.packages = with pkgs; [
-      dive
-    ];
-  };
+  home.packages = with pkgs; [
+    dive
+  ];
 }
