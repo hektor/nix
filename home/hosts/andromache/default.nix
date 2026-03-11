@@ -48,6 +48,7 @@ in
   comms.signal.enable = true;
   github.enable = true;
   shell.bash.aliases.lang-js = true;
+  shell.bash.addBinToPath = true;
 
   programs = {
     home-manager.enable = true;
