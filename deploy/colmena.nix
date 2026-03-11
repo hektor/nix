@@ -18,8 +18,8 @@ let
     };
   };
 
-  nodes = lib.genAttrs hostDirNames (hostname:
-    mkNode hostname (utils.hostMeta ../hosts/${hostname}).deployment.tags
+  nodes = lib.genAttrs hostDirNames (
+    hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}).deployment.tags
   );
 in
 inputs.colmena.lib.makeHive {

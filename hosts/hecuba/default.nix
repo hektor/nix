@@ -23,7 +23,7 @@
 
   networking.hostName = config.host.name;
   ssh = {
-    username = config.host.username;
+    inherit (config.host) username;
     publicHostname = "server.hektormisplon.xyz";
     authorizedHosts = [
       "andromache"

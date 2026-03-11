@@ -32,7 +32,7 @@
 
   home = {
     stateVersion = "25.05";
-    username = config.host.username;
+    inherit (config.host) username;
     homeDirectory = "/home/${config.host.username}";
   };
 

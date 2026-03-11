@@ -1,5 +1,3 @@
-_:
-
 {
   services.xserver.windowManager.xmonad = {
     enable = true;

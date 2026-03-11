@@ -16,7 +16,7 @@
   };
 
   ssh = {
-    username = config.host.username;
+    inherit (config.host) username;
     publicHostname = config.host.name;
     authorizedHosts = [
       "andromache"

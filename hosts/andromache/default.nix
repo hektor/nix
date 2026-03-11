@@ -95,7 +95,7 @@ in
 
   my.yubikey = {
     enable = false;
-    username = config.host.username;
+    inherit (config.host) username;
     keys = [
       {
         handle = "<KeyHandle1>";

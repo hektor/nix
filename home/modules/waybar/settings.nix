@@ -1,5 +1,3 @@
-{ lib, ... }:
-
 {
   programs.waybar.settings = [
     {
