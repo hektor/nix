@@ -11,6 +11,7 @@ in
 {
   options.ai-tools = {
     claude-code.enable = lib.mkEnableOption "claude code with rtk and ccline";
+    tirith.enable = lib.mkEnableOption "tirith shell security guard";
     opencode.enable = lib.mkEnableOption "opencode";
   };
 
@@ -69,6 +70,15 @@ in
         })
         mcp-nixos
       ];
+    })
+    (lib.mkIf cfg.tirith.enable {
+      home.packages = with pkgs; [
+        tirith
+      ];
+
+      programs.bash.initExtra = ''
+        eval "$(tirith init --shell bash)"
+      '';
     })
     (lib.mkIf cfg.opencode.enable {
       home.packages = with pkgs; [

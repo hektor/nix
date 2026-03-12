@@ -100,6 +100,7 @@ in
   comms.teams.enable = true;
   ai-tools = {
     claude-code.enable = true;
+    tirith.enable = true;
     opencode.enable = true;
   };
   database.mssql.enable = true;
