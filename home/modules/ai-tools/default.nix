@@ -75,9 +75,15 @@ in
       home.packages = with pkgs; [
         tirith
       ];
+    })
+    (lib.mkIf (cfg.tirith.enable && cfg.claude-code.enable) {
+      home.file.".claude/hooks/tirith-check.py" = {
+        source = ./tirith-check.py;
+        executable = true;
+      };
 
-      programs.bash.initExtra = ''
-        eval "$(tirith init --shell bash)"
+      home.activation.tirith-claude-code = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        ${pkgs.tirith}/bin/tirith setup claude-code --with-mcp --scope user --force 2>/dev/null || true
       '';
     })
     (lib.mkIf cfg.opencode.enable {
