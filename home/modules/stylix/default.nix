@@ -6,7 +6,7 @@
 }:
 
 let
-  theme = import ../../modules/stylix/theme.nix { inherit pkgs; };
+  theme = import ../../../modules/stylix/theme.nix { inherit pkgs; };
 in
 {
   imports = [ inputs.stylix.homeModules.stylix ];

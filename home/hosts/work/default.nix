@@ -13,7 +13,7 @@ in
     inputs.sops-nix.homeManagerModules.sops
     ../../modules
     ../../modules/ai-tools
-    ../../modules/anki.nix
+    ../../modules/anki
     ../../modules/browser
     ../../modules/bruno
     ../../modules/cloud
@@ -29,7 +29,6 @@ in
     ../../modules/k8s
     ../../modules/k8s/k9s.nix
     ../../modules/keepassxc
-    ../../modules/kitty.nix
     ../../modules/music
     ../../modules/nodejs
     ../../modules/nvim
