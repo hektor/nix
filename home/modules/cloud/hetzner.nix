@@ -14,8 +14,7 @@ in
     warnings =
       lib.optional (!isNixOS)
         "hcloud module requires NixOS host configuration. This module will not work with standalone home-manager.";
-    home = {
-      packages = with pkgs; [ hcloud ];
-    };
+
+    home.packages = with pkgs; [ hcloud ];
   };
 }

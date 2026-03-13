@@ -17,7 +17,6 @@ in
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
-    inputs.sops-nix.nixosModules.sops
     ../../modules/common
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
@@ -44,6 +43,7 @@ in
     ../../modules/users
     ../../modules/wol
     ../../modules/yubikey
+    ../../modules/hcloud
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/andromache {
@@ -58,10 +58,15 @@ in
   ssh.username = config.host.username;
   ssh.authorizedHosts = [ "astyanax" ];
 
-  secrets.username = config.host.username;
+  secrets = {
+    inherit (config.host) username;
+    nixSigningKey.enable = true;
+  };
   docker.user = config.host.username;
-
-  nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_andromache.path ];
+  hcloud = {
+    enable = true;
+    inherit (config.host) username;
+  };
 
   disko.devices = {
     disk.data = {

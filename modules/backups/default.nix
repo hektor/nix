@@ -6,18 +6,19 @@
 
 let
   cfg = config.restic-backup;
+  inherit (config.secrets) sopsDir;
 in
 {
   options = {
     restic-backup = {
       repository = lib.mkOption {
         type = lib.types.str;
-        default = "b2:${config.sops.placeholder."b2_bucket_name"}:${config.networking.hostName}";
+        default = "b2:${config.sops.placeholder.b2-bucket-name}:${config.networking.hostName}";
       };
 
       passwordFile = lib.mkOption {
         type = lib.types.str;
-        default = config.sops.secrets."restic_password".path;
+        default = config.sops.secrets.restic-password.path;
       };
 
       paths = lib.mkOption {
@@ -29,17 +30,30 @@ in
 
   config = {
     sops = {
-      secrets.b2_bucket_name = { };
-
-      templates."restic/repo-${config.networking.hostName}" = {
-        content = "b2:${config.sops.placeholder."b2_bucket_name"}:${config.networking.hostName}";
+      secrets = {
+        restic-password = {
+          sopsFile = "${sopsDir}/restic-password";
+        };
+        b2-bucket-name = {
+          sopsFile = "${sopsDir}/b2-bucket-name";
+        };
+        b2-account-id = {
+          sopsFile = "${sopsDir}/b2-account-id";
+        };
+        b2-account-key = {
+          sopsFile = "${sopsDir}/b2-account-key";
+        };
       };
-
-      templates."restic/b2-env-${config.networking.hostName}" = {
-        content = ''
-          B2_ACCOUNT_ID=${config.sops.placeholder."b2_account_id"}
-          B2_ACCOUNT_KEY=${config.sops.placeholder."b2_account_key"}
-        '';
+      templates = {
+        "restic/repo-${config.networking.hostName}" = {
+          content = "b2:${config.sops.placeholder.b2-bucket-name}:${config.networking.hostName}";
+        };
+        "restic/b2-env-${config.networking.hostName}" = {
+          content = ''
+            B2_ACCOUNT_ID=${config.sops.placeholder.b2-account-id}
+            B2_ACCOUNT_KEY=${config.sops.placeholder.b2-account-key}
+          '';
+        };
       };
     };
 

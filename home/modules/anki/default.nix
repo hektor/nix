@@ -2,20 +2,17 @@
   config,
   lib,
   pkgs,
+  myUtils,
   osConfig ? null,
   ...
 }:
 
 let
-  hmSopsAvailable = config ? sops && config.sops ? secrets;
-  osSopsAvailable = osConfig != null && osConfig ? sops && osConfig.sops ? secrets;
-  sopsAvailable = hmSopsAvailable || osSopsAvailable;
-
-  sopsSecrets = if hmSopsAvailable then config.sops.secrets else osConfig.sops.secrets;
+  sops = myUtils.sopsAvailability config osConfig;
 in
 {
   warnings = lib.optional (
-    !sopsAvailable && config.programs.anki.enable
+    !sops.available && config.programs.anki.enable
   ) "anki is enabled but sops secrets are not available. anki sync will not be configured.";
 
   programs.anki = {
@@ -26,9 +23,9 @@ in
       puppy-reinforcement
       review-heatmap
     ];
-    profiles."User 1".sync = lib.mkIf sopsAvailable {
-      usernameFile = "${sopsSecrets."anki_sync_user".path}";
-      keyFile = "${sopsSecrets."anki_sync_key".path}";
+    profiles."User 1".sync = lib.mkIf sops.available {
+      usernameFile = "${sops.secrets."anki-sync-user".path}";
+      keyFile = "${sops.secrets."anki-sync-key".path}";
     };
   };
 }

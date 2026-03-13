@@ -10,7 +10,6 @@
     inputs.disko.nixosModules.disko
     ./hard.nix
     ./host.nix
-    inputs.sops-nix.nixosModules.sops
     ./disk.nix
     ../../modules/common
     ../../modules/boot/bootloader.nix

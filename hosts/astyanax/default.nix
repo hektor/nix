@@ -16,7 +16,6 @@ in
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen7 (not available yet?)
-    inputs.sops-nix.nixosModules.sops
     ../../modules/common
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
@@ -53,13 +52,14 @@ in
   ssh.username = config.host.username;
   ssh.authorizedHosts = [ "andromache" ];
 
-  secrets.username = config.host.username;
+  secrets = {
+    inherit (config.host) username;
+    nixSigningKey.enable = true;
+  };
   docker.user = config.host.username;
   nfc.user = config.host.username;
   desktop.ly.enable = true;
   audio.automation.enable = true;
-
-  nix.settings.secret-key-files = [ config.sops.secrets.nix_signing_key_astyanax.path ];
 
   hardware = {
     cpu.intel.updateMicrocode = true;

@@ -41,41 +41,7 @@ in
     ../../modules/vscode
   ];
 
-  sops = {
-    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-    defaultSopsFile = "${inputs.nix-secrets}/secrets.yaml";
-
-    secrets = {
-      taskwarrior_sync_server_url = { };
-      taskwarrior_sync_server_client_id = { };
-      taskwarrior_sync_encryption_secret = { };
-      anki_sync_user = { };
-      anki_sync_key = { };
-      opencode_api_key = { };
-    };
-
-    templates = {
-      "taskrc.d/sync" = {
-        content = ''
-          sync.server.url=${config.sops.placeholder.taskwarrior_sync_server_url}
-          sync.server.client_id=${config.sops.placeholder.taskwarrior_sync_server_client_id}
-          sync.encryption_secret=${config.sops.placeholder.taskwarrior_sync_encryption_secret}
-        '';
-      };
-
-      "opencode/auth.json" = {
-        path = "${config.home.homeDirectory}/.local/share/opencode/auth.json";
-        content = ''
-          {
-            "zai-coding-plan": {
-              "type": "api",
-              "key": "${config.sops.placeholder.opencode_api_key}"
-            }
-          }
-        '';
-      };
-    };
-  };
+  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 
   nixpkgs.config.allowUnfree = true;
 

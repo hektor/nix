@@ -60,8 +60,8 @@
     let
       inherit (self) outputs;
       inherit (inputs.nixpkgs) lib;
-      utils = import ./utils { inherit lib; };
-      hostDirNames = utils.dirNames ./hosts;
+      myUtils = import ./utils { inherit lib; };
+      hostDirNames = myUtils.dirNames ./hosts;
       system = "x86_64-linux";
       dotsPath = ./dots;
       gitHooks = import ./git-hooks.nix {
@@ -82,7 +82,12 @@
               { nixpkgs.hostPlatform = import ./hosts/${host}/system.nix; }
             ];
             specialArgs = {
-              inherit inputs outputs dotsPath;
+              inherit
+                inputs
+                outputs
+                dotsPath
+                myUtils
+                ;
             };
           }
         ))
@@ -97,7 +102,12 @@
               }
             ];
             specialArgs = {
-              inherit inputs outputs dotsPath;
+              inherit
+                inputs
+                outputs
+                dotsPath
+                myUtils
+                ;
             };
           };
           sd-image-raspberry-pi-aarch64 = nixpkgs.lib.nixosSystem {
@@ -110,7 +120,12 @@
               }
             ];
             specialArgs = {
-              inherit inputs outputs dotsPath;
+              inherit
+                inputs
+                outputs
+                dotsPath
+                myUtils
+                ;
             };
           };
         };
@@ -123,7 +138,12 @@
           };
           modules = [ ./home/hosts/work ];
           extraSpecialArgs = {
-            inherit inputs outputs dotsPath;
+            inherit
+              inputs
+              outputs
+              dotsPath
+              myUtils
+              ;
           };
         };
       };

@@ -2,6 +2,7 @@
   inputs,
   outputs,
   dotsPath,
+  myUtils,
   config,
   ...
 }:
@@ -61,7 +62,12 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
       extraSpecialArgs = {
-        inherit inputs outputs dotsPath;
+        inherit
+          inputs
+          outputs
+          dotsPath
+          myUtils
+          ;
       };
     };
   };

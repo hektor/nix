@@ -3,20 +3,17 @@
   lib,
   pkgs,
   dotsPath,
+  myUtils,
   osConfig ? null,
   ...
 }:
 
 let
-  hmSopsAvailable = config ? sops && config.sops ? templates;
-  osSopsAvailable = osConfig != null && osConfig ? sops && osConfig.sops ? templates;
-  sopsAvailable = hmSopsAvailable || osSopsAvailable;
-
-  sopsTemplates = if hmSopsAvailable then config.sops.templates else osConfig.sops.templates;
+  sops = myUtils.sopsAvailability config osConfig;
 in
 {
   warnings =
-    lib.optional (!sopsAvailable && config.programs.taskwarrior.enable)
+    lib.optional (!sops.available && config.programs.taskwarrior.enable)
       "taskwarrior is enabled, but sops templates are not available. taskwarrior sync will not be configured.";
 
   home.packages = with pkgs; [
@@ -27,7 +24,7 @@ in
 
   home.file = {
     ".config/task/taskrc" = {
-      force = true; # overwrite when present
+      force = true;
       source = dotsPath + "/.config/task/taskrc";
     };
     ".config/task/taskrc.d/aliases".source = dotsPath + "/.config/task/taskrc.d/aliases";
@@ -60,8 +57,8 @@ in
     config = {
       recurrence = "off";
     };
-    extraConfig = lib.optionalString sopsAvailable ''
-      include ${sopsTemplates."taskrc.d/sync".path}
+    extraConfig = lib.optionalString sops.available ''
+      include ${sops.templates."taskrc.d/sync".path}
     '';
   };
 }
