@@ -39,6 +39,10 @@
   xdg.userDirs.createDirectories = false;
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
 
+  modules."3d" = {
+    printing.enable = true;
+    modeling.enable = true;
+  };
   ai-tools.opencode.enable = true;
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
