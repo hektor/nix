@@ -1,9 +1,0 @@
--- require("m_taskwarrior_d").setup()
---
--- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
---   group = vim.api.nvim_create_augroup("TWTask", { clear = true }),
---   pattern = "*.md",
---   callback = function()
---     vim.cmd("TWSyncTasks")
---   end,
--- })

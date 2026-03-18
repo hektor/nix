@@ -915,21 +915,21 @@ end
 
 return {
   s(
-    { trig = "^h", regTrig = true, dscr = "Markdown header" },
+    { trig = "^h", regTrig = true, desc = "Markdown header" },
     fmta("# <><>", {
       d(1, get_visual),
       i(0),
     })
   ),
   s(
-    { trig = "^sec", regTrig = true, dscr = "Markdown header" },
+    { trig = "^sec", regTrig = true, desc = "Markdown header" },
     fmta("## <><>", {
       d(1, get_visual),
       i(0),
     })
   ),
   s(
-    { trig = "^ssec", regTrig = true, dscr = "Markdown header" },
+    { trig = "^ssec", regTrig = true, desc = "Markdown header" },
     fmta("### <><>", {
       d(1, get_visual),
       i(0),

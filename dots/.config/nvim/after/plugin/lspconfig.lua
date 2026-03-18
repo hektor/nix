@@ -87,7 +87,6 @@ local servers = {
   },
   openscad_ls = {},
   pyright = {},
-  -- tsserver = {},
   svelte = {
     plugin = {
       svelte = {
@@ -96,7 +95,6 @@ local servers = {
     },
   },
   tailwindcss = {},
-  -- vtsls = {},
   ts_ls = {},
   -- vtsls = {
   --   maxTsServerMemory = 16384,

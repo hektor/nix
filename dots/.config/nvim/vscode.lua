@@ -1,10 +1,4 @@
-local cmd = vim.cmd
 local map = vim.keymap.set
-
-cmd([[
-source ~/.vim/init/base.vim
-source ~/.vim/init/mappings.vim
-]])
 
 require("keymaps")
 

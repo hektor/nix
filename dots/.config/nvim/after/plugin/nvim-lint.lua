@@ -28,9 +28,6 @@ require("lint").linters_by_ft = {
   yaml = { "yamllint" },
 }
 
--- TODO: Wouldn't it be possible / nice to only try to load the linters when they are
--- actually needed?
-
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
   callback = function()
     require("lint").try_lint()

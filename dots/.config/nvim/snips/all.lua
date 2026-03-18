@@ -17,7 +17,7 @@ local LOCALHOST_IP = "127.0.0.1"
 
 return {
   s({ trig = "fn", desc = "Filename" }, { f(TM_FILENAME_BASE) }),
-  s({ trig = "fne", dscr = "Filename (+extension)" }, { f(TM_FILENAME) }),
+  s({ trig = "fne", desc = "Filename (+extension)" }, { f(TM_FILENAME) }),
   s({ trig = "hm" }, { t(NAME) }),
   s({ trig = "loho" }, { t(LOCALHOST) }),
   s({ trig = "lohoi" }, { t(LOCALHOST_IP) }),

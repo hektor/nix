@@ -26,5 +26,4 @@ set lcs=trail:·,tab:→\ ,nbsp:␣         " Whitespace rendering
 set ar                                 " Autoread
 set spellsuggest+=5                    " Limit spell suggestions
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
-" set thesaurus+=./thesaurus/mthesaur.txt " FIXME
 ]])
