@@ -37,6 +37,7 @@ in
     ../../modules/shell
     ../../modules/stylix
     ../../modules/taskwarrior
+    ../../modules/ticketing
     ../../modules/terminal
     ../../modules/vscode
   ];
