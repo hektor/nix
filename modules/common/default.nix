@@ -25,6 +25,7 @@ in
     system.stateVersion = lib.mkDefault "25.05";
 
     nix = {
+      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
       optimise = {
         automatic = true;
         dates = [ "05:00" ];

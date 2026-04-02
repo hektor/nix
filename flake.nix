@@ -70,9 +70,6 @@
       };
     in
     {
-      nix.nixPath = [
-        "nixpkgs=${inputs.nixpkgs}"
-      ]; # <https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md>
       nixosConfigurations =
         (lib.genAttrs hostDirNames (
           host:
