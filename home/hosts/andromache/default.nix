@@ -28,6 +28,7 @@
     ../../modules/ssh
     ../../modules/taskwarrior
     ../../modules/terminal
+    ../../modules/torrenting
   ];
 
   home = {
@@ -50,6 +51,7 @@
   git.github.enable = true;
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
+  torrenting.enable = true;
 
   programs = {
     home-manager.enable = true;
