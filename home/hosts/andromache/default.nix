@@ -16,6 +16,7 @@
     ../../modules/cloud
     ../../modules/comms
     ../../modules/desktop/niri
+    ../../modules/devenv
     ../../modules/direnv
     ../../modules/git
     ../../modules/k8s/k9s.nix
