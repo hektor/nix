@@ -27,7 +27,7 @@ in
     ../../modules/backups
     ../../modules/bluetooth
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = config.host.name; })
+    ../../modules/networking
     ../../modules/users
     ../../modules/localization
     ../../modules/fonts

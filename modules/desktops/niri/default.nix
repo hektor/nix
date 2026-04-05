@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.desktop;
@@ -15,6 +20,11 @@ in
 
   config = {
     programs.niri.enable = true;
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    };
 
     services = {
       dbus.enable = true;

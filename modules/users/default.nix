@@ -1,7 +1,9 @@
+{ config, ... }:
+
 {
-  users.users.h = {
+  users.users.${config.host.username} = {
     isNormalUser = true;
-    description = "h";
+    description = config.host.username;
     extraGroups = [ "wheel" ];
     initialPassword = "h";
   };

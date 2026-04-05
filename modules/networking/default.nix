@@ -1,11 +1,8 @@
-{
-  hostName ? "nixos",
-  ...
-}:
+{ config, ... }:
 
 {
   networking = {
-    inherit hostName;
+    hostName = config.host.name;
     wireless.iwd.enable = true;
     networkmanager.wifi.backend = "iwd";
     nftables.enable = true;

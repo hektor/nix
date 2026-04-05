@@ -31,7 +31,7 @@ in
     ../../modules/firewall
     ../../modules/fonts
     ../../modules/gaming
-    (import ../../modules/networking { hostName = config.host.name; })
+    ../../modules/networking
     ../../modules/keyboard
     ../../modules/localization
     ../../modules/nvidia

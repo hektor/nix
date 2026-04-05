@@ -14,7 +14,7 @@
     ../../modules/common
     ../../modules/boot/bootloader.nix
     ../../modules/keyboard
-    (import ../../modules/networking { hostName = config.host.name; })
+    ../../modules/networking
     ../../modules/users
     ../../modules/audio
     ../../modules/localization
@@ -32,7 +32,6 @@
     inherit inputs config pkgs;
   };
 
-  networking.hostName = config.host.name;
   ssh.username = config.host.username;
 
   secrets.username = config.host.username;
