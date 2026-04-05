@@ -23,7 +23,13 @@ in
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      config.niri.default = lib.mkForce [
+        "niri"
+        "gtk"
+      ];
     };
 
     services = {
