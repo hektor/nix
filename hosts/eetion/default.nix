@@ -98,7 +98,13 @@
     oci-containers = {
       backend = "podman";
       containers.actualbudget = {
-        image = "docker.io/actualbudget/actual-server:latest-alpine";
+        image = "docker.io/actualbudget/actual-server:26.4.0-alpine";
+        imageFile = pkgs.dockerTools.pullImage {
+          imageName = "docker.io/actualbudget/actual-server";
+          imageDigest = "sha256:996f3a59d297ec9699cb36ce558b61ab16d79c76763a5c3158d5387f71161499";
+          sha256 = "sha256-81On59dSFBNeIjNJEm93b01EldYga2liiztXhjiVoj4=";
+          finalImageTag = "26.4.0-alpine";
+        };
         ports = [ "5006:5006" ];
         volumes = [ "/var/lib/actualbudget:/data" ];
       };
