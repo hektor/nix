@@ -22,15 +22,16 @@ let
     hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}).deployment.tags
   );
 in
-inputs.colmena.lib.makeHive {
-  meta = {
-    nixpkgs = import inputs.nixpkgs {
-      localSystem = "x86_64-linux";
+inputs.colmena.lib.makeHive (
+  {
+    meta = {
+      nixpkgs = import inputs.nixpkgs {
+        localSystem = "x86_64-linux";
+      };
+
+      nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
+      nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs or { }) self.nixosConfigurations;
     };
-
-    nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
-    nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs or { }) self.nixosConfigurations;
-  };
-
-  inherit nodes;
-}
+  }
+  // nodes
+)
