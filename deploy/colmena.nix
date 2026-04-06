@@ -13,7 +13,7 @@ let
     deployment = {
       targetHost = self.nixosConfigurations.${hostname}.config.ssh.publicHostname;
       targetUser = self.nixosConfigurations.${hostname}.config.ssh.username;
-      buildOnTarget = builtins.any (t: t != "local") tags;
+      buildOnTarget = builtins.any (t: t != "local" && t != "arm") tags;
       inherit tags;
     };
   };
