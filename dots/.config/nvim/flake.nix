@@ -78,8 +78,6 @@
               mcp-hub
               nixd
               nixfmt
-              nodePackages.prettier
-              nodePackages.typescript-language-server
               ormolu
               prettierd
               rust-analyzer
@@ -88,6 +86,7 @@
               stylelint
               stylua
               tree-sitter
+              typescript-language-server
               vscode-langservers-extracted
               vtsls
               yaml-language-server
