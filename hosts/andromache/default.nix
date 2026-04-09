@@ -31,19 +31,20 @@ in
     ../../modules/firewall
     ../../modules/fonts
     ../../modules/gaming
-    ../../modules/networking
+    ../../modules/hcloud
     ../../modules/keyboard
     ../../modules/localization
+    ../../modules/networking
     ../../modules/nvidia
     (import ../../modules/secrets { inherit lib inputs config; })
     ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
     ../../modules/syncthing
+    ../../modules/tailscale
     ../../modules/users
     ../../modules/wol
     ../../modules/yubikey
-    ../../modules/hcloud
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/andromache {
@@ -62,7 +63,11 @@ in
     inherit (config.host) username;
     nixSigningKey.enable = true;
   };
+
+  tailscale.enable = true;
+
   docker.user = config.host.username;
+
   hcloud = {
     enable = true;
     inherit (config.host) username;
