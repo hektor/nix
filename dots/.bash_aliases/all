@@ -27,8 +27,6 @@ alias ipa="ip -brief address"
 alias ipl="ip -brief link"
 alias ipr="ip route"
 
-alias clip="xclip -sel clip"
-
 alias df="df -kTh"
 alias fzfpac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 alias path='echo -e ${PATH//:/\\n}' # Pretty print path variables

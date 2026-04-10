@@ -11,9 +11,9 @@
   config = lib.mkIf config.tailscale.enable {
     services.tailscale = {
       enable = true;
-      openFirewall = true;
       extraSetFlags = [ "--netfilter-mode=nodivert" ];
       extraDaemonFlags = [ "--no-logs-no-support" ];
+      openFirewall = false;
     };
   };
 }
