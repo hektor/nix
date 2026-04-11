@@ -19,7 +19,10 @@ in
   };
 
   config = {
-    programs.niri.enable = true;
+    programs.niri = {
+      enable = true;
+      useNautilus = false;
+    };
 
     xdg.portal = {
       enable = true;
@@ -33,6 +36,7 @@ in
     };
 
     services = {
+      gnome.gnome-keyring.enable = false;
       dbus.enable = true;
       logind.settings.Login = {
         HandleLidSwitch = "suspend";
