@@ -30,7 +30,12 @@ inputs.colmena.lib.makeHive (
       };
 
       nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
-      nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs or { }) self.nixosConfigurations;
+      specialArgs = {
+        inherit inputs;
+        outputs = self;
+        dotsPath = ../dots;
+        myUtils = utils;
+      };
     };
   }
   // nodes

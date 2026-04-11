@@ -16,30 +16,34 @@ in
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen7 (not available yet?)
+    inputs.sops-nix.nixosModules.sops
     ../../modules/common
     ../../modules/boot/bootloader.nix
     (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib config;
       device = "/dev/nvme0n1";
     })
-    ../../modules/desktops/niri
+    ../../modules/ai-tools
+    ../../modules/anki
     ../../modules/audio
     ../../modules/backups
     ../../modules/bluetooth
-    ../../modules/keyboard
-    ../../modules/networking
-    ../../modules/users
-    ../../modules/localization
+    ../../modules/desktops/niri
+    ../../modules/docker
+    ../../modules/firewall
     ../../modules/fonts
+    ../../modules/git
+    ../../modules/keyboard
+    ../../modules/localization
+    ../../modules/networking
+    ../../modules/nfc
+    ../../modules/secrets
     ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
-    (import ../../modules/secrets { inherit lib inputs config; })
-    ../../modules/docker
-    ../../modules/nfc
-    ../../modules/firewall
     ../../modules/tailscale
     ../../modules/taskwarrior
+    ../../modules/users
     ../../modules/yubikey
   ];
 

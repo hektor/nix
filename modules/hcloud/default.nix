@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  myUtils,
   ...
 }:
 
@@ -18,8 +19,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    sops.secrets.hcloud-token = {
-      sopsFile = "${sopsDir}/hcloud-token";
+    sops.secrets = myUtils.mkSopsSecrets sopsDir "hcloud" [ "api-token" ] {
       owner = config.users.users.${cfg.username}.name;
     };
 
@@ -31,7 +31,7 @@ in
 
         [[contexts]]
           name = "server"
-          token = "${config.sops.placeholder.hcloud-token}"
+          token = "${config.sops.placeholder."hcloud/api-token"}"
       '';
     };
   };

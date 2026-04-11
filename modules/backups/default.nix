@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  myUtils,
   ...
 }:
 
@@ -13,12 +14,12 @@ in
     restic-backup = {
       repository = lib.mkOption {
         type = lib.types.str;
-        default = "b2:${config.sops.placeholder.b2-bucket-name}:${config.networking.hostName}";
+        default = "b2:${config.sops.placeholder."backblaze-b2/bucket-name"}:${config.networking.hostName}";
       };
 
       passwordFile = lib.mkOption {
         type = lib.types.str;
-        default = config.sops.secrets.restic-password.path;
+        default = config.sops.secrets."restic/password".path;
       };
 
       paths = lib.mkOption {
@@ -30,28 +31,18 @@ in
 
   config = {
     sops = {
-      secrets = {
-        restic-password = {
-          sopsFile = "${sopsDir}/restic-password";
-        };
-        b2-bucket-name = {
-          sopsFile = "${sopsDir}/b2-bucket-name";
-        };
-        b2-account-id = {
-          sopsFile = "${sopsDir}/b2-account-id";
-        };
-        b2-account-key = {
-          sopsFile = "${sopsDir}/b2-account-key";
-        };
-      };
+      secrets = lib.mkMerge [
+        (myUtils.mkSopsSecrets sopsDir "restic" [ "password" ] { })
+        (myUtils.mkSopsSecrets sopsDir "backblaze-b2" [ "bucket-name" "account-id" "account-key" ] { })
+      ];
       templates = {
         "restic/repo-${config.networking.hostName}" = {
-          content = "b2:${config.sops.placeholder.b2-bucket-name}:${config.networking.hostName}";
+          content = "b2:${config.sops.placeholder."backblaze-b2/bucket-name"}:${config.networking.hostName}";
         };
         "restic/b2-env-${config.networking.hostName}" = {
           content = ''
-            B2_ACCOUNT_ID=${config.sops.placeholder.b2-account-id}
-            B2_ACCOUNT_KEY=${config.sops.placeholder.b2-account-key}
+            B2_ACCOUNT_ID=${config.sops.placeholder."backblaze-b2/account-id"}
+            B2_ACCOUNT_KEY=${config.sops.placeholder."backblaze-b2/account-key"}
           '';
         };
       };

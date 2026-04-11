@@ -11,15 +11,31 @@
     else
       throw "meta.nix required in ${hostDir}";
 
+  mkSopsSecrets =
+    sopsDir: group: names: extraOpts:
+    let
+      file = "${group}.yaml";
+    in
+    lib.foldl' lib.mergeAttrs { } (
+      map (name: {
+        "${group}/${name}" = {
+          sopsFile = "${sopsDir}/${file}";
+          key = name;
+        }
+        // extraOpts;
+      }) names
+    );
+
   sopsAvailability =
     config: osConfig:
     let
-      hmSopsAvailable = config ? sops && config.sops ? secrets;
       osSopsAvailable = osConfig != null && osConfig ? sops && osConfig.sops ? secrets;
+      hmSopsAvailable = config ? sops && config.sops ? secrets;
+      preferOs = osSopsAvailable;
     in
     {
-      available = hmSopsAvailable || osSopsAvailable;
-      secrets = if hmSopsAvailable then config.sops.secrets else osConfig.sops.secrets;
-      templates = if hmSopsAvailable then config.sops.templates else osConfig.sops.templates;
+      available = osSopsAvailable || hmSopsAvailable;
+      secrets = if preferOs then osConfig.sops.secrets else config.sops.secrets;
+      templates = if preferOs then osConfig.sops.templates else config.sops.templates;
     };
 }

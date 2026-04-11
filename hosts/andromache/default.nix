@@ -23,6 +23,8 @@ in
       inherit lib config;
       device = "/dev/nvme1n1";
     })
+    ../../modules/ai-tools
+    ../../modules/anki
     ../../modules/audio
     ../../modules/backups
     ../../modules/bluetooth
@@ -31,17 +33,19 @@ in
     ../../modules/firewall
     ../../modules/fonts
     ../../modules/gaming
+    ../../modules/git
     ../../modules/hcloud
     ../../modules/keyboard
     ../../modules/localization
     ../../modules/networking
     ../../modules/nvidia
-    (import ../../modules/secrets { inherit lib inputs config; })
+    ../../modules/secrets
     ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
     ../../modules/syncthing
     ../../modules/tailscale
+    ../../modules/taskwarrior
     ../../modules/users
     ../../modules/wol
     ../../modules/yubikey

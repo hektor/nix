@@ -6,7 +6,8 @@
   imports = [ ./vault.nix ];
 
   home.packages = with pkgs; [
-    sops
     age
+    age-plugin-yubikey # TODO: only needed when using Yubikey
+    sops
   ];
 }

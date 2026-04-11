@@ -1,5 +1,4 @@
 {
-  lib,
   inputs,
   config,
   pkgs,
@@ -12,20 +11,22 @@
     ./host.nix
     ./disk.nix
     ../../modules/common
-    ../../modules/boot/bootloader.nix
-    ../../modules/keyboard
-    ../../modules/networking
-    ../../modules/users
+    ../../modules/anki
     ../../modules/audio
-    ../../modules/localization
-    ../../modules/x
+    ../../modules/boot/bootloader.nix
     ../../modules/fonts
+    ../../modules/git
+    ../../modules/keyboard
+    ../../modules/localization
+    ../../modules/networking
+    ../../modules/ai-tools
     ../../modules/ssh
     ../../modules/storage
     ../../modules/stylix
-    (import ../../modules/secrets {
-      inherit lib inputs config;
-    })
+    ../../modules/secrets
+    ../../modules/taskwarrior
+    ../../modules/users
+    ../../modules/x
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/vm {

@@ -5,13 +5,33 @@
   dotsPath,
   myUtils,
   osConfig ? null,
+  inputs ? null,
   ...
 }:
 
 let
   sops = myUtils.sopsAvailability config osConfig;
+  standalone = osConfig == null;
 in
-{
+lib.optionalAttrs standalone {
+  sops = {
+    secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" "taskwarrior" [
+      "sync-server-url"
+      "sync-server-client-id"
+      "sync-encryption-secret"
+    ] { };
+
+    templates."taskrc.d/sync" = {
+      content = ''
+        sync.server.url=${config.sops.placeholder."taskwarrior/sync-server-url"}
+        sync.server.client_id=${config.sops.placeholder."taskwarrior/sync-server-client-id"}
+        sync.encryption_secret=${config.sops.placeholder."taskwarrior/sync-encryption-secret"}
+      '';
+    };
+  };
+}
+// {
+
   warnings =
     lib.optional (!sops.available && config.programs.taskwarrior.enable)
       "taskwarrior is enabled, but sops templates are not available. taskwarrior sync will not be configured.";

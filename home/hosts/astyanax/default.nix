@@ -23,6 +23,7 @@
     ../../modules/nfc
     ../../modules/nvim
     ../../modules/pandoc
+    ../../modules/secrets
     ../../modules/shell
     ../../modules/ssh
     ../../modules/taskwarrior
