@@ -70,6 +70,6 @@ in
       };
     };
 
-    services.udev.packages = [ pkgs.yubikey-personalization ];
+    services.udev.packages = with pkgs; [ yubikey-personalization ];
   };
 }
