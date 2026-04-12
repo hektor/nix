@@ -38,6 +38,9 @@ in
     ../../modules/docker
     ../../modules/nfc
     ../../modules/firewall
+    ../../modules/tailscale
+    ../../modules/taskwarrior
+    ../../modules/yubikey
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/astyanax {
@@ -56,6 +59,8 @@ in
     inherit (config.host) username;
     nixSigningKey.enable = true;
   };
+
+  tailscale.enable = true;
   docker.user = config.host.username;
   nfc.user = config.host.username;
   desktop.ly.enable = true;
