@@ -398,10 +398,10 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1775987539,
-        "narHash": "sha256-ilN7pQUw/k4oBPJ+VoR3N5wWo72ePZfT4uvapiaLRng=",
+        "lastModified": 1776003473,
+        "narHash": "sha256-v87721Nfc5qnevsgGkaAO+MpeJdfgPtBpazs6N5dUiI=",
         "ref": "main",
-        "rev": "13c6ddfbec41164dbdaa9d70c01cd784ea9e17e5",
+        "rev": "d95fb37764e5033ad2cdf543f7d8acccb36146c8",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/nix-secrets"

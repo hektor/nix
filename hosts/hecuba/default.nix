@@ -67,6 +67,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    kitty.terminfo
   ];
 
   services.fail2ban = {
