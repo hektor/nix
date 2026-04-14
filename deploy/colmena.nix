@@ -21,11 +21,7 @@ in
 inputs.colmena.lib.makeHive (
   {
     meta = {
-      nixpkgs = import inputs.nixpkgs {
-        localSystem = "x86_64-linux";
-      };
-
-      nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
+      nixpkgs = import inputs.nixpkgs { localSystem = "x86_64-linux"; };
       specialArgs = {
         inherit inputs;
         outputs = self;
