@@ -9,4 +9,5 @@ result-*
 
 nixos-efi-vars.fd
 
-/.pre-commit-config.yaml
+.direnv/
+.pre-commit-config.yaml
