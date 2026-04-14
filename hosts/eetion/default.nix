@@ -9,8 +9,11 @@
     ./host.nix
     ../../modules/common
     ../../modules/ssh
+    ../../modules/tailscale
     # ../../modules/uptime-kuma
   ];
+
+  tailscale.enable = true;
 
   ssh = {
     authorizedHosts = [
