@@ -36,8 +36,10 @@
     homeDirectory = "/home/${config.host.username}";
   };
 
-  xdg.userDirs.createDirectories = false;
-  xdg.userDirs.download = "${config.home.homeDirectory}/dl";
+  xdg.userDirs = {
+    enable = false;
+    createDirectories = false;
+  };
 
   modules."3d".printing.enable = true;
   ai-tools.opencode.enable = true;

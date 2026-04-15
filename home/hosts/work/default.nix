@@ -46,7 +46,13 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  xdg.systemDirs.config = [ "/etc/xdg" ];
+  xdg = {
+    systemDirs.config = [ "/etc/xdg" ];
+    userDirs = {
+      createDirectories = false;
+      download = "${config.home.homeDirectory}/dl";
+    };
+  };
 
   home = {
     stateVersion = "25.05";
