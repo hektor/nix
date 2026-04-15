@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   options.browser = {
@@ -22,6 +22,8 @@
       default = null;
     };
   };
+
+  config.home.sessionVariables.BROWSER = config.browser.primary;
 
   imports = [
     ./firefox.nix
