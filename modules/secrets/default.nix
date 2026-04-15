@@ -29,10 +29,6 @@ in
 
       nixSigningKey = {
         enable = lib.mkEnableOption "nix signing key configuration";
-        name = lib.mkOption {
-          type = lib.types.str;
-          default = "${config.host.name}-nix-signing-key";
-        };
       };
 
       yubikey = {
@@ -52,8 +48,9 @@ in
       secrets = lib.mkMerge [
         (mkSopsSecrets "email" [ "personal" "work" ] { inherit owner; })
         (lib.mkIf cfg.nixSigningKey.enable {
-          ${cfg.nixSigningKey.name} = {
-            sopsFile = "${sopsDir}/${cfg.nixSigningKey.name}.yaml";
+          nix-signing-key = {
+            sopsFile = "${sopsDir}/nix.yaml";
+            key = "signing-key";
             inherit owner;
           };
         })
@@ -61,7 +58,7 @@ in
     };
 
     nix.settings.secret-key-files = lib.mkIf cfg.nixSigningKey.enable [
-      config.sops.secrets.${cfg.nixSigningKey.name}.path
+      config.sops.secrets.nix-signing-key.path
     ];
 
     services = {

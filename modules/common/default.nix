@@ -39,6 +39,9 @@ in
         "nix-command"
         "flakes"
       ];
+      settings.trusted-public-keys = [
+        "nix-signing-key:M6ouQRFl/bZ5QQrceQUyar6P7o8qg4wwVkxD1SSLL2k="
+      ];
     };
 
     system.autoUpgrade = {
