@@ -21,6 +21,7 @@ in
     ../../modules/database
     ../../modules/dconf
     ../../modules/desktop/niri
+    ../../modules/devenv
     ../../modules/direnv
     ../../modules/docker
     ../../modules/git
