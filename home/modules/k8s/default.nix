@@ -18,6 +18,10 @@
     enableAlias = true;
   };
 
+  home.shellAliases = {
+    k = "kubectl";
+  };
+
   imports = [
     ./helm.nix
     ./k9s.nix
