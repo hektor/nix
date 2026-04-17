@@ -76,6 +76,7 @@ lib.optionalAttrs standalone {
     colorTheme = "dark-256";
     config = {
       recurrence = "off";
+      reserved.lines = 3; # without this I would have to scroll up 3 lines
     };
     extraConfig = lib.optionalString sops.available ''
       include ${sops.templates."taskrc.d/sync".path}
