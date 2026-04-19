@@ -25,6 +25,7 @@
     ../../modules/nvim
     ../../modules/pandoc
     ../../modules/photography
+    ../../modules/secrets
     ../../modules/shell
     ../../modules/ssh
     ../../modules/taskwarrior
