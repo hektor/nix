@@ -53,6 +53,7 @@ in
 
   secrets.nixSigningKey.enable = true;
 
+  restic-backup.enable = true;
   tailscale.enable = true;
   docker.enable = true;
   nfc.enable = true;
