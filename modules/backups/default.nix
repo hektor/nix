@@ -1,14 +1,11 @@
 {
   lib,
   config,
-  myUtils,
   ...
 }:
 
 let
   cfg = config.restic-backup;
-  inherit (config.secrets) sopsDir;
-  mkSopsSecrets = myUtils.mkSopsSecrets sopsDir;
   host = config.networking.hostName;
 in
 {
@@ -27,21 +24,24 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    sops = {
-      secrets = lib.mkMerge [
-        (mkSopsSecrets "restic" [ "password" ] { })
-        (mkSopsSecrets "backblaze-b2" [ "bucket-name" "account-id" "account-key" ] { })
+    secrets.groups = {
+      restic = [ "password" ];
+      backblaze-b2 = [
+        "bucket-name"
+        "account-id"
+        "account-key"
       ];
-      templates = {
-        "restic/repo-${host}" = {
-          content = "b2:${config.sops.placeholder."backblaze-b2/bucket-name"}:${host}";
-        };
-        "restic/b2-env-${host}" = {
-          content = ''
-            B2_ACCOUNT_ID=${config.sops.placeholder."backblaze-b2/account-id"}
-            B2_ACCOUNT_KEY=${config.sops.placeholder."backblaze-b2/account-key"}
-          '';
-        };
+    };
+
+    sops.templates = {
+      "restic/repo-${host}" = {
+        content = "b2:${config.sops.placeholder."backblaze-b2/bucket-name"}:${host}";
+      };
+      "restic/b2-env-${host}" = {
+        content = ''
+          B2_ACCOUNT_ID=${config.sops.placeholder."backblaze-b2/account-id"}
+          B2_ACCOUNT_KEY=${config.sops.placeholder."backblaze-b2/account-key"}
+        '';
       };
     };
 

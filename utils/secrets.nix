@@ -2,19 +2,25 @@
 
 {
   mkSopsSecrets =
-    sopsDir: group: names: extraOpts:
+    sopsDir: owner: groups:
     let
-      file = "${group}.yaml";
+      opts = lib.optionalAttrs (owner != null) { inherit owner; };
+      mkGroup =
+        group: names:
+        let
+          file = "${group}.yaml";
+        in
+        lib.foldl' lib.mergeAttrs { } (
+          map (name: {
+            "${group}/${name}" = {
+              sopsFile = "${sopsDir}/${file}";
+              key = name;
+            }
+            // opts;
+          }) names
+        );
     in
-    lib.foldl' lib.mergeAttrs { } (
-      map (name: {
-        "${group}/${name}" = {
-          sopsFile = "${sopsDir}/${file}";
-          key = name;
-        }
-        // extraOpts;
-      }) names
-    );
+    lib.foldl' lib.mergeAttrs { } (lib.mapAttrsToList mkGroup groups);
 
   sopsAvailability =
     config: osConfig:

@@ -12,7 +12,6 @@ let
   inherit (config.host) username;
   inherit (cfg) sopsDir;
   owner = config.users.users.${username}.name;
-  mkSopsSecrets = myUtils.mkSopsSecrets sopsDir;
 in
 {
   imports = [ inputs.sops-nix.nixosModules.sops ];
@@ -22,6 +21,15 @@ in
       sopsDir = lib.mkOption {
         type = lib.types.str;
         default = "${toString inputs.nix-secrets}/secrets";
+      };
+
+      groups = lib.mkOption {
+        type = lib.types.attrsOf (lib.types.listOf lib.types.str);
+        default = { };
+      };
+
+      owner = lib.mkOption {
+        type = lib.types.unspecified;
       };
 
       nixSigningKey = {
@@ -35,27 +43,28 @@ in
   };
 
   config = {
+    secrets = {
+      inherit owner;
+      groups = {
+        email = [
+          "personal"
+          "work"
+        ];
+        nix = lib.optional cfg.nixSigningKey.enable "signing-key";
+      };
+    };
+
     sops = {
       # for yubikey, generate as follows:
       # ```
       # age-plugin-yubikey --identity > <keyfile-path>
       # ```
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-
-      secrets = lib.mkMerge [
-        (mkSopsSecrets "email" [ "personal" "work" ] { inherit owner; })
-        (lib.mkIf cfg.nixSigningKey.enable {
-          nix-signing-key = {
-            sopsFile = "${sopsDir}/nix.yaml";
-            key = "signing-key";
-            inherit owner;
-          };
-        })
-      ];
+      secrets = myUtils.mkSopsSecrets sopsDir owner cfg.groups;
     };
 
     nix.settings.secret-key-files = lib.mkIf cfg.nixSigningKey.enable [
-      config.sops.secrets.nix-signing-key.path
+      config.sops.secrets."nix/signing-key".path
     ];
 
     services = {

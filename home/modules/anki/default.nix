@@ -13,10 +13,12 @@ let
   standalone = osConfig == null;
 in
 lib.optionalAttrs standalone {
-  sops.secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" "anki" [
-    "sync-user"
-    "sync-key"
-  ] { };
+  sops.secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
+    anki = [
+      "sync-user"
+      "sync-key"
+    ];
+  };
 }
 // {
   warnings = lib.optional (

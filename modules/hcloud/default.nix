@@ -1,14 +1,13 @@
 {
   lib,
   config,
-  myUtils,
   ...
 }:
 
 let
   cfg = config.hcloud;
   inherit (config.host) username;
-  inherit (config.secrets) sopsDir;
+  inherit (config.secrets) owner;
 in
 {
   options.hcloud = {
@@ -16,12 +15,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    sops.secrets = myUtils.mkSopsSecrets sopsDir "hcloud" [ "api-token" ] {
-      owner = config.users.users.${username}.name;
-    };
+    secrets.groups.hcloud = [ "api-token" ];
 
     sops.templates."hcloud/cli.toml" = {
-      owner = config.users.users.${username}.name;
+      inherit owner;
       path = "/home/${username}/.config/hcloud/cli.toml";
       content = ''
         active_context = "server"

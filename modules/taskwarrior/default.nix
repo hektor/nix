@@ -1,19 +1,17 @@
-{ config, myUtils, ... }:
+{ config, ... }:
 
 let
-  inherit (config.secrets) sopsDir;
-  inherit (config.host) username;
-  owner = config.users.users.${username}.name;
+  inherit (config.secrets) owner;
 in
 {
-  config.sops = {
-    secrets = myUtils.mkSopsSecrets sopsDir "taskwarrior" [
+  config = {
+    secrets.groups.taskwarrior = [
       "sync-server-url"
       "sync-server-client-id"
       "sync-encryption-secret"
-    ] { inherit owner; };
+    ];
 
-    templates."taskrc.d/sync" = {
+    sops.templates."taskrc.d/sync" = {
       inherit owner;
       content = ''
         sync.server.url=${config.sops.placeholder."taskwarrior/sync-server-url"}

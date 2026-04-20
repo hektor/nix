@@ -15,11 +15,13 @@ let
 in
 lib.optionalAttrs standalone {
   sops = {
-    secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" "taskwarrior" [
-      "sync-server-url"
-      "sync-server-client-id"
-      "sync-encryption-secret"
-    ] { };
+    secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
+      taskwarrior = [
+        "sync-server-url"
+        "sync-server-client-id"
+        "sync-encryption-secret"
+      ];
+    };
 
     templates."taskrc.d/sync" = {
       content = ''

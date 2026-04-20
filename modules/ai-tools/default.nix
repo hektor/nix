@@ -1,15 +1,14 @@
-{ config, myUtils, ... }:
+{ config, ... }:
 
 let
-  inherit (config.secrets) sopsDir;
   inherit (config.host) username;
-  owner = config.users.users.${username}.name;
+  inherit (config.secrets) owner;
 in
 {
-  config.sops = {
-    secrets = myUtils.mkSopsSecrets sopsDir "opencode" [ "api-key" ] { inherit owner; };
+  config = {
+    secrets.groups.opencode = [ "api-key" ];
 
-    templates."opencode/auth.json" = {
+    sops.templates."opencode/auth.json" = {
       inherit owner;
       path = "/home/${username}/.local/share/opencode/auth.json";
       content = ''
