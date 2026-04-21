@@ -3,6 +3,7 @@
 let
   terminal = "kitty";
   browser = config.browser.primary;
+  font = "${config.stylix.fonts.monospace.name} ${toString config.stylix.fonts.sizes.applications}";
 in
 {
   dconf.settings = {
@@ -40,9 +41,9 @@ in
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
-      font-name = "Iosevka Term SS08 12";
+      font-name = font;
       locate-pointer = true;
-      monospace-font-name = "Iosevka Term SS08 12";
+      monospace-font-name = font;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
