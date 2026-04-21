@@ -1,5 +1,9 @@
 {
   system = "aarch64-linux";
-  deployment.tags = [ "arm" ];
+  deployment = {
+    tags = [ "arm" ];
+    targetHost = "eetion";
+    targetUser = "h";
+  };
   role = "embedded";
 }

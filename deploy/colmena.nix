@@ -8,19 +8,15 @@ let
   utils = import ../utils { inherit lib; };
   hostDirNames = utils.dirNames ../hosts;
 
-  mkNode = hostname: tags: {
+  mkNode = hostname: meta: {
     imports = [ ../hosts/${hostname} ];
     deployment = {
-      targetHost = self.nixosConfigurations.${hostname}.config.ssh.publicHostname;
-      targetUser = self.nixosConfigurations.${hostname}.config.host.username;
-      buildOnTarget = builtins.any (t: t != "local" && t != "arm") tags;
-      inherit tags;
+      inherit (meta.deployment) targetHost targetUser tags;
+      buildOnTarget = builtins.any (t: t != "local" && t != "arm") meta.deployment.tags;
     };
   };
 
-  nodes = lib.genAttrs hostDirNames (
-    hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}).deployment.tags
-  );
+  nodes = lib.genAttrs hostDirNames (hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}));
 in
 inputs.colmena.lib.makeHive (
   {

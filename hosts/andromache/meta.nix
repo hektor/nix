@@ -1,5 +1,9 @@
 {
   system = "x86_64-linux";
-  deployment.tags = [ "local" ];
+  deployment = {
+    tags = [ "local" ];
+    targetHost = "";
+    targetUser = "h";
+  };
   role = "desktop";
 }

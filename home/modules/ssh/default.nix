@@ -1,18 +1,15 @@
 {
-  outputs,
+  myUtils,
   lib,
   pkgs,
   ...
 }:
 let
-  nixosConfigs = builtins.attrNames outputs.nixosConfigurations;
-  homeConfigs = map (n: lib.last (lib.splitString "@" n)) (
-    builtins.attrNames outputs.homeConfigurations
-  );
-  allHosts = lib.unique (homeConfigs ++ nixosConfigs);
+  hostDir = ../../hosts;
+  hostNames = myUtils.dirNames hostDir;
   hostsWithKeys = lib.filter (
-    hostname: builtins.pathExists ../../hosts/${hostname}/ssh_host.pub
-  ) allHosts;
+    hostname: builtins.pathExists (hostDir + "/${hostname}/ssh_host.pub")
+  ) hostNames;
 in
 {
   home.packages = with pkgs; [ sshfs ];
@@ -25,15 +22,14 @@ in
       lib.genAttrs hostsWithKeys (
         hostname:
         let
-          hostConfig = outputs.nixosConfigurations.${hostname}.config;
-          inherit (hostConfig.ssh) publicHostname username;
+          meta = myUtils.hostMeta (hostDir + "/${hostname}");
         in
         {
           host = hostname;
-          user = username;
+          user = meta.deployment.targetUser;
         }
-        // lib.optionalAttrs (publicHostname != "") {
-          hostname = publicHostname;
+        // lib.optionalAttrs (meta.deployment.targetHost != "") {
+          hostname = meta.deployment.targetHost;
         }
       )
       // {

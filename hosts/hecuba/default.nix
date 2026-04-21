@@ -19,7 +19,6 @@
 
   networking.hostName = config.host.name;
   ssh = {
-    publicHostname = "server.hektormisplon.xyz";
     authorizedHosts = [
       "andromache"
       "astyanax"

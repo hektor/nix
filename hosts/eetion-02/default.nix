@@ -12,7 +12,6 @@
   ];
 
   ssh = {
-    publicHostname = config.host.name;
     authorizedHosts = [
       "andromache"
       "astyanax"
