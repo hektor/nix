@@ -52,6 +52,15 @@
         (_final: _prev: {
           mcp-hub = inputs.mcp-hub.packages.${system}.default;
         })
+        (_: prev: {
+          luajitPackages = prev.luajitPackages.overrideScope (
+            _: lprev: {
+              neotest = lprev.neotest.overrideAttrs (_: {
+                doCheck = false;
+              });
+            }
+          );
+        })
       ];
 
       categoryDefinitions =
