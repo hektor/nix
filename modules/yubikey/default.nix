@@ -9,17 +9,13 @@ with lib;
 
 let
   cfg = config.my.yubikey;
+  inherit (config.host) username;
   formatKey = key: ":${key.handle},${key.userKey},${key.coseType},${key.options}";
-  authfileContent = username: keys: username + lib.concatMapStrings formatKey keys;
+  authfileContent = u: keys: u + lib.concatMapStrings formatKey keys;
 in
 {
   options.my.yubikey = {
     enable = mkEnableOption "yubiKey U2F authentication";
-
-    username = mkOption {
-      type = types.str;
-      default = "h";
-    };
 
     origin = mkOption {
       type = types.str;
@@ -61,7 +57,7 @@ in
           interactive = true;
           cue = true;
           inherit (cfg) origin;
-          authfile = pkgs.writeText "u2f-mappings" (authfileContent cfg.username cfg.keys);
+          authfile = pkgs.writeText "u2f-mappings" (authfileContent username cfg.keys);
         };
       };
       services = {

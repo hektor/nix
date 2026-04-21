@@ -2,15 +2,13 @@
 
 let
   cfg = config.nfc;
+  inherit (config.host) username;
 in
 {
   options.nfc = {
-    user = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
-      default = null;
-    };
+    enable = lib.mkEnableOption "NFC device access";
   };
-  config = lib.mkIf (cfg.user != null) {
-    users.users.${cfg.user}.extraGroups = [ "dialout" ];
+  config = lib.mkIf cfg.enable {
+    users.users.${username}.extraGroups = [ "dialout" ];
   };
 }

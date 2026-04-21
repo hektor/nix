@@ -2,29 +2,17 @@
 
 let
   cfg = config.docker;
+  inherit (config.host) username;
 in
 {
   options.docker = {
+    enable = lib.mkEnableOption "docker";
     rootless = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
-    user = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
-      default = null;
-    };
   };
   config = lib.mkMerge [
-    {
-      warnings = lib.flatten [
-        (lib.optional (
-          cfg.rootless && cfg.user != null
-        ) "'virtualisation.docker.user' is ignored when rootless mode is enabled")
-        (lib.optional (
-          !cfg.rootless && cfg.user == null
-        ) "'virtualisation.docker.user' is not set (no user is added to the docker group)")
-      ];
-    }
     (lib.mkIf cfg.rootless {
       virtualisation.docker = {
         enable = false;
@@ -34,11 +22,9 @@ in
         };
       };
     })
-    (lib.mkIf (!cfg.rootless && cfg.user != null) {
-      virtualisation.docker = {
-        enable = true;
-      };
-      users.users.${cfg.user}.extraGroups = [ "docker" ];
+    (lib.mkIf (cfg.enable && !cfg.rootless) {
+      virtualisation.docker.enable = true;
+      users.users.${username}.extraGroups = [ "docker" ];
     })
   ];
 }

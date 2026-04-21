@@ -1,13 +1,13 @@
 { lib, config, ... }:
+
+let
+  inherit (config.host) username;
+in
 {
   options.ssh = {
     authorizedHosts = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
-    };
-    username = lib.mkOption {
-      type = lib.types.str;
-      default = "h";
     };
     publicHostname = lib.mkOption {
       type = lib.types.str;
@@ -16,7 +16,7 @@
   };
 
   # auto generate authorized_keys from `authorizedHosts`
-  config.users.users.${config.ssh.username}.openssh.authorizedKeys.keys = lib.flatten (
+  config.users.users.${username}.openssh.authorizedKeys.keys = lib.flatten (
     map (
       hostname:
       let

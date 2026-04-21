@@ -73,6 +73,11 @@ in
           myUtils
           ;
       };
+      sharedModules = [
+        {
+          host.username = lib.mkDefault config.host.username;
+        }
+      ];
     };
   };
 }

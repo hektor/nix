@@ -19,7 +19,6 @@
 
   networking.hostName = config.host.name;
   ssh = {
-    inherit (config.host) username;
     publicHostname = "server.hektormisplon.xyz";
     authorizedHosts = [
       "andromache"
@@ -27,7 +26,7 @@
     ];
   };
 
-  docker.user = config.host.username;
+  docker.enable = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

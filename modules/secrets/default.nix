@@ -9,8 +9,9 @@
 
 let
   cfg = config.secrets;
+  inherit (config.host) username;
   inherit (cfg) sopsDir;
-  owner = config.users.users.${cfg.username}.name;
+  owner = config.users.users.${username}.name;
   mkSopsSecrets = myUtils.mkSopsSecrets sopsDir;
 in
 {
@@ -18,10 +19,6 @@ in
 
   options = {
     secrets = {
-      username = lib.mkOption {
-        type = lib.types.str;
-      };
-
       sopsDir = lib.mkOption {
         type = lib.types.str;
         default = "${toString inputs.nix-secrets}/secrets";
@@ -43,7 +40,7 @@ in
       # ```
       # age-plugin-yubikey --identity > <keyfile-path>
       # ```
-      age.keyFile = "/home/${cfg.username}/.config/sops/age/keys.txt";
+      age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
 
       secrets = lib.mkMerge [
         (mkSopsSecrets "email" [ "personal" "work" ] { inherit owner; })

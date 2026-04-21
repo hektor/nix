@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  username = "hektor";
-in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
@@ -57,8 +54,8 @@ in
 
   home = {
     stateVersion = "25.05";
-    inherit username;
-    homeDirectory = "/home/${username}";
+    username = "hektor";
+    homeDirectory = "/home/${config.home.username}";
   };
 
   targets.genericLinux.nixGL = {

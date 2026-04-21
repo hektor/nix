@@ -7,23 +7,18 @@
 with lib;
 
 let
-  cfg = config.my.syncthing;
+  inherit (config.host) username;
 in
 {
-  options.my.syncthing.username = mkOption {
-    type = types.str;
-    default = "h";
-  };
-
   config = {
-    users.groups.${cfg.username} = { };
-    users.users.${cfg.username}.extraGroups = [ cfg.username ];
+    users.groups.${username} = { };
+    users.users.${username}.extraGroups = [ username ];
 
     services.syncthing = {
       enable = true;
-      user = cfg.username;
-      group = cfg.username;
-      configDir = "/home/${cfg.username}/.local/state/syncthing";
+      user = username;
+      group = username;
+      configDir = "/home/${username}/.local/state/syncthing";
       openDefaultPorts = true;
     };
   };

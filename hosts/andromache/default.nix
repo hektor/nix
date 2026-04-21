@@ -51,31 +51,17 @@ in
     ../../modules/yubikey
   ];
 
-  home-manager.users.${config.host.username} = import ../../home/hosts/andromache {
-    inherit
-      inputs
-      config
-      pkgs
-      lib
-      ;
-  };
+  home-manager.users.${config.host.username} = import ../../home/hosts/andromache;
 
-  ssh.username = config.host.username;
   ssh.authorizedHosts = [ "astyanax" ];
 
-  secrets = {
-    inherit (config.host) username;
-    nixSigningKey.enable = true;
-  };
+  secrets.nixSigningKey.enable = true;
 
   tailscale.enable = true;
 
-  docker.user = config.host.username;
+  docker.enable = true;
 
-  hcloud = {
-    enable = true;
-    inherit (config.host) username;
-  };
+  hcloud.enable = true;
 
   disko.devices = {
     disk.data = {
@@ -107,7 +93,6 @@ in
 
   my.yubikey = {
     enable = false;
-    inherit (config.host) username;
     keys = [
       {
         handle = "<KeyHandle1>";

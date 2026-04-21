@@ -47,26 +47,15 @@ in
     ../../modules/yubikey
   ];
 
-  home-manager.users.${config.host.username} = import ../../home/hosts/astyanax {
-    inherit
-      inputs
-      config
-      pkgs
-      lib
-      ;
-  };
+  home-manager.users.${config.host.username} = import ../../home/hosts/astyanax;
 
-  ssh.username = config.host.username;
   ssh.authorizedHosts = [ "andromache" ];
 
-  secrets = {
-    inherit (config.host) username;
-    nixSigningKey.enable = true;
-  };
+  secrets.nixSigningKey.enable = true;
 
   tailscale.enable = true;
-  docker.user = config.host.username;
-  nfc.user = config.host.username;
+  docker.enable = true;
+  nfc.enable = true;
   desktop.ly.enable = true;
   audio.automation.enable = true;
 

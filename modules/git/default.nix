@@ -4,7 +4,7 @@
 }:
 
 let
-  inherit (config.secrets) username;
+  inherit (config.host) username;
   owner = config.users.users.${username}.name;
 in
 {

@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (config.ssh) username;
+  inherit (config.host) username;
 in
 {
   # auto extract SSH keys

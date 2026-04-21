@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  pkgs,
   ...
 }:
 {
@@ -29,13 +28,7 @@
     ../../modules/x
   ];
 
-  home-manager.users.${config.host.username} = import ../../home/hosts/vm {
-    inherit inputs config pkgs;
-  };
-
-  ssh.username = config.host.username;
-
-  secrets.username = config.host.username;
+  home-manager.users.${config.host.username} = import ../../home/hosts/vm;
 
   disko = {
     devices.disk.main = {

@@ -12,10 +12,15 @@ let
 in
 {
   imports = [
+    ../modules/common/host.nix
     ../modules/ssh
   ];
 
-  ssh.username = username;
+  host = {
+    inherit username;
+    name = "orange-pi";
+  };
+
   ssh.authorizedHosts = [
     "andromache"
     "astyanax"

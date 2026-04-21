@@ -1,7 +1,8 @@
 { config, myUtils, ... }:
 
 let
-  inherit (config.secrets) sopsDir username;
+  inherit (config.secrets) sopsDir;
+  inherit (config.host) username;
   owner = config.users.users.${username}.name;
 in
 {
