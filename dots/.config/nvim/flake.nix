@@ -88,6 +88,8 @@
               mcp-hub
               nixd
               nixfmt
+              prettier
+              typescript-language-server
               ormolu
               prettierd
               rust-analyzer
