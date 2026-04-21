@@ -25,21 +25,6 @@ in
       sansSerif = config.stylix.fonts.monospace;
       emoji = config.stylix.fonts.monospace;
     };
-    targets = {
-      firefox = {
-        profileNames = [ "default" ];
-        colorTheme.enable = true;
-      };
-      librewolf = {
-        profileNames = [ "default" ];
-        colorTheme.enable = true;
-      };
-      gnome.enable = false;
-      gtk.enable = false;
-      kitty = {
-        variant256Colors = true;
-      };
-      nixvim.enable = false;
-    };
+    targets = import ../../../modules/stylix/targets.nix;
   };
 }
