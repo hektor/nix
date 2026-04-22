@@ -41,7 +41,7 @@ in
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
-      font-name = font;
+      # font-name = font;
       locate-pointer = true;
       monospace-font-name = font;
     };
