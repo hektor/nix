@@ -75,6 +75,7 @@
               black
               clang
               clang-tools
+              curl # → plenary-nvim, mcp-hub
               delta
               emmet-language-server
               eslint_d
@@ -98,6 +99,7 @@
               stylelint
               stylua
               tree-sitter
+              tailwindcss-language-server
               typescript-language-server
               vscode-langservers-extracted
               vtsls
