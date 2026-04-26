@@ -9,6 +9,8 @@ let
   cfg = config.desktop;
 in
 {
+  imports = [ ../logind.nix ];
+
   options.desktop = {
     ly = {
       enable = lib.mkOption {
@@ -38,12 +40,6 @@ in
     services = {
       gnome.gnome-keyring.enable = false;
       dbus.enable = true;
-      logind.settings.Login = {
-        HandleLidSwitch = "suspend";
-        IdleAction = "suspend";
-        IdleActionSec = 1800;
-      };
-
       displayManager.ly = lib.mkIf cfg.ly.enable {
         enable = true;
       };
