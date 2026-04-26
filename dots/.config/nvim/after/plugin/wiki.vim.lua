@@ -1,6 +1,8 @@
+require("zk.utils")
+
 vim.cmd([[
 " Change local buffer to directory of current file after the plugin has loaded
-autocmd VimEnter * lcd %:p:h
+execute 'autocmd BufEnter' g:zk_path . '/*.md' 'silent lcd %:p:h'
 
 " " Override wiki index mapping to also cd into the wiki
 nm <leader>ww <plug>(wiki-index)
@@ -76,7 +78,7 @@ let g:wiki_templates = [
 "
 
 let g:wiki_filetypes=['md']
-let g:wiki_root='~/.zk'
+let g:wiki_root=g:zk_path
 let g:wiki_global_load=0
 let g:wiki_link_creation = {
       \ 'md': {

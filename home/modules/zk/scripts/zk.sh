@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
-
 current_zettel_path="$ZK_PATH/$(cat "$ZK_PATH/current-zettel.txt")"
 
-if [ "$TERM_PROGRAM" = tmux ]; then
+if [ -n "${TMUX:-}" ]; then
   cd "$ZK_PATH" && $EDITOR "$current_zettel_path"
 else
   echo 'Not in tmux'
@@ -12,13 +10,9 @@ else
   read -r -p 'Enter your choice: ' choice
   case $choice in
     1)
-      # Check if a tmux session is running with a window named zk
-      if tmux list-windows -F '#{window_name}' | grep -q zk; then
-        # Attach to the session containing the 'zk' window
-        session="$(tmux list-windows -F '#{window_name} #{session_name}' | grep zk | head -n 1 | awk '{ print $2 }')"
-        tmux attach -t "$session"
+      if tmux has-session -t zk 2>/dev/null; then
+        tmux attach -t zk
       else
-        # Create session with a window named 'zk' and start nvim
         tmux new-session -s zk -n zk -d
         tmux send-keys -t zk:zk "cd $ZK_PATH && $EDITOR $current_zettel_path" Enter
         tmux attach -t zk

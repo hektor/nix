@@ -30,6 +30,7 @@
     ../../modules/ssh
     ../../modules/taskwarrior
     ../../modules/terminal
+    ../../modules/zk
     ../../modules/torrenting
   ];
 
@@ -54,6 +55,7 @@
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
   torrenting.enable = true;
+  zk.enable = true;
 
   programs = {
     home-manager.enable = true;
