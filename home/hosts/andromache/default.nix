@@ -47,7 +47,10 @@
     printing.enable = true;
     modeling.enable = true;
   };
-  ai-tools.opencode.enable = true;
+  ai-tools = {
+    claude-code.enable = true;
+    opencode.enable = true;
+  };
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
   comms.signal.enable = true;

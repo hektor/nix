@@ -6,6 +6,7 @@ let
 in
 {
   config = {
+    nixpkgs.allowedUnfree = [ "claude-code" ];
     secrets.groups.opencode = [ "api-key" ];
 
     sops.templates."opencode/auth.json" = {
