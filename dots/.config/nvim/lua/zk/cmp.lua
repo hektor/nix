@@ -13,28 +13,31 @@ local function get_markdown_files(base)
   return items
 end
 
+function source:get_keyword_pattern()
+  return "[%w%./%-]*"
+end
+
 function source:complete(params, callback)
   local cursor_before_line = params.context.cursor_before_line
   local cursor_after_line = params.context.cursor_after_line or ""
 
-  local trigger = cursor_before_line:match("%[[^%]]*%]%(([^)]*)$")
-
-  if trigger ~= nil then
-    local items = get_markdown_files(".")
-    local next_char = cursor_after_line:sub(1, 1)
-
-    for _, item in ipairs(items) do
-      if next_char == ")" then
-        item.insertText = item.label
-      else
-        item.insertText = item.label .. ")"
-      end
-    end
-
-    callback(items)
-  else
+  if not cursor_before_line:match("%[[^%]]*%]%(") then
     callback({})
+    return
   end
+
+  local items = get_markdown_files(".")
+  local next_char = cursor_after_line:sub(1, 1)
+
+  for _, item in ipairs(items) do
+    if next_char == ")" then
+      item.insertText = item.label
+    else
+      item.insertText = item.label .. ")"
+    end
+  end
+
+  callback(items)
 end
 
 function source:get_trigger_characters()
