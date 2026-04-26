@@ -71,6 +71,7 @@
         {
           lspsAndRuntimeDeps = with pkgs; {
             general = [
+              nodejs_24
               black
               clang
               clang-tools
