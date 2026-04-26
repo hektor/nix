@@ -13,11 +13,16 @@ nm <leader>ww <plug>(wiki-index)
 " nm <leader>s <plug>(wiki-link-follow-split)
 " nm <leader>v <plug>(wiki-link-follow-vsplit)
 
-autocmd BufEnter *.md if expand('%:t') =~ '_' | echo 'hierarchical relation' | endif
-autocmd BufEnter *.md if expand('%:t') =~ '--' | echo 'relation' | endif
-autocmd BufEnter *.md if expand('%:t') =~ '<>' | echo 'dichotomy' | endif
-autocmd BufEnter *.md if expand('%:t') =~ 'my-' | echo 'personal file' | endif
-autocmd BufEnter *.md if expand('%:t') =~ 'project_' | echo 'project file' | endif
+function! ZKContextualEcho()
+  let l:name = expand('%:t')
+  if l:name =~ '_' | echo 'hierarchical relation'
+  elseif l:name =~ '--' | echo 'relation'
+  elseif l:name =~ '<>' | echo 'dichotomy'
+  elseif l:name =~ 'my-' | echo 'personal file'
+  elseif l:name =~ 'project_' | echo 'project file'
+  endif
+endfunction
+execute 'autocmd BufEnter' g:zk_path . '/*.md' 'call ZKContextualEcho()'
 
 " Only load wiki.vim for zk directory
 let g:wiki_index_name='index'
