@@ -68,7 +68,7 @@ in
             platforms = [ "x86_64-linux" ];
           };
         })
-        mcp-nixos
+        # mcp-nixos
       ];
     })
     (lib.mkIf cfg.tirith.enable {
