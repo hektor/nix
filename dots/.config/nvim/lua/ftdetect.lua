@@ -9,5 +9,6 @@ vim.filetype.add({
     ["%.env.*"] = "dotenv",
     ["%.pl$"] = "prolog",
     [".*.containerfile.*"] = "dockerfile",
+    ["%.hydra$"] = "javascript",
   },
 })
