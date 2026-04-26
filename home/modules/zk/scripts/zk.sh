@@ -1,4 +1,4 @@
-current_zettel_path="$ZK_PATH/$(cat "$ZK_PATH/current-zettel.txt")"
+current_zettel_path="$(cat "$ZK_PATH/current-zettel.txt")"
 
 if [ -n "${TMUX:-}" ]; then
   cd "$ZK_PATH" && $EDITOR "$current_zettel_path"
