@@ -73,8 +73,11 @@
     tirith.enable = true;
     opencode.enable = true;
   };
-  database.mssql.enable = true;
-  database.postgresql.enable = true;
+  database = {
+    mssql.enable = true;
+    postgresql.enable = true;
+    redis.enable = true;
+  };
   git.github.enable = true;
   git.gitlab.enable = true;
   secrets.vault.enable = true;
