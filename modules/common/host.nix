@@ -24,5 +24,10 @@
       type = lib.types.bool;
       default = false;
     };
+
+    admin = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
 }

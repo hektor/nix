@@ -21,11 +21,6 @@ in
     name = "orange-pi";
   };
 
-  ssh.authorizedHosts = [
-    "andromache"
-    "astyanax"
-  ];
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

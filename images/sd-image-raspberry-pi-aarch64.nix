@@ -21,11 +21,6 @@ in
     name = "raspberry-pi";
   };
 
-  ssh.authorizedHosts = [
-    "andromache"
-    "astyanax"
-  ];
-
   boot.kernelParams = [
     "console=ttyS1,115200n8"
   ];

@@ -18,13 +18,6 @@
   ];
 
   networking.hostName = config.host.name;
-  ssh = {
-    authorizedHosts = [
-      "andromache"
-      "astyanax"
-    ];
-  };
-
   docker.enable = true;
 
   fileSystems."/" = {

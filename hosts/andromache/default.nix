@@ -51,9 +51,7 @@ in
     ../../modules/yubikey
   ];
 
-  home-manager.users.${config.host.username} = import ../../home/hosts/andromache;
-
-  ssh.authorizedHosts = [ "astyanax" ];
+  home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 
   secrets.nixSigningKey.enable = true;
 

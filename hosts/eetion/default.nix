@@ -15,13 +15,6 @@
 
   tailscale.enable = true;
 
-  ssh = {
-    authorizedHosts = [
-      "andromache"
-      "astyanax"
-    ];
-  };
-
   boot.loader = {
     grub.enable = false;
     generic-extlinux-compatible.enable = true;

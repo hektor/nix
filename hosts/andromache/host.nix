@@ -1,7 +1,7 @@
 {
   host = {
     username = "h";
-    name = "andromache";
     highRam = true;
+    admin = true;
   };
 }

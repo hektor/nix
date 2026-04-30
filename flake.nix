@@ -76,7 +76,10 @@
           nixpkgs.lib.nixosSystem {
             modules = [
               ./hosts/${host}
-              { nixpkgs.hostPlatform = (myUtils.hostMeta ./hosts/${host}).system; }
+              {
+                nixpkgs.hostPlatform = (myUtils.hostMeta ./hosts/${host}).system;
+                host.name = host;
+              }
             ];
             specialArgs = {
               inherit
