@@ -37,6 +37,20 @@ in
       ];
     };
 
+    #  error:
+    #  Failed assertions:
+    #  - h profile: xdg.portal: since you installed Home Manager via its NixOS module and
+    #  'home-manager.useUserPackages' is enabled, you need to add
+    #
+    #  environment.pathsToLink = [ `/share/applications` `/share/xdg-desktop-portal` ];
+    #
+    #  to your NixOS configuration so that the portal definitions and DE
+    #  provided configurations get linked.
+    environment.pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
+
     services = {
       gnome.gnome-keyring.enable = false;
       dbus.enable = true;
