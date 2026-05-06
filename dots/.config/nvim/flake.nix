@@ -45,7 +45,23 @@
       inherit (nixCats) utils;
       luaPath = ./.;
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
-      extra_pkg_config = { };
+      extra_pkg_config = {
+        allowUnfreePredicate =
+          pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) [
+            "vim-sandwich"
+            "jupytext.nvim"
+            "eyeliner.nvim"
+            "context_filetype.vim"
+            "editorconfig-vim"
+            "unicode.vim"
+            "quarto-nvim"
+            "vim-openscad"
+            "lsp_lines.nvim"
+            "nvim-highlight-colors"
+            "nvim-lint"
+          ];
+      };
 
       mkDependencyOverlays = system: [
         (utils.standardPluginOverlay inputs)
