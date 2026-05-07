@@ -57,6 +57,7 @@ in
 
   restic-backup.enable = true;
   tailscale.enable = true;
+  desktop.ly.enable = true;
 
   docker.enable = true;
 
