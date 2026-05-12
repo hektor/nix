@@ -35,6 +35,7 @@ in
       // {
         "*" = {
           addKeysToAgent = "yes";
+          forwardAgent = false;
         };
       };
   };
