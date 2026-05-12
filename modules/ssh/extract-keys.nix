@@ -14,8 +14,16 @@ in
       chmod 644 "$HOST_DIR/ssh_host.pub"
     fi
 
-    USER_KEY="/home/${username}/.ssh/id_ed25519.pub"
-    if [ -f "$USER_KEY" ] && [ -d "$HOST_DIR" ]; then
+    USER_KEY=""
+    for candidate in \
+        "/home/${username}/.ssh/id_ed25519_sk.pub" \
+        "/home/${username}/.ssh/id_ed25519.pub"; do
+      if [ -f "$candidate" ]; then
+        USER_KEY="$candidate"
+        break
+      fi
+    done
+    if [ -n "$USER_KEY" ] && [ -d "$HOST_DIR" ]; then
       cp "$USER_KEY" "$HOST_DIR/ssh_user.pub"
       chown ${username}:users "$HOST_DIR/ssh_user.pub"
       chmod 644 "$HOST_DIR/ssh_user.pub"
