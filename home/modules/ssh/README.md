@@ -47,15 +47,6 @@ backup key (`id_ed25519_sk_bak.pub`) if needed.
 | backup key file lost | regenerate from backup YubiKey resident key (use `ssh-keygen -K`) |
 | backup YubiKey lost | generate resident backup key, distribute across hosts, re-register (use primary key) |
 
-## notes / to do
-
-TODO: automate distributing `id_ed25519_sk_bak`, `id_ed25519_sk_bak.pub` to all devices
-TODO: declare setup scripts (use e.g. `$HOSTNAME`)
-TODO: register backup key with hosts (add to authorized hosts for each host)
-TODO: register backup key with services (e.g. Gitea)
-TODO: make sure to fall back to backup key when host-specific primary key is not present
-TODO: see if / how `-O application=ssh:<name>` could be used
-
 ## references
 
 * <https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html>

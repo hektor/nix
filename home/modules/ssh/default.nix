@@ -41,6 +41,10 @@ in
           "*" = {
             AddKeysToAgent = "yes";
             ForwardAgent = false;
+            identityFile = [
+              "~/.ssh/id_ed25519_sk"
+              "~/.ssh/id_ed25519_sk_bak"
+            ];
           };
         };
     };
