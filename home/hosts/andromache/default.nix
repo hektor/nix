@@ -30,8 +30,9 @@
     ../../modules/ssh
     ../../modules/taskwarrior
     ../../modules/terminal
-    ../../modules/zk
     ../../modules/torrenting
+    ../../modules/yubikey
+    ../../modules/zk
   ];
 
   home = {
@@ -58,6 +59,7 @@
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
   torrenting.enable = true;
+  my.yubikey.enable = true;
   zk.enable = true;
 
   programs = {

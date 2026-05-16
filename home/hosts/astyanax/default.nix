@@ -29,6 +29,7 @@
     ../../modules/ssh
     ../../modules/taskwarrior
     ../../modules/terminal
+    ../../modules/yubikey
   ];
 
   home = {
@@ -53,6 +54,7 @@
   git.github.enable = true;
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
+  my.yubikey.enable = true;
 
   programs = {
     home-manager.enable = true;

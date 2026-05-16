@@ -99,21 +99,7 @@ in
 
   my.yubikey = {
     enable = true;
-    # inherit (config.host) username;
-    # keys = [
-    #   {
-    #     handle = "<KeyHandle1>";
-    #     userKey = "<UserKey1>";
-    #     coseType = "<CoseType1>";
-    #     options = "<Options1>";
-    #   }
-    #   {
-    #     handle = "<KeyHandle2>";
-    #     userKey = "<UserKey2>";
-    #     coseType = "<CoseType2>";
-    #     options = "<Options2>";
-    #   }
-    # ];
+    pam.enable = false;
   };
 
   services = {
