@@ -26,6 +26,13 @@ in
       useNautilus = false;
     };
 
+    programs.xwayland.enable = true;
+
+    environment = {
+      systemPackages = [ pkgs.xwayland-satellite ];
+      sessionVariables.NIXOS_OZONE_WL = "1";
+    };
+
     xdg.portal = {
       enable = true;
       extraPortals = [
