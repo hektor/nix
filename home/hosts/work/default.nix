@@ -86,6 +86,7 @@
   infra.enable = true;
   go.enable = true;
   ticketing.enable = true;
+  vscode.enable = true;
 
   programs = {
     gh.enable = true;
