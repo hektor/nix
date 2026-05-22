@@ -1,22 +1,26 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 {
-  nixpkgs.allowedUnfree = [
-    "nvidia-x11"
-    "nvidia-persistenced"
-    "nvidia-settings"
-  ];
+  options.nvidia.enable = lib.mkEnableOption "NVIDIA graphics";
 
-  hardware.graphics.enable = true;
+  config = lib.mkIf config.nvidia.enable {
+    nixpkgs.allowedUnfree = [
+      "nvidia-x11"
+      "nvidia-persistenced"
+      "nvidia-settings"
+    ];
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    hardware.graphics.enable = true;
+
+    hardware.nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+
+    services.xserver.videoDrivers = [ "nvidia" ];
   };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 }
