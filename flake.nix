@@ -148,7 +148,9 @@
         };
       };
 
-      apps.${system}.colmena = inputs.colmena.apps.${system}.default;
+      apps.${system}.colmena = inputs.colmena.apps.${system}.default // {
+        meta.description = "colmena";
+      };
 
       colmenaHive = import ./deploy/colmena.nix {
         inherit
