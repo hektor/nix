@@ -65,6 +65,7 @@
 
   browser.primary = "firefox";
   devenv.enable = true;
+  nvim.enable = true;
   my.dconf.enable = true;
   pandoc.enable = true;
   browser.secondary = "chromium";
