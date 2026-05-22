@@ -81,6 +81,7 @@
   git.github.enable = true;
   git.gitlab.enable = true;
   secrets.vault.enable = true;
+  bruno.enable = true;
   docker.enable = true;
   infra.enable = true;
   go.enable = true;
