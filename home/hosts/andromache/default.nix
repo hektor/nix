@@ -59,6 +59,7 @@
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
   devenv.enable = true;
+  keepassxc.enable = true;
   direnv.enable = true;
   nvim.enable = true;
   pandoc.enable = true;
