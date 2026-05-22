@@ -4,13 +4,12 @@
   dotsPath,
   ...
 }:
+
 let
   cfg = config.shell.bash;
   inherit (config.home) username;
 in
 {
-  imports = [ ./utils.nix ];
-
   options.shell.bash = {
     aliases = {
       all = lib.mkOption {
@@ -34,7 +33,7 @@ in
     };
   };
 
-  config = {
+  config = lib.mkIf config.shell.enable {
     programs.bash = {
       enable = true;
       enableCompletion = true;

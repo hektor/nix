@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   ...
 }:
@@ -11,5 +12,9 @@
     ../tmux
   ];
 
-  tmux.enable = lib.mkDefault true;
+  options.shell.enable = lib.mkEnableOption "shell";
+
+  config = lib.mkIf config.shell.enable {
+    tmux.enable = lib.mkDefault true;
+  };
 }

@@ -90,6 +90,7 @@
     redis.enable = true;
   };
   k8s.enable = true;
+  shell.enable = true;
   my.stylix.enable = true;
   git.github.enable = true;
   git.gitlab.enable = true;
