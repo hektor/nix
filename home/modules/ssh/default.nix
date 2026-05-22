@@ -24,24 +24,23 @@ in
       enable = true;
       enableDefaultConfig = false;
 
-      matchBlocks =
+      settings =
         lib.genAttrs hostsWithKeys (
           hostname:
           let
             meta = myUtils.hostMeta (hostDir + "/${hostname}");
           in
           {
-            host = hostname;
-            user = meta.deployment.targetUser;
+            User = meta.deployment.targetUser;
           }
           // lib.optionalAttrs (meta.deployment.targetHost != "") {
-            hostname = meta.deployment.targetHost;
+            HostName = meta.deployment.targetHost;
           }
         )
         // {
           "*" = {
-            addKeysToAgent = "yes";
-            forwardAgent = false;
+            AddKeysToAgent = "yes";
+            ForwardAgent = false;
           };
         };
     };
