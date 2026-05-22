@@ -1,10 +1,13 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 let
+  cfg = config.taskwarrior;
   inherit (config.secrets) owner;
 in
 {
-  config = {
+  options.taskwarrior.enable = lib.mkEnableOption "taskwarrior";
+
+  config = lib.mkIf cfg.enable {
     secrets.groups.taskwarrior = [
       "sync-server-url"
       "sync-server-client-id"

@@ -63,7 +63,6 @@
     bash.addBinToPath = true;
   };
   anki.enable = true;
-  anki.enable = true;
   k8s.k9s.enable = true;
   taskwarrior.enable = true;
   audio.enable = true;

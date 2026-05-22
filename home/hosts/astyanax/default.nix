@@ -61,6 +61,7 @@
   anki.enable = true;
   k8s.k9s.enable = true;
   taskwarrior.enable = true;
+  secrets.enable = true;
   my.yubikey.enable = true;
   audio.enable = true;
   ssh.enable = true;
