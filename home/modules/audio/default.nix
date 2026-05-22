@@ -1,7 +1,19 @@
-{ osConfig, pkgs, ... }:
-
 {
-  home.packages = with pkgs; [ pulsemixer ];
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 
-  services.mpris-proxy.enable = osConfig.hardware.bluetooth.enable or false;
+let
+  cfg = config.audio;
+in
+{
+  options.audio.enable = lib.mkEnableOption "audio";
+
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [ pulsemixer ];
+    services.mpris-proxy.enable = osConfig.hardware.bluetooth.enable or false;
+  };
 }

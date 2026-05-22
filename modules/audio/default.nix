@@ -1,17 +1,21 @@
-{ ... }:
+{ lib, config, ... }:
 
+let
+  cfg = config.audio;
+in
 {
-  imports = [
-    ./audio-automation.nix
-  ];
+  imports = [ ./audio-automation.nix ];
 
-  config = {
+  options.audio.enable = lib.mkEnableOption "audio";
+
+  config = lib.mkIf cfg.enable {
     nixpkgs.allowedUnfree = [
       "spotify"
       "spotify-unwrapped"
     ];
 
     security.rtkit.enable = true;
+
     services = {
       pulseaudio.enable = false;
       pipewire = {

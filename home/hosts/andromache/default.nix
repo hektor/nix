@@ -58,6 +58,7 @@
   git.github.enable = true;
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
+  audio.enable = true;
   devenv.enable = true;
   keepassxc.enable = true;
   direnv.enable = true;

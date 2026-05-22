@@ -55,6 +55,7 @@
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
   my.yubikey.enable = true;
+  audio.enable = true;
   devenv.enable = true;
   keepassxc.enable = true;
   direnv.enable = true;
