@@ -62,6 +62,10 @@ in
       pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfree;
 
     environment.defaultPackages = lib.mkForce [ ];
+    environment.pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
 
     home-manager = {
       useGlobalPkgs = true;
