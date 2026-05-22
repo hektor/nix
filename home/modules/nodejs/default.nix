@@ -5,15 +5,21 @@
   ...
 }:
 
+let
+  cfg = config.nodejs;
+in
 {
-  options.nodejs.package = lib.mkOption {
-    type = lib.types.package;
-    default = pkgs.nodejs_24;
+  options.nodejs = {
+    enable = lib.mkEnableOption "Node.js";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.nodejs_24;
+    };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      config.nodejs.package
+      cfg.package
       pnpm
       yarn
       biome

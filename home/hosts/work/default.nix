@@ -85,6 +85,7 @@
   docker.enable = true;
   infra.enable = true;
   go.enable = true;
+  nodejs.enable = true;
   ticketing.enable = true;
   vscode.enable = true;
 
