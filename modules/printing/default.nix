@@ -1,15 +1,9 @@
-{
-  # services.avahi = {
-  #   enable = true;
-  #   nssmdns4 = true;
-  #   openFirewall = true;
-  # };
+{ lib, config, ... }:
 
-  services.printing = {
-    enable = true;
-    # drivers = with pkgs; [
-    #   cups-filters
-    #   cups-browsed
-    # ];
+{
+  options.printing.enable = lib.mkEnableOption "printing";
+
+  config = lib.mkIf config.printing.enable {
+    services.printing.enable = true;
   };
 }
