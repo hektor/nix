@@ -81,6 +81,7 @@
   git.github.enable = true;
   git.gitlab.enable = true;
   secrets.vault.enable = true;
+  ticketing.enable = true;
 
   programs = {
     gh.enable = true;
