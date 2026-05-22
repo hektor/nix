@@ -96,6 +96,7 @@
   my.stylix.enable = true;
   git.github.enable = true;
   git.gitlab.enable = true;
+  secrets.enable = true;
   secrets.vault.enable = true;
   bruno.enable = true;
   docker.enable = true;

@@ -64,6 +64,7 @@
   };
   anki.enable = true;
   k8s.k9s.enable = true;
+  secrets.enable = true;
   taskwarrior.enable = true;
   audio.enable = true;
   ssh.enable = true;

@@ -18,6 +18,8 @@ in
 
   options = {
     secrets = {
+      enable = lib.mkEnableOption "secrets management";
+
       sopsDir = lib.mkOption {
         type = lib.types.str;
         default = "${toString inputs.nix-secrets}/secrets";
@@ -42,7 +44,7 @@ in
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     secrets = {
       inherit owner;
       groups = {
@@ -55,10 +57,6 @@ in
     };
 
     sops = {
-      # for yubikey, generate as follows:
-      # ```
-      # age-plugin-yubikey --identity > <keyfile-path>
-      # ```
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
       secrets = myUtils.mkSopsSecrets sopsDir owner cfg.groups;
     };
@@ -68,7 +66,7 @@ in
     ];
 
     services = {
-      pcscd.enable = true; # needed for age-plugin-yubikey?
+      pcscd.enable = true;
       udev.packages = lib.mkIf cfg.yubikey.enable [
         pkgs.yubikey-personalization
         pkgs.libfido2
