@@ -81,6 +81,11 @@
   ticketing.enable = true;
   vscode.enable = true;
 
+  services.home-manager.autoUpgrade = {
+    enable = true;
+    frequency = "weekly";
+  };
+
   programs = {
     gh.enable = true;
     kubecolor.enable = true;
