@@ -1,5 +1,7 @@
 { lib, config, ... }:
+
 with lib;
+
 let
   cfg = config.services.openssh;
 in
@@ -13,7 +15,7 @@ in
   options.services.openssh.harden = mkEnableOption "harden ssh server configuration";
 
   config = {
-    networking.firewall.allowedTCPPorts = [ 22 ];
+    networking.firewall.allowedTCPPorts = lib.mkIf config.ssh.enable [ 22 ];
 
     services.openssh.settings = optionalAttrs cfg.harden {
       PermitRootLogin = "no";

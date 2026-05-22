@@ -1,10 +1,13 @@
 {
-  myUtils,
+  config,
   lib,
   pkgs,
+  myUtils,
   ...
 }:
+
 let
+  cfg = config.ssh;
   hostDir = ../../hosts;
   hostNames = myUtils.dirNames hostDir;
   hostsWithKeys = lib.filter (
@@ -12,31 +15,35 @@ let
   ) hostNames;
 in
 {
-  home.packages = with pkgs; [ sshfs ];
+  options.ssh.enable = lib.mkEnableOption "ssh";
 
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [ sshfs ];
 
-    matchBlocks =
-      lib.genAttrs hostsWithKeys (
-        hostname:
-        let
-          meta = myUtils.hostMeta (hostDir + "/${hostname}");
-        in
-        {
-          host = hostname;
-          user = meta.deployment.targetUser;
-        }
-        // lib.optionalAttrs (meta.deployment.targetHost != "") {
-          hostname = meta.deployment.targetHost;
-        }
-      )
-      // {
-        "*" = {
-          addKeysToAgent = "yes";
-          forwardAgent = false;
+    programs.ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+
+      matchBlocks =
+        lib.genAttrs hostsWithKeys (
+          hostname:
+          let
+            meta = myUtils.hostMeta (hostDir + "/${hostname}");
+          in
+          {
+            host = hostname;
+            user = meta.deployment.targetUser;
+          }
+          // lib.optionalAttrs (meta.deployment.targetHost != "") {
+            hostname = meta.deployment.targetHost;
+          }
+        )
+        // {
+          "*" = {
+            addKeysToAgent = "yes";
+            forwardAgent = false;
+          };
         };
-      };
+    };
   };
 }
