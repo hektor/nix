@@ -56,6 +56,7 @@
   shell.bash.addBinToPath = true;
   my.yubikey.enable = true;
   devenv.enable = true;
+  direnv.enable = true;
   nvim.enable = true;
   nfc.enable = true;
   pandoc.enable = true;
