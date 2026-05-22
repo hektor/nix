@@ -56,6 +56,7 @@
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
+  git.enable = true;
   git.github.enable = true;
   shell = {
     enable = true;

@@ -94,8 +94,11 @@
   k8s.enable = true;
   shell.enable = true;
   my.stylix.enable = true;
-  git.github.enable = true;
-  git.gitlab.enable = true;
+  git = {
+    enable = true;
+    github.enable = true;
+    gitlab.enable = true;
+  };
   secrets.enable = true;
   secrets.vault.enable = true;
   bruno.enable = true;

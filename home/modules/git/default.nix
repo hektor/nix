@@ -8,11 +8,12 @@
 
 {
   options.git = {
+    enable = lib.mkEnableOption "git";
     github.enable = lib.mkEnableOption "Github CLI";
     gitlab.enable = lib.mkEnableOption "Gitlab CLI";
   };
 
-  config = {
+  config = lib.mkIf config.git.enable {
     programs.git.enable = true;
     home.file = {
       ".gitconfig".source = dotsPath + "/.gitconfig";
