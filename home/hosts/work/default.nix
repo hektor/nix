@@ -65,6 +65,7 @@
 
   browser.primary = "firefox";
   devenv.enable = true;
+  terminal.enable = true;
   keepassxc.enable = true;
   direnv.enable = true;
   nvim.enable = true;

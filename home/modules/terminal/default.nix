@@ -1,12 +1,18 @@
 {
-  pkgs,
   config,
+  lib,
+  pkgs,
   dotsPath,
   ...
 }:
 
+let
+  cfg = config.terminal;
+in
 {
-  config = {
+  options.terminal.enable = lib.mkEnableOption "terminal";
+
+  config = lib.mkIf cfg.enable {
     programs.bash.shellAliases = {
       icat = "kitty +kitten icat";
     };
