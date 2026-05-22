@@ -1,17 +1,26 @@
-{ pkgs, ... }:
-
 {
-  imports = [
-    ./iosevka.nix
-  ];
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-  fonts = {
-    # disable default font packages (see https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/fonts/packages.nix)
-    enableDefaultPackages = false;
-    packages = with pkgs; [
-      dejavu_fonts
-      liberation_ttf
-      noto-fonts-color-emoji
-    ];
+let
+  cfg = config.my.fonts;
+in
+{
+  imports = [ ./iosevka.nix ];
+
+  options.my.fonts.enable = lib.mkEnableOption "fonts";
+
+  config = lib.mkIf cfg.enable {
+    fonts = {
+      enableDefaultPackages = false;
+      packages = with pkgs; [
+        dejavu_fonts
+        liberation_ttf
+        noto-fonts-color-emoji
+      ];
+    };
   };
 }
