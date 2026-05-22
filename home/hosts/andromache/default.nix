@@ -8,31 +8,6 @@
 {
   imports = [
     ../../modules
-    ../../modules/3d
-    ../../modules/ai-tools
-    ../../modules/anki
-    ../../modules/audio
-    ../../modules/browser
-    ../../modules/cloud
-    ../../modules/comms
-    ../../modules/desktop/niri
-    ../../modules/devenv
-    ../../modules/direnv
-    ../../modules/git
-    ../../modules/k8s/k9s.nix
-    ../../modules/keepassxc
-    ../../modules/music
-    ../../modules/nvim
-    ../../modules/pandoc
-    ../../modules/photography
-    ../../modules/secrets
-    ../../modules/shell
-    ../../modules/ssh
-    ../../modules/taskwarrior
-    ../../modules/terminal
-    ../../modules/torrenting
-    ../../modules/yubikey
-    ../../modules/zk
   ];
 
   home = {

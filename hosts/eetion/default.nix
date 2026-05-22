@@ -7,12 +7,10 @@
   imports = [
     ./hard.nix
     ./host.nix
-    ../../modules/common
-    ../../modules/ssh
-    ../../modules/tailscale
-    # ../../modules/uptime-kuma
+    ../../modules
   ];
 
+  ssh.enable = true;
   tailscale.enable = true;
 
   boot.loader = {

@@ -17,51 +17,57 @@ in
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
-    ../../modules/common
-    ../../modules/boot/bootloader.nix
+    ../../modules
     (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib config;
       device = "/dev/nvme1n1";
     })
-    ../../modules/ai-tools
-    ../../modules/anki
-    ../../modules/audio
-    ../../modules/backups
-    ../../modules/bluetooth
-    ../../modules/desktops/niri
-    ../../modules/docker
-    ../../modules/firewall
-    ../../modules/fonts
-    ../../modules/gaming
-    ../../modules/git
-    ../../modules/hcloud
-    ../../modules/keyboard
-    ../../modules/localization
-    ../../modules/networking
-    ../../modules/nvidia
-    ../../modules/secrets
-    ../../modules/ssh
-    ../../modules/storage
-    ../../modules/stylix
-    ../../modules/syncthing
-    ../../modules/tailscale
-    ../../modules/taskwarrior
-    ../../modules/users
-    ../../modules/wol
-    ../../modules/yubikey
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 
-  secrets.nixSigningKey.enable = true;
-
-  restic-backup.enable = true;
-  tailscale.enable = true;
+  "ai-tools".enable = true;
+  anki.enable = true;
+  audio.enable = true;
+  bluetooth.enable = true;
+  bootloader.enable = true;
+  desktop.niri.enable = true;
+  firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
+  gaming.enable = true;
+  git.enable = true;
+  keyboard.enable = true;
+  localization.enable = true;
+  my = {
+    fonts.enable = true;
+    stylix.enable = true;
+    users.enable = true;
+    yubikey = {
+      enable = true;
+      pam.enable = false;
+    };
+  };
   desktop.ly.enable = true;
-
   docker.enable = true;
-
   hcloud.enable = true;
+  networking.enable = true;
+  nvidia.enable = true;
+  restic-backup.enable = true;
+  secrets = {
+    enable = true;
+    nixSigningKey.enable = true;
+  };
+  ssh.enable = true;
+  storage.enable = true;
+  syncthing.enable = true;
+  tailscale.enable = true;
+  taskwarrior.enable = true;
+  wol = {
+    enable = true;
+    interfaces.eno1 = { inherit (wolInterfaces.eno1) macAddress; };
+  };
 
   disko.devices = {
     disk.data = {
@@ -91,25 +97,10 @@ in
     inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
   ];
 
-  my.yubikey = {
-    enable = true;
-    pam.enable = false;
-  };
-
   services.locate = {
     enable = true;
     package = pkgs.plocate;
   };
 
   networking.hostId = "80eef97e";
-
-  wol = {
-    enable = true;
-    interfaces.eno1 = { inherit (wolInterfaces.eno1) macAddress; };
-  };
-
-  firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 ];
-  };
 }

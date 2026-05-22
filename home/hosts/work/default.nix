@@ -9,35 +9,6 @@
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     ../../modules
-    ../../modules/ai-tools
-    ../../modules/anki
-    ../../modules/browser
-    ../../modules/bruno
-    ../../modules/cloud
-    ../../modules/comms
-    ../../modules/database
-    ../../modules/dconf
-    ../../modules/desktop/niri
-    ../../modules/devenv
-    ../../modules/direnv
-    ../../modules/docker
-    ../../modules/git
-    ../../modules/go
-    ../../modules/infra
-    ../../modules/k8s
-    ../../modules/k8s/k9s.nix
-    ../../modules/keepassxc
-    ../../modules/music
-    ../../modules/nodejs
-    ../../modules/nvim
-    ../../modules/pandoc
-    ../../modules/secrets
-    ../../modules/shell
-    ../../modules/stylix
-    ../../modules/taskwarrior
-    ../../modules/ticketing
-    ../../modules/terminal
-    ../../modules/vscode
   ];
 
   sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
@@ -63,50 +34,50 @@
     defaultWrapper = "mesa";
   };
 
-  desktop.niri.enable = true;
-  browser = {
-    enable = true;
-    primary = "firefox";
-    secondary = "chromium";
-  };
-  devenv.enable = true;
-  music.enable = true;
-  terminal.enable = true;
-  keepassxc.enable = true;
-  direnv.enable = true;
-  nvim.enable = true;
-  my.dconf.enable = true;
-  pandoc.enable = true;
-  cloud.azure.enable = true;
-  comms.signal.enable = true;
-  comms.teams.enable = true;
   ai-tools = {
     claude-code.enable = true;
     tirith.enable = true;
     opencode.enable = true;
   };
+  anki.enable = true;
+  browser = {
+    enable = true;
+    primary = "firefox";
+    secondary = "chromium";
+  };
+  bruno.enable = true;
+  cloud.azure.enable = true;
+  comms.signal.enable = true;
+  comms.teams.enable = true;
   database = {
     mssql.enable = true;
     postgresql.enable = true;
     redis.enable = true;
   };
-  anki.enable = true;
-  taskwarrior.enable = true;
-  k8s.enable = true;
-  shell.enable = true;
-  my.stylix.enable = true;
+  desktop.niri.enable = true;
+  devenv.enable = true;
+  direnv.enable = true;
+  docker.enable = true;
   git = {
     enable = true;
     github.enable = true;
     gitlab.enable = true;
   };
+  go.enable = true;
+  k8s.enable = true;
+  keepassxc.enable = true;
+  music.enable = true;
+  my.dconf.enable = true;
+  my.stylix.enable = true;
+  nvim.enable = true;
+  pandoc.enable = true;
+  shell.enable = true;
+  taskwarrior.enable = true;
+  terminal.enable = true;
+  infra.enable = true;
+  nodejs.enable = true;
   secrets.enable = true;
   secrets.vault.enable = true;
-  bruno.enable = true;
-  docker.enable = true;
-  infra.enable = true;
-  go.enable = true;
-  nodejs.enable = true;
   ticketing.enable = true;
   vscode.enable = true;
 

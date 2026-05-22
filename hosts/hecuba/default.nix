@@ -12,13 +12,13 @@
     inputs.disko.nixosModules.disko
     ./hard.nix
     ./host.nix
-    ../../modules/common
-    ../../modules/ssh
-    ../../modules/docker
+    ../../modules
   ];
 
-  networking.hostName = config.host.name;
+  ssh.enable = true;
   docker.enable = true;
+
+  networking.hostName = config.host.name;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

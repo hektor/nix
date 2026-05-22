@@ -5,9 +5,7 @@
   pkgs,
   ...
 }:
-let
-  wolInterfaces = import ../andromache/wol-interfaces.nix;
-in
+
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -16,47 +14,50 @@ in
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen7 (not available yet?)
-    inputs.sops-nix.nixosModules.sops
-    ../../modules/common
-    ../../modules/boot/bootloader.nix
+    ../../modules
     (import ../../modules/disko/zfs-encrypted-root.nix {
       inherit lib config;
       device = "/dev/nvme0n1";
     })
-    ../../modules/ai-tools
-    ../../modules/anki
-    ../../modules/audio
-    ../../modules/backups
-    ../../modules/bluetooth
-    ../../modules/desktops/niri
-    ../../modules/docker
-    ../../modules/firewall
-    ../../modules/fonts
-    ../../modules/git
-    ../../modules/keyboard
-    ../../modules/localization
-    ../../modules/networking
-    ../../modules/nfc
-    ../../modules/secrets
-    ../../modules/ssh
-    ../../modules/storage
-    ../../modules/stylix
-    ../../modules/tailscale
-    ../../modules/taskwarrior
-    ../../modules/users
-    ../../modules/yubikey
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 
-  secrets.nixSigningKey.enable = true;
+  "ai-tools".enable = true;
+  anki.enable = true;
+  audio.enable = true;
+  bluetooth.enable = true;
+  bootloader.enable = true;
+  desktop.niri.enable = true;
+  git.enable = true;
+  keyboard.enable = true;
+  localization.enable = true;
+  my = {
+    fonts.enable = true;
+    stylix.enable = true;
+    users.enable = true;
+    yubikey = {
+      enable = true;
+      pam.enable = false;
+    };
+  };
+  networking.enable = true;
+  secrets.enable = true;
+  ssh.enable = true;
+  storage.enable = true;
+  taskwarrior.enable = true;
 
+  secrets.nixSigningKey.enable = true;
   restic-backup.enable = true;
   tailscale.enable = true;
+  desktop.ly.enable = true;
   docker.enable = true;
   nfc.enable = true;
-  desktop.ly.enable = true;
-  audio.automation.enable = true;
+
+  firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
 
   hardware = {
     cpu.intel.updateMicrocode = true;
@@ -90,17 +91,7 @@ in
     hostId = "80eef97e";
   };
 
-  firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 ];
-  };
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  my.yubikey = {
-    enable = true;
-    pam.enable = false;
-  };
 
   services = {
     fwupd.enable = true;

@@ -9,26 +9,29 @@
     ./hard.nix
     ./host.nix
     ./disk.nix
-    ../../modules/common
-    ../../modules/anki
-    ../../modules/audio
-    ../../modules/boot/bootloader.nix
-    ../../modules/fonts
-    ../../modules/git
-    ../../modules/keyboard
-    ../../modules/localization
-    ../../modules/networking
-    ../../modules/ai-tools
-    ../../modules/ssh
-    ../../modules/storage
-    ../../modules/stylix
-    ../../modules/secrets
-    ../../modules/taskwarrior
-    ../../modules/users
-    ../../modules/x
+    ../../modules
   ];
 
   home-manager.users.${config.host.username} = import ../../home/hosts/vm;
+
+  "ai-tools".enable = true;
+  anki.enable = true;
+  audio.enable = true;
+  bootloader.enable = true;
+  desktop.x.enable = true;
+  git.enable = true;
+  keyboard.enable = true;
+  localization.enable = true;
+  my = {
+    fonts.enable = true;
+    stylix.enable = true;
+    users.enable = true;
+  };
+  networking.enable = true;
+  secrets.enable = true;
+  ssh.enable = true;
+  storage.enable = true;
+  taskwarrior.enable = true;
 
   disko = {
     devices.disk.main = {

@@ -7,9 +7,10 @@
   imports = [
     ./hard.nix
     ./host.nix
-    ../../modules/common
-    ../../modules/ssh
+    ../../modules
   ];
+
+  ssh.enable = true;
 
   boot = {
     kernelParams = [
