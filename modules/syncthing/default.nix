@@ -1,16 +1,13 @@
-{
-  lib,
-  config,
-  ...
-}:
-
-with lib;
+{ lib, config, ... }:
 
 let
+  cfg = config.syncthing;
   inherit (config.host) username;
 in
 {
-  config = {
+  options.syncthing.enable = lib.mkEnableOption "syncthing";
+
+  config = lib.mkIf cfg.enable {
     users.groups.${username} = { };
     users.users.${username}.extraGroups = [ username ];
 
