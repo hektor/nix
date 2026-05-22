@@ -58,6 +58,7 @@
   git.github.enable = true;
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
+  pandoc.enable = true;
   photography.enable = true;
   torrenting.enable = true;
   my.yubikey.enable = true;

@@ -65,6 +65,7 @@
 
   browser.primary = "firefox";
   my.dconf.enable = true;
+  pandoc.enable = true;
   browser.secondary = "chromium";
   cloud.azure.enable = true;
   comms.signal.enable = true;

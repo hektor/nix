@@ -56,6 +56,7 @@
   shell.bash.addBinToPath = true;
   my.yubikey.enable = true;
   nfc.enable = true;
+  pandoc.enable = true;
 
   programs = {
     home-manager.enable = true;
