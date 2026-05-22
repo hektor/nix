@@ -89,6 +89,7 @@
     postgresql.enable = true;
     redis.enable = true;
   };
+  anki.enable = true;
   k8s.enable = true;
   shell.enable = true;
   my.stylix.enable = true;
