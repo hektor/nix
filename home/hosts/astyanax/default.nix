@@ -48,6 +48,7 @@
     claude-code.enable = true;
     opencode.enable = true;
   };
+  browser.enable = true;
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
   comms.signal.enable = true;

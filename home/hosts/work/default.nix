@@ -63,7 +63,11 @@
     defaultWrapper = "mesa";
   };
 
-  browser.primary = "firefox";
+  browser = {
+    enable = true;
+    primary = "firefox";
+    secondary = "chromium";
+  };
   devenv.enable = true;
   music.enable = true;
   terminal.enable = true;
@@ -72,7 +76,6 @@
   nvim.enable = true;
   my.dconf.enable = true;
   pandoc.enable = true;
-  browser.secondary = "chromium";
   cloud.azure.enable = true;
   comms.signal.enable = true;
   comms.teams.enable = true;

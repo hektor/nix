@@ -1,7 +1,19 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 {
+  imports = [
+    ./firefox.nix
+    ./librewolf.nix
+    ./chromium.nix
+  ];
+
   options.browser = {
+    enable = lib.mkEnableOption "browser";
+
     primary = lib.mkOption {
       type = lib.types.enum [
         "firefox"
@@ -23,11 +35,7 @@
     };
   };
 
-  config.home.sessionVariables.BROWSER = config.browser.primary;
-
-  imports = [
-    ./firefox.nix
-    ./librewolf.nix
-    ./chromium.nix
-  ];
+  config = lib.mkIf config.browser.enable {
+    home.sessionVariables.BROWSER = config.browser.primary;
+  };
 }
