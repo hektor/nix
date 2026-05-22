@@ -37,5 +37,6 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
+  boot.zfs.forceImportRoot = false;
   system.stateVersion = "26.05";
 }

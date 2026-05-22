@@ -21,13 +21,11 @@ in
     name = "raspberry-pi";
   };
 
-  boot.kernelParams = [
-    "console=ttyS1,115200n8"
-  ];
-
-  boot.kernelModules = [
-    "bcm2835-v4l2"
-  ];
+  boot = {
+    kernelParams = [ "console=ttyS1,115200n8" ];
+    kernelModules = [ "bcm2835-v4l2" ];
+    zfs.forceImportRoot = false;
+  };
 
   hardware.enableRedistributableFirmware = true;
 

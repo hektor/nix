@@ -23,6 +23,7 @@ in
 
   config = {
     system.stateVersion = lib.mkDefault "25.05";
+    boot.zfs.forceImportRoot = lib.mkDefault false;
 
     nix = {
       nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
