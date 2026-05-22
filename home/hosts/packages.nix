@@ -3,7 +3,9 @@
 with pkgs;
 [
   bat
+  curl
   entr
+  fd
   feh
   fzf
   htop
