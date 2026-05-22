@@ -63,6 +63,7 @@
     defaultWrapper = "mesa";
   };
 
+  desktop.niri.enable = true;
   browser = {
     enable = true;
     primary = "firefox";

@@ -12,6 +12,9 @@ in
   imports = [ ../logind.nix ];
 
   options.desktop = {
+    niri = {
+      enable = lib.mkEnableOption "niri desktop";
+    };
     ly = {
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -20,7 +23,8 @@ in
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.niri.enable {
+    desktop.logind.enable = lib.mkDefault true;
     programs.niri = {
       enable = true;
       useNautilus = false;
@@ -44,15 +48,6 @@ in
       ];
     };
 
-    #  error:
-    #  Failed assertions:
-    #  - h profile: xdg.portal: since you installed Home Manager via its NixOS module and
-    #  'home-manager.useUserPackages' is enabled, you need to add
-    #
-    #  environment.pathsToLink = [ `/share/applications` `/share/xdg-desktop-portal` ];
-    #
-    #  to your NixOS configuration so that the portal definitions and DE
-    #  provided configurations get linked.
     environment.pathsToLink = [
       "/share/applications"
       "/share/xdg-desktop-portal"

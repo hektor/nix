@@ -52,6 +52,7 @@
     claude-code.enable = true;
     opencode.enable = true;
   };
+  desktop.niri.enable = true;
   browser.enable = true;
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
