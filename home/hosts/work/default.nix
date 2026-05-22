@@ -81,6 +81,7 @@
   git.github.enable = true;
   git.gitlab.enable = true;
   secrets.vault.enable = true;
+  docker.enable = true;
   go.enable = true;
   ticketing.enable = true;
 
