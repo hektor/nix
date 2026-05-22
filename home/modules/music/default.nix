@@ -1,10 +1,13 @@
 {
-  dotsPath,
+  config,
+  lib,
   pkgs,
+  dotsPath,
   ...
 }:
 
 let
+  cfg = config.music;
   spotifyWithWayland = pkgs.symlinkJoin {
     name = "spotify";
     paths = [ pkgs.spotify ];
@@ -16,12 +19,14 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
-    spotifyWithWayland
-  ];
+  options.music.enable = lib.mkEnableOption "music";
 
-  programs.ncspot = {
-    enable = true;
-    settings = builtins.fromTOML (builtins.readFile (dotsPath + "/.config/ncspot/config.toml"));
+  config = lib.mkIf cfg.enable {
+    home.packages = [ spotifyWithWayland ];
+
+    programs.ncspot = {
+      enable = true;
+      settings = fromTOML (builtins.readFile (dotsPath + "/.config/ncspot/config.toml"));
+    };
   };
 }

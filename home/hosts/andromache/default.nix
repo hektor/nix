@@ -59,6 +59,7 @@
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
   audio.enable = true;
+  music.enable = true;
   terminal.enable = true;
   devenv.enable = true;
   keepassxc.enable = true;

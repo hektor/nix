@@ -56,6 +56,7 @@
   shell.bash.addBinToPath = true;
   my.yubikey.enable = true;
   audio.enable = true;
+  music.enable = true;
   terminal.enable = true;
   devenv.enable = true;
   keepassxc.enable = true;
