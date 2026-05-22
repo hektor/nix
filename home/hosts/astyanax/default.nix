@@ -55,6 +55,7 @@
   shell.bash.aliases.lang-js = true;
   shell.bash.addBinToPath = true;
   my.yubikey.enable = true;
+  nfc.enable = true;
 
   programs = {
     home-manager.enable = true;

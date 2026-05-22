@@ -6,7 +6,7 @@ let
 in
 {
   options.nfc = {
-    enable = lib.mkEnableOption "NFC device access";
+    enable = lib.mkEnableOption "NFC";
   };
   config = lib.mkIf cfg.enable {
     users.users.${username}.extraGroups = [ "dialout" ];
