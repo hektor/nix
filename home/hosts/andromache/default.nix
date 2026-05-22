@@ -57,8 +57,14 @@
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
   git.github.enable = true;
-  shell.bash.aliases.lang-js = true;
-  shell.bash.addBinToPath = true;
+  shell = {
+    enable = true;
+    bash.aliases.lang-js = true;
+    bash.addBinToPath = true;
+  };
+  anki.enable = true;
+  k8s.k9s.enable = true;
+  taskwarrior.enable = true;
   audio.enable = true;
   ssh.enable = true;
   music.enable = true;

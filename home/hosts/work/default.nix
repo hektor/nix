@@ -89,6 +89,7 @@
     postgresql.enable = true;
     redis.enable = true;
   };
+  k8s.enable = true;
   git.github.enable = true;
   git.gitlab.enable = true;
   secrets.vault.enable = true;
