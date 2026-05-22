@@ -9,7 +9,7 @@ let
 in
 {
   options.ai-tools.tirith = {
-    enable = lib.mkEnableOption "tirith shell security guard";
+    enable = lib.mkEnableOption "tirith";
   };
 
   config = lib.mkMerge [

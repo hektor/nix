@@ -10,7 +10,7 @@ let
 in
 {
   options.torrenting = {
-    enable = lib.mkEnableOption "transmission torrent client";
+    enable = lib.mkEnableOption "torrenting";
   };
 
   config = lib.mkIf cfg.enable {

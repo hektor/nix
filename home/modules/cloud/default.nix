@@ -3,10 +3,10 @@
 {
   options.cloud = {
     azure = {
-      enable = lib.mkEnableOption "azure CLI";
+      enable = lib.mkEnableOption "Azure CLI";
     };
     hetzner = {
-      enable = lib.mkEnableOption "hetzner CLI";
+      enable = lib.mkEnableOption "Hetzner CLI";
     };
   };
 
