@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
+    inputs.stylix.homeModules.stylix
     ../../modules
   ];
 

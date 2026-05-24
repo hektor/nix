@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }:
@@ -11,8 +10,6 @@ let
   theme = import ../../../modules/stylix/theme.nix { inherit pkgs; };
 in
 {
-  imports = [ inputs.stylix.homeModules.stylix ];
-
   options.my.stylix.enable = lib.mkEnableOption "stylix";
 
   config = lib.mkIf cfg.enable {

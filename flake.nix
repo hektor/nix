@@ -138,6 +138,7 @@
           };
           modules = [ ./home/hosts/work ];
           extraSpecialArgs = {
+            osConfig = null;
             inherit
               inputs
               outputs
