@@ -83,7 +83,7 @@
       name = "wol-andromache";
       runtimeInputs = [ pkgs.wakeonlan ];
       text = ''
-        wakeonlan ${wolInterfaces.eno1.macAddress}
+        wakeonlan ${(import ../andromache/wol-interfaces.nix).eno1.macAddress}
       '';
     })
   ];
