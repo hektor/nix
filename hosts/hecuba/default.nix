@@ -15,8 +15,9 @@
     ../../modules
   ];
 
-  ssh.enable = true;
   docker.enable = true;
+  ssh.enable = true;
+  tailscale.enable = true;
 
   networking.hostName = config.host.name;
 

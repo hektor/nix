@@ -1,8 +1,5 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
+
 {
   options.tailscale = {
     enable = lib.mkEnableOption "tailscale";
