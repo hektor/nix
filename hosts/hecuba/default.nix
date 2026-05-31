@@ -66,6 +66,7 @@
   services = {
     comin = {
       enable = true;
+      machineId = "4c0a7f7726a845859ce9375e88b87642";
       remotes = [
         {
           name = "origin";
