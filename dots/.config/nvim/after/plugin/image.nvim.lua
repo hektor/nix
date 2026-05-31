@@ -1,3 +1,5 @@
+if not vim.env.KITTY_WINDOW_ID then return end
+
 require("image").setup({
   backend = "kitty",
   kitty_method = "normal",
