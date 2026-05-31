@@ -6,17 +6,18 @@
 let
   inherit (inputs.nixpkgs) lib;
   utils = import ../utils { inherit lib; };
-  hostDirNames = utils.dirNames ../hosts;
+  hostnames = utils.dirNames ../hosts;
 
   mkNode = hostname: meta: {
     imports = [ ../hosts/${hostname} ];
+    host.name = hostname;
     deployment = {
       inherit (meta.deployment) targetHost targetUser tags;
       buildOnTarget = builtins.any (t: t != "local" && t != "arm") meta.deployment.tags;
     };
   };
 
-  nodes = lib.genAttrs hostDirNames (hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}));
+  nodes = lib.genAttrs hostnames (hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}));
 in
 inputs.colmena.lib.makeHive (
   {
