@@ -90,11 +90,19 @@
 
   networking = {
     hostId = "80eef97e";
+    useDHCP = false;
+    useNetworkd = true;
+  };
+
+  systemd.network.networks."40-wlan0" = {
+    matchConfig.Name = "wlan0";
+    networkConfig.DHCP = "yes";
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services = {
+    resolved.enable = true;
     fwupd.enable = true;
     locate = {
       enable = true;
