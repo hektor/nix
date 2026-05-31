@@ -3,10 +3,6 @@
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -21,6 +17,22 @@
     nix-secrets = {
       url = "git+ssh://git@github.com/hektor/nix-secrets?shallow=1&ref=main";
       flake = false;
+    };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -38,23 +50,15 @@
       url = "path:./dots/.config/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      git-hooks,
       home-manager,
       nixgl,
-      git-hooks,
       ...
     }@inputs:
     let

@@ -11,6 +11,7 @@
   imports = [
     inputs.disko.nixosModules.disko
     ./hard.nix
+    inputs.comin.nixosModules.comin
     ./host.nix
     ../../modules
   ];
@@ -62,8 +63,20 @@
     kitty.terminfo
   ];
 
-  services.fail2ban = {
-    enable = true;
-    maxretry = 5;
+  services = {
+    comin = {
+      enable = true;
+      remotes = [
+        {
+          name = "origin";
+          url = "https://git.hektormisplon.xyz/hektor/nix";
+          branches.main.name = "main";
+        }
+      ];
+    };
+    fail2ban = {
+      enable = true;
+      maxretry = 5;
+    };
   };
 }
