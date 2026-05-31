@@ -52,6 +52,7 @@
   ssh.enable = true;
   taskwarrior.enable = true;
   terminal.enable = true;
+  reference-manager.enable = true;
 
   programs = {
     home-manager.enable = true;
