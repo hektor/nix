@@ -28,7 +28,6 @@
       packages = with pkgs; [
         brightnessctl
         wlsunset
-        xwayland-satellite
       ];
     };
 
