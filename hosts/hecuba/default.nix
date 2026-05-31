@@ -5,7 +5,7 @@
   ...
 }:
 
-# Also see <https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud>
+# also see <https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud>
 
 {
   imports = [
