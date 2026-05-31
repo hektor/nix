@@ -27,6 +27,7 @@
       file.".config/niri/config.kdl".source = ./config.kdl;
       packages = with pkgs; [
         brightnessctl
+        wlsunset
         xwayland-satellite
       ];
     };
