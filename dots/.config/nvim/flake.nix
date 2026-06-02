@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    mcp-hub.url = "github:ravitemer/mcp-hub";
 
     plugins-shipwright-nvim = {
       url = "github:rktjmp/shipwright.nvim";
@@ -22,10 +21,6 @@
     };
     plugins-nvimkit-nvim = {
       url = "github:jamesblckwell/nvimkit.nvim";
-      flake = false;
-    };
-    plugins-mcphub-nvim = {
-      url = "github:ravitemer/mcphub.nvim";
       flake = false;
     };
     plugins-helm-ls-nvim = {
@@ -64,11 +59,8 @@
           ];
       };
 
-      mkDependencyOverlays = system: [
+      mkDependencyOverlays = [
         (utils.standardPluginOverlay inputs)
-        (_final: _prev: {
-          mcp-hub = inputs.mcp-hub.packages.${system}.default;
-        })
         (_: prev: {
           luajitPackages = prev.luajitPackages.overrideScope (
             _: lprev: {
@@ -92,7 +84,7 @@
               black
               clang
               clang-tools
-              curl # → plenary-nvim, mcp-hub
+              curl # → plenary-nvim
               delta
               emmet-language-server
               eslint_d
@@ -103,7 +95,6 @@
               helm-ls
               isort
               lua-language-server
-              mcp-hub
               nixd
               nixfmt
               prettier
@@ -187,7 +178,6 @@
               pkgs.neovimPlugins.beancount-nvim
               pkgs.neovimPlugins.nvimkit-nvim
               codecompanion-nvim
-              pkgs.neovimPlugins.mcphub-nvim
               copilot-lua
               copilot-cmp
               pkgs.neovimPlugins.helm-ls-nvim
@@ -230,7 +220,7 @@
     forEachSystem (
       system:
       let
-        dependencyOverlays = mkDependencyOverlays system;
+        dependencyOverlays = mkDependencyOverlays;
         nixCatsBuilder = utils.baseBuilder luaPath {
           inherit
             nixpkgs
