@@ -23,10 +23,6 @@
       url = "github:jamesblckwell/nvimkit.nvim";
       flake = false;
     };
-    plugins-helm-ls-nvim = {
-      url = "github:qvalentin/helm-ls.nvim";
-      flake = false;
-    };
 
   };
 
@@ -180,7 +176,7 @@
               codecompanion-nvim
               copilot-lua
               copilot-cmp
-              pkgs.neovimPlugins.helm-ls-nvim
+              helm-ls-nvim
               kitty-scrollback-nvim
               fidget-nvim
               rustaceanvim

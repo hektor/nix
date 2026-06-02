@@ -585,7 +585,6 @@
           "nixpkgs"
         ],
         "plugins-beancount-nvim": "plugins-beancount-nvim",
-        "plugins-helm-ls-nvim": "plugins-helm-ls-nvim",
         "plugins-nvimkit-nvim": "plugins-nvimkit-nvim",
         "plugins-shipwright-nvim": "plugins-shipwright-nvim",
         "plugins-tailwind-fold-nvim": "plugins-tailwind-fold-nvim"
@@ -613,22 +612,6 @@
       "original": {
         "owner": "polarmutex",
         "repo": "beancount.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-helm-ls-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773934114,
-        "narHash": "sha256-8trqFsA7nTKSdtkiAL0Sa9bXjh5ONtAqN7XNE/B8ukM=",
-        "owner": "qvalentin",
-        "repo": "helm-ls.nvim",
-        "rev": "20df43509b02a3ce3c6b3eee254d6e2bffa9a370",
-        "type": "github"
-      },
-      "original": {
-        "owner": "qvalentin",
-        "repo": "helm-ls.nvim",
         "type": "github"
       }
     },
