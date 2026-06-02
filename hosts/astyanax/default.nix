@@ -102,7 +102,6 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services = {
-    resolved.enable = true;
     fwupd.enable = true;
     locate = {
       enable = true;
