@@ -20,4 +20,3 @@ require("zk")
 require("reload")
 
 vim.opt.background = "dark"
-vim.opt.laststatus = 3

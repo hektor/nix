@@ -1,5 +1,6 @@
+vim.opt.laststatus = 3
+
 vim.cmd([[
-se ls=2
 se stl=\ %0*%n
 se stl+=\ %m
 se stl+=\ %y%0*
