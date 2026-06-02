@@ -64,7 +64,7 @@ cmp.setup({
   sources = {
     { name = "copilot",  group_index = 2 },
     { name = "zk" },
-    { name = "nvim_lsp", keyword_length = 8 },
+    { name = "nvim_lsp" },
     { name = "luasnip",  max_item_count = 16 },
     { name = "path" },
     { name = "buffer",   max_item_count = 8 },
