@@ -97,6 +97,8 @@ in
     inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
   ];
 
+  services.resolved.enable = true;
+
   services.locate = {
     enable = true;
     package = pkgs.plocate;
