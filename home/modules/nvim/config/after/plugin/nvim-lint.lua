@@ -28,8 +28,16 @@ require("lint").linters_by_ft = {
   yaml = { "yamllint" },
 }
 
+local function has_yamllint_config(buf)
+  return vim.fs.root(buf, { ".yamllint", ".yamllint.yaml", ".yamllint.yml" }) ~= nil
+end
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-  callback = function()
+  group = vim.api.nvim_create_augroup("nvim-lint.try_lint", {}),
+  callback = function(args)
+    if vim.bo[args.buf].filetype == "yaml" and not has_yamllint_config(args.buf) then
+      return
+    end
     require("lint").try_lint()
   end,
 })
