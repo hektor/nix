@@ -34,7 +34,17 @@ in
         enable = true;
         package = config.nixgl.wrap pkgs.anki;
         addons = with pkgs.ankiAddons; [
-          anki-connect
+          (anki-connect.withConfig {
+            # https://git.sr.ht/~foosoft/anki-connect/tree/master/item/plugin/config.json
+            config = {
+              apiKey = null;
+              apiLogPath = null;
+              webBindAddress = "127.0.0.1";
+              webBindPort = 8765;
+              webCorsOriginList = [ "http://localhost" ];
+              ignoreOriginList = [ ];
+            };
+          })
           puppy-reinforcement
           review-heatmap
         ];
