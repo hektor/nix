@@ -183,7 +183,8 @@
                 fidget-nvim
                 rustaceanvim
                 # pkgs.neovimPlugins.m-taskwarrior-d-nvim
-                claude-code-nvim
+                claudecode-nvim
+                snacks-nvim
               ]
               ++ themes.${categories.colorscheme or "zenwritten"};
           };

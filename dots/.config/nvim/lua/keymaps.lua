@@ -34,9 +34,6 @@ set("i", "<down>", "<nop>")
 set("i", "<up>", "<nop>")
 set("i", "<right>", "<nop>")
 
--- search
-set("n", "<c-_>", ":noh<cr>", { desc = "clear search highlight" })
-
 -- line numbers
 set("n", "<leader>n", ":set nu! rnu!<cr>", { desc = "toggle line numbers" })
 
