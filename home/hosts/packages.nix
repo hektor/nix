@@ -15,7 +15,6 @@ with pkgs;
   parallel
   pass
   ripgrep
-  silver-searcher
   sops
   tldr
   tree
