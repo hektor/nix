@@ -174,6 +174,7 @@
               nvim-treesitter-textobjects
               # nvim-treesitter-context
               nvim-ts-context-commentstring
+              # theHamsta/crazy-node-movement
               treesj
               sniprun
               gitsigns-nvim
