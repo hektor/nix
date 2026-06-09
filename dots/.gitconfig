@@ -80,6 +80,12 @@
   conflictstyle = diff3
 [diff]
   colorMoved = zebra
+  tool = nvimdiff
+[difftool]
+  prompt = false
+[mergetool]
+  prompt = false
+  keepBackup = false
 [commit]
   gpgsign = false
 

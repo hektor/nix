@@ -14,6 +14,12 @@
   };
 
   config = lib.mkIf config.git.enable {
+    assertions = [
+      {
+        assertion = config.nvim.enable;
+        message = "git module requires 'nvim' module (`nvimdiff`)";
+      }
+    ];
     programs.git.enable = true;
     home.file = {
       ".gitconfig".source = dotsPath + "/.gitconfig";
