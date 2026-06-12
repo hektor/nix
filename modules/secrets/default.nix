@@ -57,7 +57,6 @@ in
     };
 
     sops = {
-      age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
       secrets = myUtils.mkSopsSecrets sopsDir owner cfg.groups;
     };
 
