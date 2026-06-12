@@ -13,7 +13,6 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ./hard.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -26,6 +25,7 @@ in
 
   inherit (meta) host;
 
+  hardware.facter.reportPath = ./facter.json;
   home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 
   "ai-tools".enable = true;
@@ -54,7 +54,11 @@ in
   desktop.ly.enable = true;
   docker.enable = true;
   hcloud.enable = true;
-  networking.enable = true;
+  networking = {
+    enable = true;
+    hostId = "80eef97e";
+    useDHCP = lib.mkDefault true;
+  };
   nvidia.enable = true;
   restic-backup.enable = true;
   secrets = {
@@ -103,6 +107,4 @@ in
     enable = true;
     package = pkgs.plocate;
   };
-
-  networking.hostId = "80eef97e";
 }

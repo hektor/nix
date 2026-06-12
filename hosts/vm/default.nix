@@ -9,13 +9,14 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ./hard.nix
+    "${inputs.nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     ./disk.nix
     ../../modules
   ];
 
   inherit (meta) host;
 
+  hardware.facter.reportPath = ./facter.json;
   home-manager.users.${config.host.username} = import ../../home/hosts/vm;
 
   "ai-tools".enable = true;

@@ -12,7 +12,6 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ./hard.nix
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen7 (not available yet?)
@@ -25,6 +24,7 @@ in
 
   inherit (meta) host;
 
+  hardware.facter.reportPath = ./facter.json;
   home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 
   "ai-tools".enable = true;

@@ -13,12 +13,14 @@ in
 {
   imports = [
     inputs.disko.nixosModules.disko
-    ./hard.nix
+    "${inputs.nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     inputs.comin.nixosModules.comin
     ../../modules
   ];
 
   inherit (meta) host;
+
+  hardware.facter.reportPath = ./facter.json;
 
   ssh.enable = true;
   tailscale.enable = true;
