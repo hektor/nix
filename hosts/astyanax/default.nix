@@ -6,11 +6,13 @@
   ...
 }:
 
+let
+  meta = import ./meta.nix;
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
     ./hard.nix
-    ./host.nix
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel-gen7 (not available yet?)
@@ -20,6 +22,8 @@
       device = "/dev/nvme0n1";
     })
   ];
+
+  inherit (meta) host;
 
   home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 

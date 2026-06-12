@@ -1,9 +1,8 @@
 {
   system = "x86_64-linux";
-  deployment = {
-    tags = [ "local" ];
-    targetHost = "";
-    targetUser = "h";
-  };
   role = "vm";
+  tags = [ "local" ];
+  host = {
+    username = "h";
+  };
 }

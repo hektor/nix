@@ -8,16 +8,24 @@ let
   utils = import ../utils { inherit lib; };
   hostnames = utils.dirNames ../hosts;
 
-  mkNode = hostname: meta: {
-    imports = [ ../hosts/${hostname} ];
-    host.name = hostname;
-    deployment = {
-      inherit (meta.deployment) targetHost targetUser tags;
-      buildOnTarget = builtins.any (t: t != "local" && t != "arm") meta.deployment.tags;
+  mkNode =
+    hostname:
+    let
+      meta = utils.hostMeta ../hosts/${hostname};
+      isLocal = builtins.elem "local" meta.tags;
+    in
+    {
+      imports = [ ../hosts/${hostname} ];
+      host.name = hostname;
+      deployment = {
+        inherit (meta) tags;
+        targetUser = meta.host.username;
+        targetHost = if isLocal then "" else hostname;
+        buildOnTarget = builtins.any (t: t != "local" && t != "arm") meta.tags;
+      };
     };
-  };
 
-  nodes = lib.genAttrs hostnames (hostname: mkNode hostname (utils.hostMeta ../hosts/${hostname}));
+  nodes = lib.genAttrs hostnames mkNode;
 in
 inputs.colmena.lib.makeHive (
   {

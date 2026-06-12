@@ -1,9 +1,10 @@
 {
   system = "x86_64-linux";
-  deployment = {
-    tags = [ "local" ];
-    targetHost = "";
-    targetUser = "h";
-  };
   role = "laptop";
+  tags = [ "local" ];
+  host = {
+    username = "h";
+    highRam = true;
+    admin = true;
+  };
 }

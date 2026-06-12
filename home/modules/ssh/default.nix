@@ -29,12 +29,13 @@ in
           hostname:
           let
             meta = myUtils.hostMeta (hostDir + "/${hostname}");
+            isLocal = builtins.elem "local" meta.tags;
           in
           {
-            User = meta.deployment.targetUser;
+            User = meta.host.username;
           }
-          // lib.optionalAttrs (meta.deployment.targetHost != "") {
-            HostName = meta.deployment.targetHost;
+          // lib.optionalAttrs (!isLocal) {
+            HostName = hostname;
           }
         )
         // {

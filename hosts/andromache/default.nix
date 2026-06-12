@@ -7,13 +7,13 @@
 }:
 
 let
+  meta = import ./meta.nix;
   wolInterfaces = import ./wol-interfaces.nix;
 in
 {
   imports = [
     inputs.disko.nixosModules.disko
     ./hard.nix
-    ./host.nix
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -23,6 +23,8 @@ in
       device = "/dev/nvme1n1";
     })
   ];
+
+  inherit (meta) host;
 
   home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 

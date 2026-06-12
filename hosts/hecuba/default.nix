@@ -7,16 +7,19 @@
 
 # also see <https://wiki.nixos.org/wiki/Install_NixOS_on_Hetzner_Cloud>
 
+let
+  meta = import ./meta.nix;
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
     ./hard.nix
     inputs.comin.nixosModules.comin
-    ./host.nix
     ../../modules
   ];
 
-  docker.enable = true;
+  inherit (meta) host;
+
   ssh.enable = true;
   tailscale.enable = true;
 

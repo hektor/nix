@@ -3,12 +3,16 @@
 # Orange Pi Zero2 H616
 # See <https://nixos.wiki/wiki/NixOS_on_ARM/Orange_Pi_Zero2_H616>
 
+let
+  meta = import ./meta.nix;
+in
 {
   imports = [
     ./hard.nix
-    ./host.nix
     ../../modules
   ];
+
+  inherit (meta) host;
 
   ssh.enable = true;
   tailscale.enable = true;

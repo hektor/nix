@@ -3,14 +3,18 @@
   config,
   ...
 }:
+let
+  meta = import ./meta.nix;
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
     ./hard.nix
-    ./host.nix
     ./disk.nix
     ../../modules
   ];
+
+  inherit (meta) host;
 
   home-manager.users.${config.host.username} = import ../../home/hosts/vm;
 

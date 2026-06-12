@@ -3,12 +3,16 @@
 # Raspberry Pi 3
 # See <https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi_3>
 
+let
+  meta = import ./meta.nix;
+in
 {
   imports = [
     ./hard.nix
-    ./host.nix
     ../../modules
   ];
+
+  inherit (meta) host;
 
   ssh.enable = true;
 
