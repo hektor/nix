@@ -24,12 +24,19 @@ in
         type = lib.types.bool;
       };
     };
+    talos = {
+      enable = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+      };
+    };
   };
 
   imports = [
     ./crossplane.nix
     ./helm.nix
     ./k9s.nix
+    ./talos.nix
   ];
 
   config = lib.mkIf cfg.enable {

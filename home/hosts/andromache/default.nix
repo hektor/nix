@@ -40,7 +40,12 @@
     gitea.enable = true;
     github.enable = true;
   };
-  k8s.k9s.enable = true;
+  k8s = {
+    enable = true;
+    k9s.enable = true;
+    talos.enable = true;
+  };
+  keyboard.vortexCore.enable = true;
   keepassxc.enable = true;
   music.enable = true;
   newsboat.enable = true;
