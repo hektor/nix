@@ -22,6 +22,7 @@ in
 
   hardware.facter.reportPath = ./facter.json;
 
+  docker.enable = true;
   ssh.enable = true;
   tailscale.enable = true;
 
