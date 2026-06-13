@@ -99,10 +99,6 @@ in
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  environment.systemPackages = [
-    inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
-  ];
-
   services.locate = {
     enable = true;
     package = pkgs.plocate;

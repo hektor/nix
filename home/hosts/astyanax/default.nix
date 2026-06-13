@@ -50,6 +50,7 @@
     bash.addBinToPath = true;
   };
   ssh.enable = true;
+  deploy.enable = true;
   taskwarrior.enable = true;
   terminal.enable = true;
   reference-manager.enable = true;

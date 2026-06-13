@@ -45,6 +45,7 @@
   taskwarrior.enable = true;
   audio.enable = true;
   ssh.enable = true;
+  deploy.enable = true;
   music.enable = true;
   terminal.enable = true;
   devenv.enable = true;
