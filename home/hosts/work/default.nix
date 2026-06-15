@@ -85,6 +85,7 @@
   secrets.vault.enable = true;
   ticketing.enable = true;
   vscode.enable = true;
+  zathura.enable = true;
 
   services.home-manager.autoUpgrade = {
     enable = true;
