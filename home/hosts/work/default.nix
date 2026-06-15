@@ -37,6 +37,7 @@
 
   ai-tools = {
     claude-code.enable = true;
+    fabric.enable = true;
     tirith.enable = true;
     opencode.enable = true;
   };

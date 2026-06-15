@@ -30,6 +30,7 @@ in
 
   imports = [
     ./claude-code.nix
+    ./fabric.nix
     ./opencode.nix
     ./skills.nix
     ./tirith.nix
