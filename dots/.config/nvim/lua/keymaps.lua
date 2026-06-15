@@ -22,6 +22,7 @@ set("n", "s=", "<c-w>=", { desc = "equalize splits" })
 set("n", "sb", ":Lex<cr>", { desc = "file tree" })
 set("n", "<leader><leader>", ":noh<cr>", { desc = "clear highlights" })
 set("n", "<leader>t", ":term<cr>", { desc = "open terminal" })
+set("n", "<leader>w", "<cmd>w<cr>", { desc = ":w" })
 
 -- remaps
 set("i", "jj", "<esc>", { nowait = true, desc = "exit insert mode" })
