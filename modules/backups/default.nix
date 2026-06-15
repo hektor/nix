@@ -24,7 +24,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    secrets.groups = {
+    secrets = {
       restic = [ "password" ];
       backblaze-b2 = [
         "bucket-name"

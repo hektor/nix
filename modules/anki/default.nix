@@ -7,7 +7,7 @@ in
   options.anki.enable = lib.mkEnableOption "anki";
 
   config = lib.mkIf cfg.enable {
-    secrets.groups.anki = [
+    secrets.user.anki = [
       "sync-user"
       "sync-key"
     ];

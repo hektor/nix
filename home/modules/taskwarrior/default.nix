@@ -20,7 +20,7 @@ in
   config = lib.mkIf cfg.enable (
     lib.optionalAttrs standalone {
       sops = {
-        secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
+        secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
           taskwarrior = [
             "sync-server-url"
             "sync-server-client-id"

@@ -10,7 +10,7 @@ in
 
   config = lib.mkIf cfg.enable {
     nixpkgs.allowedUnfree = [ "claude-code" ];
-    secrets.groups.opencode = [ "api-key" ];
+    secrets.opencode = [ "api-key" ];
 
     sops.templates."opencode/auth.json" = {
       inherit owner;

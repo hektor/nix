@@ -1,7 +1,7 @@
 { lib }:
 
-{
-  mkSopsSecrets =
+let
+  mkSecrets =
     sopsDir: owner: groups:
     let
       opts = lib.optionalAttrs (owner != null) { inherit owner; };
@@ -21,6 +21,11 @@
         );
     in
     lib.foldl' lib.mergeAttrs { } (lib.mapAttrsToList mkGroup groups);
+in
+{
+  mkSopsSecrets = sopsDir: mkSecrets sopsDir null;
+
+  mkSopsUserSecrets = mkSecrets;
 
   sopsAvailability =
     config: osConfig:

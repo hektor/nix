@@ -8,7 +8,7 @@ in
   options.taskwarrior.enable = lib.mkEnableOption "taskwarrior";
 
   config = lib.mkIf cfg.enable {
-    secrets.groups.taskwarrior = [
+    secrets.taskwarrior = [
       "sync-server-url"
       "sync-server-client-id"
       "sync-encryption-secret"

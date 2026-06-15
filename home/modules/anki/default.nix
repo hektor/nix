@@ -18,7 +18,7 @@ in
 
   config = lib.mkIf cfg.enable (
     lib.optionalAttrs standalone {
-      sops.secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
+      sops.secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
         anki = [
           "sync-user"
           "sync-key"

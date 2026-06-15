@@ -12,52 +12,56 @@ let
   inherit (config.host) username;
   inherit (cfg) sopsDir;
   owner = config.users.users.${username}.name;
+
+  system = {
+    email = [
+      "personal"
+      "work"
+    ];
+    nix = lib.optional cfg.nixSigningKey.enable "signing-key";
+  }
+  // lib.filterAttrs (_: lib.isList) cfg;
 in
 {
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
-  options = {
-    secrets = {
-      enable = lib.mkEnableOption "secrets management";
+  options.secrets = lib.mkOption {
+    default = { };
+    type = lib.types.submodule {
+      freeformType = lib.types.attrsOf (lib.types.listOf lib.types.str);
 
-      sopsDir = lib.mkOption {
-        type = lib.types.str;
-        default = "${toString inputs.nix-secrets}/secrets";
-      };
+      options = {
+        enable = lib.mkEnableOption "secrets management";
 
-      groups = lib.mkOption {
-        type = lib.types.attrsOf (lib.types.listOf lib.types.str);
-        default = { };
-      };
+        sopsDir = lib.mkOption {
+          type = lib.types.str;
+          default = "${toString inputs.nix-secrets}/secrets";
+        };
 
-      owner = lib.mkOption {
-        type = lib.types.unspecified;
-      };
+        user = lib.mkOption {
+          type = lib.types.attrsOf (lib.types.listOf lib.types.str);
+          default = { };
+        };
 
-      nixSigningKey = {
-        enable = lib.mkEnableOption "nix signing key configuration";
-      };
+        owner = lib.mkOption {
+          type = lib.types.unspecified;
+          default = owner;
+        };
 
-      yubikey = {
-        enable = lib.mkEnableOption "set up Yubikey";
+        nixSigningKey = {
+          enable = lib.mkEnableOption "nix signing key configuration";
+        };
+
+        yubikey = {
+          enable = lib.mkEnableOption "set up Yubikey";
+        };
       };
     };
   };
 
   config = lib.mkIf cfg.enable {
-    secrets = {
-      inherit owner;
-      groups = {
-        email = [
-          "personal"
-          "work"
-        ];
-        nix = lib.optional cfg.nixSigningKey.enable "signing-key";
-      };
-    };
-
     sops = {
-      secrets = myUtils.mkSopsSecrets sopsDir owner cfg.groups;
+      secrets = myUtils.mkSopsSecrets sopsDir system // myUtils.mkSopsUserSecrets sopsDir owner cfg.user;
     };
 
     nix.settings.secret-key-files = lib.mkIf cfg.nixSigningKey.enable [

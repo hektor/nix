@@ -15,7 +15,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    secrets.groups.hcloud = [ "api-token" ];
+    secrets.hcloud = [ "api-token" ];
 
     sops.templates."hcloud/cli.toml" = {
       inherit owner;
