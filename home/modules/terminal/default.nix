@@ -24,5 +24,6 @@ in
     };
 
     home.file.".config/kitty/nvim.conf".source = dotsPath + "/.config/kitty/nvim.conf";
+    home.file.".local/share/kitty-scrollback.nvim".source = pkgs.vimPlugins.kitty-scrollback-nvim;
   };
 }
