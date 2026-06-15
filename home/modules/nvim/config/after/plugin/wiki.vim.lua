@@ -4,8 +4,6 @@ vim.cmd([[
 " Change local buffer to directory of current file after the plugin has loaded
 execute 'autocmd BufEnter' g:zk_path . '/*.md' 'silent lcd %:p:h'
 
-" " Override wiki index mapping to also cd into the wiki
-nm <leader>ww <plug>(wiki-index)
 " nm <leader>l <plug>(wiki-next-link)
 " nm <leader>h <plug>(wiki-prev-link)
 " nm <leader>j <plug>(wiki-link-follow)
