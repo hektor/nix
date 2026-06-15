@@ -19,14 +19,11 @@ let
   colmena = inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena;
 
   hostTags = hostname: (myUtils.hostMeta (hostDir + "/${hostname}")).tags;
-  remoteHostsWithKeys = lib.filter (
-    hostname: !(builtins.elem "local" (hostTags hostname))
-  ) hostsWithKeys;
   nodeTagsDecl = ''
     declare -A _colmena_node_tags=(
     ${lib.concatMapStringsSep "\n" (
       hostname: "  [${hostname}]=${lib.escapeShellArg (lib.concatStringsSep " " (hostTags hostname))}"
-    ) remoteHostsWithKeys}
+    ) hostsWithKeys}
     )
   '';
 
@@ -56,12 +53,9 @@ in
       hostname:
       let
         meta = myUtils.hostMeta (hostDir + "/${hostname}");
-        isLocal = builtins.elem "local" meta.tags;
       in
       {
         User = meta.host.username;
-      }
-      // lib.optionalAttrs (!isLocal) {
         HostName = hostname;
         ControlPath = "~/.ssh/socket-%r@%h:%p";
       }

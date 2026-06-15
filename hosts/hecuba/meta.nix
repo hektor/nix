@@ -1,7 +1,7 @@
 {
   system = "x86_64-linux";
   role = "server";
-  tags = [ "cloud" ];
+  tags = [ "lab" ];
   host = {
     username = "username";
   };

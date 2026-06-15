@@ -1,7 +1,7 @@
 {
   system = "x86_64-linux";
   role = "desktop";
-  tags = [ "local" ];
+  tags = [ "personal" ];
   host = {
     username = "h";
     highRam = true;

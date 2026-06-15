@@ -12,7 +12,7 @@ let
     hostname:
     let
       meta = utils.hostMeta ../hosts/${hostname};
-      isLocal = builtins.elem "local" meta.tags;
+      isArm = meta.system == "aarch64-linux";
     in
     {
       imports = [ ../hosts/${hostname} ];
@@ -20,8 +20,9 @@ let
       deployment = {
         inherit (meta) tags;
         targetUser = meta.host.username;
-        targetHost = if isLocal then "" else hostname;
-        buildOnTarget = builtins.any (t: t != "local" && t != "arm") meta.tags;
+        targetHost = hostname;
+        allowLocalDeployment = meta.host.admin or false;
+        buildOnTarget = !isArm;
       };
     };
 

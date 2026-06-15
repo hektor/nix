@@ -1,7 +1,7 @@
 {
   system = "x86_64-linux";
   role = "vm";
-  tags = [ "local" ];
+  tags = [ "lab" ];
   host = {
     username = "h";
   };
