@@ -81,7 +81,10 @@
   taskwarrior.enable = true;
   terminal.enable = true;
   infra.enable = true;
-  nodejs.enable = true;
+  nodejs = {
+    enable = true;
+    fnm.enable = true;
+  };
   secrets.enable = true;
   secrets.vault.enable = true;
   ticketing.enable = true;
