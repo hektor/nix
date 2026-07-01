@@ -22,6 +22,10 @@
       url = "github:zhaofengli/colmena";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     comin = {
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -164,7 +168,14 @@
           ;
       };
 
-      checks.${system} = gitHooks.checks;
+      deploy = import ./deploy/deploy-rs.nix {
+        inherit
+          self
+          inputs
+          ;
+      };
+
+      checks.${system} = gitHooks.checks // inputs.deploy-rs.lib.${system}.deployChecks self.deploy;
       formatter.${system} = gitHooks.formatter;
       devShells.${system} = gitHooks.devShells;
 
