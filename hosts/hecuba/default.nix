@@ -14,7 +14,6 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     "${inputs.nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
-    inputs.comin.nixosModules.comin
     ../../modules
   ];
 
@@ -70,17 +69,6 @@ in
   ];
 
   services = {
-    comin = {
-      enable = false;
-      machineId = "4c0a7f7726a845859ce9375e88b87642";
-      remotes = [
-        {
-          name = "origin";
-          url = "https://git.hektormisplon.xyz/hektor/nix";
-          branches.main.name = "main";
-        }
-      ];
-    };
     fail2ban = {
       enable = true;
       maxretry = 5;
