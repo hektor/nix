@@ -17,6 +17,7 @@ let
   ) hostNames;
 
   colmena = inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena;
+  deployRs = inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   hostTags = hostname: (myUtils.hostMeta (hostDir + "/${hostname}")).tags;
   nodeTagsDecl = ''
@@ -36,6 +37,14 @@ let
         builtins.readFile ./colmena-wrapper.bash
       );
   };
+
+  deployRsWrapped = pkgs.writeShellApplication {
+    name = "deploy";
+    runtimeInputs = [ pkgs.openssh ];
+    text = lib.replaceStrings [ "@deploy@" ] [ "${deployRs}/bin/deploy" ] (
+      builtins.readFile ./deploy-rs-wrapper.bash
+    );
+  };
 in
 {
   options.deploy.enable = lib.mkEnableOption "deploy";
@@ -48,7 +57,10 @@ in
       }
     ];
 
-    home.packages = [ colmenaWrapped ];
+    home.packages = [
+      colmenaWrapped
+      deployRsWrapped
+    ];
     programs.ssh.settings = lib.genAttrs hostsWithKeys (
       hostname:
       let
