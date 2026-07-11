@@ -28,8 +28,6 @@ in
       kubernetes
       kustomize
       minikube
-      opentofu
-      upbound
     ];
 
     programs.kubecolor = {
