@@ -26,7 +26,6 @@ in
   inherit (meta) host;
 
   hardware.facter.reportPath = ./facter.json;
-  home-manager.users.${config.host.username} = import ../../home/hosts/${config.host.name};
 
   "ai-tools".enable = true;
   anki.enable = true;

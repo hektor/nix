@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   ...
 }:
 let
@@ -17,7 +16,6 @@ in
   inherit (meta) host;
 
   hardware.facter.reportPath = ./facter.json;
-  home-manager.users.${config.host.username} = import ../../home/hosts/vm;
 
   "ai-tools".enable = true;
   anki.enable = true;

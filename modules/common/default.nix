@@ -9,6 +9,7 @@
 
 let
   inherit (inputs.nixpkgs) lib;
+  homeDir = ../../home/hosts + "/${config.host.name}";
 in
 {
   imports = [
@@ -83,6 +84,9 @@ in
           host.username = lib.mkDefault config.host.username;
         }
       ];
+      users = lib.optionalAttrs (builtins.pathExists homeDir) {
+        ${config.host.username} = import homeDir;
+      };
     };
   };
 }
