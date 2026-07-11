@@ -3,6 +3,7 @@
 let
   cfg = config.syncthing;
   inherit (config.host) username;
+  home = config.users.users.${username}.home;
 
   deviceRegistry = import ./devices.nix;
   deviceName = lib.types.enum (builtins.attrNames deviceRegistry);
@@ -48,7 +49,7 @@ in
       enable = true;
       user = username;
       group = username;
-      configDir = "/home/${username}/.local/state/syncthing";
+      configDir = "${home}/.local/state/syncthing";
       openDefaultPorts = true;
       settings = {
         devices = lib.mapAttrs (_: id: { inherit id; }) (lib.getAttrs referencedDevices deviceRegistry);

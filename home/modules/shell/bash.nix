@@ -7,7 +7,7 @@
 
 let
   cfg = config.shell.bash;
-  inherit (config.home) username;
+  inherit (config.home) homeDirectory;
 in
 {
   options.shell.bash = {
@@ -54,12 +54,12 @@ in
       ];
 
       initExtra = ''
-        for f in /home/${username}/.bashrc.d/*; do
+        for f in ${homeDirectory}/.bashrc.d/*; do
           [ -f "$f" ] && source "$f"
         done
 
-        ${lib.optionalString cfg.aliases.all "source /home/${username}/.bash_aliases/all"}
-        ${lib.optionalString cfg.aliases.lang-js "source /home/${username}/.bash_aliases/lang-js"}
+        ${lib.optionalString cfg.aliases.all "source ${homeDirectory}/.bash_aliases/all"}
+        ${lib.optionalString cfg.aliases.lang-js "source ${homeDirectory}/.bash_aliases/lang-js"}
 
         ${cfg.extraInit}
       '';

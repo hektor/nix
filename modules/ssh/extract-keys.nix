@@ -2,12 +2,13 @@
 
 let
   inherit (config.host) username;
+  home = config.users.users.${username}.home;
 in
 {
   config = lib.mkIf config.ssh.enable {
     system.activationScripts.extractSshKeys = lib.stringAfter [ "etc" ] ''
       HOST_KEY="/etc/ssh/ssh_host_ed25519_key.pub"
-      HOST_DIR="/home/${username}/nix/hosts/${config.networking.hostName}"
+      HOST_DIR="${home}/nix/hosts/${config.networking.hostName}"
 
       if [ -f "$HOST_KEY" ] && [ -d "$HOST_DIR" ]; then
         cp "$HOST_KEY" "$HOST_DIR/ssh_host.pub"
@@ -17,8 +18,8 @@ in
 
       USER_KEY=""
       for candidate in \
-          "/home/${username}/.ssh/id_ed25519_sk.pub" \
-          "/home/${username}/.ssh/id_ed25519.pub"; do
+          "${home}/.ssh/id_ed25519_sk.pub" \
+          "${home}/.ssh/id_ed25519.pub"; do
         if [ -f "$candidate" ]; then
           USER_KEY="$candidate"
           break
