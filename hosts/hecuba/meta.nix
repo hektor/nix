@@ -4,6 +4,6 @@
   tags = [ "lab" ];
   deploy.autoRollback = true;
   host = {
-    username = "username";
+    username = "h";
   };
 }
