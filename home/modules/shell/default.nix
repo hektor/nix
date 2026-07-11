@@ -9,7 +9,6 @@
     ./bash.nix
     ./utils.nix
     ./prompt.nix
-    ../tmux
   ];
 
   options.shell.enable = lib.mkEnableOption "shell";

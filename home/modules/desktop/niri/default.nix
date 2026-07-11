@@ -6,15 +6,6 @@
 }:
 
 {
-  imports = [
-    ../../clipboard
-    ../../fuzzel
-    ../../mako
-    ../../shikane
-    ../../swayidle
-    ../../waybar
-  ];
-
   options.desktop.niri.enable = lib.mkEnableOption "niri desktop";
 
   config = lib.mkIf config.desktop.niri.enable {

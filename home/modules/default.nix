@@ -2,13 +2,14 @@
   config,
   lib,
   pkgs,
+  myUtils,
   ...
 }:
 
 {
   imports =
     let
-      dirs = lib.attrNames (lib.filterAttrs (_: v: v == "directory") (builtins.readDir ./.));
+      dirs = myUtils.dirNames ./.;
       hasDef = name: builtins.pathExists ./${name}/default.nix;
     in
     map (name: ./${name}) (builtins.filter hasDef dirs);
