@@ -38,12 +38,6 @@ in
       mangohud
     ];
 
-    home-manager.users.${config.host.username} = {
-      xdg.configFile."lutris/system.yml".text = lib.generators.toJSON { } {
-        system.game_path = "/home/${config.host.username}/games";
-      };
-    };
-
     security.pam.loginLimits = [
       {
         domain = config.host.username;
