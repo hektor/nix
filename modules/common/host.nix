@@ -10,6 +10,16 @@
       type = lib.types.str;
     };
 
+    role = lib.mkOption {
+      type = lib.types.enum [
+        "desktop"
+        "embedded"
+        "laptop"
+        "server"
+        "vm"
+      ];
+    };
+
     tags = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];

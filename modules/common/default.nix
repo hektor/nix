@@ -1,92 +1,23 @@
-{
-  inputs,
-  outputs,
-  dotsPath,
-  myUtils,
-  config,
-  ...
-}:
+{ lib, ... }:
 
-let
-  inherit (inputs.nixpkgs) lib;
-  homeDir = ../../home/hosts + "/${config.host.name}";
-in
 {
   imports = [
-    inputs.home-manager.nixosModules.default
+    ./embedded.nix
+    ./home-manager.nix
     ./host.nix
+    ./nix.nix
+    ./nixpkgs.nix
+    ./upgrades.nix
   ];
-
-  options.nixpkgs.allowedUnfree = lib.mkOption {
-    type = lib.types.listOf lib.types.str;
-    default = [ ];
-  };
 
   config = {
     system.stateVersion = lib.mkDefault "25.05";
     boot.zfs.forceImportRoot = lib.mkDefault false;
-
-    nix = {
-      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
-      optimise = {
-        automatic = true;
-        dates = [ "05:00" ];
-      };
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = lib.mkDefault "--delete-older-than 30d";
-      };
-      settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      settings.trusted-public-keys = [
-        "nix-signing-key:M6ouQRFl/bZ5QQrceQUyar6P7o8qg4wwVkxD1SSLL2k="
-      ];
-    };
-
-    system.autoUpgrade = {
-      enable = true;
-      flags = [
-        "--recreate-lock-file"
-        "--commit-lock-file"
-        "--print-build-logs"
-        "--refresh"
-      ];
-      dates = "05:00";
-      randomizedDelaySec = "45min";
-      allowReboot = false;
-    };
-
-    nixpkgs.config.allowUnfreePredicate =
-      pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfree;
 
     environment.defaultPackages = lib.mkForce [ ];
     environment.pathsToLink = [
       "/share/applications"
       "/share/xdg-desktop-portal"
     ];
-
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      extraSpecialArgs = {
-        inherit
-          inputs
-          outputs
-          dotsPath
-          myUtils
-          ;
-      };
-      sharedModules = [
-        {
-          host.username = lib.mkDefault config.host.username;
-        }
-      ];
-      users = lib.optionalAttrs (builtins.pathExists homeDir) {
-        ${config.host.username} = import homeDir;
-      };
-    };
   };
 }

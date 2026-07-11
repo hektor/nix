@@ -1,8 +1,8 @@
 {
   system = "aarch64-linux";
-  role = "embedded";
   tags = [ "lab" ];
   host = {
+    role = "embedded";
     username = "h";
   };
 }
