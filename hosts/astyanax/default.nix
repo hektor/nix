@@ -102,7 +102,7 @@ in
   ];
 
   networking = {
-    hostId = "80eef97e";
+    hostId = "5f0bde3c";
     useDHCP = false;
     useNetworkd = true;
   };
