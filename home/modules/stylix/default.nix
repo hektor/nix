@@ -20,13 +20,8 @@ in
         base16Scheme
         override
         image
+        fonts
         ;
-      fonts = {
-        monospace = theme.monospaceFont;
-        serif = config.stylix.fonts.monospace;
-        sansSerif = config.stylix.fonts.monospace;
-        emoji = config.stylix.fonts.monospace;
-      };
       targets = import ../../../modules/stylix/targets.nix;
     };
   };
