@@ -5,6 +5,5 @@
 
   config = lib.mkIf config.storage.enable {
     services.udisks2.enable = true;
-    boot.zfs.forceImportRoot = false;
   };
 }
