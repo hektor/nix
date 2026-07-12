@@ -1,7 +1,8 @@
 # `colmena` deployments
 
-* tags: `local`, `cloud`
+* tags: `personal`, `lab`
 * deployments can be made from `astyanax` and `andromache` hosts
+* `hecuba` uses `deploy-rs` instead of `colmena` (see `./deploy-rs.nix`)
 
 ## References
 

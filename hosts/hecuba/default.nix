@@ -14,6 +14,8 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     "${inputs.nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
+    inputs.arion.nixosModules.arion
+    "${inputs.hecuba-services}"
     ../../modules
   ];
 
@@ -22,8 +24,11 @@ in
   hardware.facter.reportPath = ./facter.json;
 
   docker.enable = true;
+  secrets.enable = true;
   ssh.enable = true;
   tailscale.enable = true;
+
+  virtualisation.arion.backend = "docker";
 
   networking.hostName = config.host.name;
 
