@@ -97,12 +97,6 @@ export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 # Zettelkasten {{{
 export ZK_PATH="$HOME/.zk"
 
-# SSH Agent {{{
-if [[ -z "${SSH_CONNECTION}" ]]; then
-    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-fi
-# }}}
-
 
 # Codi
 # Usage: codi [filetype] [filename]

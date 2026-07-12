@@ -15,6 +15,7 @@ in
       enable = true;
       settings = {
         Browser.Enabled = true;
+        SSHAgent.Enabled = true;
       };
     };
   };
