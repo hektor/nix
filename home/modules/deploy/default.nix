@@ -61,16 +61,5 @@ in
       colmenaWrapped
       deployRsWrapped
     ];
-    programs.ssh.settings = lib.genAttrs hostsWithKeys (
-      hostname:
-      let
-        meta = myUtils.hostMeta (hostDir + "/${hostname}");
-      in
-      {
-        User = meta.host.username;
-        HostName = hostname;
-        ControlPath = "~/.ssh/socket-%r@%h:%p";
-      }
-    );
   };
 }

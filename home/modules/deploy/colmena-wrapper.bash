@@ -1,6 +1,6 @@
 # `colmena` wrapper script that opens a short-lived SSH master process for
 # `colmena` to use so it works with hardware-backed key touch+PIN. assumes
-# ControlPath ~/.ssh/socket-%r@%h:%p (see ./default.nix)
+# ControlPath ~/.ssh/control/%C (see ../ssh/default.nix)
 
 selector=""
 want_on=0

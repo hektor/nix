@@ -1,6 +1,6 @@
 # `deploy` wrapper script that opens a short-lived SSH master process for
 # `deploy-rs` to use so it works with hardware-backed key touch+PIN. assumes
-# ControlPath ~/.ssh/socket-%r@%h:%p (see ./default.nix)
+# ControlPath ~/.ssh/control/%C (see ../ssh/default.nix)
 
 # extract the target host from the `deploy-rs` flake target (e.g. `.#hecuba`)
 node=""
