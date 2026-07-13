@@ -415,10 +415,10 @@
     "hecuba-services": {
       "flake": false,
       "locked": {
-        "lastModified": 1783954424,
-        "narHash": "sha256-i5oxk+ynf1huoF0pWHULvVZp1kBGbh19aTNcfUSBtF4=",
+        "lastModified": 1783960846,
+        "narHash": "sha256-LWGz8HeB+VH+fBIEiWrLNak0c0VqSem0lECallbhtU4=",
         "ref": "main",
-        "rev": "d6174c4eb5ce807e730861b4cb01b686eb914f47",
+        "rev": "1163c03c0df53615ec34649f68a6d17bd749cdf8",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/hecuba-services"
