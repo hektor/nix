@@ -63,6 +63,8 @@ in
     allowedTCPPorts = [ 22 ];
   };
 
+  nixpkgs.allowedUnfree = [ "bambu-studio" ];
+
   hardware = {
     cpu.intel.updateMicrocode = true;
     # https://wiki.nixos.org/wiki/Intel_Graphics
