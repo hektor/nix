@@ -46,7 +46,7 @@ in
         )
         // {
           "*" = {
-            AddKeysToAgent = "yes";
+            AddKeysToAgent = "1h";
             ForwardAgent = false;
             identityFile = [
               "~/.ssh/id_ed25519_sk"
@@ -55,7 +55,7 @@ in
             IdentitiesOnly = true;
             ControlMaster = "auto";
             ControlPath = "~/.ssh/control/%C";
-            ControlPersist = "10m";
+            ControlPersist = "10s";
           };
         };
     };
