@@ -9,8 +9,9 @@ report.next.filter=status:pending -WAITING -BLOCKED limit:page
 
 report.in.columns=id,description
 report.in.labels=ID,Description
-report.in.description=Inbox (tasks with no project)
-report.in.filter=status:pending and project:
+report.in.description=Inbox (untagged)
+report.in.filter=status:pending tags.none:
+report.in.sort=entry+
 
 report.recent.columns=id,description,entry
 report.recent.labels=ID,Description,Age
