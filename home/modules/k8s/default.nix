@@ -25,8 +25,9 @@ in
       fluxcd
       k3d
       kubectl
-      kubernetes
       kustomize
+      opentofu
+      upbound
     ];
 
     programs.kubecolor = {
