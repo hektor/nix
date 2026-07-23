@@ -49,6 +49,16 @@ in
   secrets.enable = true;
   ssh.enable = true;
   storage.enable = true;
+  syncthing = {
+    enable = true;
+    folders.readings = {
+      path = "/home/${config.host.username}/doc/readings";
+      devices = [
+        "andromache"
+        "boox"
+      ];
+    };
+  };
   taskwarrior.enable = true;
 
   secrets.nixSigningKey.enable = true;

@@ -67,7 +67,16 @@ in
   };
   ssh.enable = true;
   storage.enable = true;
-  syncthing.enable = true;
+  syncthing = {
+    enable = true;
+    folders.readings = {
+      path = "/home/${config.host.username}/doc/readings";
+      devices = [
+        "astyanax"
+        "boox"
+      ];
+    };
+  };
   tailscale.enable = true;
   taskwarrior.enable = true;
   wol = {
