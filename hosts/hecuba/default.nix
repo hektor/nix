@@ -59,6 +59,18 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "-d";
+  };
+
+  virtualisation.docker.autoPrune = {
+    enable = true;
+    dates = "weekly";
+    flags = [ "--all" ];
+  };
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
@@ -78,5 +90,6 @@ in
       enable = true;
       maxretry = 5;
     };
+    journald.extraConfig = "SystemMaxUse=500M";
   };
 }
