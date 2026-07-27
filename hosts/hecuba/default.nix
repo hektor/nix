@@ -28,6 +28,28 @@ in
   ssh.enable = true;
   tailscale.enable = true;
 
+  secrets.hecuba-gitea-runner = [ "registration_token" ];
+
+  sops.templates."gitea-runner.env".content = ''
+    TOKEN=${config.sops.placeholder."hecuba-gitea-runner/registration_token"}
+  '';
+
+  services.gitea-actions-runner.instances.hecuba = {
+    enable = true;
+    name = "hecuba";
+    url = "https://git.hektormisplon.xyz";
+    tokenFile = config.sops.templates."gitea-runner.env".path;
+    labels = [ "nix:host" ];
+    hostPackages = with pkgs; [
+      bash
+      coreutils
+      git
+      nix
+      nodejs
+      openssh
+    ];
+  };
+
   virtualisation.arion.backend = "docker";
 
   networking.hostName = config.host.name;

@@ -427,10 +427,10 @@
         "url": "ssh://git@github.com/hektor/hecuba-services"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/hektor/hecuba-services",
         "ref": "main",
-        "shallow": true
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/hektor/hecuba-services"
       }
     },
     "home-manager": {
@@ -496,10 +496,10 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1783872092,
-        "narHash": "sha256-Lg4kvJw3BxjeBEszQ9n1H+Oj/30u3N9N+TAwbmKhDPY=",
+        "lastModified": 1785190089,
+        "narHash": "sha256-nhzJq5kkcU9X5QXhErn1pHqqN5TPxUVV0teOd+yMzN4=",
         "ref": "main",
-        "rev": "1900322e9ddd920986c5b31ef161fd1c3f977846",
+        "rev": "3375f7a8ccb4dc3c5ea3c488597c659665973e4d",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/nix-secrets"
