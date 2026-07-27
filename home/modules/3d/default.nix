@@ -17,7 +17,6 @@ in
   config = lib.mkMerge [
     (lib.mkIf cfg.printing.enable {
       home.packages = with pkgs; [
-        bambu-studio
         orca-slicer
       ];
     })
