@@ -51,7 +51,7 @@ in
       configDir = "/home/${username}/.local/state/syncthing";
       openDefaultPorts = true;
       settings = {
-        devices = lib.getAttrs referencedDevices deviceRegistry;
+        devices = lib.mapAttrs (_: id: { inherit id; }) (lib.getAttrs referencedDevices deviceRegistry);
         folders = lib.mapAttrs (_: folder: {
           inherit (folder)
             path
