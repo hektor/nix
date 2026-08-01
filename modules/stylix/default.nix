@@ -31,6 +31,7 @@ in
         emoji = config.stylix.fonts.monospace;
       };
       autoEnable = true;
+      targets.regreet.enable = false;
     };
 
     home-manager.sharedModules = [
