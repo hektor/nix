@@ -1,13 +1,12 @@
-name: build
+name: check
 on:
   pull_request:
   push:
     branches: [main]
 
 jobs:
-  hecuba:
+  lint:
     runs-on: nix
     steps:
       - uses: actions/checkout@v4
-      - run: nix eval .#nixosConfigurations.hecuba.config.system.build.toplevel.drvPath
-      - run: nix build .#nixosConfigurations.hecuba.config.system.build.toplevel --print-build-logs
+      - run: nix build .#checks.x86_64-linux.pre-commit-check --print-build-logs
