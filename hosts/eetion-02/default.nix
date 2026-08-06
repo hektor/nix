@@ -15,6 +15,7 @@ in
   inherit (meta) host;
 
   ssh.enable = true;
+  tailscale.enable = true;
 
   boot = {
     kernelParams = [
