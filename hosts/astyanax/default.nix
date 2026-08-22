@@ -136,4 +136,7 @@ in
       };
     };
   };
+
+  zramSwap.enable = true;
+  systemd.oomd.enableUserSlices = true;
 }
