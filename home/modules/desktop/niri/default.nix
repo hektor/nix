@@ -11,6 +11,7 @@
     ../../fuzzel
     ../../mako
     ../../shikane
+    ../../swayidle
     ../../waybar
   ];
 
@@ -21,6 +22,7 @@
     fuzzel.enable = lib.mkDefault true;
     mako.enable = lib.mkDefault true;
     shikane.enable = lib.mkDefault true;
+    swayidle.enable = lib.mkDefault true;
     waybar.enable = lib.mkDefault true;
 
     home = {
