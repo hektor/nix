@@ -53,6 +53,9 @@ in
           keyFile = "${sops.secrets."anki/sync-key".path}";
         };
       };
+
+      # allow Anki to write prefs
+      home.file."${config.xdg.dataHome}/Anki2/prefs21.db".enable = lib.mkForce false;
     }
   );
 }
