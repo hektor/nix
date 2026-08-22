@@ -28,6 +28,6 @@ in
       inherit (iface) macAddress;
     }) config.wol.interfaces;
 
-    # firewall.allowedUDPPorts = [ 9 ];
+    # networking.firewall.allowedUDPPorts = [ 9 ];
   };
 }

@@ -67,11 +67,6 @@ in
   docker.enable = true;
   nfc.enable = true;
 
-  firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 ];
-  };
-
   hardware = {
     cpu.intel.updateMicrocode = true;
     # https://wiki.nixos.org/wiki/Intel_Graphics

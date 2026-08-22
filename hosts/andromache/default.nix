@@ -33,10 +33,6 @@ in
   bluetooth.enable = true;
   bootloader.enable = true;
   desktop.niri.enable = true;
-  firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 ];
-  };
   gaming.enable = true;
   git.enable = true;
   keyboard.enable = true;
