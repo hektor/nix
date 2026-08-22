@@ -49,6 +49,7 @@
         allowUnfreePredicate =
           pkg:
           builtins.elem (nixpkgs.lib.getName pkg) [
+            "copilot-language-server"
             "vim-sandwich"
             "jupytext.nvim"
             "eyeliner.nvim"
