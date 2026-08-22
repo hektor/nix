@@ -37,6 +37,22 @@ in
     programs.bash = {
       enable = true;
       enableCompletion = true;
+
+      historySize = 999999;
+      historyFileSize = -1; # unlimited
+      historyControl = [
+        "ignoreboth"
+        "erasedups"
+      ];
+      # omit commands from history (e.g. those prepended with space)
+      historyIgnore = [
+        " *"
+        "clear"
+        "l"
+        "ls"
+        "cd"
+      ];
+
       initExtra = ''
         for f in /home/${username}/.bashrc.d/*; do
           [ -f "$f" ] && source "$f"

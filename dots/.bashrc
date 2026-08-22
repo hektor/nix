@@ -30,13 +30,6 @@ done
 [ -f "$HOME/.bashrc.d/prompt" ] && . "$HOME/.bashrc.d/prompt"
 # }}}
 
-# History {{{
-export HISTSIZE=999999
-export HISTFILESIZE= # Unlimited
-export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE=" *:clear:l:ls:cd" # Omit commands from history (e.g. those prepended with space)
-# }}}
-
 # Man pages {{{
 # See `:h :Man` in NeoVim
 export MANWIDTH=80
