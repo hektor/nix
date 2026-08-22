@@ -82,10 +82,6 @@ else
 fi
 # }}}
 
-# Go {{{
-export GOPATH="${XDG_DATA_HOME}/go"
-# }}}
-
 # Jupyter {{{
 export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 # }}}
