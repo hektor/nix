@@ -5,8 +5,7 @@
 
 . /etc/os-release
 
-# Editor & prompt configuration
-[ -f "$HOME/.bashrc.d/editor" ] && . "$HOME/.bashrc.d/editor"
+# Prompt configuration
 [ -f "$HOME/.bashrc.d/prompt" ] && . "$HOME/.bashrc.d/prompt"
 
 # Aliases {{{

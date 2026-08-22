@@ -54,7 +54,6 @@ in
     home.file = {
       ".inputrc".source = dotsPath + "/.inputrc";
       ".bashrc.d/prompt".source = dotsPath + "/.bashrc.d/prompt";
-      ".bashrc.d/editor".source = dotsPath + "/.bashrc.d/editor";
     }
     // lib.optionalAttrs cfg.aliases.all {
       ".bash_aliases/all".source = dotsPath + "/.bash_aliases/all";
