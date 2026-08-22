@@ -30,12 +30,6 @@ done
 [ -f "$HOME/.bashrc.d/prompt" ] && . "$HOME/.bashrc.d/prompt"
 # }}}
 
-# Man pages {{{
-# See `:h :Man` in NeoVim
-export MANWIDTH=80
-export PAGER=nvimpager
-# }}}
-
 # X11 {{{
 export XDG_SESSION_TYPE=X11
 export XDG_CONFIG_HOME=$HOME/.config
