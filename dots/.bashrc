@@ -30,11 +30,6 @@ done
 [ -f "$HOME/.bashrc.d/prompt" ] && . "$HOME/.bashrc.d/prompt"
 # }}}
 
-# Path {{{
-# Add ~/.bin to PATH
-export PATH=~/.bin:$PATH
-# }}}
-
 # History {{{
 export HISTSIZE=999999
 export HISTFILESIZE= # Unlimited

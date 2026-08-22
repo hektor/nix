@@ -45,8 +45,6 @@ in
         ${lib.optionalString cfg.aliases.all "source /home/${username}/.bash_aliases/all"}
         ${lib.optionalString cfg.aliases.lang-js "source /home/${username}/.bash_aliases/lang-js"}
 
-        ${lib.optionalString cfg.addBinToPath "export PATH=${dotsPath}/.bin:$PATH"}
-
         ${cfg.extraInit}
       '';
     };
@@ -61,5 +59,6 @@ in
     // lib.optionalAttrs cfg.aliases.lang-js {
       ".bash_aliases/lang-js".source = dotsPath + "/.bash_aliases/lang-js";
     };
+    home.sessionPath = lib.optional cfg.addBinToPath "${dotsPath}/.bin";
   };
 }
