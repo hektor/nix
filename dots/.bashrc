@@ -61,10 +61,6 @@ export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && . /opt/miniconda3/etc/profile.d/conda.sh
 # }}}
 
-# Zettelkasten {{{
-export ZK_PATH="$HOME/.zk"
-
-
 # Codi
 # Usage: codi [filetype] [filename]
 codi() {

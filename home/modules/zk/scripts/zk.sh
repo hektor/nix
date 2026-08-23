@@ -1,7 +1,16 @@
-current_zettel_path="$(cat "$ZK_PATH/current-zettel.txt")"
+if [ ! -d "$ZK_PATH" ]; then
+  echo "[zk] Setting up zettelkasten"
+  gh repo clone zk "$ZK_PATH"
+fi
+
+if [ -f "$ZK_PATH/current-zettel.txt" ]; then
+  target="$(cat "$ZK_PATH/current-zettel.txt")"
+else
+  target="."
+fi
 
 if [ -n "${TMUX:-}" ]; then
-  cd "$ZK_PATH" && $EDITOR "$current_zettel_path"
+  cd "$ZK_PATH" && $EDITOR "$target"
 else
   echo 'Not in tmux'
   echo 'Choose an option:'
@@ -14,12 +23,12 @@ else
         tmux attach -t zk
       else
         tmux new-session -s zk -n zk -d
-        tmux send-keys -t zk:zk "cd $ZK_PATH && $EDITOR $current_zettel_path" Enter
+        tmux send-keys -t zk:zk "cd ${ZK_PATH} && $EDITOR ${target}" Enter
         tmux attach -t zk
       fi
       ;;
     2)
-      cd "$ZK_PATH" && $EDITOR "$current_zettel_path"
+      cd "$ZK_PATH" && $EDITOR "$target"
       ;;
     *)
       echo 'Not opening Zettelkasten'
