@@ -39,16 +39,6 @@ export XDG_DATA_HOME=$HOME/.local/share
 # FZF {{{
 # Check if fzf is installed
 if [ -f "/usr/bin/fzf" ]; then
-  # Fuzzy finder setup
-  export FZF_COMPLETION_TRIGGER='**'
-  export FZF_DEFAULT_COMMAND='rg --files ""'
-  export FZF_DEFAULT_OPTS="
-  --pointer='❭'
-  --height 10%
-  --color=fg:-1,bg:-1"
-  export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
-  export FZF_CTRL_T_OPTS="--preview='bat {} | head -500'"
-
   if [[ $ID == "raspbian" ]]; then
     . /usr/share/doc/fzf/examples/completion.bash
     . /usr/share/doc/fzf/examples/key-bindings.bash
