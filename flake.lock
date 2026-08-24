@@ -422,13 +422,12 @@
         "narHash": "sha256-hZCD0M5mt6gP5z21dYOslx9d7aoF5XTCgB0axt8O+SA=",
         "ref": "main",
         "rev": "838434daa9844608863c93627aa466a0109237b5",
-        "shallow": true,
+        "revCount": 209,
         "type": "git",
         "url": "ssh://git@github.com/hektor/hecuba-services"
       },
       "original": {
         "ref": "main",
-        "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/hecuba-services"
       }
