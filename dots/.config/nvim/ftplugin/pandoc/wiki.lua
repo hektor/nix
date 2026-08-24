@@ -15,7 +15,6 @@ vim.api.nvim_create_user_command("AnkiDeck", function()
 end, {})
 
 vim.cmd([[
-set cc=81
 set cocu=""
 func! GetContext()
   " https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
