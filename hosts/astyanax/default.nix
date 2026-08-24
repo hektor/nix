@@ -101,9 +101,12 @@ in
     useNetworkd = true;
   };
 
-  systemd.network.networks."40-wlan0" = {
-    matchConfig.Name = "wlan0";
-    networkConfig.DHCP = "yes";
+  systemd.network = {
+    networks."40-wlan0" = {
+      matchConfig.Name = "wlan0";
+      networkConfig.DHCP = "yes";
+    };
+    wait-online.anyInterface = true;
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
