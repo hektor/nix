@@ -70,7 +70,10 @@
   music.enable = true;
   my.dconf.enable = true;
   my.stylix.enable = true;
-  nvim.enable = true;
+  nvim = {
+    enable = true;
+    colorscheme = "vscode";
+  };
   pandoc.enable = true;
   shell.enable = true;
   taskwarrior.enable = true;

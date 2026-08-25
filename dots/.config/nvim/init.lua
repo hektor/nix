@@ -16,5 +16,4 @@ require("diagnostic")
 require("utils")
 require("zk")
 require("reload")
-
-vim.opt.background = "dark"
+require("theme")

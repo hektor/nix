@@ -71,8 +71,12 @@
       categoryDefinitions =
         {
           pkgs,
+          categories,
           ...
         }:
+        let
+          themes = import ./themes.nix pkgs;
+        in
         {
           lspsAndRuntimeDeps = with pkgs; {
             general = [
@@ -113,76 +117,78 @@
           };
 
           startupPlugins = {
-            general = with pkgs.vimPlugins; [
-              ## plug
-              vim-plug
-              vim-sandwich
-              context_filetype-vim
-              editorconfig-vim
-              vim-snippets
-              unicode-vim
-              vim-css-color
-              quarto-nvim
-              vimtex
-              wiki-vim
-              vim-pandoc
-              vim-pandoc-syntax
-              # TODO: ferrine/md-img-paste.vim
-              # TODO: supercollider/scvim
-              # TODO: tidalcycles/vim-tidal
-              vim-glsl
-              # TODO: timtro/glslView-nvim
-              # TODO: sirtaj/vim-openscad
-              jupytext-nvim
-              vim-openscad
-              ## paq
-              eyeliner-nvim
-              fzf-lua
-              ltex_extra-nvim
-              nvim-lspconfig
-              lsp_lines-nvim
-              lsp-progress-nvim
-              neodev-nvim
-              SchemaStore-nvim
-              nvim-lint
-              conform-nvim
-              luasnip
-              cmp_luasnip
-              nvim-cmp
-              cmp-nvim-lsp
-              cmp-buffer
-              cmp-path
-              plenary-nvim
-              nui-nvim
-              trouble-nvim
-              pkgs.neovimPlugins.shipwright-nvim
-              lush-nvim
-              zenbones-nvim
-              nvim-treesitter.withAllGrammars
-              nvim-treesitter-textobjects
-              # nvim-treesitter-context
-              nvim-ts-context-commentstring
-              # theHamsta/crazy-node-movement
-              treesj
-              sniprun
-              gitsigns-nvim
-              nvim-highlight-colors
-              pkgs.neovimPlugins.tailwind-fold-nvim
-              auto-session
-              nvim-dbee
-              image-nvim
-              pkgs.neovimPlugins.beancount-nvim
-              pkgs.neovimPlugins.nvimkit-nvim
-              codecompanion-nvim
-              copilot-lua
-              copilot-cmp
-              helm-ls-nvim
-              kitty-scrollback-nvim
-              fidget-nvim
-              rustaceanvim
-              # pkgs.neovimPlugins.m-taskwarrior-d-nvim
-              claude-code-nvim
-            ];
+            general =
+              with pkgs.vimPlugins;
+              [
+                ## plug
+                vim-plug
+                vim-sandwich
+                context_filetype-vim
+                editorconfig-vim
+                vim-snippets
+                unicode-vim
+                vim-css-color
+                quarto-nvim
+                vimtex
+                wiki-vim
+                vim-pandoc
+                vim-pandoc-syntax
+                # TODO: ferrine/md-img-paste.vim
+                # TODO: supercollider/scvim
+                # TODO: tidalcycles/vim-tidal
+                vim-glsl
+                # TODO: timtro/glslView-nvim
+                # TODO: sirtaj/vim-openscad
+                jupytext-nvim
+                vim-openscad
+                ## paq
+                eyeliner-nvim
+                fzf-lua
+                ltex_extra-nvim
+                nvim-lspconfig
+                lsp_lines-nvim
+                lsp-progress-nvim
+                neodev-nvim
+                SchemaStore-nvim
+                nvim-lint
+                conform-nvim
+                luasnip
+                cmp_luasnip
+                nvim-cmp
+                cmp-nvim-lsp
+                cmp-buffer
+                cmp-path
+                plenary-nvim
+                nui-nvim
+                trouble-nvim
+                lush-nvim
+                pkgs.neovimPlugins.shipwright-nvim
+                nvim-treesitter.withAllGrammars
+                nvim-treesitter-textobjects
+                # nvim-treesitter-context
+                nvim-ts-context-commentstring
+                # theHamsta/crazy-node-movement
+                treesj
+                sniprun
+                gitsigns-nvim
+                nvim-highlight-colors
+                pkgs.neovimPlugins.tailwind-fold-nvim
+                auto-session
+                nvim-dbee
+                image-nvim
+                pkgs.neovimPlugins.beancount-nvim
+                pkgs.neovimPlugins.nvimkit-nvim
+                codecompanion-nvim
+                copilot-lua
+                copilot-cmp
+                helm-ls-nvim
+                kitty-scrollback-nvim
+                fidget-nvim
+                rustaceanvim
+                # pkgs.neovimPlugins.m-taskwarrior-d-nvim
+                claude-code-nvim
+              ]
+              ++ themes.${categories.colorscheme or "zenwritten"};
           };
 
           optionalPlugins = {
@@ -207,6 +213,7 @@
           };
           categories = {
             general = true;
+            colorscheme = "zenwritten";
           };
         };
       };
