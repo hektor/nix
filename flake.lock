@@ -264,7 +264,7 @@
         "type": "github"
       }
     },
-    "flake-parts_3": {
+    "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
           "stylix",
@@ -396,18 +396,19 @@
     "hecuba-services": {
       "flake": false,
       "locked": {
-        "lastModified": 1787190763,
-        "narHash": "sha256-hZCD0M5mt6gP5z21dYOslx9d7aoF5XTCgB0axt8O+SA=",
+        "lastModified": 1787697651,
+        "narHash": "sha256-xJu6e3i2SvblPM+2vGOO59m4wk+XiP+VGHD6qZao9j0=",
         "ref": "main",
-        "rev": "838434daa9844608863c93627aa466a0109237b5",
-        "revCount": 209,
+        "rev": "3bd19a97810412f6d03aa8845325dd43ab438a7f",
+        "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/hecuba-services"
       },
       "original": {
-        "ref": "main",
         "type": "git",
-        "url": "ssh://git@github.com/hektor/hecuba-services"
+        "url": "ssh://git@github.com/hektor/hecuba-services",
+        "ref": "main",
+        "shallow": true
       }
     },
     "home-manager": {
@@ -725,7 +726,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_2",
         "gnome-shell": "gnome-shell",
         "nixpkgs": [
           "nixpkgs"
