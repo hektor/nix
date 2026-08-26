@@ -62,7 +62,6 @@ cmp.setup({
     ["<CR>"] = c_l,
   }),
   sources = {
-    { name = "copilot",  group_index = 2 },
     { name = "zk" },
     { name = "nvim_lsp" },
     { name = "luasnip",  max_item_count = 16 },

@@ -40,7 +40,6 @@
         allowUnfreePredicate =
           pkg:
           builtins.elem (nixpkgs.lib.getName pkg) [
-            "copilot-language-server"
             "vim-sandwich"
             "jupytext.nvim"
             "eyeliner.nvim"
@@ -179,8 +178,6 @@
                 pkgs.neovimPlugins.beancount-nvim
                 pkgs.neovimPlugins.nvimkit-nvim
                 codecompanion-nvim
-                copilot-lua
-                copilot-cmp
                 helm-ls-nvim
                 kitty-scrollback-nvim
                 fidget-nvim
