@@ -47,5 +47,10 @@ in
     home.shellAliases = {
       k = "kubectl";
     };
+
+    xdg.dataFile."bash-completion/completions/k".text = ''
+      source ${pkgs.kubectl}/share/bash-completion/completions/kubectl.bash
+      complete -o default -F __start_kubectl k
+    '';
   };
 }
