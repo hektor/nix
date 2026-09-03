@@ -55,7 +55,13 @@ in
     useDHCP = lib.mkDefault true;
   };
   nvidia.enable = true;
-  restic-backup.enable = true;
+  restic-backup = {
+    enable = true;
+    paths = [
+      "/home"
+      "/data"
+    ];
+  };
   secrets = {
     enable = true;
     nixSigningKey.enable = true;
