@@ -1,14 +1,28 @@
 {
-  lib,
   config,
+  lib,
   pkgs,
   ...
 }:
+
 let
   cfg = config.ai-tools.opencode;
 in
 {
   config = lib.mkIf cfg.enable {
+    secrets.files.opencode = [ "api-key" ];
+    secrets.templates."opencode/auth.json" = {
+      path = ".local/share/opencode/auth.json";
+      content = ''
+        {
+          "zai-coding-plan": {
+            "type": "api",
+            "key": "${config.sops.placeholder."opencode/api-key"}"
+          }
+        }
+      '';
+    };
+
     home.packages = [ pkgs.opencode ];
 
     home.file.".config/opencode/opencode.json".text = builtins.toJSON {
