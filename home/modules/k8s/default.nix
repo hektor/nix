@@ -27,7 +27,6 @@ in
       kubectl
       kubernetes
       kustomize
-      minikube
     ];
 
     programs.kubecolor = {
