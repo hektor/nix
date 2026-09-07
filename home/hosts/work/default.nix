@@ -41,6 +41,7 @@
     opencode.enable = true;
   };
   anki.enable = true;
+  archiving.enable = true;
   browser = {
     enable = true;
     primary = "firefox";

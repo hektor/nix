@@ -26,6 +26,7 @@
     opencode.enable = true;
   };
   anki.enable = true;
+  archiving.enable = true;
   audio.enable = true;
   browser.enable = true;
   browser.primary = "librewolf";

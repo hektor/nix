@@ -18,6 +18,5 @@ with pkgs;
   sops
   tldr
   tree
-  unzip
   wget
 ]
