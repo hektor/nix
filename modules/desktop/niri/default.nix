@@ -58,6 +58,7 @@ in
       dbus.enable = true;
       displayManager.ly = lib.mkIf cfg.ly.enable {
         enable = true;
+        settings.session_log = ".local/state/ly-session.log";
       };
     };
   };
