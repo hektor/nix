@@ -45,6 +45,7 @@
   nvim.enable = true;
   pandoc.enable = true;
   photography.enable = true;
+  reference-manager.enable = true;
   secrets.enable = true;
   shell = {
     enable = true;
