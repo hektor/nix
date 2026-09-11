@@ -4,13 +4,8 @@
   ...
 }:
 
-let
-  cfg = config.k8s.k9s;
-in
 {
-  options.k8s.k9s.enable = lib.mkEnableOption "k9s";
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.k8s.k9s.enable {
     programs.k9s = {
       enable = true;
       settings.k9s = {

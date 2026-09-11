@@ -5,13 +5,8 @@
   ...
 }:
 
-let
-  cfg = config.k8s.helm;
-in
 {
-  options.k8s.helm.enable = lib.mkEnableOption "helm";
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.k8s.helm.enable {
     home.packages = with pkgs; [
       (wrapHelm kubernetes-helm {
         plugins = with kubernetes-helmPlugins; [

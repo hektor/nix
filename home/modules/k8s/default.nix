@@ -9,12 +9,21 @@ let
   cfg = config.k8s;
 in
 {
+  options.k8s = {
+    enable = lib.mkEnableOption "k8s";
+
+    helm = {
+      enable = lib.mkEnableOption "helm";
+    };
+    k9s = {
+      enable = lib.mkEnableOption "k9s";
+    };
+  };
+
   imports = [
     ./helm.nix
     ./k9s.nix
   ];
-
-  options.k8s.enable = lib.mkEnableOption "k8s";
 
   config = lib.mkIf cfg.enable {
     k8s.helm.enable = lib.mkDefault true;
