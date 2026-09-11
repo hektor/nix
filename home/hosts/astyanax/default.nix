@@ -35,8 +35,11 @@
   desktop.niri.enable = true;
   devenv.enable = true;
   direnv.enable = true;
-  git.enable = true;
-  git.github.enable = true;
+  git = {
+    enable = true;
+    gitea.enable = true;
+    github.enable = true;
+  };
   k8s.k9s.enable = true;
   keepassxc.enable = true;
   music.enable = true;

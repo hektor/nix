@@ -1,17 +1,18 @@
 {
   config,
   lib,
-  pkgs,
   dotsPath,
   ...
 }:
 
 {
-  options.git = {
-    enable = lib.mkEnableOption "git";
-    github.enable = lib.mkEnableOption "Github CLI";
-    gitlab.enable = lib.mkEnableOption "Gitlab CLI";
-  };
+  imports = [
+    ./gitea.nix
+    ./github.nix
+    ./gitlab.nix
+  ];
+
+  options.git.enable = lib.mkEnableOption "git";
 
   config = lib.mkIf config.git.enable {
     assertions = [
@@ -26,8 +27,5 @@
       ".gitconfig.work".source = dotsPath + "/.gitconfig.work";
       ".gitignore".source = dotsPath + "/.gitignore";
     };
-
-    programs.gh.enable = config.git.github.enable;
-    home.packages = lib.optionals config.git.gitlab.enable [ pkgs.glab ];
   };
 }
