@@ -5,13 +5,8 @@
   ...
 }:
 
-let
-  cfg = config.git.gitlab;
-in
 {
-  options.git.gitlab.enable = lib.mkEnableOption "Gitlab CLI";
-
-  config = lib.mkIf (config.git.enable && cfg.enable) {
-    home.packages = [ pkgs.glab ];
+  config = lib.mkIf (config.git.enable && config.git.gitlab.enable) {
+    home.packages = with pkgs; [ glab ];
   };
 }

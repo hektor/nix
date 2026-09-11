@@ -4,13 +4,8 @@
   ...
 }:
 
-let
-  cfg = config.git.github;
-in
 {
-  options.git.github.enable = lib.mkEnableOption "Github CLI";
-
-  config = lib.mkIf (config.git.enable && cfg.enable) {
+  config = lib.mkIf (config.git.enable && config.git.github.enable) {
     programs.gh.enable = true;
   };
 }
