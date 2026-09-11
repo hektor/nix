@@ -19,7 +19,7 @@
     (lib.mkIf config.database.postgresql.enable {
       home.packages = with pkgs; [ (config.nixgl.wrap pgadmin4-desktopmode) ];
     })
-    (lib.mkIf config.database.postgresql.enable {
+    (lib.mkIf config.database.redis.enable {
       home.packages = with pkgs; [ redis ];
     })
   ];
