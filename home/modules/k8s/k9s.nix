@@ -14,6 +14,7 @@
           reactive = true;
         };
       };
+      views."v1/pods".sortColumn = "MEM:desc";
     };
   };
 }
