@@ -9,8 +9,6 @@ let
   rtk-version = "0.18.1";
 in
 {
-  options.ai-tools.claude-code.enable = lib.mkEnableOption "claude code with rtk and ccline";
-
   config = lib.mkIf cfg.enable {
     programs.claude-code.enable = true;
 

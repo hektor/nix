@@ -8,10 +8,6 @@ let
   cfg = config.ai-tools.tirith;
 in
 {
-  options.ai-tools.tirith = {
-    enable = lib.mkEnableOption "tirith";
-  };
-
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
       home.packages = [ pkgs.tirith ];

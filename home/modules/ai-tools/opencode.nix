@@ -8,10 +8,6 @@ let
   cfg = config.ai-tools.opencode;
 in
 {
-  options.ai-tools.opencode = {
-    enable = lib.mkEnableOption "opencode";
-  };
-
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.opencode ];
 
