@@ -68,6 +68,7 @@ in
       "/data"
     ];
   };
+  sandboxing.enable = true;
   secrets = {
     enable = true;
     nixSigningKey.enable = true;

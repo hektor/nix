@@ -52,6 +52,7 @@ in
     };
   };
   networking.enable = true;
+  sandboxing.enable = true;
   secrets.enable = true;
   ssh.enable = true;
   storage.enable = true;
