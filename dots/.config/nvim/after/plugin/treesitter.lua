@@ -1,16 +1,16 @@
-local ts = require("treesj")
 local vim = vim
+local api = vim.api
 local keymap = vim.keymap
 local opt = vim.opt
 local treesitter = require("nvim-treesitter")
+local textobjects = require("nvim-treesitter-textobjects")
+local select = require("nvim-treesitter-textobjects.select")
+local treesj = require("treesj")
 
-local nixCatsUtils = require("nixCatsUtils")
-local is_nix = nixCatsUtils.isNixCats
+local is_nix = require("nixCatsUtils").isNixCats
 
-treesitter.setup({
-  -- Basically added what I might need from the docs
-  -- <https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages>
-  ensure_installed = is_nix and {} or {
+if not is_nix then
+  treesitter.install({
     "awk",
     "bash",
     "bibtex",
@@ -72,63 +72,54 @@ treesitter.setup({
     "xml",
     "yaml",
     "zathurarc",
-  },
-  highlight = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "vv",
-      node_incremental = "vv",
-      scope_incremental = "VV",
-      node_decremental = "vd",
-    },
-  },
-  indent = {
-    enable = true,
-  },
-  sync_install = false,
-  auto_install = not is_nix,
-  ignore_install = {},
-  modules = {},
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        -- Functions
-        ["if"] = "@function.inner",
-        ["af"] = "@function.outer",
-        ["ip"] = "@parameter.inner",
-        ["ap"] = "@parameter.outer",
-      },
-    },
-  },
-  node_movement = {
-    enable = true,
-    keymaps = {
-      move_up = "vk",
-      move_down = "vj",
-      move_left = "vh",
-      move_right = "vl",
-      swap_left = "vH",
-      swap_right = "vL",
-      select_current_node = "vi",
-    },
-    swappable_textobjects = { "@function.outer", "@parameter.inner", "@statement.outer" },
-    allow_switch_parents = true,
-    allow_next_parent = true,
-  },
+  })
+end
+
+-- https://github.com/MeanderingProgrammer/treesitter-modules.nvim#implementing-yourself
+api.nvim_create_autocmd("FileType", {
+  group = api.nvim_create_augroup("treesitter.setup", {}),
+  callback = function(args)
+    local buf = args.buf
+    local filetype = args.match
+    local language = vim.treesitter.language.get_lang(filetype) or filetype
+    if not (language and vim.treesitter.language.add(language)) then
+      return
+    end
+    -- fold
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    -- highlight
+    vim.treesitter.start(buf, language)
+    -- indent
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
 })
 
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldenable = false
 
--- TreeSJ
-require("treesj").setup({
+-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/main/README.md#text-objects-select
+textobjects.setup({
+  select = {
+    lookahead = true,
+  },
+})
+
+local function select_textobject(capture)
+  return function()
+    select.select_textobject(capture, "textobjects")
+  end
+end
+
+keymap.set({ "x", "o" }, "if", select_textobject("@function.inner"), { desc = "Inner function" })
+keymap.set({ "x", "o" }, "af", select_textobject("@function.outer"), { desc = "A function" })
+keymap.set({ "x", "o" }, "ip", select_textobject("@parameter.inner"), { desc = "Inner parameter" })
+keymap.set({ "x", "o" }, "ap", select_textobject("@parameter.outer"), { desc = "A parameter" })
+
+treesj.setup({
   use_default_keymaps = false,
 })
 
-keymap.set("n", ";", ts.toggle, { desc = "Toggle join/split (TreeTSJ)" })
+keymap.set("n", ";", treesj.toggle, { desc = "Toggle join/split (TreeSJ)" })
