@@ -1,7 +1,6 @@
 require("conform").setup({
   format_after_save = {
-    lsp_fallback = false,
-    async = false,
+    lsp_format = "never",
     timeout_ms = 500,
   },
   formatters_by_ft = {
@@ -21,7 +20,7 @@ require("conform").setup({
     markdown = { "prettierd", "prettier", stop_after_first = true },
     nix = { "nixfmt" },
     python = { "isort", "black" },
-    rust = { "rustfmt", lsp_fallback = "fallback" },
+    rust = { "rustfmt", lsp_format = "fallback" },
     svelte = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
     typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
     typescriptreact = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
