@@ -9,5 +9,5 @@ ls.config.set_config({
   store_selection_keys = "<Tab>",
 })
 
-require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snips" } })
+require("luasnip.loaders.from_lua").lazy_load({ paths = { require("nixCats").configDir .. "/snips" } })
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/Code - Insiders/User/snippets" } })
