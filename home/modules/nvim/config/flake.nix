@@ -7,10 +7,6 @@
       url = "github:rktjmp/shipwright.nvim";
       flake = false;
     };
-    # plugins-m-taskwarrior-d-nvim = {
-    #   url = "github:huantrinh1802/m_taskwarrior_d.nvim";
-    #   flake = false;
-    # };
     plugins-beancount-nvim = {
       url = "github:polarmutex/beancount.nvim";
       flake = false;
@@ -45,11 +41,9 @@
             "jupytext.nvim"
             "eyeliner.nvim"
             "context_filetype.vim"
-            "editorconfig-vim"
             "unicode.vim"
             "quarto-nvim"
             "vim-openscad"
-            "lsp_lines.nvim"
             "nvim-highlight-colors"
             "nvim-lint"
           ];
@@ -99,14 +93,10 @@
             general =
               with pkgs.vimPlugins;
               [
-                ## plug
-                vim-plug
                 vim-sandwich
                 context_filetype-vim
-                editorconfig-vim
                 vim-snippets
                 unicode-vim
-                vim-css-color
                 quarto-nvim
                 vimtex
                 wiki-vim
@@ -121,11 +111,7 @@
                 ## paq
                 eyeliner-nvim
                 fzf-lua
-                ltex_extra-nvim
                 nvim-lspconfig
-                lsp_lines-nvim
-                lsp-progress-nvim
-                neodev-nvim
                 SchemaStore-nvim
                 nvim-lint
                 conform-nvim
@@ -142,9 +128,7 @@
                 pkgs.neovimPlugins.shipwright-nvim
                 nvim-treesitter.withAllGrammars
                 nvim-treesitter-textobjects
-                # nvim-treesitter-context
                 nvim-ts-context-commentstring
-                # theHamsta/crazy-node-movement
                 treesj
                 sniprun
                 gitsigns-nvim
@@ -157,7 +141,6 @@
                 codecompanion-nvim
                 kitty-scrollback-nvim
                 fidget-nvim
-                # pkgs.neovimPlugins.m-taskwarrior-d-nvim
                 claudecode-nvim
                 snacks-nvim
               ]
