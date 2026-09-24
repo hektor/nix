@@ -86,7 +86,7 @@ local servers = {
       },
     },
   },
-  openscad = { openscad_ls = {} },
+  openscad = { openscad_lsp = {} },
   python = { pyright = {} },
   shell = { bashls = {} },
   svelte = {
