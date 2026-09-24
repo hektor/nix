@@ -66,22 +66,21 @@ local servers = {
       settings = {
         nixd = {
           nixpkgs = {
-            expr = "import <nixpkgs> { }",
             expr = 'import (builtins.getFlake ("git+file://" + toString ../../../../../.)).inputs.nixpkgs { }',
           },
-        },
-        options = {
-          nixos = {
-            expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).nixosConfigurations."'
-              .. vim.fn.hostname()
-              .. '".options',
-          },
-          home_manager = {
-            expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).homeConfigurations."'
-              .. vim.fn.expand("$USER")
-              .. "@"
-              .. vim.fn.hostname()
-              .. '".options',
+          options = {
+            nixos = {
+              expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).nixosConfigurations."'
+                .. vim.fn.hostname()
+                .. '".options',
+            },
+            home_manager = {
+              expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).homeConfigurations."'
+                .. vim.fn.expand("$USER")
+                .. "@"
+                .. vim.fn.hostname()
+                .. '".options',
+            },
           },
         },
       },
@@ -92,9 +91,13 @@ local servers = {
   shell = { bashls = {} },
   svelte = {
     svelte = {
-      plugin = {
+      settings = {
         svelte = {
-          defaultScriptLanguage = "ts",
+          plugin = {
+            svelte = {
+              defaultScriptLanguage = "ts",
+            },
+          },
         },
       },
     },
