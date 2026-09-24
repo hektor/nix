@@ -6,5 +6,9 @@ vim.diagnostic.config({
 })
 
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>dj", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
+vim.keymap.set("n", "<leader>dk", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
