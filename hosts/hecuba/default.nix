@@ -50,7 +50,10 @@ in
     ];
   };
 
-  virtualisation.arion.backend = "docker";
+  virtualisation.arion = {
+    backend = "docker";
+    package = pkgs.arion;
+  };
 
   networking.hostName = config.host.name;
 
@@ -112,6 +115,6 @@ in
       enable = true;
       maxretry = 5;
     };
-    journald.extraConfig = "SystemMaxUse=500M";
+    journald.settings.Journal.SystemMaxUse = "500M";
   };
 }
