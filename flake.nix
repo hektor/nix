@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hecuba-services = {
-      url = "git+ssh://git@github.com/hektor/hecuba-services?ref=main";
+      url = "git+ssh://git@github.com/hektor/hecuba-services?shallow=1&ref=main";
       flake = false;
     };
     git-hooks = {
