@@ -7,14 +7,12 @@
 
 let
   cfg = config.nodejs;
+  email = "contact@hektormisplon.xyz";
 in
 {
   options.nodejs = {
     enable = lib.mkEnableOption "Node.js";
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.nodejs_24;
-    };
+    package = lib.mkPackageOption pkgs "nodejs_24" { };
   };
 
   config = lib.mkIf cfg.enable {
@@ -25,5 +23,17 @@ in
       biome
       tsx
     ];
+
+    programs.npm = {
+      inherit (cfg) enable package;
+      settings = {
+        prefix = "${config.xdg.dataHome}/npm";
+        cache = "${config.xdg.cacheHome}/npm";
+        init-module = "${config.xdg.configHome}/npm/config/npm-init.js";
+        init-author-name = "Hektor Misplon";
+        init-author-email = email;
+        init-license = "MIT";
+      };
+    };
   };
 }
