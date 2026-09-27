@@ -12,7 +12,6 @@ in
     sops.templates = {
       ".gitconfig.email" = {
         inherit owner;
-        path = "/home/${username}/.gitconfig.email";
         content = ''
           [user]
             email = ${config.sops.placeholder."email/personal"}
@@ -20,7 +19,6 @@ in
       };
       ".gitconfig.work.email" = {
         inherit owner;
-        path = "/home/${username}/.gitconfig.work.email";
         content = ''
           [user]
             email = ${config.sops.placeholder."email/work"}
