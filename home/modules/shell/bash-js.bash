@@ -1,8 +1,4 @@
 # shellcheck shell=bash
-# vim: set ft=bash :
-
-alias js="node"
-alias ts="ts-node"
 
 yarn() {
   if [[ -f "package-lock.json" ]]; then

@@ -37,7 +37,12 @@ in
     programs.bash = {
       enable = true;
       enableCompletion = true;
-
+      shellAliases =
+        lib.optionalAttrs cfg.aliases.all (import ./bash-aliases.nix)
+        // lib.optionalAttrs cfg.aliases.lang-js {
+          js = "node";
+          ts = "ts-node";
+        };
       historySize = 999999;
       historyFileSize = -1; # unlimited
       historyControl = [
@@ -52,29 +57,15 @@ in
         "ls"
         "cd"
       ];
-
       initExtra = ''
         for f in ${homeDirectory}/.bashrc.d/*; do
           [ -f "$f" ] && source "$f"
         done
-
-        ${lib.optionalString cfg.aliases.all "source ${homeDirectory}/.bash_aliases/all"}
-        ${lib.optionalString cfg.aliases.lang-js "source ${homeDirectory}/.bash_aliases/lang-js"}
-
+        ${lib.optionalString cfg.aliases.lang-js (builtins.readFile ./bash-js.bash)}
         ${cfg.extraInit}
       '';
     };
 
-    home.file = {
-      ".inputrc".source = dotsPath + "/.inputrc";
-      ".bashrc.d/prompt".source = dotsPath + "/.bashrc.d/prompt";
-    }
-    // lib.optionalAttrs cfg.aliases.all {
-      ".bash_aliases/all".source = dotsPath + "/.bash_aliases/all";
-    }
-    // lib.optionalAttrs cfg.aliases.lang-js {
-      ".bash_aliases/lang-js".source = dotsPath + "/.bash_aliases/lang-js";
-    };
     home.sessionPath = lib.optional cfg.addBinToPath "${dotsPath}/.bin";
   };
 }

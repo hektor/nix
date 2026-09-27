@@ -5,7 +5,7 @@
 }:
 
 {
-  config = lib.mkIf config.shell.enable {
+  config = lib.mkIf config.prompt.enable {
     programs.starship = {
       enable = true;
       settings = {

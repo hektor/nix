@@ -1,14 +1,11 @@
 { lib, config, ... }:
 
-let
-  cfg = config.audio;
-in
 {
   imports = [ ./audio-automation.nix ];
 
   options.audio.enable = lib.mkEnableOption "audio";
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.audio.enable {
     nixpkgs.allowedUnfree = [
       "spotify"
       "spotify-unwrapped"
