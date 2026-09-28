@@ -47,8 +47,4 @@
   pl = "swipl";
   py = "python";
   r = "R";
-
-  azerty = "setxkbmap be";
-  qwerty = "setxkbmap us";
-  cole = "setxkbmap us -variant colemak";
 }

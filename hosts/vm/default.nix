@@ -21,7 +21,8 @@ in
   anki.enable = true;
   audio.enable = true;
   bootloader.enable = true;
-  desktop.x.enable = true;
+  desktop.niri.enable = true;
+  desktop.ly.enable = true;
   git.enable = true;
   keyboard.enable = true;
   localization.enable = true;
@@ -49,9 +50,11 @@ in
       cores = 8;
       memorySize = 16384;
       qemu.options = [
+        # "-nographic"
         "-enable-kvm"
         "-cpu host"
-        "-nographic"
+        "-device virtio-vga-gl"
+        "-display gtk,gl=on"
       ];
     };
   };

@@ -19,6 +19,8 @@ home-manager switch --flake .#work
 
 ### virtual machines
 
+With a Niri desktop (requires host OpenGL support):
+
 ```
 nix build -L '.#nixosConfigurations.vm.config.system.build.vmWithDisko'
 ./result/bin/disko-vm
