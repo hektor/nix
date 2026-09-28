@@ -89,9 +89,6 @@ in
 
       home.packages = [ pkgs.taskopen ];
       home.file = {
-        ".config/task/taskrc".text = ''
-          include ${config.xdg.configHome}/task/home-manager-taskrc
-        '';
         ".local/share/task/hooks/on-exit.sync.py".source = syncHook;
         ".local/share/task/scripts/sync-and-notify.sh".source = lib.getExe syncAndNotify;
       };
