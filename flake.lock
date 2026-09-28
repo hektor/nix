@@ -556,11 +556,11 @@
         "plugins-tailwind-fold-nvim": "plugins-tailwind-fold-nvim"
       },
       "locked": {
-        "path": "./dots/.config/nvim",
+        "path": "./home/modules/nvim/config",
         "type": "path"
       },
       "original": {
-        "path": "./dots/.config/nvim",
+        "path": "./home/modules/nvim/config",
         "type": "path"
       },
       "parent": []

@@ -55,7 +55,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim = {
-      url = "path:./dots/.config/nvim";
+      url = "path:./home/modules/nvim/config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
