@@ -20,6 +20,7 @@
       file.".config/niri/config.kdl".source = ./config.kdl;
       packages = with pkgs; [
         brightnessctl
+        playerctl
         wlsunset
       ];
     };
