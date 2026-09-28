@@ -24,6 +24,7 @@ layout {
     gaps 4
     struts {}
     center-focused-column "never"
+    always-center-single-column
     preset-column-widths {
         proportion 0.382
         proportion 0.618
