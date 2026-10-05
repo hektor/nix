@@ -113,4 +113,6 @@ in
     enable = true;
     package = pkgs.plocate;
   };
+
+  zramSwap.enable = true;
 }
