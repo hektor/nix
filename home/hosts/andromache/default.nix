@@ -25,6 +25,7 @@
   };
   ai-tools = {
     claude-code.enable = true;
+    codex.enable = true;
     opencode.enable = true;
   };
   anki.enable = true;

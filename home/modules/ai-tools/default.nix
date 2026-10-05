@@ -20,6 +20,9 @@ in
         default = [ ];
       };
     };
+    codex = {
+      enable = lib.mkEnableOption "codex";
+    };
     opencode = {
       enable = lib.mkEnableOption "opencode";
     };
@@ -31,6 +34,7 @@ in
   imports = [
     ./claude-code.nix
     ./fabric.nix
+    ./codex.nix
     ./opencode.nix
     ./skills.nix
     ./tirith.nix
