@@ -23,6 +23,10 @@
       url = "github:jamesblckwell/nvimkit.nvim";
       flake = false;
     };
+    plugins-diffview-nvim = {
+      url = "github:dlyongemallo/diffview.nvim";
+      flake = false;
+    };
 
   };
 
@@ -170,6 +174,7 @@
                 treesj
                 sniprun
                 gitsigns-nvim
+                pkgs.neovimPlugins.diffview-nvim
                 nvim-highlight-colors
                 pkgs.neovimPlugins.tailwind-fold-nvim
                 auto-session

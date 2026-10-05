@@ -47,6 +47,22 @@
         "type": "github"
       }
     },
+    "plugins-diffview-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787574526,
+        "narHash": "sha256-twlMCrNKlkuoT3aQtZHVAZNw5zv1Y9McFYBt8+KgHZ4=",
+        "owner": "dlyongemallo",
+        "repo": "diffview.nvim",
+        "rev": "30afab604a0abe02dfd19e6fbb9153fd26fd2eb3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dlyongemallo",
+        "repo": "diffview.nvim",
+        "type": "github"
+      }
+    },
     "plugins-nvimkit-nvim": {
       "flake": false,
       "locked": {
@@ -100,6 +116,7 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins-beancount-nvim": "plugins-beancount-nvim",
+        "plugins-diffview-nvim": "plugins-diffview-nvim",
         "plugins-nvimkit-nvim": "plugins-nvimkit-nvim",
         "plugins-shipwright-nvim": "plugins-shipwright-nvim",
         "plugins-tailwind-fold-nvim": "plugins-tailwind-fold-nvim"
