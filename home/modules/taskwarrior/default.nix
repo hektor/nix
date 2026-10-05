@@ -157,7 +157,7 @@ in
           "urgency.user.project.studies.coefficient" = "1.0";
 
           # misc
-          "news.version" = "3.4.2";
+          "news.version" = "3.5.0";
           "rc.json.array" = "on";
           "rc.verbose" = "nothing";
           "search.case.sensitive" = "no";
