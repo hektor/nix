@@ -70,100 +70,97 @@ in
       };
     }
     // {
-      assertions = [
-        {
-          assertion = config.nvim.enable;
-          message = "git module requires 'nvim' module (`nvimdiff`)";
-        }
-      ];
+      warnings = lib.optional (
+        !config.nvim.enable
+      ) "'git.enable' is enabled without 'nvim.enable' (not using 'nvimdiff')";
 
       xdg.configFile."git/ignore".source = ./global.gitignore;
 
       programs.git = {
         enable = true;
-        settings = {
-          core.editor = "nvim";
-          user = {
-            name = "Hektor Misplon";
-            username = "hektor";
-            signingKey = "AEB98353B8D72E465C4236435151AF79E723F21C";
-          };
-          alias = {
-            d = "diff";
-            ds = "diff --staged";
-            a = "add";
-            ap = "add -p";
-            c = "commit";
-            cm = "commit -m";
-            cam = "commit --amend";
-            l = ''log --pretty=format:(%an)\ \ %h\ \ %ad\ \ %s --date=short'';
-            s = "status --short";
-            sv = "status --verbose";
-            co = "checkout";
-            cob = "checkout -b";
-            pullr = "pull --rebase --autostash";
-            pushf = "push --force-with-lease";
-            al = "!git config -l | grep alias | cut -c 7-";
-            alf = "!git config -l | grep alias | cut -c 7- | fzf";
-            "al-" =
-              ''!git config --local --unset $(git config -l | grep alias | cut --delimiter="=" --fields=1 | fzf)'';
-            rs = "restore --staged";
-            rb = "rebase";
-            rbi = "rebase -i";
-            wt = "worktree";
-            wtc = ''config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"'';
-          };
-          color = {
-            ui = "auto";
-            diff = {
-              meta = "yellow bold";
-              commit = "green bold";
-              frag = "magenta bold";
-              old = "red bold";
-              new = "green bold";
-              whitespace = "red reverse";
+        settings = lib.mkMerge [
+          {
+            user = {
+              name = "Hektor Misplon";
+              username = "hektor";
+              signingKey = "AEB98353B8D72E465C4236435151AF79E723F21C";
             };
-            "diff-highlight" = {
-              oldNormal = "red bold";
-              oldHighlight = "red bold 52";
-              newNormal = "green bold";
-              newHighlight = "green bold 22";
+            alias = {
+              d = "diff";
+              ds = "diff --staged";
+              a = "add";
+              ap = "add -p";
+              c = "commit";
+              cm = "commit -m";
+              cam = "commit --amend";
+              l = ''log --pretty=format:(%an)\ \ %h\ \ %ad\ \ %s --date=short'';
+              s = "status --short";
+              sv = "status --verbose";
+              co = "checkout";
+              cob = "checkout -b";
+              pullr = "pull --rebase --autostash";
+              pushf = "push --force-with-lease";
+              al = "!git config -l | grep alias | cut -c 7-";
+              alf = "!git config -l | grep alias | cut -c 7- | fzf";
+              "al-" =
+                ''!git config --local --unset $(git config -l | grep alias | cut --delimiter="=" --fields=1 | fzf)'';
+              rs = "restore --staged";
+              rb = "rebase";
+              rbi = "rebase -i";
+              wt = "worktree";
+              wtc = ''config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"'';
             };
-            branch = {
-              current = "normal bold";
-              local = "normal";
-              remote = "normal italic";
+            color = {
+              ui = "auto";
+              diff = {
+                meta = "yellow bold";
+                commit = "green bold";
+                frag = "magenta bold";
+                old = "red bold";
+                new = "green bold";
+                whitespace = "red reverse";
+              };
+              "diff-highlight" = {
+                oldNormal = "red bold";
+                oldHighlight = "red bold 52";
+                newNormal = "green bold";
+                newHighlight = "green bold 22";
+              };
+              branch = {
+                current = "normal bold";
+                local = "normal";
+                remote = "normal italic";
+              };
+              status = {
+                added = "green";
+                changed = "yellow";
+                untracked = "normal italic";
+              };
             };
-            status = {
-              added = "green";
-              changed = "yellow";
-              untracked = "normal italic";
+            credential.helper = "cache --timeout=3600";
+            init.defaultBranch = "main";
+            log = {
+              date = "relative";
+              abbrevCommit = true;
             };
-          };
-          credential.helper = "cache --timeout=3600";
-          init.defaultBranch = "main";
-          log = {
-            date = "relative";
-            abbrevCommit = true;
-          };
-          merge = {
-            tool = "nvimdiff";
-            conflictStyle = "diff3";
-          };
-          diff = {
-            colorMoved = "zebra";
-            tool = "nvimdiff";
-          };
-          difftool.prompt = false;
-          mergetool = {
-            prompt = false;
-            keepBackup = false;
-          };
-          commit.gpgSign = false;
-          interactive.singleKey = true;
-          pull.rebase = true;
-          rerere.enabled = true;
-        };
+            merge.conflictStyle = "diff3";
+            diff.colorMoved = "zebra";
+            commit.gpgSign = false;
+            interactive.singleKey = true;
+            pull.rebase = true;
+            rerere.enabled = true;
+          }
+          (lib.mkIf config.nvim.enable {
+            core.editor = "nvim";
+            diff.tool = "nvimdiff";
+            merge.tool = "nvimdiff";
+            difftool.prompt = false;
+            mergetool = {
+              prompt = false;
+              keepBackup = false;
+            };
+          })
+        ];
 
         includes = [
           { path = personalEmail; }
