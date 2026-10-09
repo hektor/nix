@@ -35,6 +35,13 @@ in
   desktop.niri.enable = true;
   gaming.enable = true;
   git.enable = true;
+  graphics = {
+    enable = true;
+    intel = {
+      enable = true;
+      model = "uhd-770";
+    };
+  };
   keyboard.enable = true;
   localization.enable = true;
   my = {
@@ -54,7 +61,6 @@ in
     hostId = "80eef97e";
     useDHCP = lib.mkDefault true;
   };
-  nvidia.enable = true;
   restic-backup = {
     enable = true;
     paths = [

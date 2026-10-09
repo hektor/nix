@@ -1,16 +1,12 @@
 { lib, config, ... }:
 
 {
-  options.nvidia.enable = lib.mkEnableOption "NVIDIA graphics";
-
-  config = lib.mkIf config.nvidia.enable {
+  config = lib.mkIf (config.graphics.enable && config.graphics.nvidia.enable) {
     nixpkgs.allowedUnfree = [
       "nvidia-x11"
       "nvidia-persistenced"
       "nvidia-settings"
     ];
-
-    hardware.graphics.enable = true;
 
     hardware.nvidia = {
       modesetting.enable = true;

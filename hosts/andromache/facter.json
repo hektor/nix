@@ -1404,8 +1404,8 @@
     ],
     "graphics_card": [
       {
-        "index": 45,
-        "attached_to": 41,
+        "index": 27,
+        "attached_to": 0,
         "class_list": [
           "graphics_card",
           "pci"
@@ -1416,8 +1416,8 @@
           "value": 4
         },
         "slot": {
-          "bus": 1,
-          "number": 0
+          "bus": 0,
+          "number": 2
         },
         "base_class": {
           "hex": "0003",
@@ -1435,34 +1435,34 @@
           "value": 0
         },
         "vendor": {
-          "hex": "10de",
-          "name": "nVidia Corporation",
-          "value": 4318
+          "hex": "8086",
+          "name": "Intel Corporation",
+          "value": 32902
         },
         "sub_vendor": {
           "hex": "1043",
           "value": 4163
         },
         "device": {
-          "hex": "2204",
-          "value": 8708
+          "hex": "a780",
+          "value": 42880
         },
         "sub_device": {
-          "hex": "87b3",
-          "value": 34739
+          "hex": "8882",
+          "value": 34946
         },
         "revision": {
-          "hex": "00a1",
-          "value": 161
+          "hex": "0004",
+          "value": 4
         },
-        "model": "nVidia VGA compatible controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.0/0000:01:00.0",
-        "sysfs_bus_id": "0000:01:00.0",
+        "model": "Intel VGA compatible controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.0",
+        "sysfs_bus_id": "0000:00:02.0",
         "resources": [
           {
             "type": "io",
             "base": 28672,
-            "range": 128,
+            "range": 64,
             "enabled": true,
             "access": "read_write"
           }
@@ -1474,15 +1474,15 @@
           "secondary_bus": 0,
           "prog_if": 0
         },
-        "driver": "nvidia",
-        "driver_module": "nvidia",
+        "driver": "i915",
+        "driver_module": "i915",
         "drivers": [
-          "nvidia"
+          "i915"
         ],
         "driver_modules": [
-          "nvidia"
+          "i915"
         ],
-        "module_alias": "pci:v000010DEd00002204sv00001043sd000087B3bc03sc00i00"
+        "module_alias": "pci:v00008086d0000A780sv00001043sd00008882bc03sc00i00"
       }
     ],
     "hub": [
@@ -2152,7 +2152,7 @@
     "monitor": [
       {
         "index": 64,
-        "attached_to": 45,
+        "attached_to": 27,
         "class_list": [
           "monitor"
         ],
@@ -3437,72 +3437,6 @@
         ],
         "module_alias": "pci:v00008086d00007A50sv00001043sd000087FBbc04sc03i00",
         "label": "Intel HD Audio"
-      },
-      {
-        "index": 58,
-        "attached_to": 41,
-        "class_list": [
-          "sound",
-          "pci"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 1,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0004",
-          "name": "Multimedia controller",
-          "value": 4
-        },
-        "sub_class": {
-          "hex": "0003",
-          "value": 3
-        },
-        "vendor": {
-          "hex": "10de",
-          "name": "nVidia Corporation",
-          "value": 4318
-        },
-        "sub_vendor": {
-          "hex": "1043",
-          "value": 4163
-        },
-        "device": {
-          "hex": "1aef",
-          "value": 6895
-        },
-        "sub_device": {
-          "hex": "87b3",
-          "value": 34739
-        },
-        "revision": {
-          "hex": "00a1",
-          "value": 161
-        },
-        "model": "nVidia Multimedia controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.0/0000:01:00.1",
-        "sysfs_bus_id": "0000:01:00.1",
-        "detail": {
-          "function": 1,
-          "command": 6,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "prog_if": 0
-        },
-        "driver": "snd_hda_intel",
-        "driver_module": "snd_hda_intel",
-        "drivers": [
-          "snd_hda_intel"
-        ],
-        "driver_modules": [
-          "snd_hda_intel"
-        ],
-        "module_alias": "pci:v000010DEd00001AEFsv00001043sd000087B3bc04sc03i00"
       }
     ],
     "storage_controller": [

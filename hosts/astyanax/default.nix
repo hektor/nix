@@ -33,6 +33,13 @@ in
   bootloader.enable = true;
   desktop.niri.enable = true;
   git.enable = true;
+  graphics = {
+    enable = true;
+    intel = {
+      enable = true;
+      model = "arc-140t";
+    };
+  };
   keyboard.enable = true;
   localization.enable = true;
   my = {
@@ -67,23 +74,7 @@ in
   docker.enable = true;
   nfc.enable = true;
 
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    # https://wiki.nixos.org/wiki/Intel_Graphics
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        vpl-gpu-rt
-        intel-compute-runtime
-      ];
-    };
-  };
-
-  # https://wiki.nixos.org/wiki/Intel_Graphics
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  };
+  hardware.cpu.intel.updateMicrocode = true;
 
   environment.systemPackages = [
     (pkgs.writeShellApplication {
