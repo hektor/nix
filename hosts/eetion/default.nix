@@ -22,6 +22,8 @@ in
     generic-extlinux-compatible.enable = true;
   };
 
+  hardware.deviceTree.name = "allwinner/sun50i-h616-orangepi-zero2.dtb";
+
   networking = {
     hostName = config.host.name;
     networkmanager.enable = true;
