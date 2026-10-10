@@ -9,7 +9,6 @@
 }:
 
 let
-  cfg = config.taskwarrior;
   sops = myUtils.sopsAvailability config osConfig;
   standalone = osConfig == null;
 
@@ -62,7 +61,7 @@ in
 {
   options.taskwarrior.enable = lib.mkEnableOption "taskwarrior";
 
-  config = lib.mkIf cfg.enable (
+  config = lib.mkIf config.taskwarrior.enable (
     lib.optionalAttrs standalone {
       sops = {
         secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
