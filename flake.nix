@@ -75,7 +75,10 @@
       myUtils = import ./utils { inherit lib; };
       hostDirNames = myUtils.dirNames ./hosts;
       system = "x86_64-linux";
-      dotsPath = ./dots;
+      paths = {
+        dots = ./dots;
+        hosts = ./hosts;
+      };
       gitHooks = import ./git-hooks.nix {
         inherit nixpkgs git-hooks system;
         src = ./.;
@@ -97,7 +100,7 @@
               inherit
                 inputs
                 outputs
-                dotsPath
+                paths
                 myUtils
                 ;
             };
@@ -117,7 +120,7 @@
               inherit
                 inputs
                 outputs
-                dotsPath
+                paths
                 myUtils
                 ;
             };
@@ -135,7 +138,7 @@
               inherit
                 inputs
                 outputs
-                dotsPath
+                paths
                 myUtils
                 ;
             };
@@ -154,7 +157,7 @@
             inherit
               inputs
               outputs
-              dotsPath
+              paths
               myUtils
               ;
           };

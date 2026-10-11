@@ -1,7 +1,7 @@
 {
   inputs,
   outputs,
-  dotsPath,
+  paths,
   myUtils,
   config,
   lib,
@@ -21,7 +21,7 @@ in
       inherit
         inputs
         outputs
-        dotsPath
+        paths
         myUtils
         ;
     };

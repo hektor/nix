@@ -3,16 +3,16 @@
   lib,
   pkgs,
   myUtils,
+  paths,
   ...
 }:
 
 let
   cfg = config.ssh;
-
-  hostDir = ../../../hosts;
-  hostsWithKeys = lib.filter (hostname: builtins.pathExists (hostDir + "/${hostname}/ssh_host.pub")) (
-    myUtils.dirNames hostDir
-  );
+  hostNames = myUtils.dirNames paths.hosts;
+  hostsWithKeys = lib.filter (
+    hostname: builtins.pathExists (paths.hosts + "/${hostname}/ssh_host.pub")
+  ) hostNames;
 in
 {
   options.ssh.enable = lib.mkEnableOption "ssh";
@@ -37,7 +37,7 @@ in
         lib.genAttrs hostsWithKeys (
           hostname:
           let
-            meta = myUtils.hostMeta (hostDir + "/${hostname}");
+            meta = myUtils.hostMeta (paths.hosts + "/${hostname}");
           in
           {
             User = meta.host.username;

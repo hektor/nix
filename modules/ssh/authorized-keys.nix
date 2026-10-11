@@ -1,12 +1,13 @@
 {
   lib,
   config,
+  paths,
   ...
 }:
 
 let
   inherit (config.host) username;
-  adminHosts = (import ../../utils { inherit lib; }).adminHosts ../../hosts;
+  adminHosts = (import ../../utils { inherit lib; }).adminHosts paths.hosts;
 in
 {
   options.ssh = {
@@ -22,7 +23,7 @@ in
         map (
           hostname:
           let
-            keyFile = ../../hosts/${hostname}/ssh_user.pub;
+            keyFile = paths.hosts + "/${hostname}/ssh_user.pub";
           in
           lib.optionals (builtins.pathExists keyFile) (lib.splitString "\n" (builtins.readFile keyFile))
         ) ((builtins.filter (h: h != config.host.name) adminHosts) ++ config.ssh.authorizedHosts)
