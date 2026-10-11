@@ -8,7 +8,6 @@
 
 let
   meta = import ./meta.nix;
-  wolInterfaces = import ./wol-interfaces.nix;
 in
 {
   imports = [
@@ -88,10 +87,7 @@ in
   };
   tailscale.enable = true;
   taskwarrior.enable = true;
-  wol = {
-    enable = true;
-    interfaces.eno1 = { inherit (wolInterfaces.eno1) macAddress; };
-  };
+  wol.interfaces.eno1.macAddress = "02:68:b3:29:da:98";
   zfs.enable = true;
 
   disko.devices = {

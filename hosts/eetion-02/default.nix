@@ -16,6 +16,7 @@ in
 
   ssh.enable = true;
   tailscale.enable = true;
+  wol.wakes = [ "andromache" ];
 
   boot = {
     kernelParams = [

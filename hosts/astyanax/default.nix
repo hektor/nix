@@ -71,6 +71,7 @@ in
     };
   };
   taskwarrior.enable = true;
+  wol.wakes = [ "andromache" ];
   zfs.enable = true;
 
   secrets.nixSigningKey.enable = true;
@@ -81,16 +82,6 @@ in
   nfc.enable = true;
 
   hardware.cpu.intel.updateMicrocode = true;
-
-  environment.systemPackages = [
-    (pkgs.writeShellApplication {
-      name = "wol-andromache";
-      runtimeInputs = [ pkgs.wakeonlan ];
-      text = ''
-        wakeonlan ${(import ../andromache/wol-interfaces.nix).eno1.macAddress}
-      '';
-    })
-  ];
 
   networking = {
     hostId = "5f0bde3c";

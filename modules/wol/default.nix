@@ -1,33 +1,57 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  outputs,
+  paths,
+  myUtils,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) mkEnableOption mkOption types;
+  hosts = myUtils.dirNames paths.hosts;
+  interfaces = host: outputs.nixosConfigurations.${host}.config.wol.interfaces;
 in
 {
   options.wol = {
-    enable = mkEnableOption "Wake-on-LAN configuration";
+    wakes = lib.mkOption {
+      type = lib.types.listOf (lib.types.enum hosts);
+    };
 
-    interfaces = mkOption {
-      type = types.attrsOf (
-        types.submodule {
+    interfaces = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
           options = {
-            macAddress = mkOption {
-              type = types.str;
-              example = "02:68:b3:29:da:98";
-            };
+            macAddress = lib.mkOption { type = lib.types.str; };
           };
         }
       );
-      default = { };
     };
   };
 
-  config = lib.mkIf config.wol.enable {
+  config = {
+    assertions = map (host: {
+      assertion = interfaces host != { };
+      message = "cannot set up wake-on-lan for '${host}' as it declares no 'wol.interfaces'.";
+    }) config.wol.wakes;
+
     networking.interfaces = lib.mapAttrs (_: iface: {
       wakeOnLan.enable = true;
       inherit (iface) macAddress;
     }) config.wol.interfaces;
 
-    # networking.firewall.allowedUDPPorts = [ 9 ];
+    environment.systemPackages = map (
+      host:
+      let
+        macAddresses = lib.mapAttrsToList (_: interface: interface.macAddress) (interfaces host);
+      in
+      pkgs.writeShellApplication {
+        name = "wol-${host}";
+        runtimeInputs = [ pkgs.wakeonlan ];
+        text = ''
+          wakeonlan ${lib.escapeShellArgs macAddresses}
+        '';
+      }
+    ) config.wol.wakes;
   };
 }
