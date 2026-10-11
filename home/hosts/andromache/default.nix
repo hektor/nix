@@ -49,6 +49,7 @@
   pandoc.enable = true;
   photography.enable = true;
   reference-manager.enable = true;
+  scripts.enable = true;
   secrets.enable = true;
   shell = {
     enable = true;

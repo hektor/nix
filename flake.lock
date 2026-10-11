@@ -661,8 +661,31 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
+        "scripts": "scripts",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
+      }
+    },
+    "scripts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791756354,
+        "narHash": "sha256-oBlr1pCkDwCrHapNpoU+AgwI+3IjV0jzheRMjJyHEeA=",
+        "ref": "main",
+        "rev": "36cef91b740a2e183aae2d2735d22d73951fab52",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/hektor/scripts"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/hektor/scripts"
       }
     },
     "sops-nix": {

@@ -58,6 +58,10 @@
       url = "path:./home/modules/nvim/config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    scripts = {
+      url = "git+ssh://git@github.com/hektor/scripts?shallow=1&ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
