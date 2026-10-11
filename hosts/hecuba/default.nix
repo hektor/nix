@@ -24,6 +24,7 @@ in
   hardware.facter.reportPath = ./facter.json;
 
   docker.enable = true;
+  hardening.enable = true;
   secrets.enable = true;
   ssh.enable = true;
   tailscale.enable = true;

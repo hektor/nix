@@ -56,6 +56,7 @@ in
   desktop.ly.enable = true;
   docker.enable = true;
   k8s.enable = true;
+  hardening.enable = true;
   hcloud.enable = true;
   networking = {
     enable = true;

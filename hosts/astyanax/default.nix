@@ -40,6 +40,7 @@ in
       model = "arc-140t";
     };
   };
+  hardening.enable = true;
   keyboard.enable = true;
   localization.enable = true;
   memory = {
