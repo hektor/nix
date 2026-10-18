@@ -46,6 +46,7 @@
   k8s.k9s.enable = true;
   keepassxc.enable = true;
   music.enable = true;
+  newsboat.enable = true;
   nvim.enable = true;
   pandoc.enable = true;
   photography.enable = true;
