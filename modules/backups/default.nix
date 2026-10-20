@@ -21,6 +21,11 @@ in
       type = lib.types.listOf lib.types.str;
       default = [ "/home" ];
     };
+
+    inhibitsSleep = lib.mkOption {
+      type = lib.types.bool;
+      default = config.host.role != "laptop";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -53,6 +58,7 @@ in
         Persistent = true;
       };
       initialize = true;
+      inherit (cfg) inhibitsSleep;
       extraBackupArgs = [ "--one-file-system" ];
       pruneOpts = [
         "--keep-daily 7"
@@ -61,6 +67,12 @@ in
         "--keep-yearly 1"
       ];
       environmentFile = config.sops.templates."restic/b2-env-${host}".path;
+    };
+
+    systemd.services.restic-backups-home = {
+      unitConfig = {
+        RequiresMountsFor = cfg.paths;
+      };
     };
   };
 }
