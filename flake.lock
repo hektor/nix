@@ -364,7 +364,7 @@
         "lastModified": 1792696240,
         "narHash": "sha256-j10N8GofuhDazqM9GkM0HKpsOXA4QGkOofCv4a0uWZk=",
         "ref": "main",
-        "rev": "a89518a64f4f968f813b663855c7b9f57f31196a",
+        "rev": "f4b9c2276c2bf5c5a75aa9840c49c1b2a21de6fd",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/hektor/hecuba-services"
