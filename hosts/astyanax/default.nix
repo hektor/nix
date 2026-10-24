@@ -42,6 +42,10 @@ in
   };
   keyboard.enable = true;
   localization.enable = true;
+  memory = {
+    oom.enable = true;
+    zram.enable = true;
+  };
   my = {
     fonts.enable = true;
     stylix.enable = true;
@@ -126,7 +130,4 @@ in
       };
     };
   };
-
-  zramSwap.enable = true;
-  systemd.oomd.enableUserSlices = true;
 }

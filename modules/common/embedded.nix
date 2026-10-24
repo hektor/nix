@@ -5,10 +5,8 @@
     system.autoUpgrade.enable = false;
     nix.settings.max-jobs = 0;
 
-    zramSwap = {
-      enable = true;
-      memoryPercent = 100;
-    };
+    memory.zram.enable = true;
+    zramSwap.memoryPercent = 100;
 
     services.journald.settings.Journal.SystemMaxUse = "100M";
   };

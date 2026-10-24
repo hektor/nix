@@ -44,6 +44,7 @@ in
   };
   keyboard.enable = true;
   localization.enable = true;
+  memory.zram.enable = true;
   my = {
     fonts.enable = true;
     stylix.enable = true;
@@ -121,6 +122,4 @@ in
     enable = true;
     package = pkgs.plocate;
   };
-
-  zramSwap.enable = true;
 }
