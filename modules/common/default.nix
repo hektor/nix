@@ -12,7 +12,6 @@
 
   config = {
     system.stateVersion = lib.mkDefault "25.05";
-    boot.zfs.forceImportRoot = lib.mkDefault false;
 
     environment.defaultPackages = lib.mkForce [ ];
     environment.pathsToLink = [

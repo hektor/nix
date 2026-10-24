@@ -67,6 +67,7 @@ in
     };
   };
   taskwarrior.enable = true;
+  zfs.enable = true;
 
   secrets.nixSigningKey.enable = true;
   restic-backup.enable = true;

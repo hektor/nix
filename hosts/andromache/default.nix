@@ -91,6 +91,7 @@ in
     enable = true;
     interfaces.eno1 = { inherit (wolInterfaces.eno1) macAddress; };
   };
+  zfs.enable = true;
 
   disko.devices = {
     disk.data = {
