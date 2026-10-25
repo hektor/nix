@@ -53,6 +53,10 @@ in
   };
   policies = {
     DefaultDownloadDirectory = "\${home}/dl";
+    "3rdparty".Extensions."keepassxc-browser@keepassxc.org".settings = {
+      defaultGroup = "browser";
+      defaultPasskeyGroup = "browser";
+    };
     ExtensionSettings = {
       "jid1-ZAdIEUB7XOzOJw@jetpack" = {
         default_area = "navbar";
