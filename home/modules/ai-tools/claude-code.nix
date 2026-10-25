@@ -12,25 +12,26 @@ in
     programs.claude-code.enable = true;
 
     home.packages = with pkgs; [
-      (stdenv.mkDerivation {
-        name = "ccline";
-        src = fetchurl {
-          url = "https://github.com/Haleclipse/CCometixLine/releases/download/v1.0.8/ccline-linux-x64.tar.gz";
-          hash = "sha256-Joe3Dd6uSMGi66QT6xr2oY/Tz8rA5RuKa6ckBVJIzI0=";
+      (rustPlatform.buildRustPackage (finalAttrs: {
+        pname = "ccometixline";
+        version = "2.0.1";
+        src = fetchFromGitHub {
+          owner = "Haleclipse";
+          repo = "CCometixLine";
+          tag = "v${finalAttrs.version}";
+          hash = "sha256-tzEo+8M86C6EdN31rDVqt8+SCYqeEXRCVFsbtbW41XY=";
         };
-        unpackPhase = "tar xzf $src";
-        installPhase = ''
-          mkdir -p $out/bin
-          cp ccline $out/bin/
-          chmod +x $out/bin/ccline
-        '';
+        cargoHash = "sha256-dTsuyklpaiYqp5Rq1Q7YUBrmQUH42ve2UY+MwUqF7Ek=";
+        checkFlags = [ "--skip=git::tests::detects_repositories_without_spawning_git" ];
+        postInstall = "mv $out/bin/ccometixline $out/bin/ccline";
         meta = {
-          description = "CCometixLine Linux x64 CLI (Claude Code statusline)";
+          description = "CCometixLine (ccline) - Claude Code statusline tool";
           homepage = "https://github.com/Haleclipse/CCometixLine";
           license = lib.licenses.mit;
-          platforms = [ "x86_64-linux" ];
+          mainProgram = "ccline";
+          platforms = lib.platforms.unix;
         };
-      })
+      }))
       rtk
       mcp-nixos
     ];
