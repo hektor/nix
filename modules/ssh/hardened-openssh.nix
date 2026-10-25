@@ -17,18 +17,32 @@ in
   config = {
     networking.firewall.allowedTCPPorts = lib.mkIf config.ssh.enable [ 22 ];
 
-    services.openssh.settings = optionalAttrs cfg.harden {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-      AuthenticationMethods = "publickey";
-      KbdInteractiveAuthentication = false;
-      ChallengeResponseAuthentication = false;
-      X11Forwarding = false;
-      AllowAgentForwarding = false;
-      AllowTcpForwarding = false;
-      PermitTunnel = false;
-      MaxAuthTries = 3;
-      LoginGraceTime = "1m";
+    services.openssh = {
+      settings = optionalAttrs cfg.harden {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        AuthenticationMethods = "publickey";
+        KbdInteractiveAuthentication = false;
+        ChallengeResponseAuthentication = false;
+        X11Forwarding = false;
+        AllowAgentForwarding = false;
+        AllowTcpForwarding = false;
+        PermitTunnel = false;
+        MaxAuthTries = 3;
+        LoginGraceTime = "1m";
+        ClientAliveInterval = 300;
+        ClientAliveCountMax = 2;
+        TCPKeepAlive = false;
+        MaxSessions = 4;
+        LogLevel = "VERBOSE";
+        AllowUsers = [ config.host.username ];
+      };
+      hostKeys = mkIf cfg.harden [
+        {
+          type = "ed25519";
+          path = "/etc/ssh/ssh_host_ed25519_key";
+        }
+      ];
     };
   };
 }
