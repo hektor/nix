@@ -6,7 +6,18 @@
       enable = lib.mkEnableOption "3D printing tools";
     };
     modeling = {
-      enable = lib.mkEnableOption "3D modeling tools";
+      blender = {
+        enable = lib.mkOption {
+          default = false;
+          type = lib.types.bool;
+        };
+      };
+      openscad = {
+        enable = lib.mkOption {
+          default = false;
+          type = lib.types.bool;
+        };
+      };
     };
   };
 

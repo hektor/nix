@@ -6,11 +6,15 @@
 }:
 
 {
-  config = lib.mkIf config.modules."3d".modeling.enable {
-    home.packages = with pkgs; [
-      blender
-      openscad-lsp
-      openscad-unstable
-    ];
+  config = {
+    home.packages =
+      with pkgs;
+      lib.optionals config.modules."3d".modeling.blender.enable [
+        blender
+      ]
+      ++ lib.optionals config.modules."3d".modeling.openscad.enable [
+        openscad-lsp
+        openscad-unstable
+      ];
   };
 }

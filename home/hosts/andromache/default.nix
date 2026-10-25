@@ -19,10 +19,7 @@
   xdg.userDirs.createDirectories = false;
   xdg.userDirs.download = "${config.home.homeDirectory}/dl";
 
-  modules."3d" = {
-    printing.enable = true;
-    modeling.enable = true;
-  };
+  modules."3d".printing.enable = true;
   ai-tools = {
     claude-code.enable = true;
     codex.enable = true;
