@@ -6,7 +6,6 @@
 }:
 let
   cfg = config.ai-tools.claude-code;
-  rtk-version = "0.18.1";
 in
 {
   config = lib.mkIf cfg.enable {
@@ -32,26 +31,7 @@ in
           platforms = [ "x86_64-linux" ];
         };
       })
-      (stdenv.mkDerivation {
-        name = "rtk-${rtk-version}";
-        version = rtk-version;
-        src = fetchurl {
-          url = "https://github.com/rtk-ai/rtk/releases/download/v${rtk-version}/rtk-x86_64-unknown-linux-gnu.tar.gz";
-          hash = "sha256-XoTia5K8b00OzcKYCufwx8ApkAS31DxUCpGSU0jFs2Q=";
-        };
-        unpackPhase = "tar xzf $src";
-        installPhase = ''
-          mkdir -p $out/bin
-          cp rtk $out/bin/
-          chmod +x $out/bin/rtk
-        '';
-        meta = {
-          description = "RTK - AI coding tool enhancer";
-          homepage = "https://www.rtk-ai.app";
-          license = lib.licenses.mit;
-          platforms = [ "x86_64-linux" ];
-        };
-      })
+      rtk
       mcp-nixos
     ];
   };
