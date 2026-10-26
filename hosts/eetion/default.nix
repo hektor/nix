@@ -14,6 +14,7 @@ in
 
   inherit (meta) host;
 
+  lynis.enable = true;
   ssh.enable = true;
   tailscale.enable = true;
 

@@ -32,6 +32,7 @@ in
   };
   docker.enable = true;
   hardening.enable = true;
+  lynis.enable = true;
   secrets.enable = true;
   ssh.enable = true;
   tailscale.enable = true;

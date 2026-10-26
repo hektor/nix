@@ -43,6 +43,7 @@ in
   };
   keyboard.enable = true;
   localization.enable = true;
+  lynis.enable = true;
   memory.zram.enable = true;
   my = {
     fonts.enable = true;

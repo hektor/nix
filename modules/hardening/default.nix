@@ -6,6 +6,12 @@
 }:
 
 let
+  unusedProtocols = [
+    "dccp"
+    "sctp"
+    "rds"
+    "tipc"
+  ];
   wakeOnLan = lib.any (iface: iface.wakeOnLan.enable) (lib.attrValues config.networking.interfaces);
   randomMac = config.host.role == "laptop" && !wakeOnLan;
   desktop = {
@@ -79,12 +85,8 @@ in
         message = "no 'hardening.profile' for `${config.host.role}` host role";
       }
     ];
-    boot.blacklistedKernelModules = [
-      "dccp"
-      "sctp"
-      "rds"
-      "tipc"
-    ];
+    boot.blacklistedKernelModules = unusedProtocols;
+    boot.extraModprobeConfig = lib.concatMapStrings (m: "install ${m} /bin/false\n") unusedProtocols;
     hardware.bluetooth.settings.General = lib.mkIf config.hardware.bluetooth.enable {
       PairableTimeout = 30;
       DiscoverableTimeout = 30;

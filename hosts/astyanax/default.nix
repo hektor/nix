@@ -43,6 +43,7 @@ in
   hardening.enable = true;
   keyboard.enable = true;
   localization.enable = true;
+  lynis.enable = true;
   memory = {
     oom.enable = true;
     zram.enable = true;
