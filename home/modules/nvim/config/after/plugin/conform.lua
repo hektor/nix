@@ -23,10 +23,12 @@ local formatters = {
   shell = { bash = { "shellcheck" } },
   svelte = { svelte = { "eslint_d", "prettierd", "prettier", stop_after_first = true } },
   typescript = {
-    javascript = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
-    javascriptreact = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
-    typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
-    typescriptreact = { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
+    javascript = { "biome-check", "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
+    javascriptreact = { "biome-check", "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
+    json = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    jsonc = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    typescript = { "biome-check", "eslint_d", "prettierd", "prettier", stop_after_first = true },
+    typescriptreact = { "biome-check", "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true },
   },
   yaml = {
     -- yaml = { "prettierd", "prettier", stop_after_first = true },
@@ -46,6 +48,9 @@ require("conform").setup({
   format_after_save = {
     lsp_format = "never",
     timeout_ms = 500,
+  },
+  formatters = {
+    ["biome-check"] = { require_cwd = true },
   },
   formatters_by_ft = formatters_by_ft,
 })

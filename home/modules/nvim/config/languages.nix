@@ -118,6 +118,7 @@ with pkgs;
   typescript = {
     enable = false;
     packages = [
+      biome
       eslint_d
       (if (categories.typescriptServer or "ts_ls") == "vtsls" then vtsls else typescript-language-server)
       vscode-langservers-extracted

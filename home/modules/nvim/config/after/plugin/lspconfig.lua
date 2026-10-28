@@ -101,6 +101,7 @@ local servers = {
   },
   tailwind = { tailwindcss = {} },
   typescript = {
+    biome = {},
     eslint = {
       settings = {
         --Assuming prettier/prettierd will handle formatting, we don't need to see these errors
