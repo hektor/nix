@@ -14,7 +14,7 @@ in
 
     passwordFile = lib.mkOption {
       type = lib.types.str;
-      default = config.sops.secrets."restic/password".path;
+      default = config.sops.secrets."${host}-restic/password".path;
     };
 
     paths = lib.mkOption {
@@ -30,7 +30,7 @@ in
 
   config = lib.mkIf cfg.enable {
     secrets = {
-      restic = [ "password" ];
+      "${host}-restic" = [ "password" ];
       backblaze-b2 = [
         "bucket-name"
         "account-id"
