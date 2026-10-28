@@ -86,7 +86,6 @@ in
         lib.optional (!sops.available)
           "taskwarrior is enabled, but sops templates are not available. taskwarrior sync will not be configured.";
 
-      home.packages = [ pkgs.taskopen ];
       home.file = {
         ".local/share/task/hooks/on-exit.sync.py".source = syncHook;
         ".local/share/task/scripts/sync-and-notify.sh".source = lib.getExe syncAndNotify;
