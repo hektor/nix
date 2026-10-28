@@ -78,6 +78,7 @@
               nodejs_24
               curl # → plenary-nvim
               delta
+              editorconfig-checker
               fd
               gawk
               inotify-tools
