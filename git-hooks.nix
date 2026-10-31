@@ -9,6 +9,9 @@ let
 
   pre-commit-check = git-hooks.lib.${system}.run {
     inherit src;
+
+    default_stages = [ "pre-commit" ];
+
     hooks = {
       nixfmt = {
         enable = true;
@@ -16,32 +19,24 @@ let
       };
       statix.enable = true;
       deadnix.enable = true;
+
+      flake-check = {
+        enable = true;
+        entry = "${pkgs.lib.getExe pkgs.nix} flake check";
+        stages = [ "pre-push" ];
+        pass_filenames = false;
+        always_run = true;
+      };
     };
   };
 in
 {
-  checks = {
-    inherit pre-commit-check;
-  };
+  checks.pre-commit-check = pre-commit-check;
 
-  formatter =
-    let
-      inherit (pre-commit-check) config;
-      inherit (config) package configFile;
-      script = ''
-        ${pkgs.lib.getExe package} run --all-files --config ${configFile}
-      '';
-    in
-    pkgs.writeShellScriptBin "pre-commit-run" script;
+  formatter = pkgs.nixfmt-tree;
 
-  devShells = {
-    default =
-      let
-        inherit (pre-commit-check) shellHook enabledPackages;
-      in
-      pkgs.mkShell {
-        inherit shellHook;
-        buildInputs = enabledPackages;
-      };
+  devShells.default = pkgs.mkShell {
+    inherit (pre-commit-check) shellHook;
+    packages = pre-commit-check.enabledPackages;
   };
 }
