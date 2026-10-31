@@ -361,19 +361,19 @@
     "hecuba-services": {
       "flake": false,
       "locked": {
-        "lastModified": 1793449124,
-        "narHash": "sha256-UhSOQiSxPY/i3Xm+5yqQAKQ4N8QikT3uY+RqIDLdeh0=",
+        "lastModified": 1793511960,
+        "narHash": "sha256-TvzuWcQVL4u2g8UhYdnfOwphDJ8bg1l/T31yFbKQbvc=",
         "ref": "main",
-        "rev": "18d0202e8747b0528722c3f1ffc553bfe1b82a83",
+        "rev": "16c8c8d4a1f96b83ba7d2440fde98ab7093f2556",
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@github.com/hektor/hecuba-services"
+        "url": "ssh://git@github.com/hektor-org/hecuba-services"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/hektor/hecuba-services",
         "ref": "main",
-        "shallow": true
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/hektor-org/hecuba-services"
       }
     },
     "home-manager": {
@@ -420,19 +420,19 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1792360606,
-        "narHash": "sha256-+aCQal5q6VtwlH1J2UXhzyY4AGqek6wvLXJzLioXdz4=",
+        "lastModified": 1792706177,
+        "narHash": "sha256-MdLYOxV0xXvCtBU6mld3gL4iH7Mr+jGXH+ytAojVie8=",
         "ref": "main",
-        "rev": "6d7541fa4585a8c450721b22254c166ade7a7c15",
+        "rev": "1d855a9725603034b66b6f007b553f7347d101bc",
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@github.com/hektor/nix-secrets"
+        "url": "ssh://git@github.com/hektor-org/nix-secrets"
       },
       "original": {
         "ref": "main",
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@github.com/hektor/nix-secrets"
+        "url": "ssh://git@github.com/hektor-org/nix-secrets"
       }
     },
     "nixCats": {

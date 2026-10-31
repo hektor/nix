@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-secrets = {
-      url = "git+ssh://git@github.com/hektor/nix-secrets?shallow=1&ref=main";
+      url = "git+ssh://git@github.com/hektor-org/nix-secrets?shallow=1&ref=main";
       flake = false;
     };
     colmena = {
@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hecuba-services = {
-      url = "git+ssh://git@github.com/hektor/hecuba-services?shallow=1&ref=main";
+      url = "git+ssh://git@github.com/hektor-org/hecuba-services?shallow=1&ref=main";
       flake = false;
     };
     git-hooks = {
