@@ -18,9 +18,16 @@ in
     k9s = {
       enable = lib.mkEnableOption "k9s";
     };
+    crossplane = {
+      enable = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+      };
+    };
   };
 
   imports = [
+    ./crossplane.nix
     ./helm.nix
     ./k9s.nix
   ];
@@ -36,7 +43,6 @@ in
       kubectl
       kustomize
       opentofu
-      upbound
     ];
 
     programs.kubecolor = {
