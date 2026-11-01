@@ -16,13 +16,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  xdg = {
-    systemDirs.config = [ "/etc/xdg" ];
-    userDirs = {
-      createDirectories = false;
-      download = "${config.home.homeDirectory}/dl";
-    };
-  };
+  xdg.systemDirs.config = [ "/etc/xdg" ];
 
   home = {
     stateVersion = "25.05";
@@ -70,8 +64,11 @@
   k8s.enable = true;
   keepassxc.enable = true;
   music.enable = true;
-  my.dconf.enable = true;
-  my.stylix.enable = true;
+  my = {
+    dconf.enable = true;
+    stylix.enable = true;
+    xdg.enable = true;
+  };
   nvim = {
     enable = true;
     colorscheme = "vscode";

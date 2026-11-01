@@ -16,9 +16,6 @@
     homeDirectory = "/home/${config.host.username}";
   };
 
-  xdg.userDirs.createDirectories = false;
-  xdg.userDirs.download = "${config.home.homeDirectory}/dl";
-
   modules."3d".printing.enable = true;
   ai-tools = {
     claude-code.enable = true;
@@ -64,6 +61,7 @@
   taskwarrior.enable = true;
   terminal.enable = true;
   torrenting.enable = true;
+  my.xdg.enable = true;
   my.yubikey.enable = true;
   zk.enable = true;
 

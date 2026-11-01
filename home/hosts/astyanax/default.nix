@@ -15,11 +15,6 @@
     homeDirectory = "/home/${config.host.username}";
   };
 
-  xdg.userDirs = {
-    enable = false;
-    createDirectories = false;
-  };
-
   modules."3d".printing.enable = true;
   ai-tools = {
     claude-code.enable = true;
@@ -44,6 +39,7 @@
   keepassxc.enable = true;
   music.enable = true;
   newsboat.enable = true;
+  my.xdg.enable = true;
   my.yubikey.enable = true;
   nfc.enable = true;
   nvim.enable = true;
