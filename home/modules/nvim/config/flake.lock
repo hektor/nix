@@ -31,6 +31,22 @@
         "type": "github"
       }
     },
+    "plugins-atlas-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793732433,
+        "narHash": "sha256-z9Mnw/wU5ceuaMiIPJgtXDhw93w0y6MayWQtIYrlqaY=",
+        "owner": "emrearmagan",
+        "repo": "atlas.nvim",
+        "rev": "f78cfc45930d070e93be6d00e500292dfcc263c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emrearmagan",
+        "repo": "atlas.nvim",
+        "type": "github"
+      }
+    },
     "plugins-beancount-nvim": {
       "flake": false,
       "locked": {
@@ -44,22 +60,6 @@
       "original": {
         "owner": "polarmutex",
         "repo": "beancount.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-diffview-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1787574526,
-        "narHash": "sha256-twlMCrNKlkuoT3aQtZHVAZNw5zv1Y9McFYBt8+KgHZ4=",
-        "owner": "dlyongemallo",
-        "repo": "diffview.nvim",
-        "rev": "30afab604a0abe02dfd19e6fbb9153fd26fd2eb3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dlyongemallo",
-        "repo": "diffview.nvim",
         "type": "github"
       }
     },
@@ -115,8 +115,8 @@
       "inputs": {
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-atlas-nvim": "plugins-atlas-nvim",
         "plugins-beancount-nvim": "plugins-beancount-nvim",
-        "plugins-diffview-nvim": "plugins-diffview-nvim",
         "plugins-nvimkit-nvim": "plugins-nvimkit-nvim",
         "plugins-shipwright-nvim": "plugins-shipwright-nvim",
         "plugins-tailwind-fold-nvim": "plugins-tailwind-fold-nvim"

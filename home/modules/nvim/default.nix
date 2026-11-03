@@ -20,7 +20,10 @@ in
 
   config = lib.mkIf config.nvim.enable {
     nvim.packageDefinitions.merge.nvim = _: {
-      categories.colorscheme = config.nvim.colorscheme;
+      categories = {
+        colorscheme = config.nvim.colorscheme;
+        github = config.git.github.enable;
+      };
     };
 
     home = {

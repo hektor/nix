@@ -23,8 +23,8 @@
       url = "github:jamesblckwell/nvimkit.nvim";
       flake = false;
     };
-    plugins-diffview-nvim = {
-      url = "github:dlyongemallo/diffview.nvim";
+    plugins-atlas-nvim = {
+      url = "github:emrearmagan/atlas.nvim";
       flake = false;
     };
 
@@ -117,6 +117,7 @@
               yaml-language-server
               yamllint
             ];
+            github = [ gh ];
           };
 
           startupPlugins = {
@@ -174,7 +175,7 @@
                 treesj
                 sniprun
                 gitsigns-nvim
-                pkgs.neovimPlugins.diffview-nvim
+                pkgs.neovimPlugins.atlas-nvim
                 nvim-highlight-colors
                 pkgs.neovimPlugins.tailwind-fold-nvim
                 auto-session
@@ -216,6 +217,7 @@
           };
           categories = {
             general = true;
+            github = false;
             colorscheme = "zenwritten";
           };
         };
