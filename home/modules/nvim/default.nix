@@ -13,9 +13,18 @@ in
 {
   imports = [ inputs.nvim.homeModules.default ];
 
-  options.nvim.colorscheme = lib.mkOption {
-    type = lib.types.enum (lib.attrNames themes);
-    default = "zenwritten";
+  options.nvim = {
+    colorscheme = lib.mkOption {
+      type = lib.types.enum (lib.attrNames themes);
+      default = "zenwritten";
+    };
+    typescriptServer = lib.mkOption {
+      default = "ts_ls";
+      type = lib.types.enum [
+        "ts_ls"
+        "vtsls"
+      ];
+    };
   };
 
   config = lib.mkIf config.nvim.enable {
@@ -23,6 +32,7 @@ in
       categories = {
         colorscheme = config.nvim.colorscheme;
         github = config.git.github.enable;
+        inherit (config.nvim) typescriptServer;
       };
     };
 

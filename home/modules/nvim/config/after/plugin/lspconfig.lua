@@ -96,43 +96,42 @@ local servers = {
   },
   tailwindcss = {},
   ts_ls = {},
-  -- vtsls = {
-  --   maxTsServerMemory = 16384,
-  --   filetypes = {
-  --     "javascript",
-  --     "javascriptreact",
-  --     "javascript.jsx",
-  --     "typescript",
-  --     "typescriptreact",
-  --     "typescript.tsx",
-  --   },
-  --   settings = {
-  --     complete_function_calls = true,
-  --     vtsls = {
-  --       enableMoveToFileCodeAction = true,
-  --       autoUseWorkspaceTsdk = true,
-  --       experimental = {
-  --         completion = {
-  --           enableServerSideFuzzyMatch = true,
-  --         },
-  --       },
-  --     },
-  --     typescript = {
-  --       updateImportsOnFileMove = { enabled = "always" },
-  --       suggest = {
-  --         completeFunctionCalls = true,
-  --       },
-  --       inlayHints = {
-  --         enumMemberValues = { enabled = true },
-  --         functionLikeReturnTypes = { enabled = true },
-  --         parameterNames = { enabled = "literals" },
-  --         parameterTypes = { enabled = true },
-  --         propertyDeclarationTypes = { enabled = true },
-  --         variableTypes = { enabled = false },
-  --       },
-  --     },
-  --   },
-  -- },
+  vtsls = {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+    settings = {
+      vtsls = {
+        enableMoveToFileCodeAction = true,
+        autoUseWorkspaceTsdk = true,
+        experimental = {
+          completion = {
+            enableServerSideFuzzyMatch = true,
+          },
+        },
+      },
+      typescript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        tsserver = { maxTsServerMemory = 16384 },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = false },
+        },
+      },
+    },
+  },
   yamlls = {
     settings = {
       yaml = {
@@ -148,6 +147,9 @@ local servers = {
     },
   },
 }
+
+local typescript_server = require("nixCatsUtils").getCatOrDefault("typescriptServer", "ts_ls")
+servers[typescript_server == "vtsls" and "ts_ls" or "vtsls"] = nil
 
 for server, config in pairs(servers) do
   config.capabilities = capabilities

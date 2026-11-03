@@ -97,7 +97,6 @@
               nixd
               nixfmt
               prettier
-              typescript-language-server
               ormolu
               prettierd
               rust-analyzer
@@ -107,9 +106,8 @@
               stylua
               tree-sitter
               tailwindcss-language-server
-              typescript-language-server
+              (if (categories.typescriptServer or "ts_ls") == "vtsls" then vtsls else typescript-language-server)
               vscode-langservers-extracted
-              vtsls
               yaml-language-server
               yamllint
             ];
@@ -214,6 +212,7 @@
             general = true;
             github = false;
             colorscheme = "zenwritten";
+            typescriptServer = "ts_ls";
           };
         };
       };
