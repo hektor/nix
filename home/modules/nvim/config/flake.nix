@@ -19,10 +19,6 @@
       url = "github:razak17/tailwind-fold.nvim";
       flake = false;
     };
-    plugins-nvimkit-nvim = {
-      url = "github:jamesblckwell/nvimkit.nvim";
-      flake = false;
-    };
     plugins-atlas-nvim = {
       url = "github:emrearmagan/atlas.nvim";
       flake = false;
@@ -182,7 +178,6 @@
                 nvim-dbee
                 image-nvim
                 pkgs.neovimPlugins.beancount-nvim
-                pkgs.neovimPlugins.nvimkit-nvim
                 codecompanion-nvim
                 helm-ls-nvim
                 kitty-scrollback-nvim
