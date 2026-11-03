@@ -10,4 +10,3 @@ ls.config.set_config({
 })
 
 require("luasnip.loaders.from_lua").lazy_load({ paths = { require("nixCats").configDir .. "/snips" } })
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/Code - Insiders/User/snippets" } })
