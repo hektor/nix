@@ -34,6 +34,7 @@
     }@inputs:
     let
       inherit (nixCats) utils;
+      inherit (nixpkgs) lib;
       luaPath = ./.;
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
       extra_pkg_config = {
@@ -75,44 +76,23 @@
         }:
         let
           themes = import ./themes.nix pkgs;
+          languages = import ./languages.nix { inherit pkgs categories; };
         in
         {
           lspsAndRuntimeDeps = with pkgs; {
             general = [
               nodejs_24
-              black
-              clang
-              clang-tools
               curl # → plenary-nvim
               delta
-              emmet-language-server
-              eslint_d
               fd
               gawk
-              gdtoolkit_4
-              hadolint
-              helm-ls
               inotify-tools
-              isort
-              lua-language-server
-              nixd
-              nixfmt
               prettier
-              ormolu
               prettierd
-              rust-analyzer
-              rustfmt
-              shellcheck-minimal
-              stylelint
-              stylua
               tree-sitter
-              tailwindcss-language-server
-              (if (categories.typescriptServer or "ts_ls") == "vtsls" then vtsls else typescript-language-server)
-              vscode-langservers-extracted
-              yaml-language-server
-              yamllint
             ];
             github = [ gh ];
+            languages = lib.mapAttrs (_: language: language.packages) languages;
           };
 
           startupPlugins = {
@@ -137,9 +117,7 @@
                 # TODO: tidalcycles/vim-tidal
                 vim-glsl
                 # TODO: timtro/glslView-nvim
-                # TODO: sirtaj/vim-openscad
                 jupytext-nvim
-                vim-openscad
                 ## paq
                 eyeliner-nvim
                 fzf-lua
@@ -172,21 +150,19 @@
                 gitsigns-nvim
                 pkgs.neovimPlugins.atlas-nvim
                 nvim-highlight-colors
-                pkgs.neovimPlugins.tailwind-fold-nvim
                 auto-session
                 nvim-dbee
                 image-nvim
                 pkgs.neovimPlugins.beancount-nvim
                 codecompanion-nvim
-                helm-ls-nvim
                 kitty-scrollback-nvim
                 fidget-nvim
-                rustaceanvim
                 # pkgs.neovimPlugins.m-taskwarrior-d-nvim
                 claudecode-nvim
                 snacks-nvim
               ]
               ++ themes.${categories.colorscheme or "zenwritten"};
+            languages = lib.mapAttrs (_: language: language.plugins or [ ]) languages;
           };
 
           optionalPlugins = {
@@ -202,7 +178,7 @@
         };
 
       packageDefinitions = {
-        nvim = _: {
+        nvim = { pkgs, ... }: {
           settings = {
             suffix-path = true;
             suffix-LD = true;
@@ -214,6 +190,7 @@
             github = false;
             colorscheme = "zenwritten";
             typescriptServer = "ts_ls";
+            languages = lib.mapAttrs (_: language: language.enable) (import ./languages.nix { inherit pkgs; });
           };
         };
       };

@@ -31,6 +31,7 @@
   desktop.niri.enable = true;
   devenv.enable = true;
   direnv.enable = true;
+  docker.enable = true;
   gaming.enable = true;
   git = {
     enable = true;

@@ -4,159 +4,186 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 local servers = {
-  bashls = {},
-  eslint = {
-    settings = {
-      --Assuming prettier/prettierd will handle formatting, we don't need to see these errors
-      rulesCustomizations = {
-        { rule = "prettier/prettier", severity = "off" },
-      },
-      format = false,
+  c = { clangd = {} },
+  css = { cssls = {} },
+  docker = { dockerls = {} },
+  gdscript = { gdscript = {} },
+  go = { gopls = {} },
+  haskell = { hls = { filetypes = { "haskell", "lhaskell", "cabal" } } },
+  helm = {
+    helm_ls = {
+      filetypes = { "helm", "yaml.helm-values" },
     },
   },
-  emmet_language_server = {},
-  gdscript = {},
-  helm_ls = {
-    filetypes = { "helm", "yaml.helm-values" },
+  html = {
+    emmet_language_server = {},
+    html = {},
   },
-  hls = { filetypes = { "haskell", "lhaskell", "cabal" } },
-  html = {},
-  jsonls = {
-    settings = {
-      json = {
-        schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
+  json = {
+    jsonls = {
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
       },
     },
   },
-  lua_ls = {
-    on_init = function(client)
-      if client.workspace_folders then
-        local path = client.workspace_folders[1].name
-        if
-          path ~= vim.fn.stdpath("config")
-          and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
-        then
-          return
+  lua = {
+    lua_ls = {
+      on_init = function(client)
+        if client.workspace_folders then
+          local path = client.workspace_folders[1].name
+          if
+            path ~= vim.fn.stdpath("config")
+            and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+          then
+            return
+          end
         end
-      end
 
-      client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-        runtime = {
-          version = "LuaJIT",
-          path = {
-            "lua/?.lua",
-            "lua/?/init.lua",
+        client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+          runtime = {
+            version = "LuaJIT",
+            path = {
+              "lua/?.lua",
+              "lua/?/init.lua",
+            },
           },
-        },
-        workspace = {
-          checkThirdParty = false,
-          library = {
-            vim.env.VIMRUNTIME,
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+            },
           },
-        },
-      })
-    end,
-    settings = {
-      Lua = {},
-    },
-  },
-  nixd = {
-    settings = {
-      nixd = {
-        nixpkgs = {
-          expr = "import <nixpkgs> { }",
-          expr = 'import (builtins.getFlake ("git+file://" + toString ../../../../../.)).inputs.nixpkgs { }',
-        },
-      },
-      options = {
-        nixos = {
-          expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).nixosConfigurations."'
-            .. vim.fn.hostname()
-            .. '".options',
-        },
-        home_manager = {
-          expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).homeConfigurations."'
-            .. vim.fn.expand("$USER")
-            .. "@"
-            .. vim.fn.hostname()
-            .. '".options',
-        },
+        })
+      end,
+      settings = {
+        Lua = {},
       },
     },
   },
-  openscad_ls = {},
-  pyright = {},
+  nix = {
+    nixd = {
+      settings = {
+        nixd = {
+          nixpkgs = {
+            expr = "import <nixpkgs> { }",
+            expr = 'import (builtins.getFlake ("git+file://" + toString ../../../../../.)).inputs.nixpkgs { }',
+          },
+        },
+        options = {
+          nixos = {
+            expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).nixosConfigurations."'
+              .. vim.fn.hostname()
+              .. '".options',
+          },
+          home_manager = {
+            expr = '(builtins.getFlake ("git+file://" + toString ../../../../../.)).homeConfigurations."'
+              .. vim.fn.expand("$USER")
+              .. "@"
+              .. vim.fn.hostname()
+              .. '".options',
+          },
+        },
+      },
+    },
+  },
+  openscad = { openscad_ls = {} },
+  python = { pyright = {} },
+  shell = { bashls = {} },
   svelte = {
-    plugin = {
-      svelte = {
-        defaultScriptLanguage = "ts",
+    svelte = {
+      plugin = {
+        svelte = {
+          defaultScriptLanguage = "ts",
+        },
       },
     },
   },
-  tailwindcss = {},
-  ts_ls = {},
-  vtsls = {
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
+  tailwind = { tailwindcss = {} },
+  typescript = {
+    eslint = {
+      settings = {
+        --Assuming prettier/prettierd will handle formatting, we don't need to see these errors
+        rulesCustomizations = {
+          { rule = "prettier/prettier", severity = "off" },
+        },
+        format = false,
+      },
     },
-    settings = {
-      vtsls = {
-        enableMoveToFileCodeAction = true,
-        autoUseWorkspaceTsdk = true,
-        experimental = {
-          completion = {
-            enableServerSideFuzzyMatch = true,
+    ts_ls = {},
+    vtsls = {
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      settings = {
+        vtsls = {
+          enableMoveToFileCodeAction = true,
+          autoUseWorkspaceTsdk = true,
+          experimental = {
+            completion = {
+              enableServerSideFuzzyMatch = true,
+            },
+          },
+        },
+        typescript = {
+          updateImportsOnFileMove = { enabled = "always" },
+          tsserver = { maxTsServerMemory = 16384 },
+          suggest = {
+            completeFunctionCalls = true,
+          },
+          inlayHints = {
+            enumMemberValues = { enabled = true },
+            functionLikeReturnTypes = { enabled = true },
+            parameterNames = { enabled = "literals" },
+            parameterTypes = { enabled = true },
+            propertyDeclarationTypes = { enabled = true },
+            variableTypes = { enabled = false },
           },
         },
       },
-      typescript = {
-        updateImportsOnFileMove = { enabled = "always" },
-        tsserver = { maxTsServerMemory = 16384 },
-        suggest = {
-          completeFunctionCalls = true,
-        },
-        inlayHints = {
-          enumMemberValues = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          parameterNames = { enabled = "literals" },
-          parameterTypes = { enabled = true },
-          propertyDeclarationTypes = { enabled = true },
-          variableTypes = { enabled = false },
-        },
-      },
     },
   },
-  yamlls = {
-    settings = {
-      yaml = {
-        schemaStore = {
-          -- You must disable built-in schemaStore support if you want to use
-          -- this plugin and its advanced options like `ignore`.
-          enable = false,
-          -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-          url = "",
+  yaml = {
+    yamlls = {
+      settings = {
+        yaml = {
+          schemaStore = {
+            -- You must disable built-in schemaStore support if you want to use
+            -- this plugin and its advanced options like `ignore`.
+            enable = false,
+            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+            url = "",
+          },
+          schemas = require("schemastore").yaml.schemas(),
         },
-        schemas = require("schemastore").yaml.schemas(),
       },
     },
   },
 }
 
-local typescript_server = require("nixCatsUtils").getCatOrDefault("typescriptServer", "ts_ls")
-servers[typescript_server == "vtsls" and "ts_ls" or "vtsls"] = nil
+local nixCatsUtils = require("nixCatsUtils")
+local typescript_server = nixCatsUtils.getCatOrDefault("typescriptServer", "ts_ls")
+servers.typescript[typescript_server == "vtsls" and "ts_ls" or "vtsls"] = nil
 
-for server, config in pairs(servers) do
-  config.capabilities = capabilities
-  vim.lsp.config(server, config)
+local enabled = {}
+for language, language_servers in pairs(servers) do
+  if nixCatsUtils.enableForCategory("languages." .. language) then
+    for server, config in pairs(language_servers) do
+      config.capabilities = capabilities
+      vim.lsp.config(server, config)
+      table.insert(enabled, server)
+    end
+  end
 end
 
-vim.lsp.enable(vim.tbl_keys(servers))
+vim.lsp.enable(enabled)
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(e)

@@ -13,7 +13,6 @@
         blender
       ]
       ++ lib.optionals config.modules."3d".modeling.openscad.enable [
-        openscad-lsp
         openscad-unstable
       ];
   };

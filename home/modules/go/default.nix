@@ -13,10 +13,7 @@
   config = lib.mkIf config.go.enable {
     home = {
       sessionVariables.GOPATH = "${config.xdg.dataHome}/go";
-      packages = with pkgs; [
-        go
-        gopls
-      ];
+      packages = with pkgs; [ go ];
     };
   };
 }

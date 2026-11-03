@@ -72,6 +72,14 @@
   nvim = {
     enable = true;
     colorscheme = "vscode";
+    # note: non-exhaustive (these are the ones that are not inferred from home
+    # module options atm)
+    languages = {
+      css = true;
+      html = true;
+      json = true;
+      tailwind = true;
+    };
   };
   pandoc.enable = true;
   shell.enable = true;

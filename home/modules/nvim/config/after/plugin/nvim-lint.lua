@@ -1,32 +1,59 @@
+local nixCatsUtils = require("nixCatsUtils")
+
 vim.env.ESLINT_D_PPID = vim.fn.getpid()
 
 local eslint_linter = "eslint_d"
 
-require("lint").linters_by_ft = {
-  bash = { "shellcheck" },
-  c = { "clangtidy", "flawfinder" },
-  cmake = { "cmakelint" },
-  cpp = { "clangtidy", "flawfinder" }, -- "cpplint", "cppcheck", "flawfinder"
-  css = { "stylelint" },
-  dockerfile = { "hadolint" },
-  editorconfig = { "editorconfig-checker" },
-  haskell = { "hlint" },
-  -- html = { "htmlhint" },
-  -- javascript = { eslint_linter },
-  -- javascriptreact = { eslint_linter },
-  gdscript = { "gdlint" },
-  latex = { "chktex" },
-  -- lua = { "luacheck", "selene" },
-  make = { "checkmake" },
-  -- pandoc = { "proselint", "woke" },
-  -- python = { "pylint" },
-  sh = { "shellcheck" },
-  svelte = { eslint_linter },
-  systemd = { "systemdlint" },
-  -- typescript = { eslint_linter },
-  -- typescriptreact = { eslint_linter },
-  yaml = { "yamllint" },
+local linters = {
+  general = {
+    cmake = { "cmakelint" },
+    editorconfig = { "editorconfig-checker" },
+    latex = { "chktex" },
+    make = { "checkmake" },
+    -- pandoc = { "proselint", "woke" },
+    systemd = { "systemdlint" },
+  },
+  c = {
+    c = { "clangtidy", "flawfinder" },
+    cpp = { "clangtidy", "flawfinder" }, -- "cpplint", "cppcheck", "flawfinder"
+  },
+  css = { css = { "stylelint" } },
+  docker = { dockerfile = { "hadolint" } },
+  gdscript = { gdscript = { "gdlint" } },
+  haskell = { haskell = { "hlint" } },
+  html = {
+    -- html = { "htmlhint" },
+  },
+  lua = {
+    -- lua = { "luacheck", "selene" },
+  },
+  python = {
+    -- python = { "pylint" },
+  },
+  shell = {
+    bash = { "shellcheck" },
+    sh = { "shellcheck" },
+  },
+  svelte = { svelte = { eslint_linter } },
+  typescript = {
+    -- javascript = { eslint_linter },
+    -- javascriptreact = { eslint_linter },
+    -- typescript = { eslint_linter },
+    -- typescriptreact = { eslint_linter },
+  },
+  yaml = { yaml = { "yamllint" } },
 }
+
+local linters_by_ft = {}
+for language, language_linters in pairs(linters) do
+  if language == "general" or nixCatsUtils.enableForCategory("languages." .. language) then
+    for ft, ft_linters in pairs(language_linters) do
+      linters_by_ft[ft] = ft_linters
+    end
+  end
+end
+
+require("lint").linters_by_ft = linters_by_ft
 
 local function has_yamllint_config(buf)
   return vim.fs.root(buf, { ".yamllint", ".yamllint.yaml", ".yamllint.yml" }) ~= nil

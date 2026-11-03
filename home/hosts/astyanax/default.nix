@@ -30,6 +30,7 @@
   desktop.niri.enable = true;
   devenv.enable = true;
   direnv.enable = true;
+  docker.enable = true;
   git = {
     enable = true;
     gitea.enable = true;
