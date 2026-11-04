@@ -92,6 +92,7 @@
               gdtoolkit_4
               hadolint
               helm-ls
+              inotify-tools
               isort
               lua-language-server
               nixd
