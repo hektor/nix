@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   config,
   ...
@@ -9,6 +10,8 @@
 
 let
   meta = import ./meta.nix;
+  bios = config.bootloader.firmware == "bios";
+  uefi = config.bootloader.firmware == "uefi";
 in
 {
   imports = [
@@ -23,6 +26,10 @@ in
 
   hardware.facter.reportPath = ./facter.json;
 
+  bootloader = {
+    enable = true;
+    firmware = "uefi";
+  };
   docker.enable = true;
   hardening.enable = true;
   secrets.enable = true;
@@ -58,22 +65,56 @@ in
 
   networking.hostName = config.host.name;
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
+  boot.loader.grub.device = lib.mkIf bios "/dev/sda";
+  boot.loader.systemd-boot.bootCounting.enable = lib.mkIf uefi true;
+
+  fileSystems = lib.mkIf bios {
+    "/" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/boot";
+      fsType = "ext4";
+    };
   };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "ext4";
-  };
-  swapDevices = [
+  swapDevices = lib.mkIf bios [
     {
       device = "/dev/disk/by-label/swap";
     }
   ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  disko.devices.disk.main = lib.mkIf uefi {
+    type = "disk";
+    device = "/dev/sda";
+    content = {
+      type = "gpt";
+      partitions = {
+        ESP = {
+          size = "512M";
+          type = "EF00";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+            mountOptions = [ "umask=0077" ];
+          };
+        };
+        swap = {
+          size = "4G";
+          content.type = "swap";
+        };
+        root = {
+          size = "100%";
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
+          };
+        };
+      };
+    };
+  };
 
   users.users = {
     root.hashedPassword = "!";
@@ -85,11 +126,7 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "-d";
-  };
+  nix.gc.options = "--delete-older-than 14d";
 
   virtualisation.docker.autoPrune = {
     enable = true;
