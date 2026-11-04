@@ -187,7 +187,7 @@ vim.lsp.enable(enabled)
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(e)
-    local opts = { buffer = e.bufnr }
+    local opts = { buf = e.buf }
     local set = vim.keymap.set
     local lsp_buf = vim.lsp.buf
     set("n", "gD", lsp_buf.declaration, opts)
@@ -206,7 +206,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set("n", "gr", lsp_buf.references, opts)
 
     -- Taken from https://blog.viktomas.com/graph/neovim-lsp-rename-normal-mode-keymaps/
-    set("n", "<leader>r", vim.lsp.buf.rename)
+    set("n", "<leader>r", vim.lsp.buf.rename, opts)
     -- function()
     --   -- Automatically switch to `cmdwin` for normal mode renaming
     --   -- (normally you would have to press <C-f> to open the `cmdwin`)
