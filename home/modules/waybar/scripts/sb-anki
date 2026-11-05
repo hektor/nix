@@ -1,0 +1,15 @@
+# Anki review percentage for statusbar
+
+num_to_review=200
+
+# Get current card count from Anki
+count=$(curl -s 127.0.0.1:8765 -X POST -d '{"action": "getNumCardsReviewedToday", "version": 6}' | jq '.result') || count=
+
+if [ -n "$count" ]; then
+  echo "$count" > "$ANKI_REVIEWS"
+elif [ ! -s "$ANKI_REVIEWS" ]; then
+  echo "-1" > "$ANKI_REVIEWS"
+fi
+
+num_reviews=$(cat "$ANKI_REVIEWS")
+echo -n " Reviews: $(awk -v n="$num_reviews" -v t="$num_to_review" 'BEGIN { printf "%.2f%%", 100 * n / t }') "

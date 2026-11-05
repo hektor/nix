@@ -7,12 +7,8 @@ from collections import defaultdict
 
 
 def get_task_data():
-    command = (
-        "task +PENDING or +WAITING -COMPLETED -DELETED export | "
-        "jq '[.[] | {uuid: .uuid, id, depends: .depends, description: .description, status: .status }]'"
-    )
-    output = subprocess.check_output(command, shell=True)
-    return json.loads(output)
+    command = ["task", "+PENDING", "or", "+WAITING", "-COMPLETED", "-DELETED", "export"]
+    return json.loads(subprocess.check_output(command))
 
 
 def parse_task_data(data):
@@ -27,59 +23,12 @@ def parse_task_data(data):
             "description": task.get("description", "No description"),
             "status": task.get("status", "Unknown status"),
         }
-        if task["depends"]:
-            for dependency in task["depends"]:
-                dependency_graph[dependency].append(task_id)
-                dependent_tasks.add(task_id)
+        for dependency in task.get("depends", []):
+            dependency_graph[dependency].append(task_id)
+            dependent_tasks.add(task_id)
 
     root_tasks = set(task_details.keys()) - dependent_tasks
     return task_details, dependency_graph, root_tasks
-
-
-def get_all_parents(task_id, dependency_graph):
-    return [
-        parent for parent, children in dependency_graph.items() if task_id in children
-    ]
-
-
-def build_ascii_dag(
-    task_id,
-    task_details,
-    dependency_graph,
-    prefix="",
-    is_last=True,
-    show_id=True,
-    visited=None,
-):
-    if visited is None:
-        visited = set()
-
-    if task_id in visited:
-        return [f"{prefix}{'└── ' if is_last else '├── '}... (cycle detected)"]
-
-    visited.add(task_id)
-
-    task_info = task_details[task_id]
-    task_line = f"{prefix}{'└── ' if is_last else '├── '}{task_info['id'] + ': ' if show_id else ''}{task_info['description']} ({task_info['status']})"
-    lines = [task_line]
-
-    children = dependency_graph.get(task_id, [])
-    for idx, child in enumerate(children):
-        child_is_last = idx == len(children) - 1
-        child_prefix = prefix + ("    " if is_last else "│   ")
-        lines.extend(
-            build_ascii_dag(
-                child,
-                task_details,
-                dependency_graph,
-                child_prefix,
-                child_is_last,
-                show_id,
-                visited.copy(),
-            )
-        )
-
-    return lines
 
 
 def render_dependency_dag(task_details, dependency_graph, root_tasks, show_id):

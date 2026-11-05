@@ -24,6 +24,7 @@
   };
   anki.enable = true;
   audio.enable = true;
+  bin.enable = true;
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
   comms.signal.enable = true;
@@ -57,7 +58,6 @@
   shell = {
     enable = true;
     bash.aliases.lang-js = true;
-    bash.addBinToPath = true;
   };
   ssh.enable = true;
   taskwarrior.enable = true;

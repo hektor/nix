@@ -23,6 +23,7 @@
   anki.enable = true;
   archiving.enable = true;
   audio.enable = true;
+  bin.enable = true;
   browser.enable = true;
   browser.primary = "librewolf";
   cloud.hetzner.enable = true;
@@ -50,7 +51,6 @@
   shell = {
     enable = true;
     bash.aliases.lang-js = true;
-    bash.addBinToPath = true;
   };
   ssh.enable = true;
   deploy.enable = true;

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  lib',
   ...
 }:
 
@@ -20,11 +19,6 @@ in
         type = lib.types.bool;
         default = false;
       };
-    };
-
-    addBinToPath = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
     };
 
     extraInit = lib.mkOption {
@@ -65,7 +59,5 @@ in
         ${cfg.extraInit}
       '';
     };
-
-    home.sessionPath = lib.optional cfg.addBinToPath "${lib'.dotsPath}/.bin";
   };
 }

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # back up a file by copying it to a new file with a .bak extension
 # reference: https://askubuntu.com/questions/962489/is-there-any-way-to-create-backup-copy-of-a-file-without-type-its-name-twice
 

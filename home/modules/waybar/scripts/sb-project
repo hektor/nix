@@ -1,0 +1,2 @@
+# Render contents of $HOME/.project if present
+if [ -f "$HOME/.project" ]; then cat "$HOME/.project"; fi

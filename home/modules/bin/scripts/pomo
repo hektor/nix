@@ -10,10 +10,10 @@ Pomodoro timer
 
 import atexit
 import os
+import signal
+import subprocess
 from argparse import ArgumentParser
 from time import sleep
-
-from plyer import notification
 
 POMO_PATH = os.path.join(
     os.getenv("XDG_DATA_HOME", os.path.expanduser("~/.local/share")), "pomo"
@@ -30,17 +30,14 @@ def format_mins_secs(mins, secs):
     return f"{mins:02d}:{secs:02d}"
 
 
-def make_countdown():
-    def countdown(duration):
-        while duration != 0:
-            mins = duration // 60
-            secs = duration % 60
-            time_str = format_mins_secs(mins, secs)
-            os.system(f'echo -n "{time_str}" > {POMO_PATH}')
-            sleep(1)
-            duration -= 1
-
-    return countdown
+def countdown(duration):
+    while duration != 0:
+        mins = duration // 60
+        secs = duration % 60
+        with open(POMO_PATH, "w") as f:
+            f.write(format_mins_secs(mins, secs))
+        sleep(1)
+        duration -= 1
 
 
 def main(args):
@@ -48,16 +45,13 @@ def main(args):
     break_duration = args.break_duration * 60
     repeats = args.repeats
 
-    work_countdown = make_countdown()
-    break_countdown = make_countdown()
-
     while repeats != 0:
-        notification.notify(title="Get started")
-        work_countdown(work_duration)
+        subprocess.run(["notify-send", "Get started"])
+        countdown(work_duration)
         if break_duration != 0:
-            notification.notify(title="Time for a break")
-            break_countdown(break_duration)
-            notification.notify(title="Break is over, back to work")
+            subprocess.run(["notify-send", "Time for a break"])
+            countdown(break_duration)
+            subprocess.run(["notify-send", "Break is over, back to work"])
         repeats -= 1
 
 
@@ -84,4 +78,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    main(args)
+    signal.signal(signal.SIGINT, handle_signal)
+    signal.signal(signal.SIGTERM, handle_signal)
+
+    if args.clear:
+        clear()
+    else:
+        main(args)

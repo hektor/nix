@@ -11,6 +11,10 @@ let
 in
 {
   options.anki.enable = lib.mkEnableOption "Anki";
+  options.anki.reviewsCache = lib.mkOption {
+    default = "/tmp/anki-reviews";
+    type = lib.types.str;
+  };
 
   config = lib.mkIf cfg.enable {
     secrets.files.anki = [

@@ -42,7 +42,6 @@ inputs.colmena.lib.makeHive (
       specialArgs = {
         inherit inputs lib';
         outputs = self;
-        dotsPath = ../dots;
       };
     };
   }

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 selected_hosts="$(ssh-hosts | fzf -m)"
 
 for host in $selected_hosts; do
