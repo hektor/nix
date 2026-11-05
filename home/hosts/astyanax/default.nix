@@ -38,6 +38,7 @@
   };
   k8s.k9s.enable = true;
   keepassxc.enable = true;
+  mpv.enable = true;
   music.enable = true;
   newsboat.enable = true;
   my.xdg.enable = true;

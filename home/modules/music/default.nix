@@ -23,6 +23,10 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [ spotifyWithWayland ];
+    home.activation.spotifyCacheSize = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      run mkdir -p ${config.xdg.configHome}/spotify
+      run ${lib.getExe pkgs.crudini} --ini-options=nospace --set ${config.xdg.configHome}/spotify/prefs "" storage.size 1024
+    '';
     programs.ncspot = {
       enable = true;
       settings = {

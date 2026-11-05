@@ -45,6 +45,7 @@
   };
   keyboard.vortexCore.enable = true;
   keepassxc.enable = true;
+  mpv.enable = true;
   music.enable = true;
   newsboat.enable = true;
   nvim.enable = true;

@@ -6,6 +6,26 @@
 
 {
   config = lib.mkIf (config.git.enable && config.git.github.enable) {
-    programs.gh.enable = true;
+    programs.gh = {
+      enable = true;
+      settings = {
+        git_protocol = "ssh";
+        prompt = "enabled";
+        aliases = {
+          co = "pr checkout";
+          c = "repo clone";
+          f = "repo fork";
+          rc = "repo create";
+          rv = "repo view";
+          re = "repo edit";
+          rm = "repo remove";
+          rn = "repo rename";
+          lr = "repo list";
+          li = "issue list";
+          al = "alias";
+          al- = "alias delete";
+        };
+      };
+    };
   };
 }

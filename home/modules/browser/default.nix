@@ -9,6 +9,7 @@
     ./firefox.nix
     ./librewolf.nix
     ./chromium.nix
+    ./tridactyl.nix
   ];
 
   options.browser = {
