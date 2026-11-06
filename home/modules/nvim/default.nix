@@ -47,6 +47,7 @@ in
       categories = {
         colorscheme = config.nvim.colorscheme;
         github = config.git.github.enable;
+        gitlab = config.git.gitlab.enable;
         inherit (config.nvim) languages typescriptServer;
       };
     };

@@ -1,11 +1,25 @@
 local nixCatsUtils = require("nixCatsUtils")
 local atlas = require("atlas")
 
-local githubEnabled = nixCatsUtils.enableForCategory("github")
+local providers = {}
+
+if nixCatsUtils.enableForCategory("github") then
+  providers.github = {}
+end
+
+if nixCatsUtils.enableForCategory("gitlab") then
+  providers.gitlab = { base_url = "https://gitlab.com", token = vim.env.GITLAB_API_ACCESS_TOKEN }
+end
 
 atlas.setup({
-  providers = githubEnabled and { github = {} } or {},
-  pulls = { diff = { open_cmd = "AtlasDiff" } },
+  providers = providers,
+  pulls = {
+    diff = {
+      open_cmd = "AtlasDiff",
+      layout = "side-by-side",
+      lsp = { enabled = true, link = { "node_modules" } },
+    },
+  },
 })
 
 local map = vim.keymap.set

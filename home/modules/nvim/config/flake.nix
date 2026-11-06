@@ -172,6 +172,7 @@
           categories = {
             general = true;
             github = false;
+            gitlab = false;
             colorscheme = "zenwritten";
             typescriptServer = "ts_ls";
             languages = lib.mapAttrs (_: language: language.enable) (import ./languages.nix { inherit pkgs; });
