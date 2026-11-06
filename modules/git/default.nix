@@ -9,21 +9,15 @@ in
   options.git.enable = lib.mkEnableOption "git";
 
   config = lib.mkIf cfg.enable {
-    sops.templates = {
-      ".gitconfig.email" = {
+    sops.templates = lib.genAttrs' [ "personal" "work" ] (
+      key:
+      lib.nameValuePair ".gitconfig.${key}.email" {
         inherit owner;
         content = ''
           [user]
-            email = ${config.sops.placeholder."email/personal"}
+            email = ${config.sops.placeholder."email/${key}"}
         '';
-      };
-      ".gitconfig.work.email" = {
-        inherit owner;
-        content = ''
-          [user]
-            email = ${config.sops.placeholder."email/work"}
-        '';
-      };
-    };
+      }
+    );
   };
 }

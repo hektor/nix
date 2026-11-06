@@ -10,15 +10,14 @@
 let
   cfg = config.secrets;
   inherit (config.host) username;
-  inherit (cfg) sopsDir;
-  owner = config.users.users.${username}.name;
+  sopsDir = "${toString inputs.nix-secrets}/secrets";
+  owner = username;
 
   system = {
     email = [
       "personal"
       "work"
     ];
-    nix = lib.optional cfg.nixSigningKey.enable "signing-key";
   }
   // lib.filterAttrs (_: lib.isList) cfg;
 in
@@ -33,11 +32,6 @@ in
       options = {
         enable = lib.mkEnableOption "secrets management";
 
-        sopsDir = lib.mkOption {
-          type = lib.types.str;
-          default = "${toString inputs.nix-secrets}/secrets";
-        };
-
         user = lib.mkOption {
           type = lib.types.attrsOf (lib.types.listOf lib.types.str);
           default = { };
@@ -48,10 +42,6 @@ in
           default = owner;
         };
 
-        nixSigningKey = {
-          enable = lib.mkEnableOption "nix signing key configuration";
-        };
-
         yubikey = {
           enable = lib.mkEnableOption "set up Yubikey";
         };
@@ -60,11 +50,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    sops = {
-      secrets = lib'.mkSopsSecrets sopsDir null system // lib'.mkSopsSecrets sopsDir owner cfg.user;
-    };
+    sops.secrets = lib'.mkSopsSecrets sopsDir null system // lib'.mkSopsSecrets sopsDir owner cfg.user;
 
-    nix.settings.secret-key-files = lib.mkIf cfg.nixSigningKey.enable [
+    nix.settings.secret-key-files = lib.mkIf (system ? nix) [
       config.sops.secrets."nix/signing-key".path
     ];
 

@@ -2,60 +2,51 @@
   config,
   lib,
   pkgs,
-  lib',
-  osConfig ? null,
-  inputs ? null,
   ...
 }:
 
 let
   cfg = config.anki;
-  sops = lib'.sopsAvailability config osConfig;
-  standalone = osConfig == null;
+  syncReady = config.secrets.path ? "anki/sync-user" && config.secrets.path ? "anki/sync-key";
 in
 {
   options.anki.enable = lib.mkEnableOption "Anki";
 
-  config = lib.mkIf cfg.enable (
-    lib.optionalAttrs standalone {
-      sops.secrets = lib'.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
-        anki = [
-          "sync-user"
-          "sync-key"
-        ];
-      };
-    }
-    // {
-      warnings = lib.optional (
-        !sops.available
-      ) "anki is enabled but sops secrets are not available. anki sync will not be configured.";
+  config = lib.mkIf cfg.enable {
+    secrets.files.anki = [
+      "sync-user"
+      "sync-key"
+    ];
 
-      programs.anki = {
-        enable = true;
-        package = config.nixgl.wrap pkgs.anki;
-        addons = with pkgs.ankiAddons; [
-          (anki-connect.withConfig {
-            # https://git.sr.ht/~foosoft/anki-connect/tree/master/item/plugin/config.json
-            config = {
-              apiKey = null;
-              apiLogPath = null;
-              webBindAddress = "127.0.0.1";
-              webBindPort = 8765;
-              webCorsOriginList = [ "http://localhost" ];
-              ignoreOriginList = [ ];
-            };
-          })
-          puppy-reinforcement
-          review-heatmap
-        ];
-        profiles."User 1".sync = lib.mkIf sops.available {
-          usernameFile = "${sops.secrets."anki/sync-user".path}";
-          keyFile = "${sops.secrets."anki/sync-key".path}";
-        };
-      };
+    warnings = lib.optional (
+      !syncReady
+    ) "anki is enabled but its secrets are unavailable. anki sync will not be configured.";
 
-      # allow Anki to write prefs
-      home.file."${config.xdg.dataHome}/Anki2/prefs21.db".enable = lib.mkForce false;
-    }
-  );
+    programs.anki = {
+      enable = true;
+      package = config.nixgl.wrap pkgs.anki;
+      addons = with pkgs.ankiAddons; [
+        (anki-connect.withConfig {
+          # https://git.sr.ht/~foosoft/anki-connect/tree/master/item/plugin/config.json
+          config = {
+            apiKey = null;
+            apiLogPath = null;
+            webBindAddress = "127.0.0.1";
+            webBindPort = 8765;
+            webCorsOriginList = [ "http://localhost" ];
+            ignoreOriginList = [ ];
+          };
+        })
+        puppy-reinforcement
+        review-heatmap
+      ];
+      profiles."User 1".sync = lib.mkIf syncReady {
+        usernameFile = config.secrets.path."anki/sync-user";
+        keyFile = config.secrets.path."anki/sync-key";
+      };
+    };
+
+    # allow Anki to write prefs
+    home.file."${config.xdg.dataHome}/Anki2/prefs21.db".enable = lib.mkForce false;
+  };
 }

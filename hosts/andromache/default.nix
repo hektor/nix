@@ -72,7 +72,7 @@ in
   sandboxing.enable = true;
   secrets = {
     enable = true;
-    nixSigningKey.enable = true;
+    nix = [ "signing-key" ];
   };
   ssh.enable = true;
   storage.enable = true;

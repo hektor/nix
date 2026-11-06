@@ -28,6 +28,7 @@
     in
     {
       available = osSopsAvailable || hmSopsAvailable;
+      osAvailable = osSopsAvailable;
       secrets = if osSopsAvailable then osConfig.sops.secrets else config.sops.secrets;
       templates = if osSopsAvailable then osConfig.sops.templates else config.sops.templates;
     };

@@ -15,7 +15,6 @@ with pkgs;
   parallel
   pass
   ripgrep
-  sops
   tldr
   tree
   wget

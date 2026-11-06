@@ -74,7 +74,7 @@ in
   wol.wakes = [ "andromache" ];
   zfs.enable = true;
 
-  secrets.nixSigningKey.enable = true;
+  secrets.nix = [ "signing-key" ];
   restic-backup.enable = true;
   tailscale.enable = true;
   desktop.ly.enable = true;
