@@ -1,8 +1,6 @@
 {
   inputs,
-  outputs,
-  paths,
-  myUtils,
+  lib',
   config,
   lib,
   ...
@@ -20,9 +18,7 @@ in
     extraSpecialArgs = {
       inherit
         inputs
-        outputs
-        paths
-        myUtils
+        lib'
         ;
     };
     sharedModules = [

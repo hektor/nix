@@ -4,5 +4,7 @@ let
   fs = import ./fs.nix { inherit lib; };
   hosts = import ./hosts.nix { inherit lib; };
   secrets = import ./secrets.nix { inherit lib; };
+
+  dotsPath = ../dots;
 in
-fs // hosts // secrets
+fs // hosts // secrets // { inherit dotsPath; }

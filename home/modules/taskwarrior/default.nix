@@ -2,14 +2,14 @@
   config,
   lib,
   pkgs,
-  myUtils,
+  lib',
   osConfig ? null,
   inputs ? null,
   ...
 }:
 
 let
-  sops = myUtils.sopsAvailability config osConfig;
+  sops = lib'.sopsAvailability config osConfig;
   standalone = osConfig == null;
 
   syncHook = pkgs.writers.writePython3 "on-exit.sync.py" { flakeIgnore = [ "E501" ]; } ''
@@ -64,7 +64,7 @@ in
   config = lib.mkIf config.taskwarrior.enable (
     lib.optionalAttrs standalone {
       sops = {
-        secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
+        secrets = lib'.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
           taskwarrior = [
             "sync-server-url"
             "sync-server-client-id"

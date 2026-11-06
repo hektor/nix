@@ -3,23 +3,22 @@
   lib,
   pkgs,
   inputs,
-  myUtils,
-  paths,
+  lib',
   ...
 }:
 
 let
   cfg = config.deploy;
 
-  hostNames = myUtils.dirNames paths.hosts;
+  inherit (lib') hostNames;
   hostsWithKeys = lib.filter (
-    hostname: builtins.pathExists (paths.hosts + "/${hostname}/ssh_host.pub")
+    hostname: builtins.pathExists (lib'.hostsPath + "/${hostname}/ssh_host.pub")
   ) hostNames;
 
   colmena = inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena;
   deployRs = inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-  hostTags = hostname: (myUtils.hostMeta (paths.hosts + "/${hostname}")).tags;
+  hostTags = hostname: (lib'.hostMeta hostname).tags;
   nodeTagsDecl = ''
     declare -A _colmena_node_tags=(
     ${lib.concatMapStringsSep "\n" (

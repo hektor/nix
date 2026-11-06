@@ -1,14 +1,13 @@
 {
   lib,
   config,
-  outputs,
-  paths,
+  lib',
   ...
 }:
 
 let
-  hosts = lib.attrNames outputs.nixosConfigurations;
-  keyPath = hostname: paths.hosts + "/${hostname}/ssh_host.pub";
+  hosts = lib'.nixosHosts;
+  keyPath = hostname: lib'.hostsPath + "/${hostname}/ssh_host.pub";
   hostsWithKeys = lib.filter (hostname: builtins.pathExists (keyPath hostname)) hosts;
 in
 {

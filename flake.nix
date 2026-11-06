@@ -74,15 +74,9 @@
       ...
     }@inputs:
     let
-      inherit (self) outputs;
       inherit (inputs.nixpkgs) lib;
-      myUtils = import ./utils { inherit lib; };
-      hostDirNames = myUtils.dirNames ./hosts;
+      lib' = import ./lib { inherit lib; };
       system = "x86_64-linux";
-      paths = {
-        dots = ./dots;
-        hosts = ./hosts;
-      };
       gitHooks = import ./git-hooks.nix {
         inherit nixpkgs git-hooks system;
         src = ./.;
@@ -90,22 +84,20 @@
     in
     {
       nixosConfigurations =
-        (lib.genAttrs hostDirNames (
+        (lib.genAttrs lib'.nixosHosts (
           host:
           nixpkgs.lib.nixosSystem {
             modules = [
               ./hosts/${host}
               {
-                nixpkgs.hostPlatform = (myUtils.hostMeta ./hosts/${host}).system;
+                nixpkgs.hostPlatform = (lib'.hostMeta host).system;
                 host.name = host;
               }
             ];
             specialArgs = {
               inherit
                 inputs
-                outputs
-                paths
-                myUtils
+                lib'
                 ;
             };
           }
@@ -123,9 +115,7 @@
             specialArgs = {
               inherit
                 inputs
-                outputs
-                paths
-                myUtils
+                lib'
                 ;
             };
           };
@@ -141,9 +131,7 @@
             specialArgs = {
               inherit
                 inputs
-                outputs
-                paths
-                myUtils
+                lib'
                 ;
             };
           };
@@ -160,9 +148,7 @@
             osConfig = null;
             inherit
               inputs
-              outputs
-              paths
-              myUtils
+              lib'
               ;
           };
         };

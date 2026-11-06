@@ -2,14 +2,14 @@
   config,
   lib,
   pkgs,
-  myUtils,
+  lib',
   ...
 }:
 
 {
   imports =
     let
-      dirs = myUtils.dirNames ./.;
+      dirs = lib'.dirNames ./.;
       hasDef = name: builtins.pathExists ./${name}/default.nix;
     in
     map (name: ./${name}) (builtins.filter hasDef dirs);

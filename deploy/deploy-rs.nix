@@ -5,18 +5,18 @@
 
 let
   inherit (inputs.nixpkgs) lib;
-  utils = import ../utils { inherit lib; };
+  lib' = import ../lib { inherit lib; };
 
   # only include hosts that need auto rollback (until `colmena` supports it)
   # `colmena` is used for other hosts (see ./colmena.nix)
   hostnames = lib.filter (
-    hostname: (utils.hostMeta ../hosts/${hostname}).deploy.autoRollback or false
-  ) (utils.dirNames ../hosts);
+    hostname: (lib'.hostMeta hostname).deploy.autoRollback or false
+  ) lib'.nixosHosts;
 
   mkNode =
     hostname:
     let
-      meta = utils.hostMeta ../hosts/${hostname};
+      meta = lib'.hostMeta hostname;
     in
     {
       inherit hostname;

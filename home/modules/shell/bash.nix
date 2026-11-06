@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  paths,
+  lib',
   ...
 }:
 
@@ -66,6 +66,6 @@ in
       '';
     };
 
-    home.sessionPath = lib.optional cfg.addBinToPath "${paths.dots}/.bin";
+    home.sessionPath = lib.optional cfg.addBinToPath "${lib'.dotsPath}/.bin";
   };
 }

@@ -2,21 +2,21 @@
   config,
   lib,
   pkgs,
-  myUtils,
+  lib',
   osConfig ? null,
   inputs ? null,
   ...
 }:
 
 let
-  sops = myUtils.sopsAvailability config osConfig;
+  sops = lib'.sopsAvailability config osConfig;
   standalone = osConfig == null;
 in
 {
   config = lib.mkIf config.ai-tools.opencode.enable (
     lib.optionalAttrs standalone {
       sops = {
-        secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
+        secrets = lib'.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
           opencode = [ "api-key" ];
         };
         templates."opencode/auth.json" = {

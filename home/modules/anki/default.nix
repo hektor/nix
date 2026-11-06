@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  myUtils,
+  lib',
   osConfig ? null,
   inputs ? null,
   ...
@@ -10,7 +10,7 @@
 
 let
   cfg = config.anki;
-  sops = myUtils.sopsAvailability config osConfig;
+  sops = lib'.sopsAvailability config osConfig;
   standalone = osConfig == null;
 in
 {
@@ -18,7 +18,7 @@ in
 
   config = lib.mkIf cfg.enable (
     lib.optionalAttrs standalone {
-      sops.secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
+      sops.secrets = lib'.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
         anki = [
           "sync-user"
           "sync-key"

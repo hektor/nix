@@ -2,14 +2,14 @@
   config,
   inputs,
   lib,
-  myUtils,
+  lib',
   osConfig ? null,
   ...
 }:
 
 let
   cfg = config.git;
-  sops = myUtils.sopsAvailability config osConfig;
+  sops = lib'.sopsAvailability config osConfig;
   standalone = osConfig == null;
 
   personalEmail = sops.templates.".gitconfig.email".path;
@@ -50,7 +50,7 @@ in
   config = lib.mkIf cfg.enable (
     lib.optionalAttrs standalone {
       sops = {
-        secrets = myUtils.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" {
+        secrets = lib'.mkSopsSecrets "${toString inputs.nix-secrets}/secrets" null {
           email = [
             "personal"
             "work"

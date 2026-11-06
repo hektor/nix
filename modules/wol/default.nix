@@ -1,16 +1,15 @@
 {
   lib,
   config,
-  outputs,
-  paths,
-  myUtils,
+  inputs,
+  lib',
   pkgs,
   ...
 }:
 
 let
-  hosts = myUtils.dirNames paths.hosts;
-  interfaces = host: outputs.nixosConfigurations.${host}.config.wol.interfaces;
+  hosts = lib'.nixosHosts;
+  interfaces = host: inputs.self.nixosConfigurations.${host}.config.wol.interfaces;
 in
 {
   options.wol = {

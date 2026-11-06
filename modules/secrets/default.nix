@@ -3,7 +3,7 @@
   inputs,
   pkgs,
   config,
-  myUtils,
+  lib',
   ...
 }:
 
@@ -61,7 +61,7 @@ in
 
   config = lib.mkIf cfg.enable {
     sops = {
-      secrets = myUtils.mkSopsSecrets sopsDir system // myUtils.mkSopsUserSecrets sopsDir owner cfg.user;
+      secrets = lib'.mkSopsSecrets sopsDir null system // lib'.mkSopsSecrets sopsDir owner cfg.user;
     };
 
     nix.settings.secret-key-files = lib.mkIf cfg.nixSigningKey.enable [
