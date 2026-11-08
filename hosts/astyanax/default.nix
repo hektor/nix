@@ -62,15 +62,12 @@ in
   secrets.enable = true;
   ssh.enable = true;
   storage.enable = true;
-  syncthing = {
+  readings = {
     enable = true;
-    folders.readings = {
-      path = "/home/${config.host.username}/doc/readings";
-      devices = [
-        "andromache"
-        "boox"
-      ];
-    };
+    peers = [
+      "andromache"
+      "boox"
+    ];
   };
   taskwarrior.enable = true;
   wol.wakes = [ "andromache" ];

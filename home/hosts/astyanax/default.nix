@@ -47,6 +47,7 @@
   nfc.enable = true;
   nvim.enable = true;
   pandoc.enable = true;
+  reference-manager.enable = true;
   secrets.enable = true;
   shell = {
     enable = true;
@@ -56,7 +57,6 @@
   deploy.enable = true;
   taskwarrior.enable = true;
   terminal.enable = true;
-  reference-manager.enable = true;
 
   programs = {
     home-manager.enable = true;

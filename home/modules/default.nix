@@ -20,6 +20,11 @@
       default = config.home.username;
     };
 
+    readings.path = lib.mkOption {
+      default = "${config.home.homeDirectory}/doc/readings";
+      type = lib.types.str;
+    };
+
     nixgl.wrap = lib.mkOption {
       type = lib.types.functionTo lib.types.package;
       default = if config.lib ? nixGL then config.lib.nixGL.wrap else lib.id;

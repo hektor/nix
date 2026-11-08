@@ -24,7 +24,11 @@ in
 
   inherit (meta) host;
 
-  hardware.facter.reportPath = ./facter.json;
+  hardware = {
+    facter.reportPath = ./facter.json;
+    cpu.intel.updateMicrocode = true;
+    hackrf.enable = true;
+  };
 
   "ai-tools".enable = true;
   anki.enable = true;
@@ -78,15 +82,12 @@ in
   };
   ssh.enable = true;
   storage.enable = true;
-  syncthing = {
+  readings = {
     enable = true;
-    folders.readings = {
-      path = "/home/${config.host.username}/doc/readings";
-      devices = [
-        "astyanax"
-        "boox"
-      ];
-    };
+    peers = [
+      "astyanax"
+      "boox"
+    ];
   };
   tailscale.enable = true;
   taskwarrior.enable = true;
@@ -112,8 +113,6 @@ in
       };
     };
   };
-
-  hardware.cpu.intel.updateMicrocode = true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
